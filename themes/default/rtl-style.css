@@ -1,0 +1,8 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+	direction:rtl;
+	text-align:right;
+	float:right;
+	font-family:Tahoma, Geneva, sans-serif;
+}
