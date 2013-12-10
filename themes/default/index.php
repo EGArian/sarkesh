@@ -7,11 +7,6 @@
 </head>
 
 <body>
-<?php
-$gg = new cls_theme;
-$gg->load_headers();
-
-?>
 
 <div class="container">
   <div class="header"><a href="http://localhost"><img src="./themes/default/images/logo.png" alt="zendigh logo" name="Insert_logo" width="50" height="50" id="Insert_logo" style="background-color: #8090AB; display:block;" /></a> 
