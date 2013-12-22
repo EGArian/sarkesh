@@ -6,7 +6,7 @@ function sys_render($buffer)
   // first replace headers 
   // like css java scripts and ect
   $page = new cls_page;
-  $buffer = str_replace("</##headers##/>", $page->load_headers(), $buffer);
+  $buffer = str_replace("</##headers##/>", global $page->load_headers(), $buffer);
   
   
   $buffer = str_replace("</##PAGE_TITTLE##/>", "Sarkesh Home Page", $buffer);

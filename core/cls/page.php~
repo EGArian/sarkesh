@@ -4,10 +4,13 @@
 class cls_page{
 	
 	public $settings;
+	public $page;
 
 	function __construct(){
 		$general = new cls_general;
 		$this->settings = $general->settings;
+		
+		$page['name'] = 'Sarkesh'
 	}
 	
 	#if active language is RTL this function return true else return false
@@ -23,7 +26,7 @@ class cls_page{
 
 	public function load_headers () {
 	#LOAD HEEFAL GENERATOR META TAG
-	$header_tags = '<meta name="generator" content=" Sarkesh Web Freamwork- Open Source Content Management" />' ."\n";
+	$header_tags = '<meta name="generator" content=" Sarkesh Web Freamwork! - Open Source Content Management" />' ."\n";
 
 	#load style sheet pages (css)
 
@@ -44,3 +47,5 @@ class cls_page{
 	return $header_tags;
 	}
 }
+$sys_page = new cls_page;
+?>
