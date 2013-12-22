@@ -19,7 +19,7 @@ class cls_cookie{
 	}
 	public function get($cookie_name){
 		if(isset($_COOKIE[$cookie_name])){ 
-		$obj_io = new sys_io;
+		$obj_io = new cls_io;
 		return $this->obj_io->cin($cookie_name,'cookie');	
 		}
 		

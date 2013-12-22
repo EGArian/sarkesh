@@ -1,15 +1,16 @@
 <?php
-
+    //for use this class we should start sessions
+    //for disable sesions add # to line below
+    session_start();
 class cls_session {
 	public $session_number;
 	
 	public function __construct(){
-		#this line most be between try catch block.
 		try{
-		$this->session_number= session_id();
+			$this->session_number= session_id();
 		}
 		catch(exception $ex){
-			
+			echo _("session diabled by host");
 		}
 	}
 	
