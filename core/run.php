@@ -13,6 +13,8 @@ if(file_exists("./config.php")) {
    include_once("./core/cls/validator.php");  
    include_once("./core/cls/localize.php");   
    include_once("./core/cls/page.php");
+   include_once("./core/cls/router.php");
+   
    
    #include functions
    include_once("./core/functions/render.php");
