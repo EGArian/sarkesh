@@ -9,7 +9,7 @@ class cls_localize{
 		$this->localize = $this->db->get_first_row_array();
 	}
 	//this function return difined localize settings in cookie
-	public function get_localize($dif = true){
+	public function get_localize($dif = false){
 		if($dif){
 			return $this->localize;
 		}

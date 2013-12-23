@@ -1,8 +1,8 @@
 <!DOCTYPE html> 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-</##headers##/>
-<title></##PAGE_TITTLE##/></title>
+</#headers#/>
+<title></#PAGE_TITTLE#/></title>
 
 </head>
 
@@ -12,7 +12,7 @@
   <div class="header"><a href="http://localhost"><img src="./themes/default/images/logo.png" alt="zendigh logo" name="Insert_logo" width="50" height="50" id="Insert_logo" style="background-color: #8090AB; display:block;" /></a> 
     <!-- end .header --></div>
   <div class="sidebar1">
-  </##block##sidebar1##/>
+  </#block#sidebar#1#/>
     <ul class="nav">
       <li><a href="http://sarkesh.org/">Sarkesh Home</a></li>
     </ul>
