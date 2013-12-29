@@ -3,7 +3,9 @@
 	in this file set functions for start and use in themes
 */
 ob_start("sys_render");
-include_once("./themes/default/index.php");
+$localize = new cls_localize;
+$settings = $localize->get_localize();
+include_once('./themes/' . $settings['theme'] . '/index.php');
 ob_end_flush();
 ?>
 

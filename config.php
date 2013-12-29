@@ -5,13 +5,15 @@
 define ("DatabaseType","mysql");
 
 #mysql connect information
-define ("DatabaseUser", "root");
-define ("DatabasePassword", "136431");
-define ("DatabaseHost", "localhost");
-define ("DatabaseName", "sarkesh");
-define ("TablePrefix", "");
+define ("DatabaseUser","root");
+define ("DatabasePassword","136431");
+define ("DatabaseHost","localhost");
+define ("DatabaseName","sarkesh");
+define ("TablePrefix","");
 
-#define application path
-define ("AppPath", dirname(__FILE__) .'/');
+//save system Root
+define ("SiteRoot","http://localhost/");
 
+#config file system
+define('AppPath',dirname(__file__) . '/');
 ?>

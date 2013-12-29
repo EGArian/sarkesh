@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: sarkesh CMS 0.1\n"
-"POT-Creation-Date: 2013-12-22 15:03+0330\n"
-"PO-Revision-Date: 2013-12-22 15:04+0330\n"
+"Project-Id-Version: RERER\n"
+"POT-Creation-Date: 2013-12-25 18:13+0330\n"
+"PO-Revision-Date: 2013-12-25 18:20+0330\n"
 "Last-Translator: Babak Alizadeh <alizadeh.babak@live.com>\n"
-"Language-Team: sarkesh translations team <cms@sarkesh.org>\n"
+"Language-Team: ERE <RER>\n"
 "Language: fa_IR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,14 +15,14 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: core/inc/localize.php:8
-msgid "Hello"
-msgstr "سلام"
+#: plugins/permations/controller.php:12
+msgid "this text is from permation plugin"
+msgstr "این متن از پلاگین سطح دسترسی است."
 
-#: core/inc/localize.php:11
-msgid "Welcome to My PHP Application"
-msgstr "خوش آمدید به برنامه من"
+#: core/cls/cls_plugin.php:36
+msgid "System Error : one or more plugin requments is not enable"
+msgstr "پیام سیستم: چند پلاگین برای اجرا موجود نیست!"
 
-#: core/inc/localize.php:14
-msgid "Have a nice day"
-msgstr "روز خوبی داشته باشید"
+#: core/cls/cls_session.php:11
+msgid "session diabled by host"
+msgstr ""
