@@ -5,7 +5,7 @@ class cls_localize{
 	private $localize;
 	function __construct(){
 		$this->db = new cls_database;
-		$this->db->do_query("select * from " . TablePrefix . "localize where main = 1;");
+		$this->db->do_query("select * from " . TablePrefix . "localize where main ='1';");
 		$this->localize = $this->db->get_first_row_array();
 	}
 	//this function return difined localize settings in cookie

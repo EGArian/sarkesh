@@ -1,6 +1,6 @@
 <?php
 function __autoload($class_name){
-	include_once(dirname(__FILE__) . '/cls/' . $class_name . '.php');
+	@include_once(dirname(__FILE__) . '/cls/' . $class_name . '.php');
 }
 //start session system
 session_start();

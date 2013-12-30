@@ -8,7 +8,7 @@ define ("DatabaseType","mysql");
 define ("DatabaseUser","root");
 define ("DatabasePassword","136431");
 define ("DatabaseHost","localhost");
-define ("DatabaseName","sarkesh");
+define ("DatabaseName","sarkesho");
 define ("TablePrefix","");
 
 #save system Root

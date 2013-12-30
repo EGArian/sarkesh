@@ -13,7 +13,11 @@ class cls_page{
 		$this->page_tittle = $this->localize_settings['name'];
 		//load all blocks data from database
 		$this->db = new cls_database;
-		$this->db->do_query('SELECT * FROM ' . TablePrefix . ' blocks;');
+		$query_string = "SELECT b.name AS 'b.name',";
+		$query_string .= "b.position AS 'b.position', b.permations AS 'b.permations', ";
+		$query_string .= "b.pages AS 'b.pages', b.show_header AS 'b.show_header', b.plugin AS 'b.plugin', p.id AS 'p.id', p.name AS 'p.name' FROM " . TablePrefix . "blocks b INNER JOIN plugins p ON b.plugin = p.id;";
+		
+		$this->db->do_query($query_string);
 		$this->blocks = $this->db->get_array();
 
 	}
@@ -70,19 +74,20 @@ class cls_page{
 	public function set_position($position){
 		//search blocks for position matched
 		foreach( $this->blocks as $block){
-			if($block['position'] == $position){
+		
+			if($block['b.position'] == $position){
 				//going to proccess block
-				if($block['name'] == 'content'){
+				if($block['p.name'] == 'core'){
 					//going to show content;
 					$obj_router = new cls_router;
 					$obj_router->show_content();
 				}
 				else{
 					$obj_plugin = new cls_plugin;
-					$plugin = $obj_plugin->get_object($block['plugin']);
+					$plugin = $obj_plugin->get_object($block['p.name']);
 					//run action metod for show block
 					//all blocks name shoud be like  'blk_blockname'
-					$plugin->action($block['name']);
+					$plugin->action($block['b.name']);
 				}
 			
 			}

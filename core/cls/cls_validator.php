@@ -7,13 +7,15 @@ private $obj_cookie;
 private $obj_session;
 private $obj_general;
 private $settings;
+private $obj_registry;
 
 	function __construct(){
 		$this->obj_general = new cls_general;
 		$this->obj_session = new cls_session;
 		$this->obj_cookie = new cls_cookie;
 		$this->db= new cls_database;
-		$this->db->do_query("select * from " . TablePrefix . "settings;");
+		$this->obj_registry = new cls_registry;
+		$this->settings = $this->obj_registry->get_plugin('core');
 		$settings=$this->db->get_first_row_array();
 		$last_check_refresh = $this->settings['validator_max_time'] + $this->settings['validator_last_check'];
 		//we use this for save in database;
@@ -38,19 +40,18 @@ private $settings;
 			}
 			//save source in database
 		
-			$this->db->do_query('INSERT INTO ' . TablePrefix . 'validator (source,valid_time,spicial_id) VALUES (?,?,?);' , array($source,time() + $this->settings['validator_max_time'], $spicial_id));
+			$this->db->do_query('INSERT INTO ' . TablePrefix . 'validator (source,valid_time,special_id) VALUES (?,?,?);' , array($source,time() + $this->settings['validator_max_time'], $spicial_id));
 			}
 	}
 	//this function check for that is source validated before
 	public function is_set($source){
-	
 		$id = $this->get_id($source);
 		if($id == '0'){
 			//we found nothing from cookie and session
 			return false;
 		}
 		//now we want to check spicial id with database
-		$this->db->do_query("SELECT * FROM " . TablePrefix . " validator WHERE spicial_id=?;" ,array($id));
+		$this->db->do_query("SELECT * FROM " . TablePrefix . "validator WHERE special_id=?;" ,array($id));
 		if($this->db->rows_count() != 0){
 			//source is validated
 			$this->update($id);
@@ -58,6 +59,15 @@ private $settings;
 		}
 		//source is not valid 
 		return false;
+	}
+	//this function delete validator
+	public function delete($source){
+		$id = $this->get_id($source);
+		if(!empty($id)){
+			//going to inset that
+			$this->db->do_query('DELETE FROM ' . TablePrefix . 'validator WHERE special_id=?;', array($id);
+		}
+	
 	}
 	//this function get spicial id from user client
 	public function get_id($source){
@@ -72,7 +82,7 @@ private $settings;
 	}
 	//this function update source
 	private function update($spicial_id){
-		$this->db->do_query('UPDATE ' . TablePrefix .' validator SET valid_time=? WHERE spicial_id=?;', array(time() + 3600 , $spicial_id)); 
+		$this->db->do_query('UPDATE ' . TablePrefix .' validator SET valid_time=? WHERE special_id=?;', array(time() + 3600 , $spicial_id)); 
 		return true;
 	}
 	//this function refresh and delete invalid validator keys that stored in database

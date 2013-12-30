@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 29, 2013 at 09:32 AM
+-- Generation Time: Dec 30, 2013 at 07:48 AM
 -- Server version: 5.5.34-0ubuntu0.13.10.1
 -- PHP Version: 5.5.3-1ubuntu2.1
 
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `blocks` (
 --
 
 INSERT INTO `blocks` (`id`, `show_header`, `name`, `plugin`, `permations`, `pages`, `position`) VALUES
-(4, 1, 'test block', 'permations', NULL, NULL, 'sidebar2'),
+(4, 1, 'test block', 'permations', NULL, NULL, 'sidebar1'),
 (5, 1, 'content', 'core', NULL, NULL, 'content');
 
 -- --------------------------------------------------------
@@ -108,6 +108,27 @@ CREATE TABLE IF NOT EXISTS `plugins` (
 
 INSERT INTO `plugins` (`id`, `name`, `state`) VALUES
 (1, 'permations', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `registry`
+--
+
+CREATE TABLE IF NOT EXISTS `registry` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `plugin` varchar(30) NOT NULL,
+  `a_key` varchar(30) NOT NULL,
+  `value` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `registry`
+--
+
+INSERT INTO `registry` (`id`, `plugin`, `a_key`, `value`) VALUES
+(1, 'permations', 'test', '999999');
 
 -- --------------------------------------------------------
 
