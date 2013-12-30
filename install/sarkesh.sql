@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 30, 2013 at 07:48 AM
+-- Generation Time: Dec 30, 2013 at 10:57 PM
 -- Server version: 5.5.34-0ubuntu0.13.10.1
 -- PHP Version: 5.5.3-1ubuntu2.1
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `sarkesh`
+-- Database: `sarkesho`
 --
 
 -- --------------------------------------------------------
@@ -28,22 +28,24 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `blocks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `show_header` tinyint(1) NOT NULL DEFAULT '1',
-  `name` varchar(30) NOT NULL,
-  `plugin` varchar(30) NOT NULL,
-  `permations` text,
-  `pages` text,
-  `position` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+  `name` varchar(45) NOT NULL,
+  `plugin` int(11) NOT NULL,
+  `position` varchar(45) NOT NULL,
+  `permations` varchar(45) DEFAULT NULL,
+  `pages` varchar(45) DEFAULT NULL,
+  `show_header` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `plugin_idx` (`plugin`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `blocks`
 --
 
-INSERT INTO `blocks` (`id`, `show_header`, `name`, `plugin`, `permations`, `pages`, `position`) VALUES
-(4, 1, 'test block', 'permations', NULL, NULL, 'sidebar1'),
-(5, 1, 'content', 'core', NULL, NULL, 'content');
+INSERT INTO `blocks` (`id`, `name`, `plugin`, `position`, `permations`, `pages`, `show_header`) VALUES
+(4, 'permation', 1, 'sidebar1', NULL, NULL, 1),
+(6, 'content', 3, 'content', NULL, NULL, 0),
+(7, 'login', 2, 'sidebar1', NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -53,21 +55,20 @@ INSERT INTO `blocks` (`id`, `show_header`, `name`, `plugin`, `permations`, `page
 
 CREATE TABLE IF NOT EXISTS `localize` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `main` tinyint(1) NOT NULL DEFAULT '0',
-  `name` varchar(50) NOT NULL,
-  `language` varchar(6) NOT NULL,
-  `home` text NOT NULL,
-  `theme` varchar(11) NOT NULL,
+  `main` int(1) NOT NULL,
+  `name` varchar(90) NOT NULL,
+  `language` varchar(7) NOT NULL,
+  `home` varchar(100) NOT NULL,
+  `theme` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `localize`
 --
 
 INSERT INTO `localize` (`id`, `main`, `name`, `language`, `home`, `theme`) VALUES
-(1, 1, 'Sarkesh', 'en_US', '?plugin=permations&action=action', 'beez'),
-(2, 0, 'سرکش', 'fa_IR', '?plugin=permations&action=action', 'default');
+(1, 1, 'Sarkesh', 'fa_IR', '?plugin=permations&action=action', 'beez');
 
 -- --------------------------------------------------------
 
@@ -77,17 +78,18 @@ INSERT INTO `localize` (`id`, `main`, `name`, `language`, `home`, `theme`) VALUE
 
 CREATE TABLE IF NOT EXISTS `permations` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) NOT NULL,
-  `enable` tinyint(1) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `enable` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `permations`
 --
 
 INSERT INTO `permations` (`id`, `name`, `enable`) VALUES
-(1, 'Administrators', 1);
+(1, 'Administrators', 1),
+(2, 'users', 1);
 
 -- --------------------------------------------------------
 
@@ -97,17 +99,19 @@ INSERT INTO `permations` (`id`, `name`, `enable`) VALUES
 
 CREATE TABLE IF NOT EXISTS `plugins` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) NOT NULL,
-  `state` tinyint(1) NOT NULL DEFAULT '0',
+  `name` varchar(45) NOT NULL,
+  `enable` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `plugins`
 --
 
-INSERT INTO `plugins` (`id`, `name`, `state`) VALUES
-(1, 'permations', 1);
+INSERT INTO `plugins` (`id`, `name`, `enable`) VALUES
+(1, 'permations', 1),
+(2, 'users', 1),
+(3, 'core', 1);
 
 -- --------------------------------------------------------
 
@@ -117,55 +121,21 @@ INSERT INTO `plugins` (`id`, `name`, `state`) VALUES
 
 CREATE TABLE IF NOT EXISTS `registry` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `plugin` varchar(30) NOT NULL,
-  `a_key` varchar(30) NOT NULL,
-  `value` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  `plugin` int(11) NOT NULL,
+  `a_key` varchar(45) NOT NULL,
+  `value` text,
+  PRIMARY KEY (`id`),
+  KEY `fk_plugin_idx` (`plugin`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `registry`
 --
 
 INSERT INTO `registry` (`id`, `plugin`, `a_key`, `value`) VALUES
-(1, 'permations', 'test', '999999');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `settings`
---
-
-CREATE TABLE IF NOT EXISTS `settings` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `validator_last_check` int(15) DEFAULT NULL,
-  `validator_max_time` int(11) NOT NULL DEFAULT '3600',
-  `cookie_max_time` int(11) DEFAULT '50000',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `settings`
---
-
-INSERT INTO `settings` (`id`, `validator_last_check`, `validator_max_time`, `cookie_max_time`) VALUES
-(1, 1387753577, 77000, 77000);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `themes`
---
-
-CREATE TABLE IF NOT EXISTS `themes` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) NOT NULL,
-  `version` varchar(10) NOT NULL,
-  `website` varchar(100) NOT NULL,
-  `anchor` varchar(100) NOT NULL,
-  `des` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+(1, 3, 'validator_last_check', '1387753577'),
+(2, 3, 'validator_max_time', '77000'),
+(3, 3, 'cookie_max_time', '77000');
 
 -- --------------------------------------------------------
 
@@ -175,21 +145,23 @@ CREATE TABLE IF NOT EXISTS `themes` (
 
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(30) NOT NULL,
-  `email` varchar(30) NOT NULL,
-  `password` varchar(40) NOT NULL,
-  `permations` int(11) NOT NULL,
-  `validator` varchar(11) DEFAULT NULL,
+  `username` varchar(45) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `validator` int(11) DEFAULT NULL,
+  `permation` int(11) NOT NULL,
   `last_login` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `permation_idx` (`permation`),
+  KEY `validator_idx` (`validator`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `permations`, `validator`, `last_login`) VALUES
-(1, 'admin', 'info@sarkesh.org', 'e10adc3949ba59abbe56e057f20f883e', 1, NULL, NULL);
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `validator`, `permation`, `last_login`) VALUES
+(1, 'sarkesh', '90deff4b32c134f32e3f0d7e8a2aad92', 'info@sarkesh.org', NULL, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -199,18 +171,34 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `permations`, `valid
 
 CREATE TABLE IF NOT EXISTS `validator` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `source` varchar(32) NOT NULL,
-  `spicial_id` varchar(10) NOT NULL,
-  `valid_time` int(11) NOT NULL,
+  `source` varchar(45) NOT NULL,
+  `spicial_id` varchar(45) NOT NULL,
+  `valid_time` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=130 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
--- Dumping data for table `validator`
+-- Constraints for dumped tables
 --
 
-INSERT INTO `validator` (`id`, `source`, `spicial_id`, `valid_time`) VALUES
-(129, 'yy6', 'o0n10othk2', 1387757177);
+--
+-- Constraints for table `blocks`
+--
+ALTER TABLE `blocks`
+  ADD CONSTRAINT `plugin` FOREIGN KEY (`plugin`) REFERENCES `plugins` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `registry`
+--
+ALTER TABLE `registry`
+  ADD CONSTRAINT `fk_plugin` FOREIGN KEY (`plugin`) REFERENCES `plugins` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `permation` FOREIGN KEY (`permation`) REFERENCES `permations` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `validator` FOREIGN KEY (`validator`) REFERENCES `validator` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
