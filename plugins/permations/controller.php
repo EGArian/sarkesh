@@ -9,7 +9,9 @@ class permations_controller{
 	}
 	
 	public function action($action_name){
-	      echo _( $action_name . 'this text is from permation plugin');
+		echo 'permation plugin';
+		
+
 	}
 
 

@@ -58,6 +58,15 @@
 			$this->db->do_query('UPDATE ' . TablePrefix . "SET state = '0' WHERE name = ?" , array($plugin_name));
 			
 		}
+		
+		//this function get plugin from server and extract that on plugins folder
+		public function download($plugin_name){
+		$net = new cls_network;
+		$file_adr = $net->download(PluginsCenter . $plugin_name . '/latest.zip');
+		$zip = new cls_zip($file_adr);
+		$zip->extract('plugins');
+		
+		}
 	
 	}
 

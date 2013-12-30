@@ -11,9 +11,14 @@ define ("DatabaseHost","localhost");
 define ("DatabaseName","sarkesh");
 define ("TablePrefix","");
 
-//save system Root
+#save system Root
 define ("SiteRoot","http://localhost/");
 
 #config file system
 define('AppPath',dirname(__file__) . '/');
+
+#this url use for installing plugin 
+#in this address sore plugins
+define('PluginsCenter','http://plugins.sarkesh.org/');
+
 ?>
