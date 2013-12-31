@@ -55,10 +55,9 @@
         </div>
     
         <div id="right_content"> 
-        	<div class="members_login">
-                       <?php $sys_page->set_position('sidebar1');?>
-		</div>
-   
+ 	
+	  <?php $sys_page->set_position('sidebar1');?>
+	
          <?php $sys_page->set_position('sidebar2');?> 
                    
         
@@ -66,7 +65,7 @@
         
                
 
-    <div id="footer"> Sarkesh CMS &copy; 2013 <br />
+    <div id="footer"> © 2013 Negareh Sarkesh Ltd. Sarkesh is registered trademarks of Negareh Sarkesh Ltd. <br />
     <?php $sys_page->set_position('footer');?>
     </div>
     </div>

@@ -4,34 +4,36 @@ class users_controller{
 	private $madule;
 	//------------------------------------
 	private $obj_validator;
+	private $db;
+	private $io;
 
 	function __construct($view, $madule){
 		$this->view = $view;
 		$this->madule = $madule;
-
-
+		$this->db = new cls_database;
+		//$this->obj_validator = new cls_validator;
+		$this->io = new cls_io;
 	}
 	
-	public function action($action_name){
+	public function action($action_name, $view = 'BLOCK'){
 
 		if($action_name == 'login'){
 			if($this->is_logedin()){
 				//show user static
-			
+			}
+			elseif(isset($_GET['username']) && isset($_GET['password'])){
+				//start login progress
+				$this->db->do_query('SELECT * FROM ' . TablePrefix . 'users WHERE username=? AND password=?;', array($this->io->cin('username', 'get'),md5($this->io->cin('password', 'get'))));
+				if($this->db->rows_count() != 0){
+					//username is cerrect
+				}
 			}
 			else{
 				//going to show login page
-				$this->view->show_login_page();
+				$this->view->show_login_page($view);
+				
 			}
-		}
-		elseif($action_name == 'do_login'){
-			if(isset($POST['username']) && isset($POST['password'])){
-				//start login progress
-			}
-			else{
-				//show login page
-				$this->view->show_login_page();
-			}
+			
 		}
 		elseif($action_name == 'logout'){
 			//start log out proccess
@@ -49,6 +51,43 @@ class users_controller{
 		}
 		
 
+	}
+	
+	//service do not has any user interface
+	//it just return xml document
+	public function service($service_name){
+		if($service_name == 'check_login'){
+			//checking user entered username and password
+			//if cerrect do_login and else return negative 
+			//	0 -> entered before
+			//	1 ->username and password was cerrect user loged in 
+			//	-1 ->username or password was incerrect
+			if($this->is_logedin()){
+				//user is entered before
+				return 0;
+			}
+			elseif(isset($_GET['username']) && isset($_GET['password'])){
+				//start login progress
+				$this->db->do_query('SELECT * FROM ' . TablePrefix . 'users WHERE username=? AND password=?;', array($this->io->cin('username', 'get'),md5($this->io->cin('password', 'get'))));
+				if($this->db->rows_count() != 0){
+					//username is cerrect going to set validator
+					
+					
+					return 1;
+				}
+				else{
+					//username or password is incerrect
+					return -1;
+				}
+			}
+			else{
+				//what do you want to do ? 
+				// you send nothing for me to proccess that. so  i return -1 for you
+				return -1;
+				
+			}
+		}
+	
 	}
 	
 	//this function search for that user is loged in before

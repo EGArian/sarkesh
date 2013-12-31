@@ -16,7 +16,6 @@ private $obj_registry;
 		$this->db= new cls_database;
 		$this->obj_registry = new cls_registry;
 		$this->settings = $this->obj_registry->get_plugin('core');
-		$settings=$this->db->get_first_row_array();
 		$last_check_refresh = $this->settings['validator_max_time'] + $this->settings['validator_last_check'];
 		//we use this for save in database;
 		

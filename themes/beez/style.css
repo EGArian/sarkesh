@@ -2,8 +2,8 @@ body
 {
 background:url(images/bg.gif) repeat top #fff;
 padding:0;
-font-family:Verdana, Arial, Helvetica, sans-serif;
-font-size:10px;
+font-family:sans, tahoma, Arial, Helvetica, sans-serif;
+font-size:15px;
 margin:0px auto auto auto;
 color:#514c48;
 }
@@ -115,6 +115,9 @@ width:auto;
 clear:both;
 background-color:#FFFFFF;
 height:auto;
+border-bottom-right-radius: 10px;
+border-bottom-left-radius: 10px;
+
 }
 #middle_banner{
 width:651px;
@@ -143,11 +146,15 @@ padding:10px 0 0 20px;
 width:635px;
 padding:10px 10px 0 20px;
 }
-.members_login{
+.block{
+color:white;
 width:210px;
-height:138px;
-padding:10px 0 0 10px;
-background:url(images/login_bg.gif) no-repeat center;
+height:auto;
+padding:12px 12px 12px 12px;
+background-color:#739ec0;
+border-radius:5px;
+margin-bottom:5px;
+
 }
 .login_row{
 width:200px;
@@ -167,30 +174,7 @@ background-color:#FFFFFF;
 border:1px #CCCCCC solid;
 float:left;
 }
-a.login_submit{
-width:66px;
-height:22px;
-float:right;
-margin:10px;
-background:url(images/login_bt.gif) no-repeat center;
-display:block;
-line-height:22px;
-color:#FFFFFF;
-text-decoration:none;
-text-align:center;
-}
-#projects_box{
-width:566px;
-height:185px;
-margin:auto;
-background:url(images/projects_bg.gif) no-repeat center;
-}
-.projects_navigation{
-width:566px;
-height:25px;
-margin:auto;
-padding:10px 0 0 0;
-}
+
 .left_nav a{
 float:left;
 background:url(images/left_arrow.gif) no-repeat left;
@@ -206,15 +190,6 @@ padding:0 30px 0 0;
 font-size:12px;
 color:#3e2510;
 text-decoration:none;
-}
-.project_container{
-float:left;
-padding:10px 20px 0 40px;
-}
-.project_title{
-font-size:12px;
-color: #999999;
-padding:0 0 5px 0;
 }
 
 /*------contact form------*/
@@ -257,9 +232,14 @@ height:4px;
 
 /*----footer---------*/
 #footer{
+font-size:12px;
+background-color:gray;
 width:auto;
 clear:both;
 padding:15px 0 10px 0;
 text-align:center;
-color:#999999;
+color:white;
+margin-bottom:30px;
+border-bottom-right-radius: 10px;
+border-bottom-left-radius: 10px;
 }

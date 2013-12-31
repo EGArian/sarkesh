@@ -44,7 +44,7 @@ class cls_router{
 	      // this function load plugin and run controller
 	      $obj_plugin = new cls_plugin;
 	      $plugin = $obj_plugin->get_object($this->plugin);
-	      $plugin->action($this->action);
+	      $plugin->action($this->action, 'MAIN');
 	}
 	
 	#this function is for refresh page and jump to address
@@ -53,7 +53,7 @@ class cls_router{
 		elseif($inner_url && $url != '0'){ $url= SiteRoot . $url;}
 		header("Refresh: $time ; url=$url");
 	}
-	public function jump_page($url,$inner_url=true){
+	public static function jump_page($url,$inner_url=true){
 		if(!$inner_url && $url != SiteRoot){ $url= SiteRoot . $url;}
 		elseif($url==SiteRoot){ $url= SiteRoot;}
 		header("Location:$url");

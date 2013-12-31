@@ -11,8 +11,8 @@ define ("DatabaseHost","localhost");
 define ("DatabaseName","sarkesho");
 define ("TablePrefix","");
 
-#save system Root
-define ("SiteRoot","http://localhost/");
+#save system Access domain
+define ("SiteDomain","http://localhost/");
 
 #config file system
 define('AppPath',dirname(__file__) . '/');

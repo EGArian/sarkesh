@@ -8,10 +8,9 @@ class permations_controller{
 		$this->madule = $madule;
 	}
 	
-	public function action($action_name){
-		echo 'permation plugin';
-		
-
+	public function action($action_name, $view){
+		$obj_page= new cls_page;
+		$obj_page->show_block(_('Banner') , '<img src="./core/ect/images/inside.png" />' , $view);
 	}
 
 
