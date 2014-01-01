@@ -229,7 +229,16 @@ clear:both;
 overflow:hidden;
 height:4px;
 }
-
+#msg{
+color:red;
+}
+#block-header{
+font-weight:bold;
+padding:5px;
+margin-bottom:10px;
+border-radius:5px;
+border-bottom:1px solid white;
+}
 /*----footer---------*/
 #footer{
 font-size:12px;

@@ -46,6 +46,12 @@ class cls_router{
 	      $plugin = $obj_plugin->get_object($this->plugin);
 	      $plugin->action($this->action, 'MAIN');
 	}
+	//this function run services and jump request do plugin
+	public function run_service(){
+	      $obj_plugin = new cls_plugin;
+	      $plugin = $obj_plugin->get_object($this->plugin);
+	      $plugin->service($this->action);
+	}
 	
 	#this function is for refresh page and jump to address
 	public function site_refresh($url='0',$inner_url=true , $time=5){

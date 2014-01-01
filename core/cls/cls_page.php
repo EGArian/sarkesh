@@ -38,8 +38,11 @@ class cls_page{
 	}
 
 	public function load_headers () {
+	
 		#LOAD HEEFAL GENERATOR META TAG
 		$header_tags = '<meta name="generator" content=" Sarkesh CMS! - Open Source Content Management" />' ."\n";
+		//cache controll
+		$header_tags .= "\n" . '<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">' . "\n";
 		#load style sheet pages (css)
 		$header_tags .= '<link rel="stylesheet" type="text/css" href="./themes/'  . $this->localize_settings['theme'] . '/style.css" />' . "\n";
 		#load rtl stylesheets
@@ -55,6 +58,7 @@ class cls_page{
 		if($this->settings['jquery'] == '1'){
 			//enable jquery
 			$header_tags .= "\n" . '<script src="./core/ect/scripts/jquery.js"></script>';
+			$header_tags .= "\n" . '<script src="./core/ect/scripts/functions.js"></script>';
 		}
 		#show header tags
 		echo $header_tags;
@@ -78,10 +82,12 @@ class cls_page{
 				echo '<div id="block-header" class="block-header">';
 				      //block header show in here
 				      echo $header;
-			      echo '</div>';
-			      //block content show in here
-			echo $content;
-		echo '</div>';
+				echo '</div>';
+				echo '<div id="block-content" class="block-content">';
+				      //block content show in here
+				      echo $content;
+				echo '</div>';
+			echo '</div>';
 		}
 		elseif($view == 'MAIN'){
 			echo '<div id="content" class="content">';

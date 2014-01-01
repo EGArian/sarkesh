@@ -1,15 +1,9 @@
 <?php
-    //for use this class we should start sessions
+    //for use this class we should start sessions			
+
 class cls_session {
-	public $session_number;
 	
 	public function __construct(){
-		try{
-			$this->session_number= session_id();
-		}
-		catch(exception $ex){
-			echo _("session diabled by host");
-		}
 	}
 	
 	public function set($key,$value){

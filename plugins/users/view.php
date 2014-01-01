@@ -7,21 +7,30 @@ class users_view{
 	}
 	
 	public function show_login_page($view){
-		$form  = '<script language="javascript" type="text/javascript" src="./plugins/users/scripts/login.js"></script>';
-		$form .= '<form action=""  metod="get">';
+		//add tag for show messages
+		$form  = '<div id="users_login" class="users_login" >';
+		$form .= '<script language="javascript" type="text/javascript" src="./plugins/users/scripts/users_login.js"></script>';
+
+		$form .= '<div id="msg" class="users_login_msg" ></div>';
+		$form .= '<form>';
 		//first attech plugin and action
 		$form .= '<input type="hidden" name="plugin" value="users" />';
 		$form .= '<input type="hidden" name="action" value="login" />';
-		$form .= '<p>' . _('Username:') . '</p><div><input type="text" name="username" value="Your Username"></div>';
-		$form .= '<p>' . _('Password:') . '</p><div><input type="password" name="password" value="123456"></div>';
-		$form .= '<div><input type="checkbox" name="remember" value="yes"> Remember me! </div>';
-		$form .= '<div><input type="submit" value="Sign in"></div>';
-		$form .= '</form>';
+		$form .= '<p>' . _('Username:') . '</p><div><input type="text" id="username" name="username" value="Your Username"></div>';
+		$form .= '<p>' . _('Password:') . '</p><div><input type="password" id="password" name="password" value="123456"></div>';
+		$form .= '<div><input type="checkbox" id="remember" name="remember" value="yes"> ' . _('Remember me!') . '</div>';
+		$form .= '<div><input type="button" class="users_button_login" onclick="users_login()" value="Sign in"></div>';
+		$form .= '</form></div>';
 		$this->obj_page->show_block(_('User Sign in') , $form, $view);
 	}
 	
-	public function show_profile_page(){
-		echo '<h1>' . _('User Profile') . '<h1>';
+	public function show_user_page($view){
+		$form  = '<div id="users_page" class="users_page" >';
+		$form .= '<script language="javascript" type="text/javascript" src="./plugins/users/scripts/users_page.js"></script>';
+		$form .= '<div id="msg" class="users_page_msg" ></div>';
+		$form .=  _('Hello!') . ' ' . 'User    <a onclick="users_logout()">' . _('Log out') . ' </a></div>';
+		$this->obj_page->show_block(_('User State') , $form, $view);
+
 	}
 	public function show_register_page(){
 		echo '<h1>' . _('Sign Up') . '<h1>';

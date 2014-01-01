@@ -12,8 +12,8 @@ class cls_cookie{
 		return false;
 	}
 	public function set($cookie_name, $cookie_value){
-		$boj_general = new cls_general;
-		$settings = $boj_general->get_settings();
+		$boj_registry = new cls_registry;
+		$settings = $boj_registry->get_plugin('core');
 		setcookie($cookie_name,$cookie_value,time() + $settings['cookie_max_time']);
 		return true;
 	}
