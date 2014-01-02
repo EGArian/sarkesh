@@ -1,4 +1,3 @@
-
 function users_login(){
 	
 	//first check for that user name or password not empty
@@ -26,8 +25,8 @@ function users_login(){
 					 //username or password is incerrect or user loged in before
 					 //we get message from server for show in localize matched
 					 stop_loading(".users_login_msg" , ".users_login");
-					 $("#msg.users_login_msg").html(data);
-				
+					 //$("#msg.users_login_msg").html(data);
+					show_msg(this);
 				}
 			}
 		); 

@@ -1,4 +1,6 @@
 function users_logout(){
+  		  //show loading
+		  show_loading(".users_page_msg" , ".users_page");
 	var url = url = "?service=1&plugin=users&action=logout";
 	$.get(url ,
 		function(data){
@@ -10,8 +12,8 @@ function users_logout(){
 			else{
 				 //username or password is incerrect or user loged in before
 				 //we get message from server for show in localize matched
-				 stop_loading(".users_login_msg" , ".users_login");
-				 $("#msg.users_login_msg").html(data);
+				 stop_loading(".users_page_msg" , ".users_page");
+				 $("#msg.users_page_msg").html(data);
 			}
 		}
 	); 

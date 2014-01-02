@@ -55,7 +55,7 @@ class users_controller{
 			//1 ->username and password was cerrect user loged in 
 			if($this->is_logedin()){
 				//user is logedin before
-				$this->service_result = _('You loged in with defferent acount before! first logout.');
+				$this->view->show_in_box(_('Message'), _('You loged in with defferent acount before! first logout.') ,true);
 			}
 			elseif(isset($_GET['username']) && isset($_GET['password'])){
 				//start login progress
@@ -73,13 +73,13 @@ class users_controller{
 				}
 				else{
 					//username or password is incerrect
-					$this->service_result = _('Username or Password is incerrect!');
+					$this->view->show_in_box(_('Message'),  _('Username or Password is incerrect!') ,true);
 				}
 			}
 			else{
 				//what do you want to do ? 
 				// you send nothing for me to proccess that. so  i return -1 for you
-				$this->service_result = _('Your request can not be prossed! try again later.');
+				$this->view->show_in_box(_('Message'), _('Your request can not be prossed! try again later.') ,true);
 				
 			}
 		}
@@ -91,7 +91,7 @@ class users_controller{
 				$this->service_result = "1";
 			}
 			else{
-				$this->service_result = _('Problem in log out! try again later');
+				$this->view->show_in_box(_('Message'),  _('Problem in log out! try again later') ,true);
 			}
 		
 		}

@@ -16,7 +16,7 @@ class users_view{
 		//first attech plugin and action
 		$form .= '<input type="hidden" name="plugin" value="users" />';
 		$form .= '<input type="hidden" name="action" value="login" />';
-		$form .= '<p>' . _('Username:') . '</p><div><input type="text" id="username" name="username" value="Your Username"></div>';
+		$form .= '<p>' . _('Username:') . '</p><div><input type="text" id="username" name="username" value="' . _('Username') .'"></div>';
 		$form .= '<p>' . _('Password:') . '</p><div><input type="password" id="password" name="password" value="123456"></div>';
 		$form .= '<div><input type="checkbox" id="remember" name="remember" value="yes"> ' . _('Remember me!') . '</div>';
 		$form .= '<div><input type="button" class="users_button_login" onclick="users_login()" value="Sign in"></div>';
@@ -34,6 +34,9 @@ class users_view{
 	}
 	public function show_register_page(){
 		echo '<h1>' . _('Sign Up') . '<h1>';
+	}
+	public function show_in_box($header, $content, $show_close = true){
+		$this->obj_page->show_in_box($header, $content, $show_close);
 	}
 }
 ?>
