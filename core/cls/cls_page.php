@@ -29,9 +29,8 @@ class cls_page{
 	#if active language is RTL this function return true else return false
 	
 	public function is_rtl(){
-		include_once("./languages/" . $this->localize_settings['language'] . "/info.php");
 		
-		if($language['direction']=='RTL') {
+		if($this->localize_settings['direction']=='RTL') {
 			return true;}
 		else {
 			return false;}

@@ -6,7 +6,7 @@ function users_login(){
 	var url;
 	if(username && password){
 		  //show loading
-		  show_loading(".users_login_msg" , ".users_login");
+		  show_loading(".users_login");
 		 //username and password is filled
 		 if ($('input#remember').is(":checked")){
 			//remember is checked
@@ -24,9 +24,10 @@ function users_login(){
 				else{
 					 //username or password is incerrect or user loged in before
 					 //we get message from server for show in localize matched
-					 stop_loading(".users_login_msg" , ".users_login");
-					 //$("#msg.users_login_msg").html(data);
-					show_msg(this);
+					 
+					 show_msg(this ,'.users_login');
+
+					 
 				}
 			}
 		); 
