@@ -1,36 +1,43 @@
 <?php
 class users_view{
 	private $obj_page;
+	private $raintpl;
 	
 	function __construct(){
+		//config raintpl
+		cls_raintpl::configure("tpl_dir", "plugins/users/tpl/" );
+		$this->raintpl = new cls_raintpl;
 		$this->obj_page = new cls_page;
+		
 	}
 	
 	public function show_login_page($view){
+	
+	
+		if( $cache = $this->raintpl->cache('users_login', 60) ){
+			$this->obj_page->show_block( _('User Sign in') , $cache, $view);
+			}
+		else{
 		//add tag for show messages
-		$form  = '<div id="users_login" class="users_login" >';
-		$form .= '<script language="javascript" type="text/javascript" src="./plugins/users/scripts/users_login.js"></script>';
-
-		$form .= '<div id="msg" class="users_login_msg" ></div>';
-		$form .= '<form>';
-		//first attech plugin and action
-		$form .= '<input type="hidden" name="plugin" value="users" />';
-		$form .= '<input type="hidden" name="action" value="login" />';
-		$form .= '<p>' . _('Username:') . '</p><div><input type="text" id="username" name="username" value="' . _('Username') .'"></div>';
-		$form .= '<p>' . _('Password:') . '</p><div><input type="password" id="password" name="password" value="123456"></div>';
-		$form .= '<div><input type="checkbox" id="remember" name="remember" value="yes"> ' . _('Remember me!') . '</div>';
-		$form .= '<div><input type="button" class="users_button_login" onclick="users_login()" value="Sign in"></div>';
-		$form .= '</form></div>';
-		$this->obj_page->show_block(_('User Sign in') , $form, $view);
+		$this->raintpl->assign( "label_username", _('Username:') );
+		$this->raintpl->assign( "label_password", _('Password:') );
+		$this->raintpl->assign( "username", _('Username') );
+		$this->raintpl->assign( "remember_me", _('Remember me!') );
+		$this->raintpl->assign( "sign_in", _('Sign in') );
+		$this->obj_page->show_block( _('User Sign in') , $this->raintpl->draw( 'users_login', true ), $view);
+		}
 	}
 	
 	public function show_user_page($view){
-		$form  = '<div id="users_page" class="users_page" >';
-		$form .= '<script language="javascript" type="text/javascript" src="./plugins/users/scripts/users_page.js"></script>';
-		$form .= '<div id="msg" class="users_page_msg" ></div>';
-		$form .=  _('Hello!') . ' ' . 'User    <a onclick="users_logout()">' . _('Log out') . ' </a></div>';
-		$this->obj_page->show_block(_('User State') , $form, $view);
-
+		if( $cache = $this->raintpl->cache('users_page', 60) ){
+			$this->obj_page->show_block( _('User State') , $cache, $view);
+		}
+		else{
+			$this->raintpl->assign( "hello", _('Hello!') );
+			$this->raintpl->assign( "username", "babak" );
+			$this->raintpl->assign( "logout", _('Log out') );
+			$this->obj_page->show_block( _('User State') , $this->raintpl->draw( 'users_page', true ), $view);
+		}
 	}
 	public function show_register_page(){
 		echo '<h1>' . _('Sign Up') . '<h1>';

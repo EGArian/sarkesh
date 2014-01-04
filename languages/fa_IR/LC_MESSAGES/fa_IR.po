@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: RERER\n"
-"POT-Creation-Date: 2013-12-25 18:13+0330\n"
-"PO-Revision-Date: 2013-12-25 18:20+0330\n"
+"Project-Id-Version: Sarkesh cms\n"
+"POT-Creation-Date: 2014-01-04 01:10+0330\n"
+"PO-Revision-Date: 2014-01-04 01:17+0330\n"
 "Last-Translator: Babak Alizadeh <alizadeh.babak@live.com>\n"
-"Language-Team: ERE <RER>\n"
+"Language-Team: sarkesh translation tems <translation@sarkesh.org>\n"
 "Language: fa_IR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,14 +15,88 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: plugins/permations/controller.php:12
-msgid "this text is from permation plugin"
-msgstr "این متن از پلاگین سطح دسترسی است."
+#: plugins/users/controller.php:58 plugins/users/controller.php:76
+#: plugins/users/controller.php:82 plugins/users/controller.php:94
+msgid "Message"
+msgstr "پیام"
 
-#: core/cls/cls_plugin.php:36
+#: plugins/users/controller.php:58
+msgid "You loged in with defferent acount before! first logout."
+msgstr ""
+"شما قبلا با یک حساب کاربری دیگری وارد شده اید!<br />لطفا ابتدا خارج شوید."
+
+#: plugins/users/controller.php:76
+msgid "Username or Password is incerrect!"
+msgstr "نام‌ کاربری یا کلمه عبور اشتباه است!"
+
+#: plugins/users/controller.php:82
+msgid "Your request can not be prossed! try again later."
+msgstr "درخواست شما قابل پردازش نیست. لطفا بعدا مراجعه کنید."
+
+#: plugins/users/controller.php:94
+msgid "Problem in log out! try again later"
+msgstr "مشکلی در قسمت خروج پیش آمده.لطفا مجددا اقدام کنید."
+
+#: plugins/users/view.php:16
+msgid "Username:"
+msgstr "نام کاربری:"
+
+#: plugins/users/view.php:17
+msgid "Password:"
+msgstr "کلمه عبور:"
+
+#: plugins/users/view.php:18
+msgid "Username"
+msgstr "نام کاربری"
+
+#: plugins/users/view.php:19
+msgid "Remember me!"
+msgstr "مرا به یاد داشته باش!"
+
+#: plugins/users/view.php:20
+msgid "Sign in"
+msgstr "ورود"
+
+#: plugins/users/view.php:22
+msgid "User Sign in"
+msgstr "ورود کاربر"
+
+#: plugins/users/view.php:29
+msgid "Hello!"
+msgstr "سلام!"
+
+#: plugins/users/view.php:29
+msgid "Log out"
+msgstr "خروج"
+
+#: plugins/users/view.php:30
+msgid "User State"
+msgstr "اطلاعات کاربر"
+
+#: plugins/users/view.php:34
+msgid "Sign Up"
+msgstr "عضویت"
+
+#: plugins/languages/controller.php:40
+msgid "message"
+msgstr "پیام"
+
+#: plugins/languages/controller.php:40
+msgid "changing language has some problem! Please try again later."
+msgstr "تغییر زبان با مشکل مواجه شد! لطفا بعدا دوباره تلاش کنید."
+
+#: plugins/languages/view.php:19
+msgid "Languages"
+msgstr "زبان ها"
+
+#: plugins/permations/controller.php:13
+msgid "Banner"
+msgstr ""
+
+#: core/cls/cls_plugin.php:37
 msgid "System Error : one or more plugin requments is not enable"
-msgstr "پیام سیستم: چند پلاگین برای اجرا موجود نیست!"
+msgstr ""
 
-#: core/cls/cls_session.php:11
-msgid "session diabled by host"
+#: core/cls/cls_zip.php:8
+msgid "can not open zip archive files"
 msgstr ""

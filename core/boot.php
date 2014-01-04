@@ -10,6 +10,13 @@ echo $sess_id;
 if(file_exists("./config.php")) {
 	//going to run sarkesh!
 	include_once("./config.php");
+	//this part is for config template engine
+	//base url add to all src attrebiutes
+	cls_raintpl::configure("base_url", "." );
+	//base folder that tpl files stored on that
+	cls_raintpl::configure("tpl_dir", "tpl/" );
+	//path for store temp files
+	cls_raintpl::configure("cache_dir", "upload/buffer/" );
 	//LOAD INC Files
 	include_once(AppPath . 'core/inc/localize.php');
 	$sys_page = new cls_page;
@@ -30,7 +37,7 @@ else {
 	// config file not found
 	// going to start system setup
 
-	echo("system setup");
+	echo("system setup...");
 }
 		
 ?>

@@ -2,21 +2,22 @@
 class languages_view{
 
 	private $obj_page;
+	private $raintpl;
 	function __construct(){
+		//config raintpl
+		cls_raintpl::configure("tpl_dir", "plugins/languages/tpl/" );
+		$this->raintpl = new cls_raintpl;
 		$this->obj_page = new cls_page;
 	}
 	
-	public function show_languages($languages, $view){
-		$form  = '<div id="languages_select" class="languages_select" >';
-		$form .= '<script language="javascript" type="text/javascript" src="./plugins/languages/scripts/languages.js"></script>';
-		$form .= '<div id="msg" class="languages_select_msg" ></div>';
-		$form .= '<select class="languages_selector" onchange="languages_change()">';
-		foreach($languages as $language){
-			  $form .= '<option value="' . $language['language'] . '">' . $language['language_name'] . '</option>';
+	public function languages_show($languages, $view){
+		if( $cache = $this->raintpl->cache('languages_show', 60) ){
+			$this->obj_page->show_block( _('User Sign in') , $cache, $view);
 		}
-		$form .= '<select>';
-		$form .= '</div>';
-		$this->obj_page->show_block(_('Languages') , $form, $view);
+		else{
+		$this->raintpl->assign( "languages_list", $languages );
+		$this->obj_page->show_block( _('Languages') , $this->raintpl->draw( 'languages_show', true ), $view);
+		}
 	}
 	
 	public function show_in_box($header, $content, $show_close = true){
