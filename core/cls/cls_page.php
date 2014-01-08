@@ -56,14 +56,14 @@ class cls_page{
 		}
 		#load jquery
 		if($this->settings['jquery'] == '1'){
-			//enable jquery
 			$header_tags .= "\n" . '<script src="./core/ect/scripts/jquery.js"></script>';
-			$header_tags .= "\n" . '<script src="./core/ect/scripts/functions.js"></script>';
-			#load custombox css files
-			$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/jquery.custombox.css" />';
-			$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/custombox.css" />';
-			#load custombox script files
-			$header_tags .= "\n" . '<script src="./core/ect/scripts/jquery.custombox.js"></script>';
+				 $header_tags .= "\n" . '<script src="./core/ect/scripts/bootstrap.min.js"></script>';
+				 $header_tags .= "\n" . '<script src="./core/ect/scripts/bootstrap-dialog.js"></script>';
+				 $header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap.min.css" />';
+				 $header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap-dialog.css" />';
+				 $header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap-theme.min.css" />';
+				 $header_tags .= "\n" . '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
+				 $header_tags .= "\n" . '<!-- HTML5 shim for IE backwards compatibility -->';
 		}
 		if($this->settings['editor'] == '1'){
 			//load text editor
@@ -106,11 +106,30 @@ class cls_page{
 				      echo $header;
 			      echo '</div>';
 			      //block content show in here
-			echo $content;
-		echo '</div>';
+			      echo $content;
+			echo '</div>';
 		}
 		else{
-			//else it's 'NONE' and do not show that
+			//else it's modal
+			echo '<?xml version="1.0"?>' . "\n";
+				echo '<message>' . "\n";
+					echo '<header>';
+						echo $header;
+					echo '</header>' . "\n";
+					echo '<content>';
+						echo $content;
+					echo '</content>' . "\n";
+					echo '<btn-ok>';
+						echo _('Ok');
+					echo '</btn-ok>' . "\n";
+					echo '<btn-back>';
+						echo _('Back');
+					echo '</btn-back>' . "\n";
+					echo '<btn-cancel>';
+						echo _('Cancel');
+					echo '</btn-cancel>' . "\n";
+				echo '</message>' . "\n";
+
 		}
 	}
 	//this function set and show blocks
@@ -143,21 +162,9 @@ class cls_page{
 	}
 	
 	//this function return content for show in custombox for show on page
-	public function show_in_box($header, $content, $show_close = true){
+	public function show_in_box($header, $content){
 	
-	echo '<div class="modal-example-content">';
-		echo '<div class="modal-example-header">';
-			if($show_close == true){
-				echo "<button type='button' class='button_close' onclick='close_msg()'>&times;</button><br />";
-			}
-			echo '<h4>' . $header . '</h4>';
-		echo '</div>';
-		echo '<div class="modal-example-body">';
-			echo '<p>' . $content . '</p>';
-		echo '</div>';
-	echo '</div>';
+	$this->show_block($header,$content,'MODAL');
 	
 	}
 }
-
-?>

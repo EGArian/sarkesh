@@ -35,12 +35,19 @@ class users_controller{
 		elseif($action_name == 'register'){
 			if($this->is_logedin()){
 				//jump to user profile
-				$this->view->show_profile_page();
+				$this->view->show_user_page($view);
 			}
 			else{
 				//show register page
 				$this->view->show_register_page();
 			}
+		}
+		elseif($action_name == 'forget_password'){
+			if(!$this->is_logedin()){
+				//show register page
+				$this->view->show_forget_page($view);
+			}
+			
 		}
 		
 
@@ -61,6 +68,7 @@ class users_controller{
 				//start login progress
 				$this->db->do_query('SELECT * FROM ' . TablePrefix . 'users WHERE username=? AND password=?;', array($this->io->cin('username', 'get'),md5($this->io->cin('password', 'get'))));
 				if($this->db->rows_count() != 0){
+				
 					//username is cerrect going to set validator
 					if(isset($_GET['remember']) && $_GET['remember'] == 'yes'){
 						$valid_id = $this->obj_validator->set('USERS_LOGIN',true);
@@ -73,13 +81,13 @@ class users_controller{
 				}
 				else{
 					//username or password is incerrect
-					$this->view->show_in_box(_('Message'),  _('Username or Password is incerrect!') ,true);
+					$this->view->show_in_box(_('Message'),  _('Username or Password is incerrect!'));
 				}
 			}
 			else{
 				//what do you want to do ? 
 				// you send nothing for me to proccess that. so  i return -1 for you
-				$this->view->show_in_box(_('Message'), _('Your request can not be prossed! try again later.') ,true);
+				$this->view->show_in_box(_('Message'), _('Your request can not be prossed! try again later.'));
 				
 			}
 		}
@@ -91,9 +99,13 @@ class users_controller{
 				$this->service_result = "1";
 			}
 			else{
-				$this->view->show_in_box(_('Message'),  _('Problem in log out! try again later') ,true);
+				$this->view->show_in_box(_('Message'),  _('Problem in log out! try again later'));
 			}
 		
+		}
+		elseif($service_name == 'get_forget_panel'){
+			//this function return forget password panel
+				$this->view->show_in_box(_('Message'),  _('Username or Password is incerrect!'));
 		}
 		echo $this->service_result;
 	

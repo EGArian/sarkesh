@@ -10,7 +10,7 @@ class users_view{
 		$this->obj_page = new cls_page;
 		
 	}
-	
+	//this function show login page for enter username and password
 	public function show_login_page($view){
 	
 	
@@ -24,10 +24,11 @@ class users_view{
 		$this->raintpl->assign( "username", _('Username') );
 		$this->raintpl->assign( "remember_me", _('Remember me!') );
 		$this->raintpl->assign( "sign_in", _('Sign in') );
+		$this->raintpl->assign( "forget_password", _('Forget your password?') );
 		$this->obj_page->show_block( _('User Sign in') , $this->raintpl->draw( 'users_login', true ), $view);
 		}
 	}
-	
+	//this function show user page (like profile)
 	public function show_user_page($view){
 		if( $cache = $this->raintpl->cache('users_page', 60) ){
 			$this->obj_page->show_block( _('User State') , $cache, $view);
@@ -39,11 +40,26 @@ class users_view{
 			$this->obj_page->show_block( _('User State') , $this->raintpl->draw( 'users_page', true ), $view);
 		}
 	}
+	//this function show forget password page for reset password
+	public function show_forget_page($view){
+	
+		if( $cache = $this->raintpl->cache('users_forget_password', 60) ){
+			$this->obj_page->show_block( _('Reset password') , $cache, $view);
+		}
+		else{
+			$this->raintpl->assign( "email", _('Email') );
+			$this->raintpl->assign( "label_email", _('Email:') );
+			$this->raintpl->assign( "reset_password_note", "Enter your email and we send reset password request to your email.");
+			$this->raintpl->assign( "send_recover_email", _('Send email') );
+			$this->obj_page->show_block( _('Reset password') , $this->raintpl->draw( 'users_forget_password', true ), $view);
+		}
+	
+	}
 	public function show_register_page(){
 		echo '<h1>' . _('Sign Up') . '<h1>';
 	}
-	public function show_in_box($header, $content, $show_close = true){
-		$this->obj_page->show_in_box($header, $content, $show_close);
+	public function show_in_box($header, $content){
+		$this->obj_page->show_in_box($header, $content);
 	}
 }
 ?>

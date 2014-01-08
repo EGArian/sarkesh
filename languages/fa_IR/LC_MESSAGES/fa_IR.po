@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sarkesh cms\n"
-"POT-Creation-Date: 2014-01-04 01:10+0330\n"
-"PO-Revision-Date: 2014-01-04 01:17+0330\n"
+"POT-Creation-Date: 2014-01-08 11:44+0330\n"
+"PO-Revision-Date: 2014-01-08 11:45+0330\n"
 "Last-Translator: Babak Alizadeh <alizadeh.babak@live.com>\n"
 "Language-Team: sarkesh translation tems <translation@sarkesh.org>\n"
 "Language: fa_IR\n"
@@ -15,65 +15,83 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: plugins/users/controller.php:58 plugins/users/controller.php:76
-#: plugins/users/controller.php:82 plugins/users/controller.php:94
+#: plugins/users/controller.php:65 plugins/users/controller.php:84
+#: plugins/users/controller.php:90 plugins/users/controller.php:102
+#: plugins/users/controller.php:108
 msgid "Message"
 msgstr "پیام"
 
-#: plugins/users/controller.php:58
+#: plugins/users/controller.php:65
 msgid "You loged in with defferent acount before! first logout."
 msgstr ""
 "شما قبلا با یک حساب کاربری دیگری وارد شده اید!<br />لطفا ابتدا خارج شوید."
 
-#: plugins/users/controller.php:76
+#: plugins/users/controller.php:84 plugins/users/controller.php:108
 msgid "Username or Password is incerrect!"
 msgstr "نام‌ کاربری یا کلمه عبور اشتباه است!"
 
-#: plugins/users/controller.php:82
+#: plugins/users/controller.php:90
 msgid "Your request can not be prossed! try again later."
 msgstr "درخواست شما قابل پردازش نیست. لطفا بعدا مراجعه کنید."
 
-#: plugins/users/controller.php:94
+#: plugins/users/controller.php:102
 msgid "Problem in log out! try again later"
 msgstr "مشکلی در قسمت خروج پیش آمده.لطفا مجددا اقدام کنید."
 
-#: plugins/users/view.php:16
-msgid "Username:"
-msgstr "نام کاربری:"
-
-#: plugins/users/view.php:17
-msgid "Password:"
-msgstr "کلمه عبور:"
-
-#: plugins/users/view.php:18
-msgid "Username"
-msgstr "نام کاربری"
-
-#: plugins/users/view.php:19
-msgid "Remember me!"
-msgstr "مرا به یاد داشته باش!"
-
-#: plugins/users/view.php:20
-msgid "Sign in"
-msgstr "ورود"
-
-#: plugins/users/view.php:22
+#: plugins/users/view.php:18 plugins/users/view.php:28
+#: plugins/languages/view.php:15
 msgid "User Sign in"
 msgstr "ورود کاربر"
 
-#: plugins/users/view.php:29
-msgid "Hello!"
-msgstr "سلام!"
+#: plugins/users/view.php:22
+msgid "Username:"
+msgstr "نام کاربری:"
 
-#: plugins/users/view.php:29
-msgid "Log out"
-msgstr "خروج"
+#: plugins/users/view.php:23
+msgid "Password:"
+msgstr "کلمه عبور:"
 
-#: plugins/users/view.php:30
+#: plugins/users/view.php:24
+msgid "Username"
+msgstr "نام کاربری"
+
+#: plugins/users/view.php:25
+msgid "Remember me!"
+msgstr "مرا به یاد داشته باش!"
+
+#: plugins/users/view.php:26
+msgid "Sign in"
+msgstr "ورود"
+
+#: plugins/users/view.php:27
+msgid "Forget your password?"
+msgstr "کلمه عبور را فراموش کرده اید؟"
+
+#: plugins/users/view.php:34 plugins/users/view.php:40
 msgid "User State"
 msgstr "اطلاعات کاربر"
 
-#: plugins/users/view.php:34
+#: plugins/users/view.php:37
+msgid "Hello!"
+msgstr "سلام!"
+
+#: plugins/users/view.php:39
+msgid "Log out"
+msgstr "خروج"
+
+#: plugins/users/view.php:47 plugins/users/view.php:53
+msgid "Reset password"
+msgstr "بازیابی کلمه عبور"
+
+#: plugins/users/view.php:50
+msgid "Email:"
+msgstr "پست الکترونیکی:"
+
+#: plugins/users/view.php:52
+msgid "Send email"
+msgstr "ارسال پست الکترونیکی"
+
+#: plugins/users/view.php:58
 msgid "Sign Up"
 msgstr "عضویت"
 
@@ -93,9 +111,21 @@ msgstr "زبان ها"
 msgid "Banner"
 msgstr ""
 
+#: core/cls/cls_page.php:123
+msgid "Ok"
+msgstr "قبول"
+
+#: core/cls/cls_page.php:126
+msgid "Back"
+msgstr "بازگشت"
+
+#: core/cls/cls_page.php:129
+msgid "Cancel"
+msgstr "انصراف"
+
 #: core/cls/cls_plugin.php:37
 msgid "System Error : one or more plugin requments is not enable"
-msgstr ""
+msgstr "خطا : تعدادی از پلاگین های مورد نیاز غیر‌فعال یا موجود نیستند!"
 
 #: core/cls/cls_zip.php:8
 msgid "can not open zip archive files"

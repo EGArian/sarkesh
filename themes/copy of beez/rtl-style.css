@@ -5,8 +5,6 @@ body{
 	text-align:right;
 	font-family:Tahoma, Geneva, sans-serif;
 }
-ul.menu li, ul.menu {
-float:right;
-text-align:right;
+.middle_banner_content{
+	float:left;
 }
-

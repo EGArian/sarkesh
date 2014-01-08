@@ -10,7 +10,7 @@ class permations_controller{
 	
 	public function action($action_name, $view){
 		$obj_page= new cls_page;
-		$obj_page->show_block(_('Banner') , '<img src="./core/ect/images/inside.png" />' , $view);
+		$obj_page->show_block(_('Banner') , "<script>tinymce.init({directionality : 'rtl',selector:'textarea'});</script>" , $view);
 	}
 
 
