@@ -53,13 +53,12 @@ class users_view{
 			$this->raintpl->assign( "send_recover_email", _('Send email') );
 			$this->obj_page->show_block( _('Reset password') , $this->raintpl->draw( 'users_forget_password', true ), $view);
 		}
-	
 	}
 	public function show_register_page(){
 		echo '<h1>' . _('Sign Up') . '<h1>';
 	}
-	public function show_in_box($header, $content){
-		$this->obj_page->show_in_box($header, $content);
+	public function show_in_box($header, $content, $type = 'warrning'){
+		$this->obj_page->show_in_box($header, $content, $type);
 	}
 }
 ?>

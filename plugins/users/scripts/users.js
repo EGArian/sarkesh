@@ -88,3 +88,34 @@ function users_logout(){
 		}
 	); 
 }
+
+//this function check user forget password and show result
+function users_forget_password(){
+  var email = $("input#users_email").val();
+  if(email){
+	  var url = url = "?service=1&plugin=users&action=send_forget_email&email=" + email;
+		$.get(url ,
+			function(data){
+
+					//problem in logout
+					xmlDoc = $.parseXML( data ),
+					$xml = $( xmlDoc ),
+					$type = $xml.find( "type" );
+					$header = $xml.find( "header" );
+					$content = $xml.find( "content" );
+					$btnback = $xml.find( "btn-back" );
+					BootstrapDialog.show({
+					type: $type.text(),
+					title: $header.text(),
+					message: $content.text(),
+					onhide: function(){ $('input#users_email').val('');},
+					buttons: [{
+						  label: $btnback.text(),	       
+						  action: function(dialogItself){dialogItself.close(); }		       
+					}]
+					});   	 
+				
+			}
+		); 
+  }
+}

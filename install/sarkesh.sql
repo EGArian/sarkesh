@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 30, 2013 at 10:57 PM
+-- Generation Time: Jan 09, 2014 at 10:51 PM
 -- Server version: 5.5.34-0ubuntu0.13.10.1
 -- PHP Version: 5.5.3-1ubuntu2.1
 
@@ -34,18 +34,20 @@ CREATE TABLE IF NOT EXISTS `blocks` (
   `permations` varchar(45) DEFAULT NULL,
   `pages` varchar(45) DEFAULT NULL,
   `show_header` tinyint(1) DEFAULT NULL,
+  `rank` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `plugin_idx` (`plugin`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `blocks`
 --
 
-INSERT INTO `blocks` (`id`, `name`, `plugin`, `position`, `permations`, `pages`, `show_header`) VALUES
-(4, 'permation', 1, 'sidebar1', NULL, NULL, 1),
-(6, 'content', 3, 'content', NULL, NULL, 0),
-(7, 'login', 2, 'sidebar1', NULL, NULL, 0);
+INSERT INTO `blocks` (`id`, `name`, `plugin`, `position`, `permations`, `pages`, `show_header`, `rank`) VALUES
+(6, 'content', 3, 'content', NULL, NULL, 0, 0),
+(7, 'login', 2, 'sidebar1', NULL, NULL, 0, 3),
+(9, 'language_select', 4, 'sidebar1', NULL, NULL, 0, 1),
+(10, 'forget_password', 2, '', NULL, NULL, NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -58,17 +60,21 @@ CREATE TABLE IF NOT EXISTS `localize` (
   `main` int(1) NOT NULL,
   `name` varchar(90) NOT NULL,
   `language` varchar(7) NOT NULL,
+  `language_name` varchar(30) DEFAULT 'English - United States',
   `home` varchar(100) NOT NULL,
+  `email` varchar(30) NOT NULL,
   `theme` varchar(45) NOT NULL,
+  `direction` varchar(4) NOT NULL DEFAULT 'LTR',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `localize`
 --
 
-INSERT INTO `localize` (`id`, `main`, `name`, `language`, `home`, `theme`) VALUES
-(1, 1, 'Sarkesh', 'fa_IR', '?plugin=permations&action=action', 'beez');
+INSERT INTO `localize` (`id`, `main`, `name`, `language`, `language_name`, `home`, `email`, `theme`, `direction`) VALUES
+(1, 1, 'Sarkesh', 'en_US', 'English - United States', '?plugin=permations&action=action', 'info@sarkesh.org', 'blue', 'LTR'),
+(2, 0, 'سرکش', 'fa_IR', 'فارسی - ایران', '?plugin=permations&action=action', 'info@sarkesh.org', 'blue', 'RTL');
 
 -- --------------------------------------------------------
 
@@ -102,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `plugins` (
   `name` varchar(45) NOT NULL,
   `enable` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `plugins`
@@ -111,7 +117,8 @@ CREATE TABLE IF NOT EXISTS `plugins` (
 INSERT INTO `plugins` (`id`, `name`, `enable`) VALUES
 (1, 'permations', 1),
 (2, 'users', 1),
-(3, 'core', 1);
+(3, 'core', 1),
+(4, 'languages', 1);
 
 -- --------------------------------------------------------
 
@@ -126,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `registry` (
   `value` text,
   PRIMARY KEY (`id`),
   KEY `fk_plugin_idx` (`plugin`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `registry`
@@ -135,7 +142,11 @@ CREATE TABLE IF NOT EXISTS `registry` (
 INSERT INTO `registry` (`id`, `plugin`, `a_key`, `value`) VALUES
 (1, 3, 'validator_last_check', '1387753577'),
 (2, 3, 'validator_max_time', '77000'),
-(3, 3, 'cookie_max_time', '77000');
+(3, 3, 'cookie_max_time', '77000'),
+(4, 3, 'jquery', '1'),
+(5, 3, 'editor', '1'),
+(6, 2, 'register', '0'),
+(7, 3, 'bootstrap', '1');
 
 -- --------------------------------------------------------
 
@@ -149,6 +160,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
   `validator` int(11) DEFAULT NULL,
+  `forget` int(11) NOT NULL,
   `permation` int(11) NOT NULL,
   `last_login` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -160,8 +172,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `email`, `validator`, `permation`, `last_login`) VALUES
-(1, 'sarkesh', '90deff4b32c134f32e3f0d7e8a2aad92', 'info@sarkesh.org', NULL, 1, NULL);
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `validator`, `forget`, `permation`, `last_login`) VALUES
+(1, 'sarkesh', '90deff4b32c134f32e3f0d7e8a2aad92', 'alizadeh.babak@gmail.com', 177, 183, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -172,10 +184,22 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `validator`, `permat
 CREATE TABLE IF NOT EXISTS `validator` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `source` varchar(45) NOT NULL,
-  `spicial_id` varchar(45) NOT NULL,
+  `special_id` varchar(45) NOT NULL,
   `valid_time` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=184 ;
+
+--
+-- Dumping data for table `validator`
+--
+
+INSERT INTO `validator` (`id`, `source`, `special_id`, `valid_time`) VALUES
+(178, 'USERS_FORGET', 'd4zmx49m5j', '1389384326'),
+(179, 'USERS_FORGET', 'vtv8e5tb05', '1389384362'),
+(180, 'USERS_FORGET', 'z2jih7q2pj', '1389384373'),
+(181, 'USERS_FORGET', 'fpaj2vmar8', '1389384398'),
+(182, 'USERS_FORGET', 'nevxg8oual', '1389384413'),
+(183, 'USERS_FORGET', '77itc0gx0x', '1389384455');
 
 --
 -- Constraints for dumped tables
@@ -197,8 +221,7 @@ ALTER TABLE `registry`
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `permation` FOREIGN KEY (`permation`) REFERENCES `permations` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `validator` FOREIGN KEY (`validator`) REFERENCES `validator` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `permation` FOREIGN KEY (`permation`) REFERENCES `permations` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

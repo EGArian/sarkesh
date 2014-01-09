@@ -6,10 +6,12 @@ private $db;
 private $obj_cookie;
 private $obj_session;
 private $obj_general;
+private $obj_io;
 private $settings;
 private $obj_registry;
 
 	function __construct(){
+		$this->obj_io = new cls_io;
 		$this->obj_general = new cls_general;
 		$this->obj_session = new cls_session;
 		$this->obj_cookie = new cls_cookie;
@@ -25,7 +27,7 @@ private $obj_registry;
 		}
 	}
 	//this function set validator with source and save that in cookie and session
-	public function set( $source,$cookie = false){
+	public function set( $source,$cookie = false, $session = true){
 		//check for that is this source saved before
 		if(!$this->is_set($source)){
 
@@ -33,16 +35,24 @@ private $obj_registry;
 			//first create random spicial_id
 			$spicial_id=$this->obj_general->random_string();
 			//save source in session
-			$this->obj_session->set($source,$spicial_id);
+			if($session){
+				$this->obj_session->set($source,$spicial_id);
+			}
 			//set in cookie
 			if ($cookie){
 				$this->obj_cookie->set($source , $spicial_id);
 			}
 			//save source in database
 			$this->db->do_query('INSERT INTO ' . TablePrefix . 'validator (source,valid_time,special_id) VALUES (?,?,?);' , array($source,time() + $this->settings['validator_max_time'], $spicial_id));
-			
+			return  $this->db->last_insert_id();
 		}
-		return $this->get_id($source);
+		else{
+			//going to update source
+			
+			//return updated id
+			return $this->get_id($source);
+		}
+		
 	}
 	//this function check for that is source validated before
 	public function is_set($source){
@@ -75,27 +85,37 @@ private $obj_registry;
 	//this function get spicial id from user client
 	public function get_id($source){
 		$id = 0;
-		$session_present = false;
-		// first we want to check source from session
-		$id = $this->obj_session->get($source);
-		if($id != '0'){ 
-			//going to find id from session
-			$session_present = true;
-		}
-		if(!$session_present){
-			//then check cookie
-			//if session was present we don't check cookie
-			$id = $this->obj_cookie->get($source);
-		}
-		$this->db->do_query("SELECT * FROM " . TablePrefix . "validator WHERE special_id=?;" ,array($id));
-		if($this->db->rows_count() == 0){
-			//not found
-			return 0;
+		if(isset($_GET['validator'])){
+			//going to get id from get metode;
+			$id = $this->obj_io->cin('validator', 'get');
 		}
 		else{
-		$result = $this->db->get_first_row_array();
-		return $result['id'];
+			$session_present = false;
+			// first we want to check source from session
+			$id = $this->obj_session->get($source);
+			if($id != '0'){ 
+				//going to find id from session
+				$session_present = true;
+			}
+			if(!$session_present){
+				//then check cookie
+				//if session was present we don't check cookie
+				$id = $this->obj_cookie->get($source);
+			}
 		}
+		if($id != 0){
+			$this->db->do_query("SELECT * FROM " . TablePrefix . "validator WHERE special_id=?;" ,array($id));
+			if($this->db->rows_count() == 0){
+				//not found
+				return 0;
+			}
+			else{
+			$result = $this->db->get_first_row_array();
+			return $result['id'];
+			}
+		}
+		//not set
+		return 0;
 	}
 	//this function update source
 	private function update($spicial_id){

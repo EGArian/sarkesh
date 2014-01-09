@@ -2,10 +2,13 @@
 function __autoload($class_name){
 	@include_once(dirname(__FILE__) . '/cls/' . $class_name . '.php');
 }
+
 //start session system
 $sess_id = session_id();
 if(empty($sess_id)){ session_start();}
-echo $sess_id;
+
+
+
 
 if(file_exists("./config.php")) {
 	//going to run sarkesh!
@@ -29,6 +32,7 @@ if(file_exists("./config.php")) {
 		$obj_router->run_service();
 	}
 	else{
+	
 		#load system in gui mode
 		include_once("./core/inc/load.php");
 	}

@@ -27,6 +27,10 @@ class cls_io{
 				if ($Flags!==""){	$Result=filter_input(INPUT_SERVER,$VaribleName,$filter_num);	}
 				else {	$Result=filter_input(INPUT_SERVER,$VaribleName,$filter_num,$Flags);	}
 				break;
+				case "request";
+				if ($Flags!==""){	$Result=filter_input(INPUT_SERVER,$VaribleName,$filter_num);	}
+				else {	$Result=filter_input(INPUT_REQUEST,$VaribleName,$filter_num,$Flags);	}
+				break;
 			}
 		}
 		catch(Exception $ex){

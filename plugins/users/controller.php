@@ -107,6 +107,36 @@ class users_controller{
 			//this function return forget password panel
 				$this->view->show_in_box(_('Message'),  _('Username or Password is incerrect!'));
 		}
+		elseif($service_name == 'send_forget_email'){	
+			if(!$this->madule->check_email()){
+				//email not found
+				$this->view->show_in_box(_('Message'),  _('you was not regestered with this email.') ,'warning');
+			}
+			else{
+				
+					$email = $this->io->cin('email', 'get');
+					//save validator in user table
+					$this->db->do_query('UPDATE ' . TablePrefix . 'users SET forget=? WHERE email=?;', array($this->obj_validator->set('USERS_FORGET'),$email));
+					//get user informations
+					$user = $this->madule->get_user_info($email);
+					//send forget email
+					$mail = new cls_mail;
+					if($mail->simple_send($user['username'], $user['email'] , 'forget_password_subject' , 'Haha we can not reset your email')){
+						//show success message
+						$this->view->show_in_box(_('Message'),  _('Check your email for more informations.'), 'success' );
+					}	
+					else{
+						$this->view->show_in_box(_('Message'),  _('Error in sending email . please tell admins!'), 'danger' );
+					  
+					}
+				try {}
+				catch (Exception $e) {
+					$this->view->show_in_box(_('Message'),  _('Error in sending email . please tell admins!'), 'danger' );
+				}
+				
+				
+			}
+		}
 		echo $this->service_result;
 	
 	}
@@ -122,6 +152,8 @@ class users_controller{
 	public function logout(){
 		$this->obj_validator->delete('USERS_LOGIN');
 	}
+	
+
 
 
 }

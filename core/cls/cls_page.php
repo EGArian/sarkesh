@@ -86,7 +86,7 @@ class cls_page{
 		return $this->page_tittle;
 	}
 	//this function atteche some tags to blocks and show that.
-	public function show_block($header, $content, $view){
+	public function show_block($header, $content, $view ,$type = null){
 		if($view == 'BLOCK'){
 			echo '<div id="block" class="block">';
 				echo '<div id="block-header" class="block-header">';
@@ -113,6 +113,9 @@ class cls_page{
 			//else it's modal
 			echo '<?xml version="1.0"?>' . "\n";
 				echo '<message>' . "\n";
+					echo '<type>';
+						echo $type;
+					echo '</type>' . "\n";
 					echo '<header>';
 						echo $header;
 					echo '</header>' . "\n";
@@ -162,9 +165,11 @@ class cls_page{
 	}
 	
 	//this function return content for show in custombox for show on page
-	public function show_in_box($header, $content){
-	
-	$this->show_block($header,$content,'MODAL');
+	public function show_in_box($header, $content, $type = 'type-warning'){
+	if($type != 'type-warning'){
+	      $type = 'type-' . $type;
+	}
+	$this->show_block($header,$content,'MODAL', $type);
 	
 	}
 }

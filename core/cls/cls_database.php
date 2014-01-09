@@ -22,8 +22,9 @@ function __construct(){
 			exit;}
 		}	
 public function do_query($QueryString,$QueryParamaters = array ("\0")){
-	  try{
-		 	 if ($QueryString=="" || is_null($this->Link )){ return 0;}
+	
+			 
+			if ($QueryString=="" || is_null($this->Link )){ return 0;}
 			 #perpare query string from security
 			 
 			 $this->Query = $this->Link->prepare($QueryString);
@@ -37,7 +38,7 @@ public function do_query($QueryString,$QueryParamaters = array ("\0")){
 	 		 }
 			return $this->Result;
 			
-			
+		  try{	
 		}
 	 catch(PDOException $e) {
 		echo "Error In query from database! <br> reason: " , $e->getMessage();
@@ -80,9 +81,15 @@ public function do_query_with_type($QueryString,$parameters){
 		exit;
 	 }
 }
+
+//this function send back last insert id 
+//warring : this function most run after insert query
+public function last_insert_id(){
+return $this->Link->lastInsertId();
+}
+
 #this function return obj of last quary
 #you can use like this $resultobj->column_name
-
 public function get_object(){
 try{
 	$this->Quary->setFetchMode(PDO::FETCH_OBJ);

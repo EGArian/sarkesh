@@ -4,7 +4,7 @@
 	<form>
 		<div class="form-group">
 			<label for="email"> <?php echo $label_email;?> </label>
-			<input type="text" id="email" class="form-control" name="email" placeholder="<?php echo $email;?>">
+			<input type="text" id="users_email" class="form-control" name="email" placeholder="<?php echo $email;?>">
 			<br />
 			<div><p><?php echo $reset_password_note;?></p></div>
 			<input type="button" class="form-control" onclick="users_forget_password()" value="<?php echo $send_recover_email;?>">

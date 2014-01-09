@@ -12,7 +12,7 @@
 			<label class="lcb>">Remember me!</label>
 			</div>
 			<input type="button" class="form-control btn btn-primary" data-loading-text="Loading..." onclick="users_login()" value="Sign in">
-			<a href=".?plugin=users&action=forget" >Forget your password?</a>
+			<a href=".?plugin=users&action=forget_password" >Forget your password?</a>
 		</div>
 	</form>
 </div>
