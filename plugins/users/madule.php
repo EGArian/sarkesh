@@ -38,10 +38,21 @@ class users_madule{
 
 	
 	//this function send back user info
-	public function get_user_info($email){
-		$this->db->do_query('SELECT * FROM ' . TablePrefix . 'users WHERE email=?;', array($email));
+	public function get_user_info($value, $parameter = 'email'){
+		$this->db->do_query('SELECT * FROM ' . TablePrefix . 'users WHERE ' . $parameter . '=?;', array($value));
 		return $this->db->get_first_row_array();
 	}
-
+	//WARRNING: before use this function check validator for get id
+	public function reset_password($id){
+		$general = new cls_general;
+		//create random password
+		$password = $general->random_string(10);
+		//change user password
+		if($this->db->do_query('UPDATE ' . TablePrefix . 'users SET password=?, forget=0 WHERE Forget=?;', array(md5($password), $id))){
+			$this->validator->delete('USERS_FORGET', $id);
+			return true;
+		}
+		return false;
+	}
 }
 ?>

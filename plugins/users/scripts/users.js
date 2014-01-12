@@ -1,13 +1,13 @@
 function users_login(){
 	
 	//first check for that user name or password not empty
-	var username = $("input#username").val();
-	var password = $("input#password").val();
+	var username = $("input#users_username").val();
+	var password = $("input#users_password").val();
 	var url;
 	if(username && password){
 	
 		 //username and password is filled
-		 if ($('input#remember').is(":checked")){
+		 if ($('input#users_remember').is(":checked")){
 			//remember is checked
 			url = "?service=1&plugin=users&action=login&username=" + username + "&password=" + password + "&remember=yes";
 		 }
@@ -33,8 +33,8 @@ function users_login(){
 					  title: $header.text(),
 					  message: $content.text(),
 					  onshow: function(){
-						$("input#username").val("");
-						$("input#password").val("");
+						$("input#users_username").val("");
+						$("input#users_password").val("");
 					  },
 					  buttons: [{
 					      label: $btnback.text(),	       
@@ -51,6 +51,8 @@ function users_login(){
 	}
 	else{
 	    //username or password not filled
+	    //add warrning class to textboxes
+	
 	  
 	}
 	
@@ -96,7 +98,6 @@ function users_forget_password(){
 	  var url = url = "?service=1&plugin=users&action=send_forget_email&email=" + email;
 		$.get(url ,
 			function(data){
-
 					//problem in logout
 					xmlDoc = $.parseXML( data ),
 					$xml = $( xmlDoc ),
@@ -118,4 +119,36 @@ function users_forget_password(){
 			}
 		); 
   }
+}
+
+function users_reset_password(){
+	//get value of code
+	var code = $('input#users_reset_code').val();
+	if(code){
+		var url = url = "?service=1&plugin=users&action=reset_password&USERS_FORGET=" + code;
+		$.get(url ,
+			function(data){
+					//problem in logout
+					xmlDoc = $.parseXML( data ),
+					$xml = $( xmlDoc ),
+					$type = $xml.find( "type" );
+					$header = $xml.find( "header" );
+					$content = $xml.find( "content" );
+					$btnback = $xml.find( "btn-back" );
+					BootstrapDialog.show({
+					type: $type.text(),
+					title: $header.text(),
+					message: $content.text(),
+					onhide: function(){ $('input#users_reset_code').val('');},
+					buttons: [{
+						  label: $btnback.text(),	       
+						  action: function(dialogItself){dialogItself.close(); }		       
+					}]
+					});   	 
+				
+			}
+		); 
+	  
+	}
+  
 }

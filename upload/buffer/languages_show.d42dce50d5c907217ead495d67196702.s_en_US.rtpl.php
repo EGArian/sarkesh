@@ -8,8 +8,6 @@
 			
 				<option value="fa_IR">  فارسی - ایران </option>
 			
-				<option value="1">  1 </option>
-			
 		<select>
 	<form>
 </div>

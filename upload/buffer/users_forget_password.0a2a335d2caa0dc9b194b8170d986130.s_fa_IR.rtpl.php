@@ -3,11 +3,11 @@
 	<div id="msg" class="users_forget_password" ></div>
 	<form>
 		<div class="form-group">
-			<label for="email"> پست الکترونیکی: </label>
+			<label for="users_email"> پست الکترونیکی: </label>
 			<input type="text" id="users_email" class="form-control" name="email" placeholder="Email">
 			<br />
 			<div><p>Enter your email and we send reset password request to your email.</p></div>
-			<input type="button" class="form-control" onclick="users_forget_password()" value="ارسال پست الکترونیکی">
+			<input type="button" class="form-control btn-primary" onclick="users_forget_password()" value="ارسال پست الکترونیکی">
 		</div>
 	</form>
 </div>

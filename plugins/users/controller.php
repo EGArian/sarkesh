@@ -45,7 +45,14 @@ class users_controller{
 		elseif($action_name == 'forget_password'){
 			if(!$this->is_logedin()){
 				//show register page
-				$this->view->show_forget_page($view);
+				$this->view->show_forget_password_page($view);
+			}
+			
+		}
+		elseif($action_name == 'reset_password'){
+			if(!$this->is_logedin()){
+				//show register page
+				$this->view->show_reset_password_page($view);
 			}
 			
 		}
@@ -70,11 +77,14 @@ class users_controller{
 				if($this->db->rows_count() != 0){
 				
 					//username is cerrect going to set validator
-					if(isset($_GET['remember']) && $_GET['remember'] == 'yes'){
-						$valid_id = $this->obj_validator->set('USERS_LOGIN',true);
+					if(isset($_GET['remember'])){
+					
+						$valid_id = $this->obj_validator->set('USERS_LOGIN',true,true);
+						
 					}
 					else{
-						$valid_id = $this->obj_validator->set('USERS_LOGIN',false);
+						$valid_id = $this->obj_validator->set('USERS_LOGIN',false,true);
+						
 					}
 					$this->db->do_query('UPDATE ' . TablePrefix . 'users SET validator=? WHERE username=?;', array($valid_id, $this->io->cin('username', 'get')));
 					$this->service_result = 1;
@@ -107,7 +117,7 @@ class users_controller{
 			//this function return forget password panel
 				$this->view->show_in_box(_('Message'),  _('Username or Password is incerrect!'));
 		}
-		elseif($service_name == 'send_forget_email'){	
+		elseif($service_name == 'send_forget_email'){
 			if(!$this->madule->check_email()){
 				//email not found
 				$this->view->show_in_box(_('Message'),  _('you was not regestered with this email.') ,'warning');
@@ -115,13 +125,15 @@ class users_controller{
 			else{
 				
 					$email = $this->io->cin('email', 'get');
+					$validator_id = $this->obj_validator->set('USERS_FORGET',false, false,'sid');
 					//save validator in user table
-					$this->db->do_query('UPDATE ' . TablePrefix . 'users SET forget=? WHERE email=?;', array($this->obj_validator->set('USERS_FORGET'),$email));
+					$this->db->do_query('UPDATE ' . TablePrefix . 'users SET forget=? WHERE email=?;', array($validator_id,$email));
 					//get user informations
 					$user = $this->madule->get_user_info($email);
 					//send forget email
 					$mail = new cls_mail;
-					if($mail->simple_send($user['username'], $user['email'] , 'forget_password_subject' , 'Haha we can not reset your email')){
+					
+					if($mail->simple_send($user['username'], $user['email'] , 'forget_password_subject' , "your code is: $validator_id ")){
 						//show success message
 						$this->view->show_in_box(_('Message'),  _('Check your email for more informations.'), 'success' );
 					}	
@@ -129,14 +141,45 @@ class users_controller{
 						$this->view->show_in_box(_('Message'),  _('Error in sending email . please tell admins!'), 'danger' );
 					  
 					}
-				try {}
-				catch (Exception $e) {
-					$this->view->show_in_box(_('Message'),  _('Error in sending email . please tell admins!'), 'danger' );
-				}
-				
 				
 			}
 		}
+		elseif($service_name == 'reset_password'){
+			//first check for that code is send with get
+			if(isset($_GET['USERS_FORGET'])){
+				//GOING TO CHECK
+			
+				if($this->obj_validator->is_set('USERS_FORGET')){
+				
+					$reset_id = $this->obj_validator->get_id('USERS_FORGET');
+					if($reset_id == '0' || $reset_id == ''){
+						$this->view->show_in_box(_('Message'),  _('Your entered code is invalid.'), 'warning' );
+					}
+					else{
+						$password = $this->madule->reset_password($reset_id);
+						//reset password successfull going to send reset email
+						$mail = new cls_mail;
+						$user = $this->madule->get_user_info($reset_id, 'forget');
+						if($mail->simple_send($user['username'], $user['email'] , 'reset_password_subject' , "your password is: $password")){
+							//show success message
+							$this->view->show_in_box(_('Message'),  _('Your password changed! look at your email.'), 'success' );
+						}	
+						else{
+							$this->view->show_in_box(_('Message'),  _('Error in sending email . please tell admins!'), 'danger' );
+						}
+					}
+				}
+				else{
+					//invalid code
+					$this->view->show_in_box(_('Message'),  _('Your entered code is invalid.'), 'warning' );
+				}
+			}
+		
+		
+
+		}
+		
+		
 		echo $this->service_result;
 	
 	}
@@ -145,6 +188,7 @@ class users_controller{
 	//with check validator with USERS_LOGIN source
 	public function is_logedin(){
 		//first create validator class
+		$c = new cls_validator;
 		return $this->obj_validator->is_set('USERS_LOGIN');
 	}
 	

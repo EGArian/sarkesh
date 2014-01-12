@@ -41,7 +41,7 @@ class users_view{
 		}
 	}
 	//this function show forget password page for reset password
-	public function show_forget_page($view){
+	public function show_forget_password_page($view){
 	
 		if( $cache = $this->raintpl->cache('users_forget_password', 60) ){
 			$this->obj_page->show_block( _('Reset password') , $cache, $view);
@@ -52,6 +52,19 @@ class users_view{
 			$this->raintpl->assign( "reset_password_note", "Enter your email and we send reset password request to your email.");
 			$this->raintpl->assign( "send_recover_email", _('Send email') );
 			$this->obj_page->show_block( _('Reset password') , $this->raintpl->draw( 'users_forget_password', true ), $view);
+		}
+	}
+	
+	public function show_reset_password_page($view){
+		if( $cache = $this->raintpl->cache('users_reset_password', 60) ){
+			$this->obj_page->show_block( _('Input reset code') , $cache, $view);
+		}
+		else{
+			$this->raintpl->assign( "label_code", _('Code') );
+			$this->raintpl->assign( "reset_code", _('Your reset code') );
+			$this->raintpl->assign( "reset_password", _('Reset password'));
+						$this->raintpl->assign( "reset_password_note", "For reset your password enter code that you get from your email.");
+			$this->obj_page->show_block( _('Reset password') , $this->raintpl->draw( 'users_reset_password', true ), $view);
 		}
 	}
 	public function show_register_page(){

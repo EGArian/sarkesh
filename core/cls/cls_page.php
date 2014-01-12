@@ -41,7 +41,18 @@ class cls_page{
 		#LOAD HEEFAL GENERATOR META TAG
 		$header_tags = '<meta name="generator" content=" Sarkesh CMS! - Open Source Content Management" />' ."\n";
 		//cache controll
-		$header_tags .= "\n" . '<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">' . "\n";
+		$header_tags .= '<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">' . "\n";
+		#load jquery
+		if($this->settings['jquery'] == '1'){
+			$header_tags .= "\n" . '<script src="./core/ect/scripts/jquery.js"></script>';
+			$header_tags .= "\n" . '<script src="./core/ect/scripts/bootstrap.min.js"></script>';
+			$header_tags .= "\n" . '<script src="./core/ect/scripts/bootstrap-dialog.js"></script>';
+			$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap.min.css" />';
+			$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap-dialog.css" />';
+			$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap-theme.min.css" />';
+			$header_tags .= "\n" . '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
+			$header_tags .= "\n" . '<!-- HTML5 shim for IE backwards compatibility -->';
+		}
 		#load style sheet pages (css)
 		$header_tags .= '<link rel="stylesheet" type="text/css" href="./themes/'  . $this->localize_settings['theme'] . '/style.css" />' . "\n";
 		#load rtl stylesheets
@@ -54,21 +65,10 @@ class cls_page{
 			$header_tags .= '<link rel="shortcut icon" href="./themes/'.$this->localize_settings['theme'] .'/favicon.ico" type="image/x-icon">';
 			$header_tags .= "\n" . '<link rel="icon" href="./themes/'.$this->localize_settings['theme'] .'/favicon.ico" type="image/x-icon">';
 		}
-		#load jquery
-		if($this->settings['jquery'] == '1'){
-			$header_tags .= "\n" . '<script src="./core/ect/scripts/jquery.js"></script>';
-				 $header_tags .= "\n" . '<script src="./core/ect/scripts/bootstrap.min.js"></script>';
-				 $header_tags .= "\n" . '<script src="./core/ect/scripts/bootstrap-dialog.js"></script>';
-				 $header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap.min.css" />';
-				 $header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap-dialog.css" />';
-				 $header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap-theme.min.css" />';
-				 $header_tags .= "\n" . '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
-				 $header_tags .= "\n" . '<!-- HTML5 shim for IE backwards compatibility -->';
-		}
-		if($this->settings['editor'] == '1'){
-			//load text editor
-			$header_tags .= "\n" . '<script src="./core/ect/scripts/tinymce/tinymce.min.js"></script>';
-		}
+		#load nessasery java script functions
+		$header_tags .= "\n" . '<script src="./core/ect/scripts/functions.js"></script>';
+
+		
 
 		#show header tags
 		echo $header_tags;
@@ -165,11 +165,9 @@ class cls_page{
 	}
 	
 	//this function return content for show in custombox for show on page
-	public function show_in_box($header, $content, $type = 'type-warning'){
-	if($type != 'type-warning'){
-	      $type = 'type-' . $type;
-	}
-	$this->show_block($header,$content,'MODAL', $type);
+	public function show_in_box($header, $content, $type = 'warning'){
+		$type = 'type-' . $type;
+		$this->show_block($header,$content,'MODAL', $type);
 	
 	}
 }
