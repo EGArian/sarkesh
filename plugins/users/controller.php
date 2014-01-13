@@ -125,15 +125,15 @@ class users_controller{
 			else{
 				
 					$email = $this->io->cin('email', 'get');
-					$validator_id = $this->obj_validator->set('USERS_FORGET',false, false,'sid');
+					$result = $this->obj_validator->set('USERS_FORGET',false, false,'all');
 					//save validator in user table
-					$this->db->do_query('UPDATE ' . TablePrefix . 'users SET forget=? WHERE email=?;', array($validator_id,$email));
+					$this->db->do_query('UPDATE ' . TablePrefix . 'users SET forget=? WHERE email=?;', array(trim($result['id']),$email));
 					//get user informations
 					$user = $this->madule->get_user_info($email);
 					//send forget email
 					$mail = new cls_mail;
 					
-					if($mail->simple_send($user['username'], $user['email'] , 'forget_password_subject' , "your code is: $validator_id ")){
+					if($mail->simple_send($user['username'], $user['email'] , 'forget_password_subject' , "your code is: " . $result['special_id']) ){
 						//show success message
 						$this->view->show_in_box(_('Message'),  _('Check your email for more informations.'), 'success' );
 					}	
@@ -156,10 +156,10 @@ class users_controller{
 						$this->view->show_in_box(_('Message'),  _('Your entered code is invalid.'), 'warning' );
 					}
 					else{
+						$user = $this->madule->get_user_info($reset_id, 'forget');
 						$password = $this->madule->reset_password($reset_id);
 						//reset password successfull going to send reset email
 						$mail = new cls_mail;
-						$user = $this->madule->get_user_info($reset_id, 'forget');
 						if($mail->simple_send($user['username'], $user['email'] , 'reset_password_subject' , "your password is: $password")){
 							//show success message
 							$this->view->show_in_box(_('Message'),  _('Your password changed! look at your email.'), 'success' );

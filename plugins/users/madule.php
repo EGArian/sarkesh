@@ -50,9 +50,8 @@ class users_madule{
 		//change user password
 		if($this->db->do_query('UPDATE ' . TablePrefix . 'users SET password=?, forget=0 WHERE Forget=?;', array(md5($password), $id))){
 			$this->validator->delete('USERS_FORGET', $id);
-			return true;
 		}
-		return false;
+		return $password;
 	}
 }
 ?>

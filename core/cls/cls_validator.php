@@ -47,8 +47,13 @@ private $obj_registry;
 			if($back == 'id'){
 				return  $this->db->last_insert_id();
 			}
-			else{
+			elseif($back == 'sid'){
 				return $spicial_id; 
+			}
+			else{
+				//RETURN ALL ROW
+				$this->db->do_query("SELECT * FROM " . TablePrefix . "validator WHERE special_id=?;" ,array($spicial_id));
+				return $this->db->get_first_row_array(); 
 			}
 
 		}
@@ -80,14 +85,13 @@ private $obj_registry;
 	}
 	//this function delete validator
 	public function delete($source, $id =0){
-		if($id != 0){ $id = $this->get_id($source); }
+		if($id == 0){ $id = $this->get_id($source); }
 		if($id != 0){
 			//going to delete that
-
-			$this->db->do_query("DELETE FROM " . TablePrefix . "validator WHERE id=?;" ,array($id));
+			return $this->db->do_query("DELETE FROM " . TablePrefix . "validator WHERE id=?;" ,array(trim($id)));
 
 		}
-	
+		return false;
 	}
 	//this function get spicial id from user client
 	public function get_id($source, $back = 'id'){
@@ -106,7 +110,8 @@ private $obj_registry;
 			$id = $this->obj_io->cin($source, 'cookie');
 		}
 		if($id != '0'){
-			$this->db->do_query("SELECT * FROM " . TablePrefix . "validator WHERE special_id=?;" ,array($id));
+		
+			$this->db->do_query("SELECT * FROM " . TablePrefix . "validator WHERE special_id=?;" ,array(trim($id)));
 			if($this->db->rows_count() == 0){
 				//not found
 				return 0;
@@ -116,10 +121,13 @@ private $obj_registry;
 				if($back == 'id'){
 					return $result['id']; 
 				}
-				else{
+				elseif($back == 'sid'){
 					return $id;
 				}
-			
+				else{
+					//return all of result
+					return $result;
+				}
 			}
 		}
 		//not set
