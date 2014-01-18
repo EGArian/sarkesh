@@ -18,8 +18,13 @@ class users_view{
 			$this->obj_page->show_block( _('User Sign in') , $cache, $view);
 			}
 		else{
+		// can register
+		$registery = new cls_registry;
+		$this->raintpl->assign( "can_register", $registery->get('users', 'register') );
 		//add tag for show messages
 		$this->raintpl->assign( "label_username", _('Username:') );
+		$this->raintpl->assign( "dont_have_account", _("Don't have account?") );
+		$this->raintpl->assign( "signup", _('Sign up') );
 		$this->raintpl->assign( "label_password", _('Password:') );
 		$this->raintpl->assign( "username", _('Username') );
 		$this->raintpl->assign( "remember_me", _('Remember me!') );
@@ -63,12 +68,26 @@ class users_view{
 			$this->raintpl->assign( "label_code", _('Code') );
 			$this->raintpl->assign( "reset_code", _('Your reset code') );
 			$this->raintpl->assign( "reset_password", _('Reset password'));
-						$this->raintpl->assign( "reset_password_note", "For reset your password enter code that you get from your email.");
+			$this->raintpl->assign( "reset_password_note", "For reset your password enter code that you get from your email.");
 			$this->obj_page->show_block( _('Reset password') , $this->raintpl->draw( 'users_reset_password', true ), $view);
 		}
 	}
-	public function show_register_page(){
-		echo '<h1>' . _('Sign Up') . '<h1>';
+	public function show_register_page($view){
+		if( $cache = $this->raintpl->cache('users_register', 60) ){
+			$this->obj_page->show_block( _('Register') , $cache, $view);
+		}
+		else{
+			$this->raintpl->assign( "label_username", _('Username:') );
+			$this->raintpl->assign( "username", _('Username') );
+			$this->raintpl->assign( "label_email", _('Email:'));
+			$this->raintpl->assign( "email", "Email");
+			$this->raintpl->assign( "label_password", _('Password:'));
+			$this->raintpl->assign( "label_repassword", _('Re Password'));
+			$this->raintpl->assign( "sign_up", _('Sign up') );
+			$this->raintpl->assign( "agree_terms", _('By clicking submit you are agreeing to the Terms and Conditions.') );
+			
+			$this->obj_page->show_block( _('Reset password') , $this->raintpl->draw( 'users_reset_password', true ), $view);
+		}	
 	}
 	public function show_in_box($header, $content, $type = 'warrning'){
 		$this->obj_page->show_in_box($header, $content, $type);

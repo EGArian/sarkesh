@@ -8,7 +8,7 @@
 		}
 		
 		public function get($plugin, $key){
-			$this->db->do_query('SELECT * FROM ' . TablePrefix . 'registry WHERE plugin = ? and a_key = ?;', array($plugin, $key));
+			$this->db->do_query('SELECT r.a_key, r.value, p.name FROM ' . TablePrefix . 'registry r INNER JOIN plugins p ON p.id = r.plugin  WHERE p.name = ? and r.a_key = ?;', array($plugin, $key));
 			if($this->db->rows_count() != 0){
 				$result = $this->db->get_first_row_array();
 				return $result['value'];

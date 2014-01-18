@@ -39,7 +39,7 @@ class users_controller{
 			}
 			else{
 				//show register page
-				$this->view->show_register_page();
+				$this->view->show_register_page($view);
 			}
 		}
 		elseif($action_name == 'forget_password'){

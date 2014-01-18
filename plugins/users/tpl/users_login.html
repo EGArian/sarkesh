@@ -8,11 +8,18 @@
 			<label for="users_password"> {$label_password} </label>
 			<input type="password" id="users_password" class="form-control" name="users_password" placeholder="******">
 			<div class="checkbox">
-				<input type="checkbox" id="users_remember" class="form-control" name="users_remember" value="yes">
-			<label class="lcb>">{$remember_me}</label>
+				<label>
+					<input type="checkbox" id="users_remember" name="users_remember" value="yes">
+					{$remember_me}
+				</label>
 			</div>
 			<input type="button" class="form-control btn btn-primary" data-loading-text="Loading..." onclick="users_login()" value="{$sign_in}">
 			<a href="?plugin=users&action=forget_password" >{$forget_password}</a>
+			{if="$can_register == '1'"}
+				<div>
+					<h4>{$dont_have_account} <a href="?plugin=users&action=register" class="btn btn-primary" role="button"> {$signup} </a></h4>
+				</div>
+			{/if}
 		</div>
 	</form>
 </div>
