@@ -22,37 +22,36 @@ class users_controller{
 			
 			if($this->is_logedin()){
 				//show user static
-				$this->view->show_user_page($view);
+				return $this->view->show_user_page($view);
 
 			}
 			else{
 				//going to show login page
-				$this->view->show_login_page($view);
-				
+				return $this->view->show_login_page($view);
 			}
 			
 		}
 		elseif($action_name == 'register'){
 			if($this->is_logedin()){
 				//jump to user profile
-				$this->view->show_user_page($view);
+				return $this->view->show_user_page($view);
 			}
 			else{
 				//show register page
-				$this->view->show_register_page($view);
+				return $this->view->show_register_page($view);
 			}
 		}
 		elseif($action_name == 'forget_password'){
 			if(!$this->is_logedin()){
 				//show register page
-				$this->view->show_forget_password_page($view);
+				return $this->view->show_forget_password_page($view);
 			}
 			
 		}
 		elseif($action_name == 'reset_password'){
 			if(!$this->is_logedin()){
 				//show register page
-				$this->view->show_reset_password_page($view);
+				return $this->view->show_reset_password_page($view);
 			}
 			
 		}
@@ -177,6 +176,19 @@ class users_controller{
 		
 		
 
+		}
+		elseif($service_name == 'is_user_registered'){
+			if(isset($_GET['username'])){
+				$username = $this->io->cin('username', 'get');
+				if($this->madule->is_registered($username)){
+					//not registered going to show msg
+					$this->view->show_message(_('Username:'), _('This username is not available.'), 'danger');
+				}
+				else{
+					$this->service_result = '1';
+				}
+			}
+		
 		}
 		
 		

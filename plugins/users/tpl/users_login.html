@@ -1,10 +1,10 @@
 <div id="users_login" class="users_login" >
 	<script language="javascript" type="text/javascript" src="./plugins/users/scripts/users.js"></script>
 	<div id="msg" class="users_login_msg" ></div>
-	<form>
-		<div class="form-group">
+	<form id="users_login">
+		<div class="form-group users_login">
 			<label for="users_username"> {$label_username} </label>
-			<input type="text" id="users_username" class="form-control" name="users_username" placeholder=" {$username}">
+			<input type="text" id="users_username" class="form-control" name="users_username" placeholder="{$username}">
 			<label for="users_password"> {$label_password} </label>
 			<input type="password" id="users_password" class="form-control" name="users_password" placeholder="******">
 			<div class="checkbox">
@@ -15,9 +15,12 @@
 			</div>
 			<input type="button" class="form-control btn btn-primary" data-loading-text="Loading..." onclick="users_login()" value="{$sign_in}">
 			<a href="?plugin=users&action=forget_password" >{$forget_password}</a>
+			<br />
 			{if="$can_register == '1'"}
+				
+				<br />
 				<div>
-					<h4>{$dont_have_account} <a href="?plugin=users&action=register" class="btn btn-primary" role="button"> {$signup} </a></h4>
+					<p>{$dont_have_account} <a href="?plugin=users&action=register" class="btn btn-primary btn-sm" role="button"> {$signup} </a></p>
 				</div>
 			{/if}
 		</div>

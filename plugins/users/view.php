@@ -12,8 +12,7 @@ class users_view{
 	}
 	//this function show login page for enter username and password
 	public function show_login_page($view){
-	
-	
+		 
 		if( $cache = $this->raintpl->cache('users_login', 60) ){
 			$this->obj_page->show_block( _('User Sign in') , $cache, $view);
 			}
@@ -32,6 +31,7 @@ class users_view{
 		$this->raintpl->assign( "forget_password", _('Forget your password?') );
 		$this->obj_page->show_block( _('User Sign in') , $this->raintpl->draw( 'users_login', true ), $view);
 		}
+		return _('Users Login');
 	}
 	//this function show user page (like profile)
 	public function show_user_page($view){
@@ -47,7 +47,7 @@ class users_view{
 	}
 	//this function show forget password page for reset password
 	public function show_forget_password_page($view){
-	
+
 		if( $cache = $this->raintpl->cache('users_forget_password', 60) ){
 			$this->obj_page->show_block( _('Reset password') , $cache, $view);
 		}
@@ -58,6 +58,7 @@ class users_view{
 			$this->raintpl->assign( "send_recover_email", _('Send email') );
 			$this->obj_page->show_block( _('Reset password') , $this->raintpl->draw( 'users_forget_password', true ), $view);
 		}
+		return _('Reset password');
 	}
 	
 	public function show_reset_password_page($view){
@@ -78,6 +79,7 @@ class users_view{
 		}
 		else{
 			$this->raintpl->assign( "label_username", _('Username:') );
+			$this->raintpl->assign( "Cancel", _('Cancel') );
 			$this->raintpl->assign( "username", _('Username') );
 			$this->raintpl->assign( "label_email", _('Email:'));
 			$this->raintpl->assign( "email", "Email");
@@ -88,9 +90,13 @@ class users_view{
 			
 			$this->obj_page->show_block( _('Reset password') , $this->raintpl->draw( 'users_reset_password', true ), $view);
 		}	
+		return _('Register');
 	}
-	public function show_in_box($header, $content, $type = 'warrning'){
+	public function show_in_box($header, $content, $type = 'warning'){
 		$this->obj_page->show_in_box($header, $content, $type);
+	}
+	public function show_message($header, $content, $type = 'warning'){
+		$this->obj_page->show_message($header, $content, $type);
 	}
 }
 ?>

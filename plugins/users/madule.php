@@ -53,5 +53,15 @@ class users_madule{
 		}
 		return $password;
 	}
+	public function is_registered($username){
+		$this->db->do_query('SELECT * FROM ' . TablePrefix . 'users WHERE username =?;', array($username));
+		if($this->db->rows_count() != 0){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	
 }
 ?>

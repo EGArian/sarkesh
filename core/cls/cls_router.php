@@ -44,7 +44,9 @@ class cls_router{
 	      // this function load plugin and run controller
 	      $obj_plugin = new cls_plugin;
 	      $plugin = $obj_plugin->get_object($this->plugin);
-	      $plugin->action($this->action, 'MAIN');
+	      //set tittle of page
+	      global $sys_page;
+	      $sys_page->set_page_tittle($plugin->action($this->action, 'MAIN'));
 	}
 	//this function run services and jump request do plugin
 	public function run_service(){

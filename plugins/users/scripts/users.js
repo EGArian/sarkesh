@@ -1,13 +1,17 @@
+	//num 0 = is registered messeage
+	//num 1 = is cerect email
+	register_form_msg = new Array();
+
+
 function users_login(){
-	
 	//first check for that user name or password not empty
-	var username = $("input#users_username").val();
-	var password = $("input#users_password").val();
+	var username = $("div.users_login input#users_username").val();
+	var password = $("div.users_login input#users_password").val();
 	var url;
 	if(username && password){
 	
 		 //username and password is filled
-		 if ($('input#users_remember').is(":checked")){
+		 if ($('div.users_login input#users_remember').is(":checked")){
 			//remember is checked
 			url = "?service=1&plugin=users&action=login&username=" + username + "&password=" + password + "&remember=yes";
 		 }
@@ -33,8 +37,8 @@ function users_login(){
 					  title: $header.text(),
 					  message: $content.text(),
 					  onshow: function(){
-						$("input#users_username").val("");
-						$("input#users_password").val("");
+						$("div.users_login input#users_username").val("");
+						$("div.users_login input#users_password").val("");
 					  },
 					  buttons: [{
 					      label: $btnback.text(),	       
@@ -93,7 +97,7 @@ function users_logout(){
 
 //this function check user forget password and show result
 function users_forget_password(){
-  var email = $("input#users_email").val();
+  var email = $("div.users_forget input#users_email").val();
   if(email){
 	  var url = url = "?service=1&plugin=users&action=send_forget_email&email=" + email;
 		$.get(url ,
@@ -109,7 +113,7 @@ function users_forget_password(){
 					type: $type.text(),
 					title: $header.text(),
 					message: $content.text(),
-					onhide: function(){ $('input#users_email').val('');},
+					onhide: function(){ $('div.users_forget input#users_email').val('');},
 					buttons: [{
 						  label: $btnback.text(),	       
 						  action: function(dialogItself){dialogItself.close(); }		       
@@ -123,7 +127,7 @@ function users_forget_password(){
 
 function users_reset_password(){
 	//get value of code
-	var code = $('input#users_reset_code').val();
+	var code = $('div.users_reset input#users_reset_code').val();
 	if(code){
 		var url = url = "?service=1&plugin=users&action=reset_password&USERS_FORGET=" + code;
 		$.get(url ,
@@ -139,7 +143,7 @@ function users_reset_password(){
 					type: $type.text(),
 					title: $header.text(),
 					message: $content.text(),
-					onhide: function(){ $('input#users_reset_code').val('');},
+					onhide: function(){ $('div.users_reset input#users_reset_code').val('');},
 					buttons: [{
 						  label: $btnback.text(),	       
 						  action: function(dialogItself){dialogItself.close(); }		       
@@ -150,5 +154,45 @@ function users_reset_password(){
 		); 
 	  
 	}
+  
+}
+
+//this function check username
+function is_registered(){
+	var username = $('div.users_register input#users_username').val();
+	if(username){
+		var url = url = "?service=1&plugin=users&action=is_user_registered&username=" + username;
+		$.get(url ,
+			function(data){
+				if(data != '1'){
+				  window.register_form_msg[0] = data;
+				  show_message('register_form',0);				  
+				}
+				else{
+				  window.register_form_msg[0] = 'null';
+				  hide_message('register_form',0);
+				}
+				
+			}
+		); 
+	  
+	}
+}
+
+function users_register(){
+  alert(); 
+}
+function users_cancel_register(){
+window.location.href = "../";
+}
+function show_message(action, index){
+  if(action == 'register_form'){
+    $("#msg.users_register_msg").html(window.register_form_msg[index]);
+  }
+}
+function hide_message(action, index){
+  if(action == 'register_form'){
+    $("#msg.users_register_msg").html('');
+  }
   
 }

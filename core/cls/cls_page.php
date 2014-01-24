@@ -88,25 +88,47 @@ class cls_page{
 	//this function atteche some tags to blocks and show that.
 	public function show_block($header, $content, $view ,$type = null){
 		if($view == 'BLOCK'){
-			echo '<div id="block" class="block">';
-				echo '<div id="block-header" class="block-header">';
-				      //block header show in here
-				      echo $header;
+			echo '<div class="panel panel-default">';
+			
+				echo '<div class="panel-heading">';
+					echo '<h3 class="panel-title">';
+					      //block header show in here
+					      echo $header;
+					echo '</h3>';
 				echo '</div>';
-				echo '<div id="block-content" class="block-content">';
+				echo '<div class="panel-body">';
 				      //block content show in here
 				      echo $content;
 				echo '</div>';
+				
 			echo '</div>';
+
 		}
 		elseif($view == 'MAIN'){
-			echo '<div id="content" class="content">';
-				echo '<div id="content-header" class="content-header">';
-				      //block header show in here
-				      echo $header;
-			      echo '</div>';
-			      //block content show in here
-			      echo $content;
+			echo '<div class="panel panel-primary">';
+			
+				echo '<div class="panel-heading">';
+					echo '<h3 class="panel-title">';
+					      //block header show in here
+					      echo $header;
+					echo '</h3>';
+				echo '</div>';
+				echo '<div class="panel-body">';
+				      //block content show in here
+				      echo $content;
+				echo '</div>';
+				
+			echo '</div>';
+		}
+		elseif($view == 'MSG'){
+				echo '<div class="alert alert-' . $type . '"> ';
+				echo '  <a class="close" data-dismiss="alert">×</a>';
+				echo '<strong>'; 
+ 					//block header show in here
+					echo $header;
+				echo '</strong>';  
+				//block content show in here
+				echo $content;
 			echo '</div>';
 		}
 		else{
@@ -170,4 +192,9 @@ class cls_page{
 		$this->show_block($header,$content,'MODAL', $type);
 	
 	}
+	public function show_message($header, $content, $type = 'warning'){
+		$this->show_block($header,$content,'MSG', $type);
+	
+	}
+	
 }

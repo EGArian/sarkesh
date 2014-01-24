@@ -2,9 +2,9 @@
 	<script language="javascript" type="text/javascript" src="./plugins/users/scripts/users.js"></script>
 	<div id="msg" class="users_register_msg" ></div>
 	<form>
-		<div class="form-group">
+		<div class="form-group users_register">
 			<label for="users_username"> {$label_username} </label>
-			<input type="text" id="users_username" class="form-control" name="users_username" placeholder=" {$username}">
+			<input type="text" id="users_username" class="form-control" name="users_username" placeholder=" {$username}" onblur="is_registered();">
 			<label for="users_username"> {$label_email} </label>
 			<input type="text" id="users_email" class="form-control" name="users_email" placeholder=" {$email}">
 			<label for="users_password"> {$label_password} </label>
@@ -16,8 +16,9 @@
 				{$agree_terms}
 			</div>
 			<br>
-			<input type="button" class="form-control btn btn-primary" data-loading-text="Loading..." onclick="users_register()" value="{$sign_up}">
-			
+			<button type="button" class="btn btn-primary" data-loading-text="Loading..." onclick="users_register()" >{$sign_up}</button>
+			<button type="button" class="btn btn-default" onclick="users_cancel_register()">{$Cancel}</button>
+
 		</div>
 	</form>
 </div>

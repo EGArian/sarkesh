@@ -36,29 +36,21 @@
     <div class="container">
 
       <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-8 main">
         
 	  <?php $sys_page->set_position('content'); ?>
           
-          <hr>
 
-          <!-- the comments -->
-          <h3>Start Bootstrap <small>9:41 PM on August 24, 2013</small></h3>
-          <p>This has to be the worst blog post I have ever read. It simply makes no sense. You start off by talking about space or something, then you randomly start babbling about cupcakes, and you end off with random fish names.</p>
-
-          <h3>Start Bootstrap <small>9:47 PM on August 24, 2013</small></h3>
-          <p>Don't listen to this guy, any blog with the categories 'dinosaurs, spaceships, fried foods, wild animals, alien abductions, business casual, robots, and fireworks' has true potential.</p>
-
+			
         </div>
         
-        <div class="col-lg-4">
-          <div class="well">
+        <div class="col-lg-4 sidebar">
+	  <div class="row">
 	  <?php $sys_page->set_position('sidebar1'); ?>
-          </div><!-- /well -->
-          <div class="well">
+	  </div>
+	  <div class="row">
 	  <?php $sys_page->set_position('sidebar2'); ?>
-          </div><!-- /well -->
-          
+          </div>
         </div>
       </div>
       
