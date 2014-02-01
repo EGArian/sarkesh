@@ -15,7 +15,7 @@ class users_controller{
 		$this->io = new cls_io;
 	}
 	// $view has to value 1- 'block' for show with block header
-	// 			2-content for show with orginal state
+	// 		2-content for show with orginal state
 	public function action($action_name, $view = 'BLOCK'){
 
 		if($action_name == 'login'){
@@ -177,16 +177,73 @@ class users_controller{
 		
 
 		}
+		//this function check for that is username is exist before
 		elseif($service_name == 'is_user_registered'){
 			if(isset($_GET['username'])){
 				$username = $this->io->cin('username', 'get');
-				if($this->madule->is_registered($username)){
+				if($this->madule->is_registered_username($username)){
 					//not registered going to show msg
 					$this->view->show_message(_('Username:'), _('This username is not available.'), 'danger');
 				}
 				else{
 					$this->service_result = '1';
 				}
+			}
+		
+		}
+		// this function check that email is exist before
+		elseif($service_name == 'is_email_registered'){
+			if(isset($_GET['email'])){
+				$email = $this->io->cin('email', 'get');
+				if($this->madule->is_registered_email($email)){
+					//not registered going to show msg
+					$this->view->show_message(_('Email:'), _('This email is not available.'), 'danger');
+				}
+				else{
+					$this->service_result = '1';
+				}
+			}
+		
+		}
+		//this function check password length .it's should be more than 8 characters
+		elseif($service_name == 'check_password_length'){
+			if(isset($_GET['password'])){
+				$password = $this->io->cin('password', 'get');
+				if(strlen($password) < 8){
+					//not registered going to show msg
+					$this->view->show_message(_('Password:'), _('Your password must be between 8 and 32 characters long.'), 'danger');
+				}
+				else{
+					$this->service_result = '1';
+				}
+			}
+		
+		}
+		//this function compare password and repassword 
+		elseif($service_name == 'check_password_match'){
+			if(isset($_GET['password']) && isset($_GET['repassword'])){
+				$password = $this->io->cin('password', 'get');
+				$repassword = $this->io->cin('repassword', 'get');
+				if(strcmp($password, $repassword) != 0){
+					$this->view->show_message(_('Password:'), _('Your entered passwords are not match!'), 'danger');
+				}
+				else{
+					$this->service_result = '1';
+				}
+			}
+		
+		}
+		//this function is for register user 
+		elseif($service_name == 'register_me'){
+			if(isset($_GET['username']) && isset($_GET['email']) && isset($_GET['password']) && isset($_GET['captcha'])){
+				$username = $this->io->cin('username', 'get');
+				$email = $this->io->cin('email', 'get');
+				$password = $this->io->cin('password', 'get');
+				$captcha = $this->io->cin('captcha', 'get');
+				
+				//check data
+				
+				//going to save
 			}
 		
 		}

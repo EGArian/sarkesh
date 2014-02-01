@@ -1,6 +1,8 @@
 	//num 0 = is registered messeage
 	//num 1 = is cerect email
-	register_form_msg = new Array();
+	//num 2 = password
+	//num 3 = re password
+	register_form_msg = new Array(0 ,0 ,0 ,0);
 
 
 function users_login(){
@@ -158,7 +160,7 @@ function users_reset_password(){
 }
 
 //this function check username
-function is_registered(){
+function users_is_registered_username(){
 	var username = $('div.users_register input#users_username').val();
 	if(username){
 		var url = url = "?service=1&plugin=users&action=is_user_registered&username=" + username;
@@ -166,11 +168,13 @@ function is_registered(){
 			function(data){
 				if(data != '1'){
 				  window.register_form_msg[0] = data;
-				  show_message('register_form',0);				  
+				  show_message('register_form');
+				  //change color of textbox
+				  
 				}
 				else{
-				  window.register_form_msg[0] = 'null';
-				  hide_message('register_form',0);
+				  window.register_form_msg[0] = null;
+				  show_message('register_form');
 				}
 				
 			}
@@ -179,20 +183,126 @@ function is_registered(){
 	}
 }
 
+
+//this function check email
+function users_is_registered_email(){
+	var username = $('div.users_register input#users_email').val();
+	if(username){
+		var url = url = "?service=1&plugin=users&action=is_email_registered&email=" + username;
+		$.get(url ,
+			function(data){
+				if(data != '1'){
+				  window.register_form_msg[1] = data;
+				  show_message('register_form');
+				}
+				else{
+				  window.register_form_msg[1] = null;
+				  show_message('register_form');
+				}
+				
+			}
+		); 
+	  
+	}
+}
+  //this function send user information to server for register
 function users_register(){
-  alert(); 
+  //first we want to check for that is all nessasary fields filled.
+   var msgs = window.register_form_msg;
+   var all_ok = true;
+    for(i=0; i<= msgs.length-1; i++){
+	  if(msgs[i] != null){
+	    all_ok = false;
+	  }
+    }
+   if(all_ok == true){
+    //send information to server
+	var password = $('div.users_register input#users_password').val();
+	var email = $("div.users_register input#users_email").val();
+	var username = $('div.users_register input#users_username').val();
+	var url = url = "?service=1&plugin=users&action=register_me&username=" + username + "&password=" + password + "&email=" + email;
+	$.get(url ,
+		function(data){
+			if(data != '1'){
+			  window.register_form_msg[3] = data;
+			  show_message('register_form');
+			}
+			else{
+			}		
+		}
+	); 
+	  
+    }   
+   else{
+     alert('fail');
+     
+   }
 }
 function users_cancel_register(){
 window.location.href = "../";
 }
-function show_message(action, index){
+function show_message(action){
+
   if(action == 'register_form'){
-    $("#msg.users_register_msg").html(window.register_form_msg[index]);
+    var msgs = window.register_form_msg;
+    var tag_msg = "";
+    for(i=0; i<= msgs.length; i++){
+	  if(msgs[i] != 0 && msgs[i] != null){
+	    tag_msg += msgs[i];
+	  }
+    
+    }
+    $("#msg.users_register_msg").html(tag_msg);
   }
 }
-function hide_message(action, index){
-  if(action == 'register_form'){
-    $("#msg.users_register_msg").html('');
-  }
+
+//this function check length of password
+function users_check_password(){
+	var password = $('div.users_register input#users_password').val();
+	if(password.length < 9){
+		var url = url = "?service=1&plugin=users&action=check_password_length&password=" + password;
+		$.get(url ,
+			function(data){
+				if(data != '1'){
+				  window.register_form_msg[2] = data;
+				  show_message('register_form');
+				}
+				else{
+
+				}
+				
+			}
+		); 
+	  
+	}
+	window.register_form_msg[2] = null;
+	show_message('register_form');
+	
+}
+
+//this function compare password and re password in register forms
+function users_check_repassword(){
+  var password = $('div.users_register input#users_password').val();
+  var repassword = $('div.users_register input#users_repassword').val();
+	if(password != repassword && password.length > 8){
+		var url = url = "?service=1&plugin=users&action=check_password_match&password=" + password + "&repassword=" + repassword;
+		$.get(url ,
+			function(data){
+				if(data != '1'){
+				  window.register_form_msg[3] = data;
+				  show_message('register_form');
+				}
+				else{
+
+				}
+				
+			}
+		); 
+	  
+	}
+	window.register_form_msg[3] = null;
+	show_message('register_form');
+	
+}
   
-}
+

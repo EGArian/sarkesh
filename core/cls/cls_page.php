@@ -87,9 +87,9 @@ class cls_page{
 	}
 	//this function atteche some tags to blocks and show that.
 	public function show_block($header, $content, $view ,$type = null){
+		//create special value for access to that
 		if($view == 'BLOCK'){
 			echo '<div class="panel panel-default">';
-			
 				echo '<div class="panel-heading">';
 					echo '<h3 class="panel-title">';
 					      //block header show in here
@@ -100,13 +100,11 @@ class cls_page{
 				      //block content show in here
 				      echo $content;
 				echo '</div>';
-				
 			echo '</div>';
 
 		}
 		elseif($view == 'MAIN'){
 			echo '<div class="panel panel-primary">';
-			
 				echo '<div class="panel-heading">';
 					echo '<h3 class="panel-title">';
 					      //block header show in here
