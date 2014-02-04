@@ -6,6 +6,7 @@
 
 
 function users_login(){
+  
 	//first check for that user name or password not empty
 	var username = $("div.users_login input#users_username").val();
 	var password = $("div.users_login input#users_password").val();
@@ -223,19 +224,64 @@ function users_register(){
 	var url = url = "?service=1&plugin=users&action=register_me&username=" + username + "&password=" + password + "&email=" + email;
 	$.get(url ,
 		function(data){
-			if(data != '1'){
-			  window.register_form_msg[3] = data;
-			  show_message('register_form');
-			}
-			else{
-			}		
+			//problem in logout
+			xmlDoc = $.parseXML( data ),
+			$xml = $( xmlDoc ),
+			$result = $xml.find( "result" );
+			$type = $xml.find( "type" );
+			$header = $xml.find( "header" );
+			$content = $xml.find( "content" );
+			$btnback = $xml.find( "btn-back" );
+			BootstrapDialog.show({
+				type: $type.text(),
+				title: $header.text(),
+				message: $content.text(),
+				onhide: function(){  
+				 //someting that shoud do after hide modal
+				 if($result.text() == '0'){
+					  window.location.href = "?plugin=users&action=login";
+				 }
+				 else if($result.text() == '1'){
+					  window.location.href = ".?plugin=users&action=register_active";
+				 }
+				 else{
+					  window.location.href = ".?plugin=users&action=register";
+				 }
+			},
+				buttons: [{
+					label: $btnback.text(),	       
+					action: function(dialogItself){dialogItself.close(); }		       
+				}]
+			});   	 
+				
 		}
 	); 
 	  
     }   
    else{
-     alert('fail');
-     
+     url = '?service=1&plugin=users&action=failfill';
+     $.get(url ,
+		function(data){
+			//problem in logout
+			xmlDoc = $.parseXML( data ),
+			$xml = $( xmlDoc ),
+			$result = $xml.find( "result" );
+			$type = $xml.find( "type" );
+			$header = $xml.find( "header" );
+			$content = $xml.find( "content" );
+			$btnback = $xml.find( "btn-back" );
+			BootstrapDialog.show({
+				type: $type.text(),
+				title: $header.text(),
+				message: $content.text(),
+				buttons: [{
+					label: $btnback.text(),	       
+					action: function(dialogItself){dialogItself.close(); }		       
+				}]
+			});   	 
+				
+		}
+	); 
    }
 }
 function users_cancel_register(){

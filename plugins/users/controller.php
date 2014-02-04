@@ -31,6 +31,7 @@ class users_controller{
 			}
 			
 		}
+		//warrning: this part do not check for user registreration access
 		elseif($action_name == 'register'){
 			if($this->is_logedin()){
 				//jump to user profile
@@ -55,6 +56,13 @@ class users_controller{
 			}
 			
 		}
+		elseif($action_name == 'register_active'){
+			if(!$this->is_logedin()){
+				//show register page
+				return $this->view->show_register_active_page($view);
+			}
+			
+		}
 		
 
 	}
@@ -68,25 +76,35 @@ class users_controller{
 			//1 ->username and password was cerrect user loged in 
 			if($this->is_logedin()){
 				//user is logedin before
-				$this->view->show_in_box(_('Message'), _('You loged in with defferent acount before! first logout.') ,true);
+				$this->view->show_in_box(_('Message'), _('You loged in with defferent account before! first logout.') ,true);
 			}
 			elseif(isset($_GET['username']) && isset($_GET['password'])){
 				//start login progress
 				$this->db->do_query('SELECT * FROM ' . TablePrefix . 'users WHERE username=? AND password=?;', array($this->io->cin('username', 'get'),md5($this->io->cin('password', 'get'))));
 				if($this->db->rows_count() != 0){
-				
-					//username is cerrect going to set validator
-					if(isset($_GET['remember'])){
-					
-						$valid_id = $this->obj_validator->set('USERS_LOGIN',true,true);
+					//check user permation
+					$result = $this->db->get_first_row_array();
+					$this->db->do_query('SELECT * From ' .TablePrefix . 'permations where id=?;', array($result['permation']));
+					$permation = $this->db->get_first_row_array();
+					//check user permantion ->enable
+					if($permation['enable'] == '1'){
+						//username is cerrect going to set validator
+						if(isset($_GET['remember'])){
 						
+							$valid_id = $this->obj_validator->set('USERS_LOGIN',true,true);
+							
+						}
+						else{
+							$valid_id = $this->obj_validator->set('USERS_LOGIN',false,true);
+							
+						}
+						$this->db->do_query('UPDATE ' . TablePrefix . 'users SET validator=? WHERE username=?;', array($valid_id, $this->io->cin('username', 'get')));
+						$this->service_result = 1;
 					}
 					else{
-						$valid_id = $this->obj_validator->set('USERS_LOGIN',false,true);
-						
+						//user do not has permation
+						$this->view->show_in_box(_('Message'), _('Your account not active! you can recive new active request from email.') ,true);
 					}
-					$this->db->do_query('UPDATE ' . TablePrefix . 'users SET validator=? WHERE username=?;', array($valid_id, $this->io->cin('username', 'get')));
-					$this->service_result = 1;
 				}
 				else{
 					//username or password is incerrect
@@ -195,12 +213,18 @@ class users_controller{
 		elseif($service_name == 'is_email_registered'){
 			if(isset($_GET['email'])){
 				$email = $this->io->cin('email', 'get');
-				if($this->madule->is_registered_email($email)){
-					//not registered going to show msg
-					$this->view->show_message(_('Email:'), _('This email is not available.'), 'danger');
+				if(!preg_match("/^[a-z0-9_\-+\.]+@([a-z0-9\-+]+\.)+[a-z]{2,5}$/i", $email)){
+					$this->view->show_message(_('Email:'), _('Email Patern is not cerrect'), 'danger');
+
 				}
 				else{
-					$this->service_result = '1';
+					if($this->madule->is_registered_email($email)){
+						//not registered going to show msg
+						$this->view->show_message(_('Email:'), _('This email is not available.'), 'danger');
+					}
+					else{
+						$this->service_result = '1';
+					}
 				}
 			}
 		
@@ -235,22 +259,32 @@ class users_controller{
 		}
 		//this function is for register user 
 		elseif($service_name == 'register_me'){
-			if(isset($_GET['username']) && isset($_GET['email']) && isset($_GET['password']) && isset($_GET['captcha'])){
+			if(isset($_GET['username']) && isset($_GET['email']) && isset($_GET['password'])){
 				$username = $this->io->cin('username', 'get');
 				$email = $this->io->cin('email', 'get');
 				$password = $this->io->cin('password', 'get');
-				$captcha = $this->io->cin('captcha', 'get');
+				$this->madule->register($username, $password, $email);
+				//warrning: email patern not checked
+				$result = $this->madule->register($username, $password, $email);
+				if($result == 0){
+					//user should get email to active his/her account
+					$this->view->show_in_box(_('Register'), _('Check your email for active your account'), 'success', 0);
+				}
+				elseif($result == 1){
+					//user is active without email
+					$this->view->show_in_box(_('Register'), _('You can login to your account with your login info.'), 'success', 1 );
 				
-				//check data
-				
-				//going to save
+				}
+				else{
+					$this->view->show_in_box(_('Register'), _('Error in registering . please try again later!'), 'danger', 2);
+				}
 			}
-		
 		}
-		
-		
+		//this part just return message for show to user :you should fill all nessecary fields
+		elseif($service_name == 'failfill'){
+			$this->view->show_in_box(_('Message'), _('Please fill all fields that marked with *.'), 'warning', 1 );
+		}
 		echo $this->service_result;
-	
 	}
 	
 	//this function search for that user is loged in before
@@ -265,9 +299,5 @@ class users_controller{
 	public function logout(){
 		$this->obj_validator->delete('USERS_LOGIN');
 	}
-	
-
-
-
 }
 ?>

@@ -47,6 +47,8 @@ class cls_page{
 			$header_tags .= "\n" . '<script src="./core/ect/scripts/jquery.js"></script>';
 			$header_tags .= "\n" . '<script src="./core/ect/scripts/bootstrap.min.js"></script>';
 			$header_tags .= "\n" . '<script src="./core/ect/scripts/bootstrap-dialog.js"></script>';
+			$header_tags .= "\n" . '<script src="./core/ect/scripts/pace.min.js"></script>';
+			$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/pace.css" />';
 			$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap.min.css" />';
 			$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap-dialog.css" />';
 			$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap-theme.min.css" />';
@@ -86,7 +88,7 @@ class cls_page{
 		return $this->page_tittle;
 	}
 	//this function atteche some tags to blocks and show that.
-	public function show_block($header, $content, $view ,$type = null){
+	public function show_block($header, $content, $view ,$type = null, $result = 0){
 		//create special value for access to that
 		if($view == 'BLOCK'){
 			echo '<div class="panel panel-default">';
@@ -133,6 +135,9 @@ class cls_page{
 			//else it's modal
 			echo '<?xml version="1.0"?>' . "\n";
 				echo '<message>' . "\n";
+					echo '<result>';
+						echo $result;
+					echo '</result>';
 					echo '<type>';
 						echo $type;
 					echo '</type>' . "\n";

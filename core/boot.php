@@ -7,9 +7,6 @@ function __autoload($class_name){
 $sess_id = session_id();
 if(empty($sess_id)){ session_start();}
 
-
-
-
 if(file_exists("./config.php")) {
 	//going to run sarkesh!
 	include_once("./config.php");
@@ -21,6 +18,8 @@ if(file_exists("./config.php")) {
 	//path for store temp files
 	cls_raintpl::configure("cache_dir", "upload/buffer/" );
 	//LOAD INC Files
+	//include core difines
+	include_once( AppPath . 'core/defines.php');
 	include_once(AppPath . 'core/inc/localize.php');
 	$sys_page = new cls_page;
 	#include functions

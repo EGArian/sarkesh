@@ -4,7 +4,7 @@ class users_madule{
 	private $io;
 	private $db;
 	private $validator;
-	private $mail;
+	private $email;
 	
 	function __construct($view){
 		$this->view = $view;
@@ -71,6 +71,41 @@ class users_madule{
 		else{
 			return false;
 		}
+	}
+	//this function register neew user
+	// 0= user should recive email for active
+	// 1= user activated automaticly
+	// 2= fail in register user
+	public function register($username, $password, $email){
+		//first check for that email or username not registered before
+		
+		if($this->is_registered_email($email) == false && $this->is_registered_username($username) == false){
+			//going to register new user
+			//check for that active from email is enabled
+			$registry = new cls_registry;
+			//num 3 means not activated
+			$permation_id = '3';
+			if($registry->get('users', 'active_from_email') != '1'){
+				$permation_id = $registry->get('users', 'default_permation');
+			}
+			//save user
+			$this->db->do_query('INSERT INTO ' . TablePrefix . 'users (username,password,email,permation) VALUES (?,?,?,?);', array($username, md5($password), $email,$permation_id));
+			//if active via email is enable going to create validator and send email
+			
+			if($permation_id == '3'){
+			      //going to create validator
+			      $validator = $this->validator->set('USERS_ACTIVE', false, false, 'both');
+			      $this->db->do_query('UPDATE ' . TablePrefix . 'users SET validator=? WHERE username=?;', array($validator['id'], $username));
+			      //going to send email
+			      if($this->email->simple_send($username, $email, _('Register in sarkesh'), _('your code is:' . $validator['special_id'] ))){
+					return 0;
+			      }
+			      return 2;
+			}
+			
+			return 1;
+		}
+		return 2;
 	}
 	
 }
