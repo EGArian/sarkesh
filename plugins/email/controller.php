@@ -3,7 +3,6 @@ class languages_controller{
 	private $view;
 	private $madule;
 	private $obj_localize;
-	private $obj_io;
 	private $service_result;
 
 	function __construct($view, $madule){
@@ -11,7 +10,6 @@ class languages_controller{
 		$this->madule = $madule;
 		//-------------
 		$this->obj_localize = new cls_localize;
-		$this->obj_io = new cls_io;
 	}
 	//this function control request and show UI
 	public function action($action_name, $view){
@@ -44,8 +42,17 @@ class languages_controller{
 	//show result of service
 	echo $this->service_result;
 	}
-	
-
-
+	//this function send email with template and directions
+	public function simple_email($to_name, $to_email, $subject, $body){
+		//first get email template
+		$registery =  new cls_registery;
+		$template = $registery->get('email', 'template');
+		if(is_dir(AppPath . 'plugins/email/' . $template)){
+			$this->view->send_email($subject, $body);
+			return true;
+		}
+		return false;
+		
+	}
 }
 ?>

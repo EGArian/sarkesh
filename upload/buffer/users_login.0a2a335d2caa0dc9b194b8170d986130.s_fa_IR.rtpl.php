@@ -13,7 +13,7 @@
 					مرا به یاد داشته باش!
 				</label>
 			</div>
-			<input type="button" class="form-control btn btn-primary" data-loading-text="Loading..." onclick="users_login()" value="ورود">
+			<input type="button" class="form-control btn btn-primary" onclick="users_login()" value="ورود">
 			<a href=".?plugin=users&action=forget_password" >کلمه عبور را فراموش کرده اید؟</a>
 			<br />
 			

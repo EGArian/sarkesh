@@ -4,13 +4,13 @@
 	<form>
 		<div class="form-group users_register">
 			<label for="users_username"> نام کاربری: </label>
-			<input type="text" id="users_username" class="form-control" name="users_username" placeholder=" نام کاربری" onblur="is_registered();">
+			<input type="text" id="users_username" class="form-control" name="users_username" placeholder=" نام کاربری" onblur="users_is_registered_username();">
 			<label for="users_username"> پست الکترونیکی: </label>
-			<input type="text" id="users_email" class="form-control" name="users_email" placeholder=" Email">
+			<input type="email" id="users_email" class="form-control" name="users_email" placeholder="Email" onblur="users_is_registered_email();">
 			<label for="users_password"> کلمه عبور: </label>
-			<input type="password" id="users_password" class="form-control" name="users_password" placeholder="******">
+			<input type="password" id="users_password" class="form-control" name="users_password" placeholder="******" onblur="users_check_password();">
 			<label for="users_repassword"> کلمه عبور: </label>
-			<input type="password" id="users_repassword" class="form-control" name="users_repassword" placeholder="******">
+			<input type="password" id="users_repassword" class="form-control" name="users_repassword" placeholder="******" onblur="users_check_repassword()";>
 			<br />
 			<div class="alert alert-warning">
 				کلیک بر روی دکمه عضویت به معنی پذیرش مفاد قوانین ارائه خدمات خواهد بود.
@@ -22,3 +22,4 @@
 		</div>
 	</form>
 </div>
+

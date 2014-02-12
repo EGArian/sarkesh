@@ -347,8 +347,7 @@ function users_check_repassword(){
 	  
 	}
 	window.register_form_msg[3] = null;
-	show_message('register_form');
-	
+	show_message('register_form');	
 }
   
 

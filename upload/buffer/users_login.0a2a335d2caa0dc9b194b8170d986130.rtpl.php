@@ -14,7 +14,7 @@
 
 				</label>
 			</div>
-			<input type="button" class="form-control btn btn-primary" data-loading-text="Loading..." onclick="users_login()" value="<?php echo $sign_in;?>">
+			<input type="button" class="form-control btn btn-primary" onclick="users_login()" value="<?php echo $sign_in;?>">
 			<a href=".?plugin=users&action=forget_password" ><?php echo $forget_password;?></a>
 			<br />
 			<?php if( $can_register == '1' ){ ?>
