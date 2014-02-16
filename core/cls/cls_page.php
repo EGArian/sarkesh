@@ -89,6 +89,7 @@ class cls_page{
 	}
 	//this function atteche some tags to blocks and show that.
 	public function show_block($header, $content, $view ,$type = null, $result = 0){
+
 		//create special value for access to that
 		if($view == 'BLOCK'){
 			echo '<div class="panel panel-default">';
@@ -181,7 +182,13 @@ class cls_page{
 					$plugin = $obj_plugin->get_object($block['p.name']);
 					//run action metod for show block
 					//all blocks name shoud be like  'blk_blockname'
+					 // create local domain
+					bindtextdomain($this->localize_settings['language'], './plugins/' . $block['p.name'] .'/languages/');
 					$plugin->action($block['b.name'], 'BLOCK');
+					//back localize to theme
+					bindtextdomain($this->localize_settings['language'], './themes/' . $this->localize_settings['theme'] .'/languages/');
+					  
+					
 				}
 			
 			}

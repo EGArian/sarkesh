@@ -4,8 +4,8 @@ class languages_madule{
 	//------------
 	private $db;
 	private $obj_localize;
-	function __construct($view){
-		$this->view = $view;
+	function __construct(){
+		$this->view = new languages_view;
 		$this->obj_localize = new cls_localize;
 		
 		$this->db = new cls_database;

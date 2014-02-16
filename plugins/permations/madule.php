@@ -2,8 +2,8 @@
 class permations_madule{
 	private $view;
 	
-	function __construct($view){
-		$this->view = $view;
+	function __construct(){
+		$this->view = new permations_view;
 	}
 
 }

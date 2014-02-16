@@ -11,7 +11,12 @@ class cls_router{
 	private $plugin;
 	private $action;
 	private $obj_io;
+	private $localize;
 	function __construct(){
+		//get localize
+		$obj_localize = new cls_localize;
+		$this->localize = $obj_localize->get_localize();
+		//-------------------------
 		$this->obj_io = new cls_io;
 		if(isset($_GET['plugin'])){
 			$this->plugin = $this->obj_io->cin('plugin','get');
@@ -46,7 +51,12 @@ class cls_router{
 	      $plugin = $obj_plugin->get_object($this->plugin);
 	      //set tittle of page
 	      global $sys_page;
+	      // create local domain
+	      bindtextdomain($this->localize['language'], './plugins/' . $this->plugin .'/languages/');
 	      $sys_page->set_page_tittle($plugin->action($this->action, 'MAIN'));
+	      //back localize to theme
+	      bindtextdomain($this->localize['language'], './themes/' . $this->localize['theme'] .'/languages/');
+
 	}
 	//this function run services and jump request do plugin
 	public function run_service(){

@@ -1,4 +1,8 @@
 <!DOCTYPE html> 
+<?php
+bindtextdomain($sys_language, "./themes/blog/");
+textdomain($sys_language);
+?>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
@@ -59,7 +63,7 @@
       <footer>
         <div class="row">
           <div class="col-lg-12">
-            <p>Copyright &copy; Sarkesh LTD 2013</p>
+            <p><?php echo _('Copyright &copy; Sarkesh LTD 2013'); ?></p>
           </div>
         </div>
       </footer>

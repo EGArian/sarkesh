@@ -1,6 +1,6 @@
 <?php
 	//in this file define some varible for use in plugins and core it self
-	define('VERSION', '0.00');
+	define('CORE_VERSION', '0.00');
 
 
 

@@ -7,9 +7,13 @@ class users_controller{
 	private $db;
 	private $io;
 	private $service_result;
-	function __construct($view, $madule){
-		$this->view = $view;
-		$this->madule = $madule;
+	private $plg_email;
+	function __construct(){
+
+		$plugin = new cls_plugin;
+		$this->plg_email = $plugin->get_object('email');
+		$this->view = new users_view;
+		$this->madule = new users_madule;
 		$this->db = new cls_database;
 		$this->obj_validator = new cls_validator;
 		$this->io = new cls_io;
@@ -149,8 +153,8 @@ class users_controller{
 					$user = $this->madule->get_user_info($email);
 					//send forget email
 					$mail = new cls_mail;
-					
-					if($mail->simple_send($user['username'], $user['email'] , 'forget_password_subject' , "your code is: " . $result['special_id']) ){
+					$email_content = $this->plg_email->add_email_template(_('your code is:%' . $result['special_id']), _('Reset Code'));
+					if($mail->simple_send($user['username'], $user['email'] , 'Reset Code' , $email_content) ){
 						//show success message
 						$this->view->show_in_box(_('Message'),  _('Check your email for more informations.'), 'success' );
 					}	
@@ -177,7 +181,8 @@ class users_controller{
 						$password = $this->madule->reset_password($reset_id);
 						//reset password successfull going to send reset email
 						$mail = new cls_mail;
-						if($mail->simple_send($user['username'], $user['email'] , 'reset_password_subject' , "your password is: $password")){
+						$email_content = $this->plg_email->add_email_template(_('your password is:%' . $password), _('Reset Password'));
+						if($mail->simple_send($user['username'], $user['email'] , _('Reset Password') , $email_content)){
 							//show success message
 							$this->view->show_in_box(_('Message'),  _('Your password changed! look at your email.'), 'success' );
 						}	

@@ -1,58 +1,24 @@
 <?php
-class languages_controller{
+class email_controller{
 	private $view;
 	private $madule;
-	private $obj_localize;
-	private $service_result;
-
-	function __construct($view, $madule){
-		$this->view = $view;
-		$this->madule = $madule;
-		//-------------
-		$this->obj_localize = new cls_localize;
-	}
-	//this function control request and show UI
-	public function action($action_name, $view){
-		if($action_name == 'language_select'){
-			//going to show language selection
-			$user_language = $this->obj_localize->get_language();
-			$languages = $this->madule->get_languages($user_language);
-			$this->view->languages_show($languages, $view);
-		}
-
-	}
-	//service do not has any user interface
-	//it just return text
-	public function service($service_name){
-		if($service_name == 'change'){
-			//going to change localize
-			if(isset($_GET['lang'])){
-				//change language
-				$lang = $this->obj_io->cin('lang', 'get');
-				$this->obj_localize->set_language($lang);
-				//change successfull return 1
-				$this->service_result = 1;
-			}
-			else{
-				//changing language system has some problem
-				$this->view->show_in_box(_('message'), _('changing language has some problem! Please try again later.'), true);
-			}
-		}
 	
-	//show result of service
-	echo $this->service_result;
+	function __construct(){
+		$this->view = new email_view;
+		$this->madule = new email_madule;
 	}
-	//this function send email with template and directions
-	public function simple_email($to_name, $to_email, $subject, $body){
-		//first get email template
-		$registery =  new cls_registery;
-		$template = $registery->get('email', 'template');
-		if(is_dir(AppPath . 'plugins/email/' . $template)){
-			$this->view->send_email($subject, $body);
-			return true;
-		}
-		return false;
-		
+	
+	//this function control actions for show pages to viewer
+	public function action($action){
+		echo $this->add_email_template('body of message','subject');
+	
 	}
+	
+	public function add_email_template($body, $subject){
+		//this function just return content with template
+		return $this->view->add_template($body, $subject);
+	}
+
+
 }
 ?>

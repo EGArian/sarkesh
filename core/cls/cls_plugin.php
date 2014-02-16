@@ -26,7 +26,6 @@
 		//step 3 : update plugins table
 		public function install($plugin_name){
 			
-			
 		}
 		
 		//this function return an object from controller class of plugin.
@@ -43,11 +42,7 @@
 
 			//now create an object from controller
 			$object_controller  = $plugin_name . '_controller';
-			$object_madule  = $plugin_name . '_madule';
-			$object_view  = $plugin_name . '_view';
-			$view = new $object_view;
-			$madule = new $object_madule($view);
-			$controller = new $object_controller($view , $madule);
+			$controller = new $object_controller;
 			return $controller;
 		
 		}

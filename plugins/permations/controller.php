@@ -3,9 +3,9 @@ class permations_controller{
 	private $view;
 	private $madule;
 	
-	function __construct($madule, $view){
-		$this->view = $view;
-		$this->madule = $madule;
+	function __construct(){
+		$this->madule = new permations_madule;
+		$this->view = new permations_view;
 	}
 	
 	public function action($action_name, $view){

@@ -5,8 +5,9 @@ class users_view{
 	private $cache;
 	function __construct(){
 		//config raintpl
-		cls_raintpl::configure("tpl_dir", "plugins/users/tpl/" );
+		//cls_raintpl::configure("tpl_dir", "plugins/users/tpl/" );
 		$this->raintpl = new cls_raintpl;
+		$this->raintpl->configure("tpl_dir", "plugins/users/tpl/" );
 		$this->obj_page = new cls_page;
 		
 	}

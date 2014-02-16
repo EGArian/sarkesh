@@ -6,8 +6,8 @@ class users_madule{
 	private $validator;
 	private $email;
 	
-	function __construct($view){
-		$this->view = $view;
+	function __construct(){
+		$this->view = new users_view;
 		$this->io = new cls_io;
 		$this->db = new cls_database;
 		$this->validator = new cls_validator;
