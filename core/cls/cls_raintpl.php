@@ -21,7 +21,7 @@ class cls_raintpl{
 		 *
 		 * @var string
 		 */
-		static $tpl_dir = "tpl/";
+		static $tpl_dir = "plugins/email.default/";
 		
 		//for cache pages in some localize
 		private $localize;
@@ -274,7 +274,6 @@ class cls_raintpl{
 			$this->tpl['compiled_filename']     = $temp_compiled_filename . '.rtpl.php';	// cache filename
 			$this->tpl['cache_filename']        = $temp_compiled_filename . '.s_' . $this->cache_id . '.rtpl.php';	// static cache filename
                         $this->tpl['checked']               = true;
-                        
 			// if the template doesn't exist and is not an external source throw an error
 			if( self::$check_template_update && !file_exists( $this->tpl['tpl_filename'] ) && !preg_match('/http/', $tpl_name) ){
 				$e = new RainTpl_NotFoundException( 'Template '. $tpl_basename .' not found!' );

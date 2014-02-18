@@ -51,7 +51,9 @@ class cls_page{
 			$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/pace.css" />';
 			$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap.min.css" />';
 			$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap-dialog.css" />';
-			$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap-theme.min.css" />';
+			//get bootstrap theme
+			//$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap-theme.min.css" />';
+			$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap/' . $this->settings['bootstrap_theme'] . '.min.css" />';
 			$header_tags .= "\n" . '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
 			$header_tags .= "\n" . '<!-- HTML5 shim for IE backwards compatibility -->';
 		}
@@ -164,7 +166,6 @@ class cls_page{
 	//this function set and show blocks
 	public function set_position($position){
 		//search blocks for position matched
-		
 		//if add 'MAIN' to cls_router::show_content that's show like main content that come with url
 		//and if add 'BLOCK' tag , sarkesh show that content like block
 		//and if Send 'NONE' sarkesh do not show that(just run without view
@@ -176,10 +177,11 @@ class cls_page{
 					//going to show content;
 					$obj_router = new cls_router;
 					$obj_router->show_content();
+
 				}
 				else{
-					$obj_plugin = new cls_plugin;
-					$plugin = $obj_plugin->get_object($block['p.name']);
+					$plugin_name = $block['p.name'] . '_controller';
+					$plugin = new $plugin_name;
 					//run action metod for show block
 					//all blocks name shoud be like  'blk_blockname'
 					 // create local domain

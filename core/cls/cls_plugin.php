@@ -28,26 +28,6 @@
 			
 		}
 		
-		//this function return an object from controller class of plugin.
-		public function get_object($plugin_name){
-			//check for that plugin files is present and plugin is enabled
-			if(!$this->is_enabled($plugin_name) || !file_exists(AppPath . 'plugins/' . $plugin_name . '/controller.php')){
-				//plugin not enabled or not installed
-				$error_msg = _('System Error : one or more plugin requments is not enable');
-				exit("<h1> $error_msg </h1>");
-			}
-			include_once(AppPath . 'plugins/' . $plugin_name . '/controller.php');
-			include_once(AppPath . 'plugins/' . $plugin_name . '/view.php');
-			include_once(AppPath . 'plugins/' . $plugin_name . '/madule.php');
-
-			//now create an object from controller
-			$object_controller  = $plugin_name . '_controller';
-			$controller = new $object_controller;
-			return $controller;
-		
-		}
-		
-		
 		//this function disable plugin from database
 		public function disable($plugin_name){
 		

@@ -1,10 +1,10 @@
 <?php
 function __autoload($class_name){
-	$result = explode('_', $class_name);
+	$result = explode('_', $class_name ,2);
 	//it's system classes going to attech that
 	 @include_once(dirname(__FILE__) . '/cls/' . $class_name . '.php');
 	 //going to include plugin
-	 @include_once(dirname(__FILE__) . '/plugins/' . $result[0] . '/' . $result[1] . '.php');
+	 @include_once(AppPath . '/plugins/' . $result[0] . '/' . $result[1] . '.php');
 
 }
 

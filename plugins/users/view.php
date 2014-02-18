@@ -5,15 +5,14 @@ class users_view{
 	private $cache;
 	function __construct(){
 		//config raintpl
-		//cls_raintpl::configure("tpl_dir", "plugins/users/tpl/" );
 		$this->raintpl = new cls_raintpl;
-		$this->raintpl->configure("tpl_dir", "plugins/users/tpl/" );
 		$this->obj_page = new cls_page;
 		
 	}
 	//this function show login page for enter username and password
 	public function show_login_page($view){
-		 $this->cache = $this->raintpl->cache('users_login', 60);
+		$this->raintpl->configure("tpl_dir", "plugins/users/tpl/" );
+		$this->cache = $this->raintpl->cache('users_login', 60);
 		if($this->cache){
 			$this->obj_page->show_block( _('User Sign in') , $this->cache, $view);
 			}
@@ -37,6 +36,7 @@ class users_view{
 	//this function show user page (like profile)
 	//warrning this function do not show username cerrectly
 	public function show_user_page($view){
+		$this->raintpl->configure("tpl_dir", "plugins/users/tpl/" );
 		$this->cache = $this->raintpl->cache('users_page', 60);
 		if( $this->cache){
 			$this->obj_page->show_block( _('User State') , $this->cache, $view);
@@ -50,6 +50,7 @@ class users_view{
 	}
 	//this function show forget password page for reset password
 	public function show_forget_password_page($view){
+		$this->raintpl->configure("tpl_dir", "plugins/users/tpl/" );
 		$this->cache = $this->raintpl->cache('users_forget_password', 60);
 		if( $this->cache){
 			$this->obj_page->show_block( _('Reset password') , $this->cache, $view);
@@ -65,6 +66,7 @@ class users_view{
 	}
 	
 	public function show_reset_password_page($view){
+		$this->raintpl->configure("tpl_dir", "plugins/users/tpl/" );
 		$this->cache == $this->raintpl->cache('users_reset_password', 60);
 		if( $this->cache){
 			$this->obj_page->show_block( _('Input reset code') , $this->cache, $view);
@@ -78,6 +80,7 @@ class users_view{
 		}
 	}
 	public function show_register_page($view){
+		$this->raintpl->configure("tpl_dir", "plugins/users/tpl/" );
 		$this->cache == $this->raintpl->cache('users_register', 60);
 		if( $this->cache){
 			$this->obj_page->show_block( _('Register') , $this->cache, $view);
@@ -98,6 +101,7 @@ class users_view{
 		return _('Register');
 	}
 	public function show_register_active_page($view){
+		$this->raintpl->configure("tpl_dir", "plugins/users/tpl/" );
 		$this->cache == $this->raintpl->cache('register_active', 60);
 		if( $this->cache ){
 			$this->obj_page->show_block( _('Active account') , $this->cache, $view);

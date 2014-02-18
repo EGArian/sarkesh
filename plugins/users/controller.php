@@ -11,12 +11,15 @@ class users_controller{
 	function __construct(){
 
 		$plugin = new cls_plugin;
-		$this->plg_email = $plugin->get_object('email');
 		$this->view = new users_view;
 		$this->madule = new users_madule;
 		$this->db = new cls_database;
 		$this->obj_validator = new cls_validator;
 		$this->io = new cls_io;
+		
+		//define plugins
+		$this->plg_email = new email_view;
+
 	}
 	// $view has to value 1- 'block' for show with block header
 	// 		2-content for show with orginal state
@@ -153,16 +156,16 @@ class users_controller{
 					$user = $this->madule->get_user_info($email);
 					//send forget email
 					$mail = new cls_mail;
-					$email_content = $this->plg_email->add_email_template(_('your code is:%' . $result['special_id']), _('Reset Code'));
+					$email_content = $this->plg_email->add_template(_('your code is:%' . $result['special_id']), _('Reset Code'));
 					if($mail->simple_send($user['username'], $user['email'] , 'Reset Code' , $email_content) ){
 						//show success message
+						
 						$this->view->show_in_box(_('Message'),  _('Check your email for more informations.'), 'success' );
 					}	
 					else{
 						$this->view->show_in_box(_('Message'),  _('Error in sending email . please tell admins!'), 'danger' );
 					  
 					}
-				
 			}
 		}
 		elseif($service_name == 'reset_password'){
@@ -181,7 +184,7 @@ class users_controller{
 						$password = $this->madule->reset_password($reset_id);
 						//reset password successfull going to send reset email
 						$mail = new cls_mail;
-						$email_content = $this->plg_email->add_email_template(_('your password is:%' . $password), _('Reset Password'));
+						$email_content = $this->plg_email->add_template(_('your password is:%' . $password), _('Reset Password'));
 						if($mail->simple_send($user['username'], $user['email'] , _('Reset Password') , $email_content)){
 							//show success message
 							$this->view->show_in_box(_('Message'),  _('Your password changed! look at your email.'), 'success' );
@@ -296,7 +299,6 @@ class users_controller{
 	//with check validator with USERS_LOGIN source
 	public function is_logedin(){
 		//first create validator class
-		$c = new cls_validator;
 		return $this->obj_validator->is_set('USERS_LOGIN');
 	}
 	

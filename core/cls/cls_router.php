@@ -42,13 +42,15 @@ class cls_router{
 		}
 		
 		//get plugin and run action on it.
+
 		
 	}
 	public function show_content(){
 	      //this function run from page class.
 	      // this function load plugin and run controller
-	      $obj_plugin = new cls_plugin;
-	      $plugin = $obj_plugin->get_object($this->plugin);
+	      $plugin_name = $this->plugin . '_controller';
+	      $plugin = new $plugin_name;
+	      
 	      //set tittle of page
 	      global $sys_page;
 	      // create local domain
@@ -60,8 +62,8 @@ class cls_router{
 	}
 	//this function run services and jump request do plugin
 	public function run_service(){
-	      $obj_plugin = new cls_plugin;
-	      $plugin = $obj_plugin->get_object($this->plugin);
+	      $plugin_name = $this->plugin . '_controller';
+	      $plugin = new $plugin_name;
 	      $plugin->service($this->action);
 	}
 	
