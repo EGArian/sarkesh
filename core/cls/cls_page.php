@@ -48,12 +48,14 @@ class cls_page{
 			$header_tags .= "\n" . '<script src="./core/ect/scripts/bootstrap.min.js"></script>';
 			$header_tags .= "\n" . '<script src="./core/ect/scripts/bootstrap-dialog.js"></script>';
 			$header_tags .= "\n" . '<script src="./core/ect/scripts/pace.min.js"></script>';
-			$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/pace.css" />';
 			$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap.min.css" />';
 			$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap-dialog.css" />';
 			//get bootstrap theme
-			//$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap-theme.min.css" />';
 			$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap/' . $this->settings['bootstrap_theme'] . '.min.css" />';
+			//get pace(loading in ajax theme
+			if($this->settings['pace_theme'] != '0'){
+				$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/pace/' . $this->settings['pace_theme'] . '.css" />';
+			}
 			$header_tags .= "\n" . '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
 			$header_tags .= "\n" . '<!-- HTML5 shim for IE backwards compatibility -->';
 		}

@@ -1,8 +1,5 @@
 <!DOCTYPE html> 
-<?php
-bindtextdomain($sys_language, "./themes/blog/");
-textdomain($sys_language);
-?>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
