@@ -7,33 +7,35 @@ class captcha_controller{
 		$this->view = new captcha_view;
 		$this->madule = new captcha_madule;
 	}
-	
+	public function action($action){
+		if($action == 'draw_full'){
+			
+			$this->view->captcha_show_full();
+		}	
+	}
 	public function service($service){
 		 //show captcha image
 		 if($service == 'draw'){
 			$this->madule->draw();
 		 }
+		 elseif($service == 'draw_full'){
+		 	echo $this->view->captcha_show_full();	
+		 }
 		 elseif($service == 'solve'){
 			if($this->madule->solve()){
-			echo 1;
+				echo 1;
 			}
 			else{
-			echo 0;
+				echo 0;
 			}
 		 }
 	
 	}
-	//this function control actions for show pages to viewer
-	public function action($action){
-		echo $this->add_email_template('body of message','subject');
 	
+	//this function return captcha panel
+	public function get_captcha(){
+		return $this->view->captcha_show_full();	
 	}
-	
-	public function add_email_template($body, $subject){
-		//this function just return content with template
-		return $this->view->add_template($body, $subject);
-	}
-
 
 }
 ?>

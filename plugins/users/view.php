@@ -95,7 +95,9 @@ class users_view{
 			$this->raintpl->assign( "label_repassword", _('Re Password'));
 			$this->raintpl->assign( "sign_up", _('Sign up') );
 			$this->raintpl->assign( "agree_terms", _('By clicking submit you are agreeing to the Terms and Conditions.') );
-			
+			//show captcha
+			$captcha = new captcha_controller;
+			$this->raintpl->assign( "captcha", $captcha->get_captcha());
 			$this->obj_page->show_block( _('Reset password') , $this->raintpl->draw( 'users_reset_password', true ), $view);
 		}	
 		return _('Register');
