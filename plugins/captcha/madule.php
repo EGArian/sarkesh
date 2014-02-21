@@ -15,11 +15,20 @@ class captcha_madule{
 		$captcha->draw();
 	
 	}
-	public function solve(){
-		if(isset($_GET['captcha']) && $_GET['captcha'] == $_SESSION['captcha']['code']){
-		  return true;
+	public function solve($value = '0'){
+		if($value == '0'){
+			if(isset($_GET['captcha']) && $_GET['captcha'] == $_SESSION['captcha']['code']){
+		  		return true;
+			}
+			return false;
 		}
-		return false;
+		else{
+			if($value == $_SESSION['captcha']['code']){
+			  return true;
+			}
+			return false;
+		}
+		
 	}
 
 }

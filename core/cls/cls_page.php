@@ -142,7 +142,7 @@ class cls_page{
 				echo '<message>' . "\n";
 					echo '<result>';
 						echo $result;
-					echo '</result>';
+					echo '</result>' . "\n";
 					echo '<type>';
 						echo $type;
 					echo '</type>' . "\n";
@@ -201,13 +201,13 @@ class cls_page{
 	}
 	
 	//this function return content for show in custombox for show on page
-	public function show_in_box($header, $content, $type = 'warning'){
+	public function show_in_box($header, $content, $type = 'warning', $result = '0'){
 		$type = 'type-' . $type;
-		$this->show_block($header,$content,'MODAL', $type);
+		$this->show_block($header,$content,'MODAL', $type, $result);
 	
 	}
-	public function show_message($header, $content, $type = 'warning'){
-		$this->show_block($header,$content,'MSG', $type);
+	public function show_message($header, $content, $type = 'warning', $result = '0'){
+		$this->show_block($header,$content,'MSG', $type, $result);
 	
 	}
 	

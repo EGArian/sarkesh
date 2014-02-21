@@ -97,7 +97,7 @@ class users_madule{
 			      $validator = $this->validator->set('USERS_ACTIVE', false, false, 'both');
 			      $this->db->do_query('UPDATE ' . TablePrefix . 'users SET validator=? WHERE username=?;', array($validator['id'], $username));
 			      //going to send email
-			      if($this->email->simple_send($username, $email, _('Register in sarkesh'), _('your code is:' . $validator['special_id'] ))){
+			      if($this->email->simple_send($username, $email, _('Register'), _('your code is:' . $validator['special_id'] ))){
 					return 0;
 			      }
 			      return 2;

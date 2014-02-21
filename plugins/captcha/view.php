@@ -15,7 +15,7 @@ class captcha_view{
 		else{
 		//add tag for show messages
 		$this->raintpl->assign( "captcha_not_show", _('if you do not see capcha please refresh page again.') );
-		$this->raintpl->assign( "label_captcha", _("captcha") );
+		$this->raintpl->assign( "label_captcha", _("Captcha") );
 		$this->raintpl->assign( "captcha_info", _('capcha is a way for seperate humans from machins.') );
 		$this->raintpl->assign( "captcha", _('Captcha') );
 

@@ -10,7 +10,7 @@ class captcha_controller{
 	public function action($action){
 		if($action == 'draw_full'){
 			
-			$this->view->captcha_show_full();
+			echo $this->view->captcha_show_full();
 		}	
 	}
 	public function service($service){
@@ -36,6 +36,7 @@ class captcha_controller{
 	public function get_captcha(){
 		return $this->view->captcha_show_full();	
 	}
+	
 
 }
 ?>

@@ -8,8 +8,9 @@ class users_controller{
 	private $io;
 	private $service_result;
 	private $plg_email;
+	private $registry;
 	function __construct(){
-
+		$this->registry = new cls_registry;
 		$plugin = new cls_plugin;
 		$this->view = new users_view;
 		$this->madule = new users_madule;
@@ -24,7 +25,6 @@ class users_controller{
 	// $view has to value 1- 'block' for show with block header
 	// 		2-content for show with orginal state
 	public function action($action_name, $view = 'BLOCK'){
-
 		if($action_name == 'login'){
 			
 			if($this->is_logedin()){
@@ -271,22 +271,37 @@ class users_controller{
 				$username = $this->io->cin('username', 'get');
 				$email = $this->io->cin('email', 'get');
 				$password = $this->io->cin('password', 'get');
-				$this->madule->register($username, $password, $email);
-				//warrning: email patern not checked
-				$result = $this->madule->register($username, $password, $email);
-				if($result == 0){
-					//user should get email to active his/her account
-					$this->view->show_in_box(_('Register'), _('Check your email for active your account'), 'success', 0);
+				$captcha_enable = $this->registry->get('users', 'register_captcha');
+				$captcha_result = true;
+				$captcha = new captcha_madule;
+				if($captcha_enable == 1){
+					$captcha_value = $this->io->cin('captcha', 'get');
+					$captcha_result = $captcha->solve($captcha_value);
 				}
-				elseif($result == 1){
-					//user is active without email
-					$this->view->show_in_box(_('Register'), _('You can login to your account with your login info.'), 'success', 1 );
+				if($captcha_result){
+					//warrning: email patern not checked
+					$result = $this->madule->register($username, $password, $email);
+					if($result == 0){
+						//user should get email to active his/her account
+						$this->view->show_in_box(_('Register'), _('Check your email for active your account'), 'success', 0);
+					}
+					elseif($result == 1){
+						//user is active without email
+						$this->view->show_in_box(_('Register'), _('You can login to your account with your login info.'), 'success', 1 );
+					
+					}
+					else{
+						$this->view->show_in_box(_('Register'), _('Error in registering . please try again later!'), 'danger', 3);
+					}
+					}
+					else{
+						$this->view->show_in_box(_('Register'), _('Your entered captcha is not cerrect!!'), 'warning', 2);
+					}
 				
 				}
 				else{
-					$this->view->show_in_box(_('Register'), _('Error in registering . please try again later!'), 'danger', 2);
+					
 				}
-			}
 		}
 		//this part just return message for show to user :you should fill all nessecary fields
 		elseif($service_name == 'failfill'){

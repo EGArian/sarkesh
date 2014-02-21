@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: BLG THEME\n"
-"POT-Creation-Date: 2014-02-17 01:11+0330\n"
-"PO-Revision-Date: 2014-02-17 01:12+0330\n"
+"Project-Id-Version: blog\n"
+"POT-Creation-Date: 2014-02-21 02:29+0330\n"
+"PO-Revision-Date: 2014-02-21 02:30+0330\n"
 "Last-Translator: Babak Alizadeh <alizadeh.babak@live.com>\n"
-"Language-Team: sarkesh developers\n"
+"Language-Team: sarkesh <info@sarkesh.org>\n"
 "Language: fa_IR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,6 +14,6 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: blog/index.php:62
+#: index.php:63
 msgid "Copyright &copy; Sarkesh LTD 2013"
 msgstr "سرکش علامت تجاری ثبت شده برای شرکت نگاره سرکش می باشد."

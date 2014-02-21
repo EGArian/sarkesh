@@ -3,10 +3,12 @@ class users_view{
 	private $obj_page;
 	private $raintpl;
 	private $cache;
+	PRIVATE $register;
 	function __construct(){
 		//config raintpl
 		$this->raintpl = new cls_raintpl;
 		$this->obj_page = new cls_page;
+		$this->register =new cls_registry;
 		
 	}
 	//this function show login page for enter username and password
@@ -96,15 +98,20 @@ class users_view{
 			$this->raintpl->assign( "sign_up", _('Sign up') );
 			$this->raintpl->assign( "agree_terms", _('By clicking submit you are agreeing to the Terms and Conditions.') );
 			//show captcha
-			$captcha = new captcha_controller;
-			$this->raintpl->assign( "captcha", $captcha->get_captcha());
-			$this->obj_page->show_block( _('Reset password') , $this->raintpl->draw( 'users_reset_password', true ), $view);
+			if($this->register->get('users', 'register_captcha') == '1'){
+				$captcha = new captcha_controller;
+				$this->raintpl->assign( "captcha", $captcha->get_captcha());
+			}
+			else{
+				$this->raintpl->assign( "captcha", '');
+			}
+				$this->obj_page->show_block( _('Reset password') , $this->raintpl->draw( 'users_reset_password', true ), $view);
 		}	
 		return _('Register');
 	}
 	public function show_register_active_page($view){
 		$this->raintpl->configure("tpl_dir", "plugins/users/tpl/" );
-		$this->cache == $this->raintpl->cache('register_active', 60);
+		$this->cache == $this->raintpl->cache('users_register_active', 60);
 		if( $this->cache ){
 			$this->obj_page->show_block( _('Active account') , $this->cache, $view);
 		}
@@ -113,15 +120,15 @@ class users_view{
 			$this->raintpl->assign( "users_register_active_code", _('Active code') );
 			$this->raintpl->assign( "users_register_active_note", _('Enter code that you recived by email to active your account.') );
 			$this->raintpl->assign( "active_account", _('Active account'));
-			$this->obj_page->show_block( _('Active account') , $this->raintpl->draw( 'register_active', true ), $view);
+			$this->obj_page->show_block( _('Active account') , $this->raintpl->draw( 'users_register_active', true ), $view);
 		}	
 		return _('Register');
 	}
 	
 	
 	
-	public function show_in_box($header, $content, $type = 'warning'){
-		$this->obj_page->show_in_box($header, $content, $type);
+	public function show_in_box($header, $content, $type = 'warning',$result = '0'){
+		$this->obj_page->show_in_box($header, $content, $type, $result);
 	}
 	public function show_message($header, $content, $type = 'warning'){
 		$this->obj_page->show_message($header, $content, $type);

@@ -218,10 +218,17 @@ function users_register(){
     }
    if(all_ok == true){
     //send information to server
+    var captcha = '0';
+    if ( $( "div.users_register input#captcha_captcha" ).length ) {
+    	captcha = $('div.users_register input#captcha_captcha').val(); 
+    }
 	var password = $('div.users_register input#users_password').val();
 	var email = $("div.users_register input#users_email").val();
 	var username = $('div.users_register input#users_username').val();
-	var url = url = "?service=1&plugin=users&action=register_me&username=" + username + "&password=" + password + "&email=" + email;
+	var url = "?service=1&plugin=users&action=register_me&username=" + username + "&password=" + password + "&email=" + email;
+	if(captcha != '0'){
+		url = url + '&captcha=' + captcha;
+	}
 	$.get(url ,
 		function(data){
 			//problem in logout
@@ -238,14 +245,17 @@ function users_register(){
 				message: $content.text(),
 				onhide: function(){  
 				 //someting that shoud do after hide modal
-				 if($result.text() == '0'){
-					  window.location.href = "?plugin=users&action=login";
+				 if($result.text() == '1'){
+					 window.location.href = "?plugin=users&action=login";
 				 }
-				 else if($result.text() == '1'){
-					  window.location.href = ".?plugin=users&action=register_active";
+				 else if($result.text() == '0'){
+					 window.location.href = ".?plugin=users&action=register_active";
+				 }
+				 else if($result.text() == '2'){
+					 $('div.users_register input#captcha_captcha').val('');
 				 }
 				 else{
-					  window.location.href = ".?plugin=users&action=register";
+					 window.location.href = ".?plugin=users&action=register";
 				 }
 			},
 				buttons: [{
