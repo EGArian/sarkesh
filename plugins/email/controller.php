@@ -1,11 +1,11 @@
 <?php
 class email_controller{
 	private $view;
-	private $madule;
+	private $module;
 	
 	function __construct(){
 		$this->view = new email_view;
-		$this->madule = new email_madule;
+		$this->module = new email_module;
 	}
 	
 	//this function control actions for show pages to viewer

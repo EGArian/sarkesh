@@ -3380,7 +3380,7 @@ class cls_mail
  * PHPMailer exception handler
  * @package PHPMailer
  */
-class cls_mailException extends Exception
+class phpmailerException extends Exception
 {
     /**
      * Prettify error message output
@@ -3392,8 +3392,6 @@ class cls_mailException extends Exception
         return $errorMsg;
     }
 }
-
-
 
 	
 	

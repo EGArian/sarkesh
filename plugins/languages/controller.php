@@ -8,7 +8,7 @@ class languages_controller{
 
 	function __construct(){
 		$this->view = new languages_view;
-		$this->madule = new languages_madule;
+		$this->madule = new languages_module;
 		//-------------
 		$this->obj_localize = new cls_localize;
 		$this->obj_io = new cls_io;

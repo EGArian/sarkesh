@@ -1,5 +1,5 @@
 <?php
-class captcha_madule{
+class captcha_module{
 	private $view;
 	
 	function __construct(){

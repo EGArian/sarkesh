@@ -1,11 +1,11 @@
 <?php
 class captcha_controller{
 	private $view;
-	private $madule;
+	private $module;
 	
 	function __construct(){
 		$this->view = new captcha_view;
-		$this->madule = new captcha_madule;
+		$this->module = new captcha_module;
 	}
 	public function action($action){
 		if($action == 'draw_full'){
@@ -16,13 +16,13 @@ class captcha_controller{
 	public function service($service){
 		 //show captcha image
 		 if($service == 'draw'){
-			$this->madule->draw();
+			$this->module->draw();
 		 }
 		 elseif($service == 'draw_full'){
 		 	echo $this->view->captcha_show_full();	
 		 }
 		 elseif($service == 'solve'){
-			if($this->madule->solve()){
+			if($this->module->solve()){
 				echo 1;
 			}
 			else{

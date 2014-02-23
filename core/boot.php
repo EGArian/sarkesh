@@ -35,6 +35,11 @@ if(file_exists("./config.php")) {
 		$obj_router = new cls_router;
 		$obj_router->run_service();
 	}
+	elseif(isset($_GET['plugin']) && $_GET['plugin'] == 'admin'){
+		//going to admin panel
+		include_once("./plugins/admin/load.php");
+
+	}
 	else{
 	
 		#load system in gui mode

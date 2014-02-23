@@ -1,5 +1,5 @@
 <?php
-class email_madule{
+class email_module{
 	private $view;
 	
 	function __construct(){

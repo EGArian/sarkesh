@@ -1,0 +1,27 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: captcha\n"
+"POT-Creation-Date: 2014-02-21 02:33+0330\n"
+"PO-Revision-Date: 2014-02-21 02:36+0330\n"
+"Last-Translator: Babak Alizadeh <alizadeh.babak@live.com>\n"
+"Language-Team: sarkesh <info@sarkesh.org>\n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: view.php:17
+msgid "if you do not see capcha please refresh page again."
+msgstr "اگر تصویر نمایش داده نمیشود لطفا صفحه را مجددا بازیابی کنید."
+
+#: view.php:18 view.php:20
+msgid "Captcha"
+msgstr "کد انسان شناس"
+
+#: view.php:19
+msgid "capcha is a way for seperate humans from machins."
+msgstr "کپچا راهی برای شناسایی انسان ها از ماشین ها است."

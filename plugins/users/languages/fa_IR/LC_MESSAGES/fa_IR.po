@@ -14,11 +14,11 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: madule.php:100
+#: module.php:100
 msgid "Register in sarkesh"
 msgstr ""
 
-#: madule.php:100
+#: module.php:100
 msgid "your code is:"
 msgstr "کد فعال سازی شما:"
 

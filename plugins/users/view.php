@@ -92,7 +92,7 @@ class users_view{
 			$this->raintpl->assign( "Cancel", _('Cancel') );
 			$this->raintpl->assign( "username", _('Username') );
 			$this->raintpl->assign( "label_email", _('Email:'));
-			$this->raintpl->assign( "email", "Email");
+			$this->raintpl->assign( "email", _("Email"));
 			$this->raintpl->assign( "label_password", _('Password:'));
 			$this->raintpl->assign( "label_repassword", _('Re Password'));
 			$this->raintpl->assign( "sign_up", _('Sign up') );
@@ -105,7 +105,7 @@ class users_view{
 			else{
 				$this->raintpl->assign( "captcha", '');
 			}
-				$this->obj_page->show_block( _('Reset password') , $this->raintpl->draw( 'users_reset_password', true ), $view);
+				$this->obj_page->show_block( _('Register') , $this->raintpl->draw( 'users_reset_password', true ), $view);
 		}	
 		return _('Register');
 	}

@@ -111,7 +111,7 @@ class cls_page{
 
 		}
 		elseif($view == 'MAIN'){
-			echo '<div class="panel panel-primary">';
+			echo '<div class="well well-sm">';
 				echo '<div class="panel-heading">';
 					echo '<h3 class="panel-title">';
 					      //block header show in here

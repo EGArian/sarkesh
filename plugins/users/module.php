@@ -1,5 +1,5 @@
 <?php
-class users_madule{
+class users_module{
 	private $view;
 	private $io;
 	private $db;
@@ -14,7 +14,7 @@ class users_madule{
 		$this->email = new cls_mail;
 	}
 	
-	//this madule check email
+	//this module check email
 	public function check_email($email = null){
 		//if email wass null we get that from browser
 		if($email == null){

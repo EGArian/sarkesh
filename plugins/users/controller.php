@@ -1,7 +1,7 @@
 <?php
 class users_controller{
 	private $view;
-	private $madule;
+	private $module;
 	//------------------------------------
 	private $obj_validator;
 	private $db;
@@ -13,7 +13,7 @@ class users_controller{
 		$this->registry = new cls_registry;
 		$plugin = new cls_plugin;
 		$this->view = new users_view;
-		$this->madule = new users_madule;
+		$this->module = new users_module;
 		$this->db = new cls_database;
 		$this->obj_validator = new cls_validator;
 		$this->io = new cls_io;
@@ -142,7 +142,7 @@ class users_controller{
 				$this->view->show_in_box(_('Message'),  _('Username or Password is incerrect!'));
 		}
 		elseif($service_name == 'send_forget_email'){
-			if(!$this->madule->check_email()){
+			if(!$this->module->check_email()){
 				//email not found
 				$this->view->show_in_box(_('Message'),  _('you was not regestered with this email.') ,'warning');
 			}
@@ -153,7 +153,7 @@ class users_controller{
 					//save validator in user table
 					$this->db->do_query('UPDATE ' . TablePrefix . 'users SET forget=? WHERE email=?;', array(trim($result['id']),$email));
 					//get user informations
-					$user = $this->madule->get_user_info($email);
+					$user = $this->module->get_user_info($email);
 					//send forget email
 					$mail = new cls_mail;
 					$email_content = $this->plg_email->add_template(_('your code is:%' . $result['special_id']), _('Reset Code'));
@@ -180,8 +180,8 @@ class users_controller{
 						$this->view->show_in_box(_('Message'),  _('Your entered code is invalid.'), 'warning' );
 					}
 					else{
-						$user = $this->madule->get_user_info($reset_id, 'forget');
-						$password = $this->madule->reset_password($reset_id);
+						$user = $this->module->get_user_info($reset_id, 'forget');
+						$password = $this->module->reset_password($reset_id);
 						//reset password successfull going to send reset email
 						$mail = new cls_mail;
 						$email_content = $this->plg_email->add_template(_('your password is:%' . $password), _('Reset Password'));
@@ -207,7 +207,7 @@ class users_controller{
 		elseif($service_name == 'is_user_registered'){
 			if(isset($_GET['username'])){
 				$username = $this->io->cin('username', 'get');
-				if($this->madule->is_registered_username($username)){
+				if($this->module->is_registered_username($username)){
 					//not registered going to show msg
 					$this->view->show_message(_('Username:'), _('This username is not available.'), 'danger');
 				}
@@ -226,7 +226,7 @@ class users_controller{
 
 				}
 				else{
-					if($this->madule->is_registered_email($email)){
+					if($this->module->is_registered_email($email)){
 						//not registered going to show msg
 						$this->view->show_message(_('Email:'), _('This email is not available.'), 'danger');
 					}
@@ -273,14 +273,14 @@ class users_controller{
 				$password = $this->io->cin('password', 'get');
 				$captcha_enable = $this->registry->get('users', 'register_captcha');
 				$captcha_result = true;
-				$captcha = new captcha_madule;
+				$captcha = new captcha_module;
 				if($captcha_enable == 1){
 					$captcha_value = $this->io->cin('captcha', 'get');
 					$captcha_result = $captcha->solve($captcha_value);
 				}
 				if($captcha_result){
 					//warrning: email patern not checked
-					$result = $this->madule->register($username, $password, $email);
+					$result = $this->module->register($username, $password, $email);
 					if($result == 0){
 						//user should get email to active his/her account
 						$this->view->show_in_box(_('Register'), _('Check your email for active your account'), 'success', 0);

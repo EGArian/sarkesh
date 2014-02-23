@@ -1,5 +1,5 @@
 <?php
-class languages_madule{
+class languages_module{
 	private $view;
 	//------------
 	private $db;

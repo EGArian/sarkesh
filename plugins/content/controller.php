@@ -1,14 +1,14 @@
 <?php
 class languages_controller{
 	private $view;
-	private $madule;
+	private $module;
 	private $obj_localize;
 	private $obj_io;
 	private $service_result;
 
-	function __construct($view, $madule){
+	function __construct($view, $module){
 		$this->view = $view;
-		$this->madule = $madule;
+		$this->module = $module;
 		//-------------
 		$this->obj_localize = new cls_localize;
 		$this->obj_io = new cls_io;
@@ -18,7 +18,7 @@ class languages_controller{
 		if($action_name == 'language_select'){
 			//going to show language selection
 			$user_language = $this->obj_localize->get_language();
-			$languages = $this->madule->get_languages($user_language);
+			$languages = $this->module->get_languages($user_language);
 			$this->view->languages_show($languages, $view);
 		}
 
