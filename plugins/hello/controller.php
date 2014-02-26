@@ -5,23 +5,15 @@ class hello_controller{
 	public function action($action_name){
 	      
 	      if($action_name == 'say'){
-			$vv = new cls_cookie;
-			$vv->set('ali' , 10);
-			if($vv->is_set('ali')){
-				echo $vv->get('ali');
-			}
+		echo 'hello world';
 	      }
-	      elseif($action_name == 'go'){
-	     echo 'fucking day';
-	     }
-	
+	  
 	}
 	
 	public function service($service_name){
 		
 		if($service_name == 'say'){
-		
-		echo 'fucking man! do not try this';
+		echo 'Hello world';
 		}
 	}
 	
