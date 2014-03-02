@@ -1,20 +1,20 @@
 <?php
 //this plugins say hello to world
-class hello_controller{
+class calendar_controller{
 	//create view and module for working with MVC metode
 	private $view;
 	private $module;
 	
 	function __construct(){
-		$this->view = new hello_view;
-		$this->module = new hello_module;
+		$this->view = new calendar_view;
+		$this->module = new calendar_module;
 	}
 	//this function for show content in page
 	//if you want to wotk with cls_page->show_block you should send $view to that.
 	public function action($action_name, $view){
 	      
-	      if($action_name == 'say'){
-		echo 'hello world';
+	      if($action_name == 'select_date'){
+		$this->view->select_date($this->module->get_calendar_name(), $view);
 	      }
 	  
 	}

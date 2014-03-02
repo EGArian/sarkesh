@@ -38,11 +38,7 @@
 
       <div class="row">
         <div class="col-lg-8 main">
-        
-	  <?php $sys_page->set_position('content'); ?>
-          
-
-			
+	  <?php $sys_page->set_position('content'); ?>	
         </div>
         
         <div class="col-lg-4 sidebar">

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 20, 2014 at 11:05 AM
+-- Generation Time: Mar 02, 2014 at 06:27 AM
 -- Server version: 5.5.35-0ubuntu0.13.10.2
 -- PHP Version: 5.5.3-1ubuntu2.1
 
@@ -64,6 +64,7 @@ CREATE TABLE IF NOT EXISTS `localize` (
   `home` varchar(100) NOT NULL,
   `email` varchar(30) NOT NULL,
   `theme` varchar(45) NOT NULL,
+  `calendar` varchar(20) NOT NULL DEFAULT 'gregorian',
   `direction` varchar(4) NOT NULL DEFAULT 'LTR',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
@@ -72,9 +73,9 @@ CREATE TABLE IF NOT EXISTS `localize` (
 -- Dumping data for table `localize`
 --
 
-INSERT INTO `localize` (`id`, `main`, `name`, `language`, `language_name`, `home`, `email`, `theme`, `direction`) VALUES
-(1, 1, 'Sarkesh', 'en_US', 'English - United States', '?plugin=users&action=register', 'info@sarkesh.org', 'blog', 'LTR'),
-(2, 0, 'سرکش', 'fa_IR', 'فارسی - ایران', '?plugin=users&action=register', 'info@sarkesh.org', 'blog', 'RTL');
+INSERT INTO `localize` (`id`, `main`, `name`, `language`, `language_name`, `home`, `email`, `theme`, `calendar`, `direction`) VALUES
+(1, 1, 'Sarkesh', 'en_US', 'English - United States', '?plugin=users&action=register', 'info@sarkesh.org', 'blog', 'gregorian', 'LTR'),
+(2, 0, 'سرکش', 'fa_IR', 'فارسی - ایران', '?plugin=users&action=register', 'info@sarkesh.org', 'blog', 'shamsi', 'RTL');
 
 -- --------------------------------------------------------
 
@@ -135,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `registry` (
   `value` text,
   PRIMARY KEY (`id`),
   KEY `fk_plugin_idx` (`plugin`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `registry`
@@ -152,8 +153,9 @@ INSERT INTO `registry` (`id`, `plugin`, `a_key`, `value`) VALUES
 (8, 2, 'active_from_email', '1'),
 (9, 2, 'default_permation', '2'),
 (10, 5, 'template', 'simple'),
-(11, 3, 'bootstrap_theme', 'bootstrap-ubuntu'),
-(12, 3, 'pace_theme', 'pace-theme-loading-bar');
+(11, 3, 'bootstrap_theme', 'bootstrap-yeti'),
+(12, 3, 'pace_theme', 'pace-theme-loading-bar'),
+(13, 2, 'register_captcha', '1');
 
 -- --------------------------------------------------------
 
@@ -173,14 +175,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`),
   KEY `permation_idx` (`permation`),
   KEY `validator_idx` (`validator`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `validator`, `forget`, `permation`, `last_login`) VALUES
-(1, 'sarkesh', '7e9e169e32ebaadcbb2c73dacf82f8d3', 'alizadeh.babak@gmail.com', 465, 464, 1, NULL);
+(1, 'sarkesh', '90deff4b32c134f32e3f0d7e8a2aad92', 'alizadeh.babak@gmail.com', 470, 469, 1, NULL),
+(9, 'babak', '7f7e4c0e56970beeaf2cac1185edde19', 'alizadeh.babak@live.com', 467, 468, 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -194,7 +197,7 @@ CREATE TABLE IF NOT EXISTS `validator` (
   `special_id` varchar(45) NOT NULL,
   `valid_time` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=465 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=470 ;
 
 --
 -- Dumping data for table `validator`
@@ -287,7 +290,12 @@ INSERT INTO `validator` (`id`, `source`, `special_id`, `valid_time`) VALUES
 (461, 'USERS_FORGET', 'vzztbl0p97', '1392797027'),
 (462, 'USERS_FORGET', 'ol5h6ys6mj', '1392797168'),
 (463, 'USERS_FORGET', 'qd4mlqsnz4', '1392797216'),
-(464, 'USERS_FORGET', 'atk2swvcka', '1392841637');
+(464, 'USERS_FORGET', 'atk2swvcka', '1392841637'),
+(465, 'USERS_ACTIVE', 'yrzlsdnzto', '1392973885'),
+(466, 'USERS_ACTIVE', '1znh2yoc7x', '1392982897'),
+(467, 'USERS_ACTIVE', 'hx6pixg0or', '1393012901'),
+(468, 'USERS_FORGET', 'pu0form2zs', '1393053981'),
+(469, 'USERS_FORGET', 'h01rvegoa7', '1393074408');
 
 --
 -- Constraints for dumped tables
