@@ -82,14 +82,18 @@ class cls_router{
 	#this function set last page that visited
 	
 	public function set_last_page($url=''){
-		if($url!=''){ $last_url=$url;}
-		else{ $last_url = $_SERVER['HTTP_REFERER'];}
+		$last_url ='';
+		if($url!=''){
+			$last_url=$url;
+		}
+		else{
+			if(isset($_SERVER['HTTP_REFERER'])){
+				$last_url = $_SERVER['HTTP_REFERER'];
+			}
+		}
 		
 		if($last_url!=''){
 			setcookie('SYS_LAST_PAGE',$last_url);
-		}
-		else{
-			setcookie('SYS_LAST_PAGE',SiteRoot);
 		}
 	}
 	#this function jump page that set by function set_last_visited_page
