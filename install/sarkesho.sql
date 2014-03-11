@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 02, 2014 at 06:27 AM
+-- Generation Time: Mar 11, 2014 at 08:51 PM
 -- Server version: 5.5.35-0ubuntu0.13.10.2
--- PHP Version: 5.5.3-1ubuntu2.1
+-- PHP Version: 5.5.3-1ubuntu2.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `sarkesho`
+-- Database: `pezeshkan`
 --
 
 -- --------------------------------------------------------
@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `blocks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
+  `value` varchar(100) CHARACTER SET utf8 COLLATE utf8_estonian_ci NOT NULL DEFAULT '0',
   `plugin` int(11) NOT NULL,
   `position` varchar(45) NOT NULL,
   `permations` varchar(45) DEFAULT NULL,
@@ -37,17 +38,44 @@ CREATE TABLE IF NOT EXISTS `blocks` (
   `rank` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `plugin_idx` (`plugin`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `blocks`
 --
 
-INSERT INTO `blocks` (`id`, `name`, `plugin`, `position`, `permations`, `pages`, `show_header`, `rank`) VALUES
-(6, 'content', 3, 'content', NULL, NULL, 0, 0),
-(7, 'login', 2, 'sidebar1', NULL, NULL, 0, 3),
-(9, 'language_select', 4, 'sidebar1', NULL, NULL, 0, 1),
-(10, 'forget_password', 2, 'off', NULL, NULL, NULL, 2);
+INSERT INTO `blocks` (`id`, `name`, `value`, `plugin`, `position`, `permations`, `pages`, `show_header`, `rank`) VALUES
+(6, 'content', '0', 3, 'content', NULL, NULL, 0, 0),
+(7, 'login', '0', 2, 'off', NULL, NULL, 1, 3),
+(9, 'language_select', '0', 4, 'sidebar1', NULL, NULL, 0, 1),
+(10, 'forget_password', '0', 2, 'off', NULL, NULL, NULL, 2),
+(11, 'say', '0', 6, 'off', NULL, NULL, NULL, 0),
+(12, 'show_menu', '0', 7, 'sidebar1', NULL, NULL, NULL, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `links`
+--
+
+CREATE TABLE IF NOT EXISTS `links` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ref_id` int(11) NOT NULL,
+  `parent_id` int(11) NOT NULL DEFAULT '0',
+  `label` varchar(100) NOT NULL,
+  `url` text NOT NULL,
+  `enable` tinyint(4) NOT NULL DEFAULT '1',
+  `rank` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `links`
+--
+
+INSERT INTO `links` (`id`, `ref_id`, `parent_id`, `label`, `url`, `enable`, `rank`) VALUES
+(1, 1, 0, 'home', '<front_page>', 1, 0),
+(2, 1, 0, 'Contact Us', '?plugin=contact&action=connect', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -75,7 +103,27 @@ CREATE TABLE IF NOT EXISTS `localize` (
 
 INSERT INTO `localize` (`id`, `main`, `name`, `language`, `language_name`, `home`, `email`, `theme`, `calendar`, `direction`) VALUES
 (1, 1, 'Sarkesh', 'en_US', 'English - United States', '?plugin=users&action=register', 'info@sarkesh.org', 'blog', 'gregorian', 'LTR'),
-(2, 0, 'سرکش', 'fa_IR', 'فارسی - ایران', '?plugin=users&action=register', 'info@sarkesh.org', 'blog', 'shamsi', 'RTL');
+(2, 0, 'سرکش', 'fa_IR', 'فارسی - ایران', '?plugin=users&action=register', 'info@sarkesh.org', 'blog', 'jallali', 'RTL');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `menus`
+--
+
+CREATE TABLE IF NOT EXISTS `menus` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `position` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `menus`
+--
+
+INSERT INTO `menus` (`id`, `name`, `position`) VALUES
+(1, 'home_menu', 'sidebar1');
 
 -- --------------------------------------------------------
 
@@ -88,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `permations` (
   `name` varchar(45) NOT NULL,
   `enable` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `permations`
@@ -97,7 +145,8 @@ CREATE TABLE IF NOT EXISTS `permations` (
 INSERT INTO `permations` (`id`, `name`, `enable`) VALUES
 (1, 'Administrators', 1),
 (2, 'users', 1),
-(3, 'Not activated', 0);
+(3, 'Not activated', 0),
+(4, 'guest', 0);
 
 -- --------------------------------------------------------
 
@@ -110,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `plugins` (
   `name` varchar(45) NOT NULL,
   `enable` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `plugins`
@@ -121,7 +170,9 @@ INSERT INTO `plugins` (`id`, `name`, `enable`) VALUES
 (2, 'users', 1),
 (3, 'core', 1),
 (4, 'languages', 1),
-(5, 'email', 1);
+(5, 'email', 1),
+(6, 'hello', 1),
+(7, 'menu', 1);
 
 -- --------------------------------------------------------
 
@@ -136,7 +187,7 @@ CREATE TABLE IF NOT EXISTS `registry` (
   `value` text,
   PRIMARY KEY (`id`),
   KEY `fk_plugin_idx` (`plugin`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `registry`
@@ -153,9 +204,10 @@ INSERT INTO `registry` (`id`, `plugin`, `a_key`, `value`) VALUES
 (8, 2, 'active_from_email', '1'),
 (9, 2, 'default_permation', '2'),
 (10, 5, 'template', 'simple'),
-(11, 3, 'bootstrap_theme', 'bootstrap-yeti'),
+(11, 3, 'bootstrap_theme', 'bootstrap-lumen'),
 (12, 3, 'pace_theme', 'pace-theme-loading-bar'),
-(13, 2, 'register_captcha', '1');
+(13, 2, 'register_captcha', '1'),
+(14, 3, 'yamm3', '1');
 
 -- --------------------------------------------------------
 
@@ -198,104 +250,6 @@ CREATE TABLE IF NOT EXISTS `validator` (
   `valid_time` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=470 ;
-
---
--- Dumping data for table `validator`
---
-
-INSERT INTO `validator` (`id`, `source`, `special_id`, `valid_time`) VALUES
-(370, 'USERS_ACTIVE', '9cl3d7rfp7', '1391507160'),
-(371, 'USERS_ACTIVE', 'f98c1aq2na', '1391605949'),
-(372, 'USERS_ACTIVE', 'pant4ntjw6', '1392265958'),
-(374, 'USERS_FORGET', 'vw9yk9agby', '1392641362'),
-(375, 'USERS_FORGET', '2gnfcq3tgt', '1392641873'),
-(383, 'USERS_FORGET', '2wz7pe9671', '1392669037'),
-(384, 'USERS_FORGET', 'ylimrt2kud', '1392669075'),
-(385, 'USERS_FORGET', 'hh6dssqfp7', '1392669444'),
-(386, 'USERS_FORGET', 'n60u1922ql', '1392669446'),
-(387, 'USERS_FORGET', 'bbaamgqiub', '1392669447'),
-(388, 'USERS_FORGET', 'tsqw4wn2kn', '1392669448'),
-(389, 'USERS_FORGET', 'dhuhxupxzi', '1392669483'),
-(390, 'USERS_FORGET', '2a1da0cqid', '1392669484'),
-(391, 'USERS_FORGET', 'oa85xjwq05', '1392669485'),
-(392, 'USERS_FORGET', 'yszoe8d5ey', '1392669495'),
-(393, 'USERS_FORGET', 'imn458bm83', '1392669513'),
-(394, 'USERS_FORGET', 'x7jbhleaf4', '1392669538'),
-(395, 'USERS_FORGET', '88uris5xst', '1392669541'),
-(396, 'USERS_FORGET', 'ofr047hshr', '1392669717'),
-(397, 'USERS_FORGET', '9hfm9yg1ld', '1392669804'),
-(398, 'USERS_FORGET', 'b3q5xmmqic', '1392670050'),
-(399, 'USERS_FORGET', 'esuhzj2hic', '1392750439'),
-(400, 'USERS_FORGET', '7kgqhwfv5k', '1392750459'),
-(401, 'USERS_FORGET', '15q2vey5ew', '1392750601'),
-(402, 'USERS_FORGET', '5k7qah2t9w', '1392750676'),
-(403, 'USERS_FORGET', 'dchj6a8kyz', '1392750677'),
-(404, 'USERS_FORGET', 'g88nqf69kv', '1392750741'),
-(405, 'USERS_FORGET', 'cymkpw5d6y', '1392750775'),
-(406, 'USERS_FORGET', 'm62igq856e', '1392751749'),
-(407, 'USERS_FORGET', 'aymmz6p06k', '1392752612'),
-(408, 'USERS_FORGET', 'jvcdis9s22', '1392752711'),
-(409, 'USERS_FORGET', '1xdsqjmjfq', '1392752773'),
-(410, 'USERS_FORGET', 'q8dn050owi', '1392752847'),
-(411, 'USERS_FORGET', 'wzb7uc7a1t', '1392752908'),
-(412, 'USERS_FORGET', '38hngeu4y6', '1392752909'),
-(413, 'USERS_FORGET', '1apkmibmcn', '1392752910'),
-(414, 'USERS_FORGET', 'k1zn7snoto', '1392753277'),
-(415, 'USERS_FORGET', 'brmpunmk30', '1392753279'),
-(416, 'USERS_FORGET', '82sife6lfm', '1392753291'),
-(417, 'USERS_FORGET', '1imdfl7fne', '1392753636'),
-(418, 'USERS_FORGET', 'z6z8kg07bu', '1392753637'),
-(419, 'USERS_FORGET', 'bwcs1f53l4', '1392753655'),
-(420, 'USERS_FORGET', 'nvn5xn1a7i', '1392753656'),
-(421, 'USERS_FORGET', 'z633ln6q8a', '1392753865'),
-(422, 'USERS_FORGET', 'zmgarla8b0', '1392753960'),
-(423, 'USERS_FORGET', '5qr41c11cm', '1392753963'),
-(424, 'USERS_FORGET', 'xc1grw7xjc', '1392754060'),
-(425, 'USERS_FORGET', 'p00v8y9bbq', '1392754137'),
-(426, 'USERS_FORGET', 'v0ncokxhew', '1392754294'),
-(427, 'USERS_FORGET', 'j8ivjw0r3v', '1392754316'),
-(428, 'USERS_FORGET', '4hb1jhymeo', '1392754381'),
-(429, 'USERS_FORGET', 'apatozu2lu', '1392754493'),
-(430, 'USERS_FORGET', 'mphssc2rnz', '1392754543'),
-(431, 'USERS_FORGET', 'ok30narkh6', '1392754638'),
-(432, 'USERS_FORGET', 'mnn5ap5a3d', '1392754674'),
-(433, 'USERS_FORGET', '0ill29yod8', '1392755330'),
-(434, 'USERS_FORGET', 'e0909cjegu', '1392756359'),
-(435, 'USERS_FORGET', '5lnvo7js3b', '1392756460'),
-(436, 'USERS_FORGET', 'lr0d6l1ele', '1392756502'),
-(437, 'USERS_FORGET', '0ptb74pc64', '1392757521'),
-(438, 'USERS_FORGET', 'v35s3svkxy', '1392759391'),
-(439, 'USERS_FORGET', 'qeweieuprf', '1392791041'),
-(440, 'USERS_FORGET', '97ccqis4wu', '1392794938'),
-(441, 'USERS_FORGET', '589bm3hxoj', '1392795331'),
-(442, 'USERS_FORGET', 'igx039a0sg', '1392795422'),
-(443, 'USERS_FORGET', 'tboysi2hmq', '1392795424'),
-(444, 'USERS_FORGET', 'gwehnygowt', '1392795643'),
-(445, 'USERS_FORGET', '4o5rooe1qp', '1392795644'),
-(446, 'USERS_FORGET', 'hruhxtoc44', '1392795852'),
-(447, 'USERS_FORGET', 'o99gah42na', '1392795948'),
-(448, 'USERS_FORGET', 'g4sxscxxhr', '1392795951'),
-(449, 'USERS_FORGET', 'ny848fqfyu', '1392795952'),
-(450, 'USERS_FORGET', 'zyueom2how', '1392795993'),
-(451, 'USERS_FORGET', 'cv7fybyaz1', '1392796686'),
-(452, 'USERS_FORGET', 'igr2uxd4kd', '1392796694'),
-(453, 'USERS_FORGET', 'az8cmbqqn8', '1392796697'),
-(454, 'USERS_FORGET', '6kfx3sdy52', '1392796704'),
-(455, 'USERS_FORGET', 'zrfajezycz', '1392796804'),
-(456, 'USERS_FORGET', '11kpim1amh', '1392796951'),
-(457, 'USERS_FORGET', '2jonizewhg', '1392796952'),
-(458, 'USERS_FORGET', '2r3r48zm00', '1392796966'),
-(459, 'USERS_FORGET', 'ut02jpeiw6', '1392797003'),
-(460, 'USERS_FORGET', 'webchgisuu', '1392797004'),
-(461, 'USERS_FORGET', 'vzztbl0p97', '1392797027'),
-(462, 'USERS_FORGET', 'ol5h6ys6mj', '1392797168'),
-(463, 'USERS_FORGET', 'qd4mlqsnz4', '1392797216'),
-(464, 'USERS_FORGET', 'atk2swvcka', '1392841637'),
-(465, 'USERS_ACTIVE', 'yrzlsdnzto', '1392973885'),
-(466, 'USERS_ACTIVE', '1znh2yoc7x', '1392982897'),
-(467, 'USERS_ACTIVE', 'hx6pixg0or', '1393012901'),
-(468, 'USERS_FORGET', 'pu0form2zs', '1393053981'),
-(469, 'USERS_FORGET', 'h01rvegoa7', '1393074408');
 
 --
 -- Constraints for dumped tables

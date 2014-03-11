@@ -52,6 +52,11 @@ class cls_page{
 			$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap-dialog.css" />';
 			//get bootstrap theme
 			$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap/' . $this->settings['bootstrap_theme'] . '.min.css" />';
+			//add yumm3 styles to headers
+			//what is yamm3? go to http://geedmo.github.io/yamm3/
+			if($this->settings['yamm3'] != '0'){
+				$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/yamm.css" />';
+			}
 			//get pace(loading in ajax theme
 			if($this->settings['pace_theme'] != '0'){
 				$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/pace/' . $this->settings['pace_theme'] . '.css" />';
@@ -179,7 +184,6 @@ class cls_page{
 					//going to show content;
 					$obj_router = new cls_router;
 					$obj_router->show_content();
-
 				}
 				else{
 					$plugin_name = $block['p.name'] . '_controller';
@@ -188,7 +192,7 @@ class cls_page{
 					//all blocks name shoud be like  'blk_blockname'
 					 // create local domain
 					bindtextdomain($this->localize_settings['language'], './plugins/' . $block['p.name'] .'/languages/');
-					$plugin->action($block['b.name'], 'BLOCK');
+					$plugin->action($block['b.name'], 'BLOCK', $position);
 					//back localize to theme
 					bindtextdomain($this->localize_settings['language'], './themes/' . $this->localize_settings['theme'] .'/languages/');
 					  

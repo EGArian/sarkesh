@@ -13,6 +13,8 @@ class cls_router{
 	private $obj_io;
 	private $localize;
 	function __construct(){
+		//set last page that user see
+		$this->set_last_page();
 		//get localize
 		$obj_localize = new cls_localize;
 		$this->localize = $obj_localize->get_localize();
@@ -40,10 +42,7 @@ class cls_router{
 			$this->jump_page($localize['home'] ,true);
 
 		}
-		
-		//get plugin and run action on it.
-
-		
+				
 	}
 	public function show_content(){
 	      //this function run from page class.

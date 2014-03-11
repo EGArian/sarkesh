@@ -157,8 +157,15 @@ class users_module{
 		//first get user id
 		if($username == ''){
 			$user_info = $this->get_current_user_info();
-			$this->db->do_query('SELECT * FROM ' . TablePrefix . 'permations where id=?;', array($user_info['permation']));
-			$result = $this->get_first_row_array();
+			
+			if($user_info == '-1'){
+				//user is guest
+				$this->db->do_query('SELECT * FROM ' . TablePrefix . 'permations where id=4;');
+			}
+			else{
+				$this->db->do_query('SELECT * FROM ' . TablePrefix . 'permations where id=?;', array($user_info['permation']));
+			}
+			$result = $this->db->get_first_row_array();
 			if($result[$permation] == '0'){
 			      return false;
 			}

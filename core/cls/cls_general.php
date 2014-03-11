@@ -19,6 +19,22 @@ class cls_general{
 	      return $string;
 	}
 	
+	//this function return internal url. you should just send to that parameters
+	public function create_url($parameters){
+		$url = '?';
+		echo max(array_keys($parameters));
+		for($i = 0; $i<= ((max(array_keys($parameters))+1)/2) ; $i +=2){
+			if($i != 0){
+				$url .= '&';
+			}
+			$url .= $parameters[$i];
+			$url .= '=';
+			$url .= $parameters[$i+1];
+		}
+		return $url;
+	
+	}
+	
 
 }
 ?>
