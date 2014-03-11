@@ -3,11 +3,8 @@ class cls_calendar_jallali{
 	//in the name of allah
 	//this class is a fork of JDF project that writed by Reza Gholampanahi , http://jdf.scr.ir
 	//this class by me (Babak Alizadeh http://bitbucket.com/morrning)
+	//for more information about functions of this class see http://jdf.scr.ir/rahnama/
 
-	function __construct($type = ''){
-
-		
-	}
 	public function jdate($format,$timestamp='',$none='',$time_zone='Asia/Tehran',$tr_num='fa'){
 
 		$T_sec=0;/* <= رفع خطاي زمان سرور ، با اعداد '+' و '-' بر حسب ثانيه */

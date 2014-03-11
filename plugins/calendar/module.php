@@ -10,11 +10,13 @@ class calendar_module{
 	private $calendar_name;
 	
 	function __construct($type = ''){
+		//create view
+		$this->view = new calendar_view;
 		//checking what type of calendar classes need;
 		if($type == ''){
 			$this->calendar_name = $this->get_calendar_name();
 			//checking for that jallali is need
-			if($local['calendar'] == 'jallali'){
+			if($this->calendar_name == 'jallali'){
 				$this->cls_calendar = new cls_calendar_jallali;
 			}
 		}
@@ -23,7 +25,7 @@ class calendar_module{
 			$this->cls_calendar = new $type;
 		}
 		
-	}	
+	}
 	//this function return calendar name that defined in localize class
 	//calendar name stored in localize table -> calendar
 	public function get_calendar_name(){

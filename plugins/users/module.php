@@ -42,6 +42,29 @@ class users_module{
 		$this->db->do_query('SELECT * FROM ' . TablePrefix . 'users WHERE ' . $parameter . '=?;', array($value));
 		return $this->db->get_first_row_array();
 	}
+	//this function return user information
+	public function get_current_user_info($username = ''){
+		if($username == ''){
+			//going to find username
+			if($this->validator->is_set('USERS_LOGIN')){
+				//user is loged in before now we want to find his/her permation id
+				$id = $this->validator->get_id('USERS_LOGIN','id');
+				$this->db->do_query('SELECT * FROM ' . TablePrefix . 'users WHERE validator=?;', array($id));
+				return $this->db->get_first_row_array();
+				
+			}
+			else{
+				//user is not login
+				//it's geust user
+				return '-1';
+			}
+		}
+		else{
+			$this->db->do_query('SELECT * FROM ' . TablePrefix . 'users WHERE username=?;', array($username));
+			return  $this->db->get_first_row_array();		
+		}
+	
+	}
 	//WARRNING: before use this function check validator for get id
 	public function reset_password($id){
 		$general = new cls_general;
@@ -61,6 +84,26 @@ class users_module{
 		else{
 			return false;
 		}
+	}
+	//this function search for that user is loged in before
+	//with check validator with USERS_LOGIN source
+	public function is_logedin(){
+		//first create validator class
+		return $this->obj_validator->is_set('USERS_LOGIN');
+	}
+	
+	//this function return username of logedin user
+	//if user did not loged in return 0
+	public function get_username(){
+		if($this->is_logedin()){
+			  $id = $this->validator->get_id('USERS_LOGIN');
+			  
+		}
+		else{
+			//user did not loged in before
+			return 0;
+		}
+	
 	}
 	
 	public function is_registered_email($email){
@@ -108,5 +151,23 @@ class users_module{
 		return 2;
 	}
 	
+	//this function check permation in permation table
+	//$permation is column name on permation table
+	public function has_permation($permation = 'enable', $username = ''){
+		//first get user id
+		if($username == ''){
+			$user_info = $this->get_current_user_info();
+			$this->db->do_query('SELECT * FROM ' . TablePrefix . 'permations where id=?;', array($user_info['permation']));
+			$result = $this->get_first_row_array();
+			if($result[$permation] == '0'){
+			      return false;
+			}
+			else{
+			      return true;
+			}
+		}
+		
+	  
+	}
 }
 ?>

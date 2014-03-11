@@ -14,7 +14,7 @@ class hello_controller{
 	public function action($action_name, $view){
 	      
 	      if($action_name == 'say'){
-		echo 'hello world';
+		$this->view->say_hello($view);
 	      }
 	  
 	}

@@ -10,42 +10,65 @@
 			$this->obj_page = new cls_page;
 		}
 		
-		public function select_date($type='gregorian', $view){
+		public function select_date($type='', $view, $show = true){
+
 			if($type == 'gregorian'){
-				$this->show_gregorian_calendar_selector($view);
+				return $this->show_gregorian_calendar_selector($view, $show);
 			}
-			elseif($type == 'shamsi'){
-				$this->show_shamsi_calendar_selector($view);
-			}
+			elseif($type == 'jallali'){
+				return $this->show_shamsi_calendar_selector($view, $show);
+			}	
 		}
-		private function show_shamsi_calendar_selector($view){
+		private function show_shamsi_calendar_selector($view , $show = true){
+					
 			$this->raintpl->configure("tpl_dir", "plugins/calendar/tpl/" );
-			$this->cache = $this->raintpl->cache('calendar_shamsi_selector', 60);
+			$this->cache = $this->raintpl->cache('calendar_jallali_selector', 60);
 			if($this->cache){
-				$this->obj_page->show_block( _('Select Date') , $this->cache, $view);
+				if($show){
+					$this->obj_page->show_block( _('Select Date') , $this->cache, $view);
 				}
+				else{
+				
+					return $this->cache;
+				}
+			}
 			else{
 		
 				//add tag for show messages
 				$this->raintpl->assign( "label_doctor_name", _('Doctor name:') );
-
-				$this->obj_page->show_block( _('Select Date') , $this->raintpl->draw( 'calendar_shamsi_selector', true ), $view);
+				if($show){
+					$this->obj_page->show_block( _('Select Date') , $this->raintpl->draw( 'calendar_jallali_selector', true ), $view);				}
+				else{
+					return $this->raintpl->draw( 'calendar_jallali_selector', true );
+				}
+				
 			}
 			return _('Select Date');
 		
 		}
-		private function show_gregorian_calendar_selector($view){
+		private function show_gregorian_calendar_selector($view, $show = true){
+		
 			$this->raintpl->configure("tpl_dir", "plugins/calendar/tpl/" );
 			$this->cache = $this->raintpl->cache('calendar_gregorian_selector', 60);
 			if($this->cache){
-				$this->obj_page->show_block( _('Select Date') , $this->cache, $view);
+				if($show){
+					$this->obj_page->show_block( _('Select Date') , $this->cache, $view);
 				}
+				else{
+				
+					return $this->cache;
+				}
+			}
 			else{
 		
 				//add tag for show messages
 				$this->raintpl->assign( "label_doctor_name", _('Doctor name:') );
-
-				$this->obj_page->show_block( _('Select Date') , $this->raintpl->draw( 'calendar_gregorian_selector', true ), $view);
+				if($show){
+					$this->obj_page->show_block( _('Select Date') , $this->raintpl->draw( 'calendar_gregorian_selector', true ), $view);				}
+				else{
+					return $this->raintpl->draw( 'calendar_gregorian_selector', true );
+				}
+				
 			}
 			return _('Select Date');
 		

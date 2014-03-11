@@ -1,5 +1,7 @@
 <?php
-//this plugins say hello to world
+//this plugins sis for working with calendars
+//now just suport from gregorian and jallali calendar_controller
+
 class calendar_controller{
 	//create view and module for working with MVC metode
 	private $view;
@@ -13,9 +15,9 @@ class calendar_controller{
 	//if you want to wotk with cls_page->show_block you should send $view to that.
 	public function action($action_name, $view){
 	      
-	      if($action_name == 'select_date'){
-		$this->view->select_date($this->module->get_calendar_name(), $view);
-	      }
+		if($action_name == 'select_date'){
+			$this->view->select_date($this->module->get_calendar_name(), $view);
+		}
 	  
 	}
 	//this function is for controll ajax requests
