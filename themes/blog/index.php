@@ -22,14 +22,7 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="#about">Download</a></li>
-            <li><a href="#services">Plugins</a></li>
-            <li><a href="#contact">Themes</a></li>
-            <li><a href="#contact">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-
-          </ul>
+          <?php $sys_page->set_position('header'); ?>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container -->
     </nav>
@@ -62,6 +55,5 @@
       </footer>
 
     </div><!-- /.container -->
-
   </body>
 </html>

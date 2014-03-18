@@ -14,7 +14,9 @@ class menu_controller{
 	public function action($action_name, $view, $position){
 	      if($action_name == 'show_menu'){
 		$menus = $this->module->get_menus($position);
-		$this->view->show_menus($view, $menus);
+		if($menus != 0){
+			$this->view->show_menus($view, $menus);
+		}
 	      }
 	}
 	//this function is for controll ajax requests
@@ -24,9 +26,11 @@ class menu_controller{
 	
 	public function service($service_name){
 		
-		if($service_name == 'say'){
-		echo 'Hello world';
+		$menus = $this->module->get_menus('header');
+		if($menus != 0){
+			$this->view->show_menus('block', $menus);
 		}
+	      
 	}
 	
 

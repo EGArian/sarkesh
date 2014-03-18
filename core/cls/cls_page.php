@@ -52,11 +52,6 @@ class cls_page{
 			$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap-dialog.css" />';
 			//get bootstrap theme
 			$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap/' . $this->settings['bootstrap_theme'] . '.min.css" />';
-			//add yumm3 styles to headers
-			//what is yamm3? go to http://geedmo.github.io/yamm3/
-			if($this->settings['yamm3'] != '0'){
-				$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/yamm.css" />';
-			}
 			//get pace(loading in ajax theme
 			if($this->settings['pace_theme'] != '0'){
 				$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/pace/' . $this->settings['pace_theme'] . '.css" />';
