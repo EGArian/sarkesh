@@ -57,7 +57,6 @@ class cls_page{
 				$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/pace/' . $this->settings['pace_theme'] . '.css" />';
 			}
 			$header_tags .= "\n" . '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
-			$header_tags .= "\n" . '<!-- HTML5 shim for IE backwards compatibility -->';
 		}
 		#load style sheet pages (css)
 		$header_tags .= '<link rel="stylesheet" type="text/css" href="./themes/'  . $this->localize_settings['theme'] . '/style.css" />' . "\n";
@@ -71,9 +70,19 @@ class cls_page{
 			$header_tags .= '<link rel="shortcut icon" href="./themes/'.$this->localize_settings['theme'] .'/favicon.ico" type="image/x-icon">';
 			$header_tags .= "\n" . '<link rel="icon" href="./themes/'.$this->localize_settings['theme'] .'/favicon.ico" type="image/x-icon">';
 		}
+		//enable texteditor if that's enabled from registery
+		//for enable editor textarea tag should has class with 'editor' name
+
+		if($this->settings['editor'] == '1'){
+			$obj_localize = new cls_localize;
+			$header_tags .= "\n" . '<script src="./core/ect/scripts/tinymce/tinymce.min.js"></script>';
+			$header_tags .= "\n" . "<script> tinymce.init({selector:'textarea.editor',directionality: " . '"' . $this->localize_settings['direction'] . '",language: "' . $obj_localize->convert_language_code($this->localize_settings['language']) .'"});</script>';
+
+                         
+		}
 		#load nessasery java script functions
 		$header_tags .= "\n" . '<script src="./core/ect/scripts/functions.js"></script>';
-
+	      
 		
 
 		#show header tags

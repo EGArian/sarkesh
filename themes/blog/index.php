@@ -49,7 +49,8 @@
       <footer>
         <div class="row">
           <div class="col-lg-12">
-            <p><?php echo _('Copyright &copy; Sarkesh LTD 2013'); ?></p>
+	    <p><?php $sys_page->set_position('footer'); ?></p>
+            <p><?php echo _('Copyright &copy; Sarkesh LTD 2013'); ?></p><br />
           </div>
         </div>
       </footer>

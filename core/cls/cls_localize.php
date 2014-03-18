@@ -51,6 +51,18 @@ class cls_localize{
 		return $this->localize['language'];
 		}
 	}
+	//this function return language code that can use in tinymce editor and ect
+	public function convert_language_code($language){
+		switch ($language) {
+			case 'fa_IR':
+			    return 'fa';
+			    break;
+			case 'en_US':
+			    return "en";
+			    break;
+		}
+	
+	}
 
 //END CLASS
 }

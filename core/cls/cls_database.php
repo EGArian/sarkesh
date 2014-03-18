@@ -121,7 +121,7 @@ public function get_first_row_array(){
 }
 #ths function return number of rows that return in last query
 
-function rows_count(){
+public function rows_count(){
 	#no quary not started yet
 
 	if(is_null($this->Query)){return 0;}

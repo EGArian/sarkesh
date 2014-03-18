@@ -15,8 +15,11 @@ class menu_controller{
 	      if($action_name == 'show_menu'){
 		$menus = $this->module->get_menus($position);
 		if($menus != 0){
-			$this->view->show_menus($view, $menus);
+			foreach($menus as $links){
+				$this->view->show_menus($view, $links);
+			}
 		}
+		
 	      }
 	}
 	//this function is for controll ajax requests

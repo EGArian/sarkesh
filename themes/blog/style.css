@@ -1,9 +1,11 @@
 body {
+	direction: rtl;
 	margin-top: 70px; /* 100px is double the height of the navbar - I made it a big larger for some more space - keep it at 50px at least if you want to use the fixed top nav */
 	min-width: 600px;
-  
 }
-
+textarea{
+	direction: rtl;
+}
 footer {
 	margin: 50px 0;
 }
