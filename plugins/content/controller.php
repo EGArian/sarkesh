@@ -1,25 +1,30 @@
 <?php
-class languages_controller{
+class content_controller{
 	private $view;
 	private $module;
 	private $obj_localize;
 	private $obj_io;
 	private $service_result;
 
-	function __construct($view, $module){
-		$this->view = $view;
-		$this->module = $module;
+	function __construct(){
+		$this->view = new content_view;
+		$this->module = new content_module;
 		//-------------
 		$this->obj_localize = new cls_localize;
 		$this->obj_io = new cls_io;
 	}
 	//this function control request and show UI
 	public function action($action_name, $view){
-		if($action_name == 'language_select'){
-			//going to show language selection
-			$user_language = $this->obj_localize->get_language();
-			$languages = $this->module->get_languages($user_language);
-			$this->view->languages_show($languages, $view);
+		if($action_name == 'show'){
+			//seperate between show catalogy or page
+			if(isset($_GET['id'])){
+				//going to show page
+				$this->module->show_page_content();
+			}
+			elseif(isset($_GET['catalog'])){
+				//going to show catalogy
+				$this->module->show_catalog_content();
+			}
 		}
 
 	}
