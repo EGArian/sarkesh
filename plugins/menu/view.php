@@ -27,7 +27,7 @@ class menu_view{
 		//going to find that show header or not
 		if($links[0]['m.header'] != ''){
 			//show menu in block with menu
-			$this->page->show_block( $links[0]['m.header'] , $menu, $view);
+			$this->page->show_block(true,  $links[0]['m.header'] , $menu, $view);
 
 		}
 		else{

@@ -1,7 +1,7 @@
+
 <!DOCTYPE html>
-<html lang="en">
     <head>
-	<?php $sys_page->load_headers(); ?>
+    {$page_headers}
     </head>
     
     
@@ -32,7 +32,23 @@
   </div><!-- /container -->
 </div>
 <!-- /Header -->
-
+<div class="container">
+	<div class="row">
+		<div class="col-sm-4">
+			<nav>
+			  <ul class="nav nav-pills nav-stacked well well-sm span2">
+			      {loop="plugins_menu"}      
+			      <li>{$value}</li>
+			      {/loop}
+			  </ul>
+			</nav>
+		</div>
+		<div class="col-sm-8">
+		      CONTENT IN HERE
+		</div>
+		
+	</div>
+</div>
 
 <footer class="alert alert-success"><a href="http://sarkesh.org"><strong>Sarkesh</strong></a> is registered trademarks of Negareh Sarkesh Ltd</footer>
 

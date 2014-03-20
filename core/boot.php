@@ -35,10 +35,26 @@ if(file_exists("./config.php")) {
 		$obj_router = new cls_router;
 		$obj_router->run_service();
 	}
-	elseif(isset($_GET['plugin']) && $_GET['plugin'] == 'admin'){
+	//this part is for working with admin area
+	elseif(isset($_GET['panel']) && $_GET['panel'] == 'admin'){
 		//going to admin panel
-		include_once("./plugins/admin/load.php");
-
+		//set plugin varible
+		if(isset($_GET['plugin'])){
+			$plugin = $_GET['plugin'];
+		}
+		else{
+			$plugin = 'default';
+		}
+		//set action varible
+		if(isset($_GET['action'])){
+			$action = $_GET['action'];
+		}
+		else{
+			$action = 'default';
+		}
+		$admin = new admin_controller;
+		$admin->action($plugin, $action);
+		
 	}
 	else{
 	

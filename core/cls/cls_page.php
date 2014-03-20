@@ -36,7 +36,7 @@ class cls_page{
 			return false;}
 	}
 
-	public function load_headers () {
+	public function load_headers ($show = true) {
 	
 		#LOAD HEEFAL GENERATOR META TAG
 		$header_tags = '<meta name="generator" content=" Sarkesh CMS! - Open Source Content Management" />' ."\n";
@@ -50,6 +50,8 @@ class cls_page{
 			$header_tags .= "\n" . '<script src="./core/ect/scripts/pace.min.js"></script>';
 			$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap.min.css" />';
 			$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap-dialog.css" />';
+			//for more information about normalize project see http://necolas.github.io/normalize.css/
+			$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/normalize.css" />';
 			//get bootstrap theme
 			$header_tags .= "\n" . '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap/' . $this->settings['bootstrap_theme'] . '.min.css" />';
 			//get pace(loading in ajax theme
@@ -86,12 +88,18 @@ class cls_page{
 		
 
 		#show header tags
-		echo $header_tags;
+		if($show){
+			echo $header_tags;
+		}
+		else{
+			//return $header_tags
+			return $header_tags;
+		}
 	}
 	//this function add recived string to page tittle
 	public function set_page_tittle($tittle = ''){
 		//get site name in localize selected
-		$this->page_tittle = $this->localize_settings['name'] . ' | ' . $tittle;
+		//$this->page_tittle = $this->localize_settings['name'] . ' | ' . $tittle;
 		return $this->page_tittle;
 		//now we wand to send tittle to render.
 	}
@@ -101,78 +109,87 @@ class cls_page{
 		return $this->page_tittle;
 	}
 	//this function atteche some tags to blocks and show that.
-	public function show_block($header, $content, $view ,$type = null, $result = 0){
-
+	public function show_block($show, $header, $body, $view ,$type = null, $result = 0){
+		$content = '';
 		//create special value for access to that
 		if($view == 'BLOCK'){
-			echo '<div class="panel panel-default">';
-				echo '<div class="panel-heading">';
-					echo '<h3 class="panel-title">';
+			$content .=  '<div class="panel panel-default">';
+				$content .=  '<div class="panel-heading">';
+					$content .=  '<h3 class="panel-title">';
 					      //block header show in here
-					      echo $header;
-					echo '</h3>';
-				echo '</div>';
-				echo '<div class="panel-body">';
+					      $content .=  $header;
+					$content .=  '</h3>';
+				$content .=  '</div>';
+				$content .=  '<div class="panel-body">';
 				      //block content show in here
-				      echo $content;
-				echo '</div>';
-			echo '</div>';
+				      $content .=  $body;
+				$content .=  '</div>';
+			$content .=  '</div>';
 
 		}
 		elseif($view == 'MAIN'){
-			echo '<div class="well well-sm">';
-				echo '<div class="panel-heading">';
-					echo '<h3 class="panel-title">';
+			$content .=  '<div class="well well-sm">';
+				$content .=  '<div class="panel-heading">';
+					$content .=  '<h2 class="panel-title">';
 					      //block header show in here
-					      echo $header;
-					echo '</h3>';
-				echo '</div>';
-				echo '<div class="panel-body">';
+					      $content .=  $header;
+					$content .=  '</h2>';
+				$content .=  '</div>';
+				$content .=  '<div class="panel-body">';
 				      //block content show in here
-				      echo $content;
-				echo '</div>';
+				      $content .=  $body;
+				$content .=  '</div>';
 				
-			echo '</div>';
+			$content .=  '</div>';
 		}
 		elseif($view == 'MSG'){
-				echo '<div class="alert alert-' . $type . '"> ';
-				echo '  <a class="close" data-dismiss="alert">×</a>';
-				echo '<strong>'; 
+				$content .=  '<div class="alert alert-' . $type . '"> ';
+				$content .=  '  <a class="close" data-dismiss="alert">×</a>';
+				$content .=  '<strong>'; 
  					//block header show in here
-					echo $header;
-				echo '</strong>';  
+					$content .=  $header;
+				$content .=  '</strong>';  
 				//block content show in here
-				echo $content;
-			echo '</div>';
+				$content .=  $body;
+			$content .=  '</div>';
+		}
+		elseif($view == 'NONE'){;  
+			//this type do not support tittle and ect.
+			$content .=  $body;
+
 		}
 		else{
 			//else it's modal
-			echo '<?xml version="1.0"?>' . "\n";
-				echo '<message>' . "\n";
-					echo '<result>';
-						echo $result;
-					echo '</result>' . "\n";
-					echo '<type>';
-						echo $type;
-					echo '</type>' . "\n";
-					echo '<header>';
-						echo $header;
-					echo '</header>' . "\n";
-					echo '<content>';
-						echo $content;
-					echo '</content>' . "\n";
-					echo '<btn-ok>';
-						echo _('Ok');
-					echo '</btn-ok>' . "\n";
-					echo '<btn-back>';
-						echo _('Back');
-					echo '</btn-back>' . "\n";
-					echo '<btn-cancel>';
-						echo _('Cancel');
-					echo '</btn-cancel>' . "\n";
-				echo '</message>' . "\n";
+			$content .=  '<?xml version="1.0"?>' . "\n";
+				$content .=  '<message>' . "\n";
+					$content .=  '<result>';
+						$content .=  $result;
+					$content .=  '</result>' . "\n";
+					$content .=  '<type>';
+						$content .=  $type;
+					$content .=  '</type>' . "\n";
+					$content .=  '<header>';
+						$content .=  $header;
+					$content .=  '</header>' . "\n";
+					$content .=  '<content>';
+						$content .=  $content;
+					$content .=  '</content>' . "\n";
+					$content .=  '<btn-ok>';
+						$content .=  _('Ok');
+					$content .=  '</btn-ok>' . "\n";
+					$content .=  '<btn-back>';
+						$content .=  _('Back');
+					$content .=  '</btn-back>' . "\n";
+					$content .=  '<btn-cancel>';
+						$content .=  _('Cancel');
+					$content .=  '</btn-cancel>' . "\n";
+				$content .=  '</message>' . "\n";
 
 		}
+		if($show){
+			echo $content;
+		}
+		return $content;
 	}
 	//this function set and show blocks
 	public function set_position($position){

@@ -19,7 +19,7 @@ class content_controller{
 			//seperate between show catalogy or page
 			if(isset($_GET['id'])){
 				//going to show page
-				$this->module->show_page_content();
+				$this->module->show_page_content($view);
 			}
 			elseif(isset($_GET['catalog'])){
 				//going to show catalogy
@@ -48,6 +48,12 @@ class content_controller{
 	
 	//show result of service
 	echo $this->service_result;
+	}
+	
+	//this function return  menu to admin panel
+	public function admin_menu(){
+	
+	return '<a href="#"> insert content </a>';
 	}
 	
 

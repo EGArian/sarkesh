@@ -1,0 +1,14 @@
+<!-- post -->
+<div class="post">
+            <p class="post-meta">
+	      <span class="post-date" >{$post_date}</span> {$by} 
+	      <span class="post_author" ><a href="{$post_author_profile}">{$post_author}</a></span>
+	    </p>
+
+            <p class="post-body">
+            {loop="post_content"}
+	      {$value.value}
+	    {/loop}
+            </p>
+          </div>
+<!-- post -->

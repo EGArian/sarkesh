@@ -25,7 +25,7 @@
 			$this->cache = $this->raintpl->cache('calendar_jallali_selector', 60);
 			if($this->cache){
 				if($show){
-					$this->obj_page->show_block( _('Select Date') , $this->cache, $view);
+					$this->obj_page->show_block(true,  _('Select Date') , $this->cache, $view);
 				}
 				else{
 				
@@ -37,7 +37,7 @@
 				//add tag for show messages
 				$this->raintpl->assign( "label_doctor_name", _('Doctor name:') );
 				if($show){
-					$this->obj_page->show_block( _('Select Date') , $this->raintpl->draw( 'calendar_jallali_selector', true ), $view);				}
+					$this->obj_page->show_block(true,  _('Select Date') , $this->raintpl->draw( 'calendar_jallali_selector', true ), $view);				}
 				else{
 					return $this->raintpl->draw( 'calendar_jallali_selector', true );
 				}
@@ -52,7 +52,7 @@
 			$this->cache = $this->raintpl->cache('calendar_gregorian_selector', 60);
 			if($this->cache){
 				if($show){
-					$this->obj_page->show_block( _('Select Date') , $this->cache, $view);
+					$this->obj_page->show_block(true,  _('Select Date') , $this->cache, $view);
 				}
 				else{
 				
@@ -64,7 +64,7 @@
 				//add tag for show messages
 				$this->raintpl->assign( "label_doctor_name", _('Doctor name:') );
 				if($show){
-					$this->obj_page->show_block( _('Select Date') , $this->raintpl->draw( 'calendar_gregorian_selector', true ), $view);				}
+					$this->obj_page->show_block(true,  _('Select Date') , $this->raintpl->draw( 'calendar_gregorian_selector', true ), $view);				}
 				else{
 					return $this->raintpl->draw( 'calendar_gregorian_selector', true );
 				}

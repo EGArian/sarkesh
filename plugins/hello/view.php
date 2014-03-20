@@ -20,7 +20,7 @@ class hello_view{
 			  //file is exist in cache 
 			  //going to show that on page with cls_page
 			  //for more information about show_block function in cls_page see cls_page documents
-			  $this->page->show_block( _('Tittle of message') , $this->cache, $view);
+			  $this->page->show_block(true,  _('Tittle of message') , $this->cache, $view);
 		  }
 		  else{
 		  //file is not exist in cache going to create that
@@ -29,7 +29,7 @@ class hello_view{
 		  //for more information about cls_raintpl->assign see cls_raintpl documents
 		  $this->raintpl->assign( "label_hello_world", _('Hello world!') );
 		  //after set all varibles we going to show that on page with cls_page
-		  $this->page->show_block( _('Tittle of message') , $this->raintpl->draw( 'hello_world_template', true ), $view);
+		  $this->page->show_block(true,  _('Tittle of message') , $this->raintpl->draw( 'hello_world_template', true ), $view);
 		  }
 		  //return tittle of content you want to show
 		  return _('Users Login');

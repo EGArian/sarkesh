@@ -5,11 +5,16 @@ class calendar_module{
 	private $view;
 	
 	//this varible is an object from calendar class for example cls_calendar_jallali or cls_calendar_gregorian
-	private $cls_calendar;
+	private $calendar;
 	//this varible store calendar name for example gregorian or jallali
 	private $calendar_name;
-	
+	//this varible store default system timezone that stored in registry
+	private $timezone;
 	function __construct($type = ''){
+		//get plugin settings
+		$registry = new cls_registry;
+		$this->timezone = $registry->get('core','default_timezone');
+		date_default_timezone_set($this->timezone);
 		//create view
 		$this->view = new calendar_view;
 		//checking what type of calendar classes need;
@@ -17,12 +22,12 @@ class calendar_module{
 			$this->calendar_name = $this->get_calendar_name();
 			//checking for that jallali is need
 			if($this->calendar_name == 'jallali'){
-				$this->cls_calendar = new cls_calendar_jallali;
+				$this->calendar = new cls_calendar_jallali;
 			}
 		}
 		// set plugin defined type
 		else{
-			$this->cls_calendar = new $type;
+			$this->calendar = new $type;
 		}
 		
 	}
@@ -43,7 +48,7 @@ class calendar_module{
 			return date($format, $timestamp);
 		}
 		elseif($this->calendar_name == 'jallali'){
-			return $this->calendar->sdate($format, $timestamp, '', $time_zone, $tr_num);
+			return $this->calendar->jdate($format, $timestamp, '', $time_zone, $tr_num);
 		}
 	
 	}

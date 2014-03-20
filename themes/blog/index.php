@@ -30,11 +30,11 @@
     <div class="container">
 
       <div class="row">
-        <div class="col-lg-8 main">
+        <div class="col-xs-8 main">
 	  <?php $sys_page->set_position('content'); ?>	
         </div>
         
-        <div class="col-lg-4 sidebar">
+        <div class="col-xs-4 sidebar">
 	  <div class="row">
 	  <?php $sys_page->set_position('sidebar1'); ?>
 	  </div>
@@ -48,7 +48,7 @@
       
       <footer>
         <div class="row">
-          <div class="col-lg-12">
+          <div class="col-xs-12">
 	    <p><?php $sys_page->set_position('footer'); ?></p>
             <p><?php echo _('Copyright &copy; Sarkesh LTD 2013'); ?></p><br />
           </div>
