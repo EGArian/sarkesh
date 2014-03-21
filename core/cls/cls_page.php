@@ -99,7 +99,7 @@ class cls_page{
 	//this function add recived string to page tittle
 	public function set_page_tittle($tittle = ''){
 		//get site name in localize selected
-		//$this->page_tittle = $this->localize_settings['name'] . ' | ' . $tittle;
+		$this->page_tittle = $this->localize_settings['name'] . ' | ' . $tittle;
 		return $this->page_tittle;
 		//now we wand to send tittle to render.
 	}
@@ -228,11 +228,11 @@ class cls_page{
 	//this function return content for show in custombox for show on page
 	public function show_in_box($header, $content, $type = 'warning', $result = '0'){
 		$type = 'type-' . $type;
-		$this->show_block($header,$content,'MODAL', $type, $result);
+		$this->show_block(true, $header,$content,'MODAL', $type, $result);
 	
 	}
 	public function show_message($header, $content, $type = 'warning', $result = '0'){
-		$this->show_block($header,$content,'MSG', $type, $result);
+		$this->show_block(true, $header,$content,'MSG', $type, $result);
 	
 	}
 	

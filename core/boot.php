@@ -52,7 +52,7 @@ if(file_exists("./config.php")) {
 		else{
 			$action = 'default';
 		}
-		$admin = new admin_controller;
+		$admin = new core_controller;
 		$admin->action($plugin, $action);
 		
 	}

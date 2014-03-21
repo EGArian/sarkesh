@@ -10,6 +10,7 @@ class content_view{
 	private $registry;
 	//this varible is an object from users_module
 	private $users;
+	private $msg;
 	function __construct(){
 		//config raintpl
 		$this->raintpl = new cls_raintpl;
@@ -18,6 +19,7 @@ class content_view{
 		$this->calendar = new calendar_module;
 		$this->registry = new cls_registry;
 		$this->settings = $this->registry->get_plugin('content');
+		$this->msg = new msg_controller;
 	}
 	
 	//this function show single content
@@ -26,7 +28,7 @@ class content_view{
 
 		if($content == null){
 			//page not found show 404 msg
-			echo '404 not found!!!';
+			return $this->msg->action(404, $view);
 		}
 		else{
 			//check permation to show
@@ -44,7 +46,8 @@ class content_view{
 				//assign fields
 				$this->raintpl->assign( "post_content", $content[1]);
 				
-				$this->page->show_block(true,  $content[0][0]['tittle'] , $this->raintpl->draw( 'page_content', true ), $view);
+				$page_content = $this->page->show_block(true,  $content[0][0]['tittle'] , $this->raintpl->draw( 'page_content', true ), $view);
+				return array($content[0][0]['tittle'], $page_content);
 			}
 			else{
 				//access denied

@@ -5,11 +5,13 @@ class content_module{
 	private $db;
 	private $io;
 	private $obj_localize;
+	private $msg;
 	function __construct(){
 		$this->view = new content_view;
 		$this->obj_localize = new cls_localize;
 		$this->db = new cls_database;
 		$this->io = new cls_io;
+		$this->msg = new msg_controller;
 	}
 	
 	//this function return page content for show in view
@@ -19,12 +21,11 @@ class content_module{
 		if(isset($_GET['id'])){
 			//get content id
 			$content = $this->get_content($this->io->cin('id', 'get'));
-			$this->view->show_page_content($content, $view);
+			return $this->view->show_page_content($content, $view);
 		}
 		else{
 			//id is not set.it means page not found.
-			$this->msg->show('404');
-			return 0;
+			return $this->msg->action('404',$view);
 		}
 	
 	}

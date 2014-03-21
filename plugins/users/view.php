@@ -124,7 +124,7 @@ class users_view{
 			$this->raintpl->assign( "users_register_active_code", _('Active code') );
 			$this->raintpl->assign( "users_register_active_note", _('Enter code that you recived by email to active your account.') );
 			$this->raintpl->assign( "active_account", _('Active account'));
-			$page_content = $this->obj_page->show_block(true,  _('Active account') , $this->raintpl->draw( 'users_register_active', true ), $view);
+			$page_content = $this->obj_page->show_block(true,  _('Active account') , $this->raintpl->draw( 'users_register_active',true ), $view);
 		}	
 		return array(_('Active Acount'),$page_content);
 	}
@@ -132,7 +132,7 @@ class users_view{
 	
 	
 	public function show_in_box($header, $content, $type = 'warning',$result = '0'){
-		$this->obj_page->show_in_box($header, $content, $type, $result);
+		$this->obj_page->show_in_box(true, $header, $content, $type, $result);
 	}
 	public function show_message($header, $content, $type = 'warning'){
 		$this->obj_page->show_message($header, $content, $type);

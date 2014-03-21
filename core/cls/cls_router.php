@@ -54,7 +54,8 @@ class cls_router{
 	      global $sys_page;
 	      // create local domain
 	      bindtextdomain($this->localize['language'], './plugins/' . $this->plugin .'/languages/');
-	      $sys_page->set_page_tittle($plugin->action($this->action, 'MAIN'));
+	      $content = $plugin->action($this->action, 'MAIN');
+	      $sys_page->set_page_tittle($content[0]);
 	      //back localize to theme
 	      bindtextdomain($this->localize['language'], './themes/' . $this->localize['theme'] .'/languages/');
 

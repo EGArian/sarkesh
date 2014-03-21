@@ -19,11 +19,11 @@ class content_controller{
 			//seperate between show catalogy or page
 			if(isset($_GET['id'])){
 				//going to show page
-				$this->module->show_page_content($view);
+				return $this->module->show_page_content($view);
 			}
 			elseif(isset($_GET['catalog'])){
 				//going to show catalogy
-				$this->module->show_catalog_content();
+				return $this->module->show_catalog_content();
 			}
 		}
 
