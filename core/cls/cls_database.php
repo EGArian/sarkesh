@@ -13,16 +13,14 @@ function __construct(){
 # connect to the database server and select database to work with that
 
 		try{
-			$options = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',); 
-			$this->Link = new PDO("mysql:host=" . DatabaseHost . ";dbname=" . DatabaseName , DatabaseUser, DatabasePassword,$options);
-			$this->Link->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-			}
+			$this->connect();
+		}
  		catch(PDOException $e) {
 			echo "Error In query from database! <br> reason: " , $e->getMessage();
 			exit;}
 		}	
 public function do_query($QueryString,$QueryParamaters = array ("\0")){
-	
+	if($this->Link == null){ $this->connect();}
 			 
 			if ($QueryString=="" || is_null($this->Link )){ return 0;}
 			 #perpare query string from security
@@ -36,6 +34,8 @@ public function do_query($QueryString,$QueryParamaters = array ("\0")){
 			 else{
 					$this->Result=$this->Query->execute($QueryParamaters);
 	 		 }
+	 		 //disconnect from database
+			 $this->disconnect();
 			return $this->Result;
 			
 		  try{	
@@ -51,6 +51,7 @@ public function do_query($QueryString,$QueryParamaters = array ("\0")){
 #http://www.php.net/manual/de/pdostatement.bindvalue.php
 
 public function do_query_with_type($QueryString,$parameters){
+	if($this->Link == null){ $this->connect();}
 	try{
 		if ($QueryString == "" || is_null($this->Link)){ return 0;}
 			 #perpare query string from security
@@ -80,6 +81,8 @@ public function do_query_with_type($QueryString,$parameters){
 		echo  $e->getMessage();
 		exit;
 	 }
+	 //disconnect from database
+	 $this->disconnect();
 }
 
 //this function send back last insert id 
@@ -126,6 +129,17 @@ public function rows_count(){
 
 	if(is_null($this->Query)){return 0;}
 	return $this->Query->rowCount();
+}
+//this function create link to database
+private function connect(){
+	$options = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',PDO::ATTR_PERSISTENT => true); 
+	$this->Link = new PDO("mysql:host=" . DatabaseHost . ";dbname=" . DatabaseName , DatabaseUser, DatabasePassword,$options);
+	$this->Link->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+}
+//this function disconnect from database
+private function disconnect(){
+	unset($this->Link);
+	unset($this->query);
 }
 #end of class
 }
