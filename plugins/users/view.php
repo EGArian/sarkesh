@@ -12,12 +12,12 @@ class users_view{
 		
 	}
 	//this function show login page for enter username and password
-	public function show_login_page($view){
+	public function show_login_page($view,$show=true){
 		$this->raintpl->configure("tpl_dir", "plugins/users/tpl/" );
 		$this->cache = $this->raintpl->cache('users_login', 60);
 		if($this->cache){
-			$page_content = $this->obj_page->show_block(true,  _('User Sign in') , $this->cache, $view);
-			}
+			$page_content = $this->obj_page->show_block($show,  _('User Sign in') , $this->cache, $view);
+		}
 		else{
 		// can register
 		$registery = new cls_registry;
@@ -31,7 +31,7 @@ class users_view{
 		$this->raintpl->assign( "remember_me", _('Remember me!') );
 		$this->raintpl->assign( "sign_in", _('Sign in') );
 		$this->raintpl->assign( "forget_password", _('Forget your password?') );
-		$page_content = $this->obj_page->show_block(true,  _('User Sign in') , $this->raintpl->draw( 'users_login', true ), $view);
+		$page_content = $this->obj_page->show_block($show,  _('User Sign in') , $this->raintpl->draw( 'users_login', true ), $view);
 		}
 		return array(_('Users Login'),$page_content);
 	}
@@ -130,9 +130,21 @@ class users_view{
 	}
 	
 	
+	public function show_default_core_page($view,$show){
+		$this->raintpl->configure("tpl_dir", "plugins/users/tpl/" );
+		$this->cache == $this->raintpl->cache('default_core_page', 60);
+		if( $this->cache ){
+			$page_content = $this->obj_page->show_block(true,  _('Users and Permations') , $this->cache, $view);
+		}
+		else{
+			$this->raintpl->assign( "label_code", _('Active code:') );
+			$page_content = $this->obj_page->show_block($show,  _('Users and Permations') , $this->raintpl->draw( 'default_core_page',true ), $view);
+		}	
+		return array(_('Active Acount'),$page_content);
 	
+	}
 	public function show_in_box($header, $content, $type = 'warning',$result = '0'){
-		$this->obj_page->show_in_box(true, $header, $content, $type, $result);
+		$this->obj_page->show_in_box($header, $content, $type, $result);
 	}
 	public function show_message($header, $content, $type = 'warning'){
 		$this->obj_page->show_message($header, $content, $type);

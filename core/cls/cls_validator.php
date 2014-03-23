@@ -43,9 +43,9 @@ private $obj_registry;
 				$this->obj_cookie->set($source , $spicial_id);
 			}
 			//save source in database
-			$this->db->do_query('INSERT INTO ' . TablePrefix . 'validator (source,valid_time,special_id) VALUES (?,?,?);' , array($source,time() + $this->settings['validator_max_time'], $spicial_id));
+			$this->db->do_query('INSERT INTO ' . TablePrefix . 'validator (source,valid_time,special_id) VALUES (?,?,?);' , array($source,time() + $this->settings['validator_max_time'], $spicial_id),false);
 			if($back == 'id'){
-				return  $this->db->last_insert_id();
+				return  $this->db->last_insert_id(true);
 			}
 			elseif($back == 'sid'){
 				return $spicial_id; 
@@ -75,7 +75,7 @@ private $obj_registry;
 		}
 		//now we want to check spicial id with database
 		$this->db->do_query("SELECT * FROM " . TablePrefix . "validator WHERE id=?;" ,array($id));
-		if($this->db->rows_count() != 0){
+		if($this->db->rows_count(true) != 0){
 			//source is validated
 			$this->update($id);
 			return true;

@@ -37,28 +37,12 @@ if(file_exists("./config.php")) {
 	}
 	//this part is for working with admin area
 	elseif(isset($_GET['panel']) && $_GET['panel'] == 'admin'){
-		//going to admin panel
-		//set plugin varible
-		if(isset($_GET['plugin'])){
-			$plugin = $_GET['plugin'];
-		}
-		else{
-			$plugin = 'default';
-		}
-		//set action varible
-		if(isset($_GET['action'])){
-			$action = $_GET['action'];
-		}
-		else{
-			$action = 'default';
-		}
-		$admin = new core_controller;
-		$admin->action($plugin, $action);
-		
+		#load core
+		include_once("./core/inc/core_load.php");	
 	}
 	else{
 	
-		#load system in gui mode
+		#load system in gui normal mode
 		include_once("./core/inc/load.php");
 	}
 }

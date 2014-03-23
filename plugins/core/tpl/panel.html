@@ -1,13 +1,10 @@
-
 <!DOCTYPE html>
     <head>
     {$page_headers}
+    <title></#PAGE_TITTLE#/></title>
     </head>
-    
-    
-    <body  >
-        
-        <!-- Header -->
+    <body>
+<!-- Header -->
 <div id="top-nav" class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
@@ -35,16 +32,21 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-4">
-			<nav>
-			  <ul class="nav nav-pills nav-stacked well well-sm span2">
-			      {loop="plugins_menu"}      
-			      <li>{$value}</li>
-			      {/loop}
-			  </ul>
-			</nav>
+			<div class="panel panel-default">
+			      <div class="panel-heading">
+				    <h3 class="panel-title">{$main_menu}</h3>
+			      </div>
+			      <div class="panel-body">
+				    <ul class="nav nav-stacked">
+					      {loop="plugins_menu"}      
+							    {$value}
+					      {/loop}             
+				    </ul>
+			      </div>
+			</div>
 		</div>
 		<div class="col-sm-8">
-		      CONTENT IN HERE
+		      {$content}
 		</div>
 		
 	</div>

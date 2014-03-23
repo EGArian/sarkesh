@@ -9,10 +9,9 @@ class core_module{
 		$this->user = new users_module;
 	}
 
-	public function show_panel(){
-		//check that user has permation for access to admin panel
+	public function show_core_page($content){
 		
-		$this->view->show_panel($this->get_plugins_menu());
+		$this->view->show_core_page($this->get_plugins_menu(), $content);
 	
 	}
 	

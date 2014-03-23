@@ -166,12 +166,16 @@ class users_module{
 				$this->db->do_query('SELECT * FROM ' . TablePrefix . 'permations where id=?;', array($user_info['permation']));
 			}
 			$result = $this->db->get_first_row_array();
-			if($result[$permation] == '0'){
-			      return false;
+			if($result['enable'] == 1){
+				if($result[$permation] == '0'){
+				      return false;
+				}
+				else{
+				      return true;
+				}
 			}
-			else{
-			      return true;
-			}
+			//user not enabled so no permation to access to system
+			return false;
 		}
 		
 	  

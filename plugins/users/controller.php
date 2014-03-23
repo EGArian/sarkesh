@@ -9,6 +9,7 @@ class users_controller{
 	private $service_result;
 	private $plg_email;
 	private $registry;
+	private $msg;
 	function __construct(){
 		$this->registry = new cls_registry;
 		$plugin = new cls_plugin;
@@ -17,6 +18,7 @@ class users_controller{
 		$this->db = new cls_database;
 		$this->obj_validator = new cls_validator;
 		$this->io = new cls_io;
+		$this->msg = new msg_controller;
 		
 		//define plugins
 		$this->plg_email = new email_view;
@@ -24,7 +26,7 @@ class users_controller{
 	}
 	// $view has to value 1- 'block' for show with block header
 	// 		2-content for show with orginal state
-	public function action($action_name, $view = 'BLOCK'){
+	public function action($action_name, $view = 'BLOCK',$show){
 		if($action_name == 'login'){
 			
 			if($this->is_logedin()){
@@ -34,7 +36,7 @@ class users_controller{
 			}
 			else{
 				//going to show login page
-				return $this->view->show_login_page($view);
+				return $this->view->show_login_page($view,$show);
 			}
 			
 		}
@@ -70,6 +72,22 @@ class users_controller{
 			}
 			
 		}
+		//this part show login page without any check for that user is loged in before or not
+		elseif($action_name == 'login_panel'){
+			return $this->view->show_login_page($view, $show);
+			
+		}
+		elseif($action_name == 'default_core_page'){
+			if(!$this->is_logedin()){
+				//show register page
+				return $this->view->show_default_core_page($view,$show);
+			}
+			
+		}
+		else{
+			//not found
+			return $this->msg->action(404,$view,false);
+		}
 		
 
 	}
@@ -83,7 +101,9 @@ class users_controller{
 			//1 ->username and password was cerrect user loged in 
 			if($this->is_logedin()){
 				//user is logedin before
-				$this->view->show_in_box(_('Message'), _('You loged in with defferent account before! first logout.') ,true);
+				$this->view->show_in_box(_('Message'), _('You loged in with defferent account before! first logout.'));
+				echo 4;
+				return false;
 			}
 			elseif(isset($_GET['username']) && isset($_GET['password'])){
 				//start login progress

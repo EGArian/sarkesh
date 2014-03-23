@@ -109,7 +109,7 @@ class cls_page{
 		return $this->page_tittle;
 	}
 	//this function atteche some tags to blocks and show that.
-	public function show_block($show, $header, $body, $view ,$type = null, $result = 0){
+	public function show_block($show, $header, $body, $view='NONE' ,$type = null, $result = 0){
 		$content = '';
 		//create special value for access to that
 		if($view == 'BLOCK'){
@@ -158,7 +158,7 @@ class cls_page{
 			$content .=  $body;
 
 		}
-		else{
+		elseif($view == 'MODAL'){
 			//else it's modal
 			$content .=  '<?xml version="1.0"?>' . "\n";
 				$content .=  '<message>' . "\n";
@@ -172,7 +172,7 @@ class cls_page{
 						$content .=  $header;
 					$content .=  '</header>' . "\n";
 					$content .=  '<content>';
-						$content .=  $content;
+						$content .=  $body;
 					$content .=  '</content>' . "\n";
 					$content .=  '<btn-ok>';
 						$content .=  _('Ok');

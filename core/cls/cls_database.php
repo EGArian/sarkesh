@@ -3,7 +3,7 @@
 #this class use pdo extention for work with mysql database
 
 class cls_database{
-	private $Link;
+	private $pdo_obj;
 	private $Query;
 	private $Result;
 #this function is construct of class
@@ -20,12 +20,12 @@ function __construct(){
 			exit;}
 		}	
 public function do_query($QueryString,$QueryParamaters = array ("\0")){
-	if($this->Link == null){ $this->connect();}
-			 
-			if ($QueryString=="" || is_null($this->Link )){ return 0;}
+	if($this->pdo_obj == null){ $this->connect();}
+		 try{
+			if ($QueryString=="" || is_null($this->pdo_obj )){ return 0;}
 			 #perpare query string from security
 			 
-			 $this->Query = $this->Link->prepare($QueryString);
+			 $this->Query = $this->pdo_obj->prepare($QueryString);
 			 #going to do query
 			 
 			 if($QueryParamaters[0]=="\0"){
@@ -34,29 +34,27 @@ public function do_query($QueryString,$QueryParamaters = array ("\0")){
 			 else{
 					$this->Result=$this->Query->execute($QueryParamaters);
 	 		 }
-	 		 //disconnect from database
-			 $this->disconnect();
 			return $this->Result;
 			
-		  try{	
+		 
 		}
 	 catch(PDOException $e) {
 		echo "Error In query from database! <br> reason: " , $e->getMessage();
 		exit;
 	 }
 }
-#this function di quary with paameters for find parameters type see link below
+#this function di quary with paameters for find parameters type see pdo_obj below
 #http://www.php.net/manual/de/pdo.constants.php
 #OR
 #http://www.php.net/manual/de/pdostatement.bindvalue.php
 
 public function do_query_with_type($QueryString,$parameters){
-	if($this->Link == null){ $this->connect();}
+	if($this->pdo_obj == null){ $this->connect();}
 	try{
-		if ($QueryString == "" || is_null($this->Link)){ return 0;}
+		if ($QueryString == "" || is_null($this->pdo_obj)){ return 0;}
 			 #perpare query string from security
 			 
-			 $this->Query = $this->Link->prepare($QueryString);
+			 $this->Query = $this->pdo_obj->prepare($QueryString);
 			 #going to do query
 			 
 			 for ($i=0 ; $i<count($parameters) ; $i++){
@@ -81,14 +79,11 @@ public function do_query_with_type($QueryString,$parameters){
 		echo  $e->getMessage();
 		exit;
 	 }
-	 //disconnect from database
-	 $this->disconnect();
 }
-
 //this function send back last insert id 
 //warring : this function most run after insert query
 public function last_insert_id(){
-return $this->Link->lastInsertId();
+	return $this->pdo_obj->lastInsertId();
 }
 
 #this function return obj of last quary
@@ -130,16 +125,16 @@ public function rows_count(){
 	if(is_null($this->Query)){return 0;}
 	return $this->Query->rowCount();
 }
-//this function create link to database
+//this function create pdo_obj to database
 private function connect(){
 	$options = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',PDO::ATTR_PERSISTENT => true); 
-	$this->Link = new PDO("mysql:host=" . DatabaseHost . ";dbname=" . DatabaseName , DatabaseUser, DatabasePassword,$options);
-	$this->Link->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+	$this->pdo_obj = new PDO("mysql:host=" . DatabaseHost . ";dbname=" . DatabaseName , DatabaseUser, DatabasePassword,$options);
+	$this->pdo_obj->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 }
 //this function disconnect from database
 private function disconnect(){
-	unset($this->Link);
-	unset($this->query);
+	$this->pdo_obj = null;
+	$this->query = null;
 }
 #end of class
 }
