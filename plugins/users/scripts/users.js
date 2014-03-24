@@ -231,7 +231,6 @@ function users_register(){
 	}
 	$.get(url ,
 		function(data){
-			//problem in logout
 			xmlDoc = $.parseXML( data ),
 			$xml = $( xmlDoc ),
 			$result = $xml.find( "result" );
@@ -272,7 +271,6 @@ function users_register(){
      url = '?service=1&plugin=users&action=failfill';
      $.get(url ,
 		function(data){
-			//problem in logout
 			xmlDoc = $.parseXML( data ),
 			$xml = $( xmlDoc ),
 			$result = $xml.find( "result" );

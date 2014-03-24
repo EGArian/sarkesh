@@ -37,6 +37,26 @@ class msg_view{
 			//return tittle of content you want to show
 			return array(_('Not Found!'),$page_content);
 		}
+		if($msg == '403'){
+			$this->cache = $this->raintpl->cache('403', 60);
+			if($this->cache){
+				//file is exist in cache 
+				//going to show that on page with cls_page
+				//for more information about show_block function in cls_page see cls_page documents
+				$page_content = $this->page->show_block($show,  _('Access Denied!') , $this->cache, $view);
+			}
+			else{
+				//file is not exist in cache going to create that
+				//add tag for show messages
+				//with assign you send value for varible in html file
+				//for more information about cls_raintpl->assign see cls_raintpl documents
+				$this->raintpl->assign( "msg_403", _('You have no permission to access this page!') );
+				//after set all varibles we going to show that on page with cls_page
+				$page_content = $this->page->show_block($show,  _('Access Denied!') , $this->raintpl->draw( '403', true ), $view);
+			}
+			//return tittle of content you want to show
+			return array(_('Access Denied!'),$page_content);
+		}
 		  
 		  
 		  

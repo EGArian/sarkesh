@@ -1,0 +1,65 @@
+<div class="core_plugin_list">
+		<script language="javascript" type="text/javascript" src="./plugins/core/scripts/core.js"></script>
+		<!-- Nav tabs -->
+		<ul class="nav nav-tabs">
+		  <li class="active"><a href="#core_plugins_list" data-toggle="tab">{$label_plugins}</a></li>
+		  <li><a href="#core_plugins_install" data-toggle="tab">{$label_install}</a></li>
+		</ul>
+
+		<!-- Tab panes -->
+		<div class="tab-content">
+		  <div class="tab-pane active" id="core_plugins_list">
+		  <!-- content -->
+					<table class="table">
+			        <thead>
+			            <tr>
+			                <th>#</th>
+			                <th>{$label_name}</th>
+			                <th>{$label_description}</th>
+			                <th>{$label_author}</th>
+			                <th>{$label_version}</th>
+			                <th>{$label_options}</th>
+			            </tr>
+			        </thead>
+			        <tbody>
+			    	   	{loop="plugins"}
+			    	   	{if="$value.enable == 0"}
+			    	    	<tr  id="core_plugin_{$value.name}" class="danger">
+			    	   	{/if}
+			    	   	{if="$value.enable == 1"}
+			    	    	<tr  id="core_plugin_{$value.name}" class="success">
+			    	   	{/if}
+						    	   		<td>{$key}</td>
+						    	   		<td>{$value.name}</td>
+						    	   		<td>{$value.description}</td>
+						    	   		<td>{$value.author}</td>			    	   		
+						    	   		<td>{$value.version}</td>
+						    	   		<td>
+						    	   			    	   	{if="$value.enable == 0"}
+							  								<button type="button" class="btn btn-success btn-xs" value="1*{$value.name}" onclick="core_plugins_changestate(this.id, this.value)">{$label_Edite_enable}</button>
+											    	   	{/if}
+											    	   	{if="$value.enable == 1"}
+											    	    	{if="$value.can_edite == 1"}
+							  									<button type="button" class="btn btn-primary btn-xs" value="0*{$value.name}" onclick="core_plugins_changestate(this.id, this.value)">{$label_Edite}</button>
+											  		  	   	{/if}
+											  		  	   	{if="$value.can_edite == 0"}
+							  									<button type="button" class="btn btn-danger btn-xs" disabled="disabled">{$label_Edite_disabled}</button>
+											  		  	   	{/if}
+											    	   	{/if}
+						    	   			
+						    	   		</td>
+						</tr>
+						{/loop}
+			        </tbody>
+			    </table>
+			<!-- /content -->
+	    
+		  </div>
+		  <div class="tab-pane" id="core_plugins_install">
+		  sorry. This part is under development!
+		  </div>
+
+		</div>
+		
+		
+		  	

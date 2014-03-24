@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 19, 2014 at 02:38 PM
+-- Generation Time: Mar 24, 2014 at 11:20 PM
 -- Server version: 5.5.35-0ubuntu0.13.10.2
 -- PHP Version: 5.5.3-1ubuntu2.2
 
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `blocks` (
 
 INSERT INTO `blocks` (`id`, `name`, `value`, `plugin`, `position`, `permations`, `pages`, `show_header`, `rank`) VALUES
 (6, 'content', '0', 3, 'content', NULL, NULL, 0, 0),
-(7, 'login', '0', 2, 'off', NULL, NULL, 1, 3),
+(7, 'login', '0', 2, 'sidebar1', NULL, NULL, 1, 3),
 (9, 'language_select', '0', 4, 'sidebar1', NULL, NULL, 0, 1),
 (10, 'forget_password', '0', 2, 'off', NULL, NULL, NULL, 2),
 (11, 'say', '0', 6, 'off', NULL, NULL, NULL, 0),
@@ -64,6 +64,7 @@ CREATE TABLE IF NOT EXISTS `content` (
   `entry_id` int(11) NOT NULL,
   `tittle` varchar(100) DEFAULT NULL,
   `user` int(11) NOT NULL,
+  `localize` int(11) NOT NULL,
   `date_publish` int(11) NOT NULL,
   `date_edite` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -73,8 +74,8 @@ CREATE TABLE IF NOT EXISTS `content` (
 -- Dumping data for table `content`
 --
 
-INSERT INTO `content` (`id`, `entry_id`, `tittle`, `user`, `date_publish`, `date_edite`) VALUES
-(1, 1, 'First news about sarkesh CMS', 1, 123455555, 0);
+INSERT INTO `content` (`id`, `entry_id`, `tittle`, `user`, `localize`, `date_publish`, `date_edite`) VALUES
+(1, 1, 'First news about sarkesh CMS', 1, 1, 123455555, 0);
 
 -- --------------------------------------------------------
 
@@ -87,7 +88,6 @@ CREATE TABLE IF NOT EXISTS `entries` (
   `name` varchar(90) NOT NULL,
   `label` varchar(90) NOT NULL,
   `show_tittle` tinyint(4) NOT NULL DEFAULT '1',
-  `localize` int(11) NOT NULL,
   `des` text,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
@@ -96,8 +96,8 @@ CREATE TABLE IF NOT EXISTS `entries` (
 -- Dumping data for table `entries`
 --
 
-INSERT INTO `entries` (`id`, `name`, `label`, `show_tittle`, `localize`, `des`) VALUES
-(1, 'last_news', 'Last News', 1, 1, 'This entry is for publish last news about sarkesh cms.');
+INSERT INTO `entries` (`id`, `name`, `label`, `show_tittle`, `des`) VALUES
+(1, 'last_news', 'Last News', 1, 'This entry is for publish last news about sarkesh cms.');
 
 -- --------------------------------------------------------
 
@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `fields` (
 --
 
 INSERT INTO `fields` (`id`, `ref_id`, `value`, `patern_id`) VALUES
-(1, 2, 'This is body of message', 1);
+(1, 1, 'Sarkesh is open source software maintained and developed by a community of 12+ users and developers. It''s distributed under the terms of the GNU General Public License (or "GPL"), which means anyone is free to download it and share it with others. This open development model means that people are constantly working to make sure Drupal is a cutting-edge platform that supports the latest technologies that the Web has to offer. The Sarkesh project''s principles encourage modularity, standards, collaboration, ease-of-use, and more.\n<br /><kbd>this is a code</kbd>', 2);
 
 -- --------------------------------------------------------
 
@@ -187,7 +187,6 @@ CREATE TABLE IF NOT EXISTS `localize` (
   `language_name` varchar(30) DEFAULT 'English - United States',
   `home` varchar(100) NOT NULL,
   `email` varchar(30) NOT NULL,
-  `theme` varchar(45) NOT NULL,
   `calendar` varchar(20) NOT NULL DEFAULT 'gregorian',
   `direction` varchar(4) NOT NULL DEFAULT 'LTR',
   PRIMARY KEY (`id`)
@@ -197,9 +196,9 @@ CREATE TABLE IF NOT EXISTS `localize` (
 -- Dumping data for table `localize`
 --
 
-INSERT INTO `localize` (`id`, `main`, `name`, `language`, `language_name`, `home`, `email`, `theme`, `calendar`, `direction`) VALUES
-(1, 1, 'Sarkesh', 'en_US', 'English - United States', '?plugin=users&action=register', 'info@sarkesh.org', 'blog', 'gregorian', 'LTR'),
-(2, 0, 'سرکش', 'fa_IR', 'فارسی - ایران', '?plugin=users&action=register', 'info@sarkesh.org', 'blog', 'jallali', 'RTL');
+INSERT INTO `localize` (`id`, `main`, `name`, `language`, `language_name`, `home`, `email`, `calendar`, `direction`) VALUES
+(1, 1, 'Sarkesh', 'en_US', 'English - United States', '?plugin=users&action=register', 'info@sarkesh.org', 'gregorian', 'LTR'),
+(2, 0, 'سرکش', 'fa_IR', 'فارسی - ایران', '?plugin=users&action=register', 'info@sarkesh.org', 'jallali', 'RTL');
 
 -- --------------------------------------------------------
 
@@ -222,8 +221,8 @@ CREATE TABLE IF NOT EXISTS `menus` (
 --
 
 INSERT INTO `menus` (`id`, `name`, `header`, `direction`, `position`, `localize`) VALUES
-(1, 'home_menu', NULL, 'v', 'header', 'en_US'),
-(3, 'home_menu', 'User Menu', 'h', 'sidebar1', 'en_US');
+(1, 'home_menu', NULL, 'h', 'header', 'en_US'),
+(3, 'home_menu', 'User Menu', 'v', 'sidebar1', 'en_US');
 
 -- --------------------------------------------------------
 
@@ -235,6 +234,7 @@ CREATE TABLE IF NOT EXISTS `permations` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   `enable` tinyint(1) DEFAULT NULL,
+  `core_admin_panel` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
@@ -242,11 +242,11 @@ CREATE TABLE IF NOT EXISTS `permations` (
 -- Dumping data for table `permations`
 --
 
-INSERT INTO `permations` (`id`, `name`, `enable`) VALUES
-(1, 'Administrators', 1),
-(2, 'users', 1),
-(3, 'Not activated', 0),
-(4, 'guest', 0);
+INSERT INTO `permations` (`id`, `name`, `enable`, `core_admin_panel`) VALUES
+(1, 'Administrators', 1, 1),
+(2, 'users', 1, 0),
+(3, 'Not activated', 0, 0),
+(4, 'guest', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -258,21 +258,22 @@ CREATE TABLE IF NOT EXISTS `plugins` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   `enable` tinyint(1) NOT NULL,
+  `can_edite` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `plugins`
 --
 
-INSERT INTO `plugins` (`id`, `name`, `enable`) VALUES
-(1, 'permations', 1),
-(2, 'users', 1),
-(3, 'core', 1),
-(4, 'languages', 1),
-(5, 'email', 1),
-(6, 'hello', 1),
-(7, 'menu', 1);
+INSERT INTO `plugins` (`id`, `name`, `enable`, `can_edite`) VALUES
+(2, 'users', 1, 0),
+(3, 'core', 1, 0),
+(4, 'languages', 1, 0),
+(5, 'email', 1, 0),
+(6, 'hello', 0, 1),
+(7, 'menu', 1, 0),
+(8, 'content', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -287,7 +288,7 @@ CREATE TABLE IF NOT EXISTS `registry` (
   `value` text,
   PRIMARY KEY (`id`),
   KEY `fk_plugin_idx` (`plugin`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `registry`
@@ -306,7 +307,10 @@ INSERT INTO `registry` (`id`, `plugin`, `a_key`, `value`) VALUES
 (10, 5, 'template', 'simple'),
 (11, 3, 'bootstrap_theme', 'bootstrap-ubuntu'),
 (12, 3, 'pace_theme', 'pace-theme-loading-bar'),
-(13, 2, 'register_captcha', '1');
+(13, 2, 'register_captcha', '1'),
+(14, 8, 'date_format', 'l jS \\of F Y h:i:s A'),
+(15, 3, 'default_timezone', 'America/Los_Angeles'),
+(16, 3, 'active_theme', 'blog');
 
 -- --------------------------------------------------------
 
@@ -333,7 +337,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `validator`, `forget`, `permation`, `last_login`) VALUES
-(1, 'sarkesh', '90deff4b32c134f32e3f0d7e8a2aad92', 'alizadeh.babak@gmail.com', 470, 469, 1, NULL),
+(1, 'sarkesh', '90deff4b32c134f32e3f0d7e8a2aad92', 'alizadeh.babak@gmail.com', 26, 469, 1, NULL),
 (9, 'babak', '7f7e4c0e56970beeaf2cac1185edde19', 'alizadeh.babak@live.com', 467, 468, 3, NULL);
 
 -- --------------------------------------------------------
@@ -348,7 +352,14 @@ CREATE TABLE IF NOT EXISTS `validator` (
   `special_id` varchar(45) NOT NULL,
   `valid_time` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
+
+--
+-- Dumping data for table `validator`
+--
+
+INSERT INTO `validator` (`id`, `source`, `special_id`, `valid_time`) VALUES
+(26, 'USERS_LOGIN', '6tkyhgq5sn', '1395779817');
 
 --
 -- Constraints for dumped tables

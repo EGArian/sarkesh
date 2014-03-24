@@ -78,7 +78,7 @@ class users_controller{
 			
 		}
 		elseif($action_name == 'default_core_page'){
-			if(!$this->is_logedin()){
+			if($this->module->has_permation('core_admin_panel')){
 				//show register page
 				return $this->view->show_default_core_page($view,$show);
 			}

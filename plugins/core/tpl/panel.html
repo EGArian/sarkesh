@@ -11,7 +11,7 @@
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
           <span class="icon-toggle"></span>
       </button>
-      <a class="navbar-brand" href="#">Control Panel</a>
+      <a class="navbar-brand" href="?panel=admin">Control Panel</a>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
@@ -31,7 +31,7 @@
 <!-- /Header -->
 <div class="container">
 	<div class="row">
-		<div class="col-sm-4">
+		<div class="col-sm-3">
 			<div class="panel panel-default">
 			      <div class="panel-heading">
 				    <h3 class="panel-title">{$main_menu}</h3>
@@ -45,8 +45,10 @@
 			      </div>
 			</div>
 		</div>
-		<div class="col-sm-8">
+		<div class="col-sm-9">
+		      <div class="core_main_content">
 		      {$content}
+		      </div>
 		</div>
 		
 	</div>

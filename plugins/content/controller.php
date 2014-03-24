@@ -52,8 +52,7 @@ class content_controller{
 	
 	//this function return  menu to admin panel
 	public function admin_menu(){
-	
-	return '<li><a href="#"> insert content </a></li>';
+		return '<li><a href="#"> insert content </a></li>';
 	}
 	
 

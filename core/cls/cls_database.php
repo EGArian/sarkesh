@@ -20,7 +20,6 @@ function __construct(){
 			exit;}
 		}	
 public function do_query($QueryString,$QueryParamaters = array ("\0")){
-	if($this->pdo_obj == null){ $this->connect();}
 		 try{
 			if ($QueryString=="" || is_null($this->pdo_obj )){ return 0;}
 			 #perpare query string from security
@@ -121,7 +120,6 @@ public function get_first_row_array(){
 
 public function rows_count(){
 	#no quary not started yet
-
 	if(is_null($this->Query)){return 0;}
 	return $this->Query->rowCount();
 }

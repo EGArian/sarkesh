@@ -71,26 +71,12 @@ class core_view{
 	
 	}
 	//this function show list of plugins//
-	public function show_plugins_list($plugins, $view, $show){
+	public function show_plugins_list( $view, $show){
 		$this->raintpl->configure("tpl_dir", "plugins/core/tpl/" );
-		$this->raintpl->assign( "plugins", $plugins);
-		$this->raintpl->assign( "label_options", _('Options'));
-		$this->raintpl->assign( "label_name", _('Name'));
-		$this->raintpl->assign( "label_description", _('Description'));		
-		$this->raintpl->assign( "label_version", _('Version'));
-		$this->raintpl->assign( "label_author", _('Author'));
-		$this->raintpl->assign( "label_Edite", _('Disable'));
-		$this->raintpl->assign( "label_Edite_disabled", _('Disable'));
-		$this->raintpl->assign( "label_Edite_enable", _('Enable'));
-		$this->raintpl->assign( "label_plugins", _('Plugins'));
-		$this->raintpl->assign( "label_install", _('Install'));
+		$this->raintpl->assign( "content", '');
+		$this->raintpl->assign( "page_headers", $this->page->load_headers(false));
 		return array(_('Plugins'), $this->page->show_block($show,  '' , $this->raintpl->draw( 'core_plugins_list', true), $view));
 	
-	}
-	
-	#this function return error message in MODAL VIEW
-	public function error_in_operation($show, $e){
-		return $this->page->show_block($show,  'Error!' , _('Error occurred in complete your request.<br />reason:' . $e->getMessage()), 'MODAL','danger');
 	}
 }
 ?>

@@ -1,10 +1,10 @@
 <?php
 
 //this class seperate url addrress
-// for doing proccess we have some parameters that send with GET 
-// 1- plugin parameter for finding what plugin do this proccess
+// for doing process we have some parameters that send with GET 
+// 1- plugin parameter for finding what plugin do this process
 // 2- action parameter for run that action on plugin
-// and some ect parameters that plugin proccess that.
+// and some etc parameters that plugin process that.
 // if nothing send with action with GET class change that to 'default' and send that to plugin
 
 class cls_router{
@@ -12,7 +12,10 @@ class cls_router{
 	private $action;
 	private $obj_io;
 	private $localize;
+	private $obj_plugin;
 	function __construct(){
+		//create object from cls_plugin
+		$this->obj_plugin = new cls_plugin;
 		//set last page that user see
 		$this->set_last_page();
 		//get localize
@@ -47,17 +50,26 @@ class cls_router{
 	public function show_content(){
 	      //this function run from page class.
 	      // this function load plugin and run controller
-	      $plugin_name = $this->plugin . '_controller';
-	      $plugin = new $plugin_name;
-	      
-	      //set tittle of page
-	      global $sys_page;
-	      // create local domain
-	      bindtextdomain($this->localize['language'], './plugins/' . $this->plugin .'/languages/');
-	      $content = $plugin->action($this->action, 'MAIN',true);
+	      //checking for that plugin is enabled
+	       global $sys_page;
+	      if($this->obj_plugin->is_enabled($this->plugin)){
+	 	    	 $plugin_name = $this->plugin . '_controller';
+	     		 $plugin = new $plugin_name;
+	     		 // create local domain
+			     bindtextdomain($this->localize['language'], './plugins/' . $this->plugin .'/languages/');
+			     $content = $plugin->action($this->action, 'MAIN',true);	
+	      }
+		  else{
+		  		//plugin is not enabled
+		  		//show 404 page not found page
+		  		$plugin = new msg_controller;
+				bindtextdomain($this->localize['language'], './plugins/msg/languages/');
+			    $content = $plugin->action(404, 'MAIN',true);
+		  }
 	      $sys_page->set_page_tittle($content[0]);
 	      //back localize to theme
-	      bindtextdomain($this->localize['language'], './themes/' . $this->localize['theme'] .'/languages/');
+	      $registry = new cls_registry;
+	      bindtextdomain($this->localize['language'], './themes/' . $registry->get('core','active_theme') .'/languages/');
 
 	}
 	//this function run services and jump request do plugin

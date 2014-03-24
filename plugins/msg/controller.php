@@ -14,7 +14,7 @@ class msg_controller{
 	//if you want to wotk with cls_page->show_block you should send $view to that.
 	public function action($action, $view,$show=true){
 		//going to show message
-		return $this->view->show_msg($action, $view,$show);
+		return $this->view->show_msg($action, $view, $show);
 	      
 	  
 	}

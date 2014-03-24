@@ -9,6 +9,8 @@ class cls_page{
 	private $blocks;
 	private $db;
 	private $registry;
+	private $plugin;
+	
 	function __construct(){
 		$this->registry =new cls_registry;
 		$this->settings = $this->registry->get_plugin('core');
@@ -23,7 +25,7 @@ class cls_page{
 		
 		$this->db->do_query($query_string);
 		$this->blocks = $this->db->get_array();
-
+		$this->plugin = new cls_plugin;
 	}
 	
 	#if active language is RTL this function return true else return false
@@ -40,7 +42,7 @@ class cls_page{
 	
 		#LOAD HEEFAL GENERATOR META TAG
 		$header_tags = '<meta name="generator" content=" Sarkesh CMS! - Open Source Content Management" />' ."\n";
-		//cache controll
+		//cache control	
 		$header_tags .= '<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">' . "\n";
 		#load jquery
 		if($this->settings['jquery'] == '1'){
@@ -61,16 +63,17 @@ class cls_page{
 			$header_tags .= "\n" . '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
 		}
 		#load style sheet pages (css)
-		$header_tags .= '<link rel="stylesheet" type="text/css" href="./themes/'  . $this->localize_settings['theme'] . '/style.css" />' . "\n";
+		$theme_name = $this->registry->get('core','active_theme');
+		$header_tags .= '<link rel="stylesheet" type="text/css" href="./themes/'  . $theme_name . '/style.css" />' . "\n";
 		#load rtl stylesheets
 		if ($this->is_rtl()){ 
-			$header_tags .= '<link rel="stylesheet" type="text/css" href="./themes/'  . $this->localize_settings['theme'] . '/rtl-style.css" />' . "\n";
+			$header_tags .= '<link rel="stylesheet" type="text/css" href="./themes/'  . $theme_name . '/rtl-style.css" />' . "\n";
 		}
 
 		#load favicon
-		if(file_exists("./themes/"  . $this->localize_settings['theme'] . "/favicon.ico")){ 
-			$header_tags .= '<link rel="shortcut icon" href="./themes/'.$this->localize_settings['theme'] .'/favicon.ico" type="image/x-icon">';
-			$header_tags .= "\n" . '<link rel="icon" href="./themes/'.$this->localize_settings['theme'] .'/favicon.ico" type="image/x-icon">';
+		if(file_exists("./themes/"  . $theme_name . "/favicon.ico")){ 
+			$header_tags .= '<link rel="shortcut icon" href="./themes/'. $theme_name .'/favicon.ico" type="image/x-icon">';
+			$header_tags .= "\n" . '<link rel="icon" href="./themes/'.$theme_name .'/favicon.ico" type="image/x-icon">';
 		}
 		//enable texteditor if that's enabled from registery
 		//for enable editor textarea tag should has class with 'editor' name
@@ -96,14 +99,14 @@ class cls_page{
 			return $header_tags;
 		}
 	}
-	//this function add recived string to page tittle
+	//this function add recived string to page title
 	public function set_page_tittle($tittle = ''){
 		//get site name in localize selected
 		$this->page_tittle = $this->localize_settings['name'] . ' | ' . $tittle;
 		return $this->page_tittle;
-		//now we wand to send tittle to render.
+		//now we wand to send title to render.
 	}
-	//this fuction return page tittle usually for runder.php
+	//this function return page title usually for runder.php
 	public function get_page_tittle(){
 	
 		return $this->page_tittle;
@@ -154,7 +157,7 @@ class cls_page{
 			$content .=  '</div>';
 		}
 		elseif($view == 'NONE'){;  
-			//this type do not support tittle and ect.
+			//this type do not support title and ect.
 			$content .=  $body;
 
 		}
@@ -200,24 +203,26 @@ class cls_page{
 		foreach( $this->blocks as $block){
 		
 			if($block['b.position'] == $position){
-				//going to proccess block
+				//going to process block
 				if($block['p.name'] == 'core'){
 					//going to show content;
 					$obj_router = new cls_router;
 					$obj_router->show_content();
 				}
 				else{
-					$plugin_name = $block['p.name'] . '_controller';
-					$plugin = new $plugin_name;
-					//run action metod for show block
-					//all blocks name shoud be like  'blk_blockname'
-					 // create local domain
-					bindtextdomain($this->localize_settings['language'], './plugins/' . $block['p.name'] .'/languages/');
-					$plugin->action($block['b.name'], 'BLOCK', $position);
-					//back localize to theme
-					bindtextdomain($this->localize_settings['language'], './themes/' . $this->localize_settings['theme'] .'/languages/');
-					  
-					
+					//checking that plugin is enabled
+					if($this->plugin->is_enabled($block['p.name'])){
+						$plugin_name = $block['p.name'] . '_controller';
+						$plugin = new $plugin_name;
+						//run action method for show block
+						//all blocks name should be like  'blk_blockname'
+						 // create local domain
+						bindtextdomain($this->localize_settings['language'], './plugins/' . $block['p.name'] .'/languages/');
+						$plugin->action($block['b.name'], 'BLOCK', $position);
+						//back localize to theme
+						$registry = new cls_registry;
+						bindtextdomain($this->localize_settings['language'], './themes/' . $registry->get('core', 'active_theme') .'/languages/');
+					}					
 				}
 			
 			}

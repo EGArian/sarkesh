@@ -1,5 +1,5 @@
 <?php
-	#this file define captcha plugin for sarkesh.
-	$plugin_captcha_version = '0.0.0';
-	$plugin_captcha_requirements = array('core');
+	$plugin_info['author'] = _('Sarkesh Developers Team');
+	$plugin_info['description'] = _('Use for show captcha in system');
+	$plugin_info['version'] = _('0.0.3');
 ?>
