@@ -2,4 +2,11 @@
 	<script language="javascript" type="text/javascript" src="./plugins/users/scripts/users.js"></script>
 	<div id="msg" class="users_page_msg" ></div>
 	 {$hello . '  ' .  $username} <a onclick="users_logout()"> {$logout} </a>
+	<p>
+		<button type="button" class="btn btn-primary btn-md" onclick="users_logout()">{$logout}</button>
+	 	{if="$admin_permission == '1'"}
+	  		<button type="button" class="btn btn-default btn-md" onclick="sys_jump_page('?panel=admin')">{$label_admin_area}</button>
+		
+		{/if}
+	</p>
 </div>

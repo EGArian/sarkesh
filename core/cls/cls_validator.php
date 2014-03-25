@@ -43,7 +43,7 @@ private $obj_registry;
 				$this->obj_cookie->set($source , $spicial_id);
 			}
 			//save source in database
-			$this->db->do_query('INSERT INTO ' . TablePrefix . 'validator (source,valid_time,special_id) VALUES (?,?,?);' , array($source,time() + $this->settings['validator_max_time'], $spicial_id),false);
+			$this->db->do_query('INSERT INTO validator (source,valid_time,special_id) VALUES (?,?,?);' , array($source,time() + $this->settings['validator_max_time'], $spicial_id),false);
 			if($back == 'id'){
 				return  $this->db->last_insert_id(true);
 			}
@@ -52,7 +52,7 @@ private $obj_registry;
 			}
 			else{
 				//RETURN ALL ROW
-				$this->db->do_query("SELECT * FROM " . TablePrefix . "validator WHERE special_id=?;" ,array($spicial_id));
+				$this->db->do_query("SELECT * FROM validator WHERE special_id=?;" ,array($spicial_id));
 				return $this->db->get_first_row_array(); 
 			}
 
@@ -74,7 +74,7 @@ private $obj_registry;
 			return false;
 		}
 		//now we want to check spicial id with database
-		$this->db->do_query("SELECT * FROM " . TablePrefix . "validator WHERE id=?;" ,array($id));
+		$this->db->do_query("SELECT * FROM validator WHERE id=?;" ,array($id));
 		if($this->db->rows_count(true) != 0){
 			//source is validated
 			$this->update($id);
@@ -88,7 +88,7 @@ private $obj_registry;
 		if($id == 0){ $id = $this->get_id($source); }
 		if($id != 0){
 			//going to delete that
-			return $this->db->do_query("DELETE FROM " . TablePrefix . "validator WHERE id=?;" ,array(trim($id)));
+			return $this->db->do_query("DELETE FROM validator WHERE id=?;" ,array(trim($id)));
 
 		}
 		return false;
@@ -111,7 +111,7 @@ private $obj_registry;
 		}
 		if($id != '0'){
 		
-			$this->db->do_query("SELECT * FROM " . TablePrefix . "validator WHERE special_id=?;" ,array(trim($id)));
+			$this->db->do_query("SELECT * FROM validator WHERE special_id=?;" ,array(trim($id)));
 			if($this->db->rows_count() == 0){
 				//not found
 				return 0;
@@ -135,13 +135,13 @@ private $obj_registry;
 	}
 	//this function update source
 	private function update($spicial_id){
-		$this->db->do_query('UPDATE ' . TablePrefix .' validator SET valid_time=? WHERE special_id=?;', array(time() + 3600 , $spicial_id)); 
+		$this->db->do_query('UPDATE validator SET valid_time=? WHERE special_id=?;', array(time() + 3600 , $spicial_id)); 
 		return true;
 	}
 	//this function refresh and delete invalid validator keys that stored in database
 	private function refresh(){
 		#clear old data from database
-		$this->db->do_query("delete from " . TablePrefix . "validator where valid_time<?;", array(time()));
+		$this->db->do_query("delete from validator where valid_time<?;", array(time()));
 		#update next check for refresh database
 		$this->registery->set('core', 'validator_last_check' , time());
 	}

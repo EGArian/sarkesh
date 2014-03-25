@@ -20,8 +20,8 @@ class cls_page{
 		//load all blocks data from database
 		$this->db = new cls_database;
 		$query_string = "SELECT b.name AS 'b.name',";
-		$query_string .= "b.position AS 'b.position', b.permations AS 'b.permations', ";
-		$query_string .= "b.pages AS 'b.pages', b.show_header AS 'b.show_header', b.plugin AS 'b.plugin', p.id AS 'p.id', p.name AS 'p.name', b.rank FROM " . TablePrefix . "blocks b INNER JOIN plugins p ON b.plugin = p.id ORDER BY b.rank DESC;";
+		$query_string .= "b.position AS 'b.position', b.permissions AS 'b.permissions', ";
+		$query_string .= "b.pages AS 'b.pages', b.show_header AS 'b.show_header', b.plugin AS 'b.plugin', p.id AS 'p.id', p.name AS 'p.name', b.rank FROM blocks b INNER JOIN plugins p ON b.plugin = p.id ORDER BY b.rank DESC;";
 		
 		$this->db->do_query($query_string);
 		$this->blocks = $this->db->get_array();

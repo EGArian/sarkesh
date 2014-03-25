@@ -11,7 +11,7 @@ class cls_localize{
 		$this->obj_session = new cls_session;
 		
 		$this->db = new cls_database;
-		$this->db->do_query("select * from " . TablePrefix . "localize where main ='1';");
+		$this->db->do_query("select * from localize where main ='1';");
 		$this->localize = $this->db->get_first_row_array();
 		$this->get_language();
 	}
@@ -21,7 +21,7 @@ class cls_localize{
 			return $this->localize;
 		}
 
-		$this->db->do_query("select * from " . TablePrefix . "localize where language = ?;" , array($this->get_language()) );
+		$this->db->do_query("select * from localize where language = ?;" , array($this->get_language()) );
 		return $this->db->get_first_row_array();
 	}
 

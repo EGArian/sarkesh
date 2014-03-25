@@ -31,10 +31,10 @@ class content_view{
 			return $this->msg->action(404, $view);
 		}
 		else{
-			//check permation to show
+			//check permission to show
 			// WARRNING : UNDER DEVELOPMENT
 			if(1==1){
-				//user has permation
+				//user has permission
 				//going to show content
 				$this->raintpl->assign( "by", _('by'));
 				//get date of post
@@ -51,7 +51,7 @@ class content_view{
 			}
 			else{
 				//access denied
-				echo 'you do not has permation to see this page';
+				echo 'you do not has permission to see this page';
 			
 			}
 			

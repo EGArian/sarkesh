@@ -4,3 +4,10 @@ paceOptions = {
   restartOnRequestAfter: false,
   minTime: 500
 }
+
+//this function jump page to input address
+function sys_jump_page(url){
+  if(url){
+  	window.location = url;
+  }
+}

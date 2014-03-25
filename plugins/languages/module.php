@@ -11,7 +11,7 @@ class languages_module{
 		$this->db = new cls_database;
 	}
 	public function get_languages($user_language){
-		$this->db->do_query('SELECT language,language_name FROM ' . TablePrefix . "localize ORDER BY language=? DESC;", array($user_language));
+		$this->db->do_query("SELECT language,language_name FROM localize ORDER BY language=? DESC;", array($user_language));
 		return $this->db->get_array();
 	}
 

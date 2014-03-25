@@ -134,6 +134,35 @@ private function disconnect(){
 	$this->pdo_obj = null;
 	$this->query = null;
 }
+
+//this function Export sql file from database
+//if export will be successful output file is created in upload/buffer/database.sql
+//warning : this function use mysqldump program.for use this function first check for this program be installed
+// if return| =>0 successful complete
+//          | =>1 There was a warning during the export
+//	    | =>2 There was an error during export. Please check your values
+public function export_to_file(){
+	$command='mysqldump --opt -h' . DatabaseHost .' -u' . DatabaseUser .' -p' . DatabasePassword .' ' . DatabaseName .' > ' . AppPath . 'upload/buffer/database.sql';
+	//run mysqldump program
+	exec($command,$output=array(),$result);
+	return $result;
+}
+
+//this function import sql file to database
+//warning: first of all check permission for use this function
+//any change with this function can not undo
+public function import_from_file($filename){
+	if(file_exists($filename)){
+		$command='mysql -h' . DatabaseHost .' -u' . DatabaseUser .' -p' . DatabasePassword .' ' . DatabaseName .' < ' . $filename ;
+		//run mysql program
+		exec($command,$output=array(),$result);
+		return $result;
+	}
+	else{	
+		//file not found
+		return null;
+	}
+}
 #end of class
 }
 ?>

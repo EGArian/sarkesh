@@ -31,7 +31,7 @@ class users_controller{
 			
 			if($this->is_logedin()){
 				//show user static
-				return $this->view->show_user_page($view);
+				return $this->module->show_user_page($view);
 
 			}
 			else{
@@ -40,11 +40,11 @@ class users_controller{
 			}
 			
 		}
-		//warrning: this part do not check for user registreration access
+		//warning: this part do not check for user register access
 		elseif($action_name == 'register'){
 			if($this->is_logedin()){
 				//jump to user profile
-				return $this->view->show_user_page($view);
+				return $this->module->show_user_page($view);
 			}
 			else{
 				//show register page
@@ -78,10 +78,15 @@ class users_controller{
 			
 		}
 		elseif($action_name == 'default_core_page'){
-			if($this->module->has_permation('core_admin_panel')){
+			if($this->module->has_permission('core_admin_panel')){
 				//show register page
 				return $this->view->show_default_core_page($view,$show);
 			}
+			
+		}
+		elseif($action_name == 'test'){
+			
+			$a = new ctr_uploader;
 			
 		}
 		else{
@@ -100,21 +105,21 @@ class users_controller{
 			//if cerrect do_login and else return negative 
 			//1 ->username and password was cerrect user loged in 
 			if($this->is_logedin()){
-				//user is logedin before
+				//user is loged in before
 				$this->view->show_in_box(_('Message'), _('You loged in with defferent account before! first logout.'));
 				echo 4;
 				return false;
 			}
 			elseif(isset($_GET['username']) && isset($_GET['password'])){
 				//start login progress
-				$this->db->do_query('SELECT * FROM ' . TablePrefix . 'users WHERE username=? AND password=?;', array($this->io->cin('username', 'get'),md5($this->io->cin('password', 'get'))));
+				$this->db->do_query('SELECT * FROM users WHERE username=? AND password=?;', array($this->io->cin('username', 'get'),md5($this->io->cin('password', 'get'))));
 				if($this->db->rows_count() != 0){
-					//check user permation
+					//check user permission
 					$result = $this->db->get_first_row_array();
-					$this->db->do_query('SELECT * From ' .TablePrefix . 'permations where id=?;', array($result['permation']));
-					$permation = $this->db->get_first_row_array();
-					//check user permantion ->enable
-					if($permation['enable'] == '1'){
+					$this->db->do_query('SELECT * From permissions where id=?;', array($result['permission']));
+					$permission = $this->db->get_first_row_array();
+					//check user permission ->enable
+					if($permission['enable'] == '1'){
 						//username is cerrect going to set validator
 						if(isset($_GET['remember'])){
 						
@@ -125,11 +130,11 @@ class users_controller{
 							$valid_id = $this->obj_validator->set('USERS_LOGIN',false,true);
 							
 						}
-						$this->db->do_query('UPDATE ' . TablePrefix . 'users SET validator=? WHERE username=?;', array($valid_id, $this->io->cin('username', 'get')));
+						$this->db->do_query('UPDATE users SET validator=? WHERE username=?;', array($valid_id, $this->io->cin('username', 'get')));
 						$this->service_result = 1;
 					}
 					else{
-						//user do not has permation
+						//user do not has permission
 						$this->view->show_in_box(_('Message'), _('Your account not active! you can recive new active request from email.') ,true);
 					}
 				}
@@ -140,7 +145,7 @@ class users_controller{
 			}
 			else{
 				//what do you want to do ? 
-				// you send nothing for me to proccess that. so  i return -1 for you
+				// you send nothing for me to process that. so  i return -1 for you
 				$this->view->show_in_box(_('Message'), _('Your request can not be prossed! try again later.'));
 				
 			}
@@ -148,7 +153,7 @@ class users_controller{
 		//logout from system
 		elseif($service_name == 'logout'){
 			if($this->is_logedin()){
-				//start logout proccess
+				//start logout process
 				$this->logout();
 				$this->service_result = "1";
 			}
@@ -171,7 +176,7 @@ class users_controller{
 					$email = $this->io->cin('email', 'get');
 					$result = $this->obj_validator->set('USERS_FORGET',false, false,'all');
 					//save validator in user table
-					$this->db->do_query('UPDATE ' . TablePrefix . 'users SET forget=? WHERE email=?;', array(trim($result['id']),$email));
+					$this->db->do_query('UPDATE users SET forget=? WHERE email=?;', array(trim($result['id']),$email));
 					//get user informations
 					$user = $this->module->get_user_info($email);
 					//send forget email
@@ -202,7 +207,7 @@ class users_controller{
 					else{
 						$user = $this->module->get_user_info($reset_id, 'forget');
 						$password = $this->module->reset_password($reset_id);
-						//reset password successfull going to send reset email
+						//reset password successful going to send reset email
 						$mail = new cls_mail;
 						$email_content = $this->plg_email->add_template(_('your password is:%' . $password), _('Reset Password'));
 						if($mail->simple_send($user['username'], $user['email'] , _('Reset Password') , $email_content)){
@@ -271,7 +276,7 @@ class users_controller{
 			}
 		
 		}
-		//this function compare password and repassword 
+		//this function compare password and re password 
 		elseif($service_name == 'check_password_match'){
 			if(isset($_GET['password']) && isset($_GET['repassword'])){
 				$password = $this->io->cin('password', 'get');
@@ -337,7 +342,7 @@ class users_controller{
 		return $this->obj_validator->is_set('USERS_LOGIN');
 	}
 	
-	//this function do users logout proccess
+	//this function do users logout process
 	public function logout(){
 		$this->obj_validator->delete('USERS_LOGIN');
 	}

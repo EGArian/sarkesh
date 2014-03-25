@@ -36,7 +36,7 @@ class content_module{
 	public function get_content($id){
 		$local = $this->obj_localize->get_localize();
 		
-		$this->db->do_query('SELECT * FROM ' . TablePrefix . 'content WHERE id=?;', array($id));
+		$this->db->do_query('SELECT * FROM content WHERE id=?;', array($id));
 		if($this->db->rows_count() == 0){
 			//not found
 			return null;
@@ -44,7 +44,7 @@ class content_module{
 		else{	
 			$result[] = $this->db->get_array();
 			//going to get fields
-			$query = "SELECT fp.type as 'type', fp.rank as 'rank', fp.entry_id as 'entry_id', f.ref_id as 'ref_id', f.value as 'value' FROM " . TablePrefix ;
+			$query = "SELECT fp.type as 'type', fp.rank as 'rank', fp.entry_id as 'entry_id', f.ref_id as 'ref_id', f.value as 'value' FROM " ;
 			$query .= "fields f INNER JOIN fields_patern fp ON fp.id = f.patern_id where ref_id = ? ORDER BY rank;";
 			$this->db->do_query($query, array($id));
 			$result[] = $this->db->get_array();

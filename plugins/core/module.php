@@ -23,7 +23,7 @@ class core_module{
 	#it's most use for return plugin menu for show in admin panel
 	public function get_plugins_menu(){
 		#first get all active plugins
-		$this->db->do_query('SELECT * FROM ' . TablePrefix . "plugins WHERE enable=1;");
+		$this->db->do_query("SELECT * FROM plugins WHERE enable=1;");
 		$plugins = $this->db->get_array();
 		#this variable store all menus back from plugins->admin_menu()
 		$menus = null;
@@ -42,10 +42,10 @@ class core_module{
 	//if active = false then it send back all plugins and else return just activated plugins
 	public function get_plugins($active = true){
 		if($active){
-			$this->db->do_query('SELECT * FROM ' . TablePrefix . 'plugins WHERE enable=1;');
+			$this->db->do_query('SELECT * FROM plugins WHERE enable=1;');
 		}
 		else{
-			$this->db->do_query('SELECT * FROM ' . TablePrefix . 'plugins;');
+			$this->db->do_query('SELECT * FROM plugins;');
 		}
 		//get extra information from info.php files in plugins folder
 		$result = $this->db->get_array();
@@ -69,7 +69,7 @@ class core_module{
 	#this function show list of all plugins 
 	public function show_plugins_list($view, $show){
 		#firs check for permission user access
-		if($this->user->has_permation('core_admin_panel')){
+		if($this->user->has_permission('core_admin_panel')){
 					return $this->view->show_plugins_list($this->get_plugins(FALSE), $view, $show);
 		}
 		else{
@@ -79,12 +79,12 @@ class core_module{
 	#this function disable or enable plugins
 	public function plugin_changestate(){
 		//checking permission
-		if($this->user->has_permation('core_admin_panel')){
+		if($this->user->has_permission('core_admin_panel')){
 			if(isset($_GET['value'])){
 				$state = $this->io->cin('value', 'get');	
 				$values = explode("*", $state);
 				try{
-					$this->db->do_query('UPDATE ' .TablePrefix . 'plugins SET enable=? where name=?', array($values[0],$values[1]));
+					$this->db->do_query('UPDATE plugins SET enable=? where name=?', array($values[0],$values[1]));
 					return 1;
 				}
 				catch(exception $e){

@@ -37,15 +37,17 @@ class users_view{
 	}
 	//this function show user page (like profile)
 	//warrning this function do not show username cerrectly
-	public function show_user_page($view){
+	public function show_user_page($view, $user_info,$admin_permission){
 		$this->raintpl->configure("tpl_dir", "plugins/users/tpl/" );
 		$this->cache = $this->raintpl->cache('users_page', 60);
 		if( $this->cache){
 			$page_content = $this->obj_page->show_block(true,  _('User State') , $this->cache, $view);
 		}
 		else{
+			$this->raintpl->assign( "admin_permission", $admin_permission );
 			$this->raintpl->assign( "hello", _('Hello!') );
-			$this->raintpl->assign( "username", '$username' );
+			$this->raintpl->assign( "label_admin_area", _('Admin panel') );
+			$this->raintpl->assign( "username", $user_info['username'] );
 			$this->raintpl->assign( "logout", _('Log out') );
 			$page_content = $this->obj_page->show_block(true,  _('User State') , $this->raintpl->draw( 'users_page', true ), $view);
 		}
@@ -134,11 +136,11 @@ class users_view{
 		$this->raintpl->configure("tpl_dir", "plugins/users/tpl/" );
 		$this->cache == $this->raintpl->cache('default_core_page', 60);
 		if( $this->cache ){
-			$page_content = $this->obj_page->show_block(true,  _('Users and Permations') , $this->cache, $view);
+			$page_content = $this->obj_page->show_block(true,  _('Users and permissions') , $this->cache, $view);
 		}
 		else{
 			$this->raintpl->assign( "label_code", _('Active code:') );
-			$page_content = $this->obj_page->show_block($show,  _('Users and Permations') , $this->raintpl->draw( 'default_core_page',true ), $view);
+			$page_content = $this->obj_page->show_block($show,  _('Users and permissions') , $this->raintpl->draw( 'default_core_page',true ), $view);
 		}	
 		return array(_('Active Acount'),$page_content);
 	

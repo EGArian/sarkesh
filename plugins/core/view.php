@@ -54,7 +54,7 @@ class core_view{
 			$this->raintpl->assign( "Blocks", _('Blocks'));
 			
 			$this->raintpl->assign( "url_uap", cls_general::create_url(array('panel','admin','plugin','users','action','default_core_page')));
-			$this->raintpl->assign( "UsersandPermations", _('Users and Permations'));
+			$this->raintpl->assign( "Usersandpermissions", _('Users and permissions'));
 			
 			$this->raintpl->assign( "url_basic", cls_general::create_url(array('panel','admin','plugin','core','action','basic_settings')));
 			$this->raintpl->assign( "BasicSettings", _('Basic Settings'));
