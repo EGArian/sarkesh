@@ -78,7 +78,7 @@ function users_logout(){
 			}
 			else{
 				//problem in logout
-				 xmlDoc = $.parseXML( data ),
+				xmlDoc = $.parseXML( data ),
 				$xml = $( xmlDoc ),
 				$header = $xml.find( "header" );
 				$content = $xml.find( "content" );

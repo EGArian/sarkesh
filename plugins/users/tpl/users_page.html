@@ -1,12 +1,16 @@
-<div id="users_page" class="users_page" >
-	<script language="javascript" type="text/javascript" src="./plugins/users/scripts/users.js"></script>
-	<div id="msg" class="users_page_msg" ></div>
-	 {$hello . '  ' .  $username} <a onclick="users_logout()"> {$logout} </a>
-	<p>
-		<button type="button" class="btn btn-primary btn-md" onclick="users_logout()">{$logout}</button>
-	 	{if="$admin_permission == '1'"}
-	  		<button type="button" class="btn btn-default btn-md" onclick="sys_jump_page('?panel=admin')">{$label_admin_area}</button>
+<div class=container>
+	<div id="users_page" class="users_page" >
+		<script language="javascript" type="text/javascript" src="./plugins/users/scripts/users.js"></script>
+		<div id="msg" class="users_page_msg" ></div>
 		
-		{/if}
-	</p>
+		<img class="img-thumbnail" src="./plugins/users/images/def_avatar_64.png"> {$hello . '  ' .  $username} <br />
+		<br />
+		<p>
+			<button type="button" class="btn btn-primary btn-md" onclick="users_logout()">{$logout}</button>
+			{if="$admin_permission == '1'"}
+				<button type="button" class="btn btn-default btn-md" onclick="sys_jump_page('?panel=admin')">{$label_admin_area}</button>
+			
+			{/if}
+		</p>
+	</div>
 </div>

@@ -1,0 +1,51 @@
+<script language="javascript" type="text/javascript" src="./core/lib/controls/uploader/scripts/ctr_uploader.js"></script>
+<div class="panel panel-default {$name}">
+	<input type="hidden" id="{$name}_uploader_file_types" value="{$file_types}" />
+	<input type="hidden" id="{$name}_uploader_max_file_size" value="{$max_file_size}" />
+	<div class="panel-heading">
+		<div class="panel-title">
+				{$title} : {$description}
+		</div>
+	</div>
+	<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-4">
+					<button class="btn btn-success" onclick="document.getElementById('{$name}_uploader_select_file').click();">{$label_select_file}</button>
+					<button class="btn btn-default hide" id="{$name}_uploader_start_upload" onclick="ctr_uploader_upload_file('{$name}');">{$label_start_upload}</button>
+						<input type="file" name="uploader" id="{$name}_uploader_select_file" class="hide" onchange="ctr_uploader_file_selected(this, '{$name}');">
+						<input type="hidden" id="{$name}_uploader_max_file_size" value="{$max_file_size}" />
+						<input type="hidden" id="{$name}_uploader_file_types" value="{$file_types}" />
+				</div>
+				<div id="{$name}_uploader_this_file_info" class="col-xs-7 offset-1 hide container">
+					<div class="row well well-sm">
+						<div class="col-xs-2">
+							<img id="{$name}_uploader_image_preview" height="60px" width="60px" src=""/>
+						</div>
+						<div class="col-xs-8">
+							<p>
+								 {$label_this_file_name}<span id="{$name}_uploader_this_file_name"></span><br />
+								 {$label_this_file_size}<span id="{$name}_uploader_this_file_size"></span>
+								 <span id="{$name}_uploader_this_file_size_unit"></span><br />
+								 <div id="{$name}_uploader_progressbar_block" class="progress progress-striped active hide">
+								 	<div id="{$name}_uploder_progressbar" class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 1%"></div>
+								 </div>
+							</p>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<br />
+			<div class="row">
+				<div class="col-xs-12">
+					<p>
+						{$label_file_types} : {$file_types}
+						<br />
+						{$label_file_size} : {$label_calculated_file_size} {$label_size_unit}
+					</p>
+				</div>
+			</div>
+			
+	</div>
+				
+</div>

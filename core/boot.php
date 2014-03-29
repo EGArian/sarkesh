@@ -9,7 +9,7 @@ function __autoload($class_name){
 
 	 }
 	 elseif($result[0] == 'cls'){
-		 @include_once(dirname(__FILE__) . '/cls/' . $class_name . '.php');
+		 @include_once(dirname(__FILE__) . '/lib/cls/' . $class_name . '.php');
 	 }
 	 else{
 		//going to include plugin
@@ -24,8 +24,8 @@ if(empty($sess_id)){ session_start();}
 if(file_exists("./config.php")) {
 	//going to run sarkesh!
 	include_once("./config.php");
-	//this part is for config template engine
-	//base url add to all src attrebiutes
+	//this part is for configure template engine
+	//base url add to all src attributes
 	cls_raintpl::configure("base_url", "." );
 	//base folder that tpl files stored on that
 	cls_raintpl::configure("tpl_dir", "tpl/" );
@@ -39,13 +39,19 @@ if(file_exists("./config.php")) {
 	#include functions
 	include_once("./core/functions/render.php");  
 	//check for that want work with services or normal use
-	if(isset($_GET['service'])){
+	if(isset($_REQUEST['service'])){
 		#run system in service mode
 		$obj_router = new cls_router;
 		$obj_router->run_service();
 	}
-	//this part is for working with admin area
-	elseif(isset($_GET['panel']) && $_GET['panel'] == 'admin'){
+	//check for that want work with controls
+	elseif(isset($_REQUEST['control'])){
+		#run system in service mode
+		$obj_router = new cls_router;
+		$obj_router->run_control();
+	}
+	//this part is for working with administrator area
+	elseif(isset($_REQUEST['panel']) && $_REQUEST['panel'] == 'admin'){
 		#load core
 		include_once("./core/inc/core_load.php");	
 	}
@@ -56,7 +62,7 @@ if(file_exists("./config.php")) {
 	}
 }
 else {
-	// config file not found
+	// configure file not found
 	// going to start system setup
 
 	echo("system setup...");

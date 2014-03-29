@@ -86,9 +86,12 @@ class users_controller{
 		}
 		elseif($action_name == 'test'){
 			
-			$a = new ctr_uploader;
-			
-		}
+			$a = new ctr_uploader();
+			$a->configure('NAME','image');
+			$a->configure('MAX_FILE_SIZE','337700654');
+			$a->configure('DES','upload your files easly');
+			$a->configure('FILE_TYPES','sql,exe,zip');
+			$a->draw();		}
 		else{
 			//not found
 			return $this->msg->action(404,$view,false);

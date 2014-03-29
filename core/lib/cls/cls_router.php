@@ -23,12 +23,12 @@ class cls_router{
 		$this->localize = $obj_localize->get_localize();
 		//-------------------------
 		$this->obj_io = new cls_io;
-		if(isset($_GET['plugin'])){
-			$this->plugin = $this->obj_io->cin('plugin','get');
+		if(isset($_REQUEST['plugin'])){
+			$this->plugin = $_REQUEST['plugin'];
 			//now we check action
-			if(isset($_GET['action'])){
+			if(isset($_REQUEST['action'])){
 				//action set by user
-				$this->action = $this->obj_io->cin('action','get');
+				$this->action = $_REQUEST['action'];
 			}
 			else{
 				//action not set. 
@@ -74,11 +74,16 @@ class cls_router{
 	}
 	//this function run services and jump request do plugin
 	public function run_service(){
-	      $plugin_name = $this->plugin . '_controller';
-	      $plugin = new $plugin_name;
-	      $plugin->service($this->action);
+		$plugin_name = $this->plugin . '_controller';
+		$plugin = new $plugin_name;
+		$plugin->service($this->action);
 	}
-	
+	//this function is for runing services from controls
+	public function run_control(){
+		$ctr_name = 'ctr_' . $this->plugin;
+		$ctr = new $ctr_name;
+		$ctr->service($this->action);
+	}
 	#this function is for refresh page and jump to address
 	public function site_refresh($url='0',$inner_url=true , $time=5){
 		if($url=='0'){$url= SiteRoot;}
