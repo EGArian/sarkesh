@@ -216,13 +216,9 @@ class cls_page{
 						$plugin = new $plugin_name;
 						//run action method for show block
 						//all blocks name should be like  'blk_blockname'
-						 // create local domain
-						bindtextdomain($this->localize_settings['language'], './plugins/' . $block['p.name'] .'/languages/');
 						$plugin->action($block['b.name'], 'BLOCK', $position);
-						//back localize to theme
-						$registry = new cls_registry;
-						bindtextdomain($this->localize_settings['language'], './themes/' . $registry->get('core', 'active_theme') .'/languages/');
-					}					
+					
+					}
 				}
 			
 			}

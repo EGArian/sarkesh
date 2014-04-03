@@ -88,9 +88,9 @@ class users_controller{
 			
 			$a = new ctr_uploader();
 			$a->configure('NAME','image');
-			$a->configure('MAX_FILE_SIZE','337700654');
+			$a->configure('MAX_FILE_SIZE','337654');
 			$a->configure('DES','upload your files easly');
-			$a->configure('FILE_TYPES','sql,exe,zip');
+			$a->configure('FILE_TYPES','gif,png,jpeg,jpg');
 			$a->draw();		}
 		else{
 			//not found

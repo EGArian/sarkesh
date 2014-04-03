@@ -5,15 +5,15 @@
 ob_start("sys_render");
 		//going to admin panel
 		//set plugin varible
-		if(isset($_GET['plugin'])){
-			$plugin = $_GET['plugin'];
+		if(isset($_REQUEST['plugin'])){
+			$plugin = $_REQUEST['plugin'];
 		}
 		else{
 			$plugin = 'default';
 		}
 		//set action varible
-		if(isset($_GET['action'])){
-			$action = $_GET['action'];
+		if(isset($_REQUEST['action'])){
+			$action = $_REQUEST['action'];
 		}
 		else{
 			$action = 'default';

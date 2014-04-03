@@ -19,6 +19,10 @@ class core_controller{
 		elseif($action == 'plugins_list'){
 		      return $this->module->show_plugins_list($view, $show);
 		}
+		elseif($action == 'appearance'){
+			
+			return $this->module->show_appearance($view,$show);
+		}
 		else{
 		      return $this->msg->action(404,$view,false);
 		}

@@ -55,22 +55,15 @@ class cls_router{
 	      if($this->obj_plugin->is_enabled($this->plugin)){
 	 	    	 $plugin_name = $this->plugin . '_controller';
 	     		 $plugin = new $plugin_name;
-	     		 // create local domain
-			     bindtextdomain($this->localize['language'], './plugins/' . $this->plugin .'/languages/');
-			     $content = $plugin->action($this->action, 'MAIN',true);	
+			 $content = $plugin->action($this->action, 'MAIN',true);	
 	      }
 		  else{
-		  		//plugin is not enabled
-		  		//show 404 page not found page
-		  		$plugin = new msg_controller;
-				bindtextdomain($this->localize['language'], './plugins/msg/languages/');
-			    $content = $plugin->action(404, 'MAIN',true);
+		  	//plugin is not enabled
+		  	//show 404 page not found page
+		  	$plugin = new msg_controller;
+			$content = $plugin->action(404, 'MAIN',true);
 		  }
 	      $sys_page->set_page_tittle($content[0]);
-	      //back localize to theme
-	      $registry = new cls_registry;
-	      bindtextdomain($this->localize['language'], './themes/' . $registry->get('core','active_theme') .'/languages/');
-
 	}
 	//this function run services and jump request do plugin
 	public function run_service(){

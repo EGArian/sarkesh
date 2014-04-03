@@ -42,10 +42,10 @@ class core_module{
 	//if active = false then it send back all plugins and else return just activated plugins
 	public function get_plugins($active = true){
 		if($active){
-			$this->db->do_query('SELECT * FROM plugins WHERE enable=1;');
+			$this->db->do_query('SELECT * FROM plugins WHERE enable=1 and can_edite != 0;');
 		}
 		else{
-			$this->db->do_query('SELECT * FROM plugins;');
+			$this->db->do_query('SELECT * FROM plugins WHERE can_edite != 0;');
 		}
 		//get extra information from info.php files in plugins folder
 		$result = $this->db->get_array();
@@ -97,6 +97,37 @@ class core_module{
 			return $this->msg->action(403, 'MAIN');
 		}
 			
+	}
+	//this function get informations about themes so show this on page
+	public function show_appearance($view, $show){
+		
+		//first get all theme folders in themes folder
+		$theme_dir = 'themes/*';
+		$themes = glob(AppPath . $theme_dir, GLOB_ONLYDIR);
+		
+		//get active theme
+		$registry = new cls_registry;
+		$theme_name = $registry->get('core','active_theme');
+		foreach ($themes as $key => $t) {
+			include_once ($t . '/info.php');
+			$themes_info[$key]['img'] = $theme['img'];
+			$themes_info[$key]['author'] = $theme['author'];	
+			$themes_info[$key]['name'] = $theme['name'];
+			$themes_info[$key]['version'] = $theme['version'];
+			//get folder name
+			$adr = explode("/", $t);
+			$index = max(array_keys($adr));			
+			$themes_info[$key]['folder_name'] = $adr[$index];
+			$themes_info[0]['count'] = $key + 1;
+			if(trim($theme_name) == trim($themes_info[$key]['folder_name'])){
+				$themes_info[$key]['default'] == '1';
+			}
+			else{
+				$themes_info[$key]['default'] == '0';
+			}
+			
+		}
+		return $this->view->show_appearance($view, $show, $themes_info);
 	}
 	
 }

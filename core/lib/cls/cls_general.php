@@ -2,7 +2,7 @@
 class cls_general{
 
 	#this function is for create raundom string	
-	public function random_string($length = 10 ,$type = 'NC') {
+	static function random_string($length = 10 ,$type = 'NC') {
 		if($type == 'NC'){
 			 $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
 		}
@@ -20,7 +20,7 @@ class cls_general{
 	}
 	
 	//this function return internal url. you should just send to that parameters
-	public function create_url($parameters){
+	static function create_url($parameters){
 		$url = '?';
 		for($i = 1; $i<= (max(array_keys($parameters))+1) ; $i +=2){
 			if($i != 0){

@@ -1,0 +1,58 @@
+<div class="core_plugin_list">
+		<script language="javascript" type="text/javascript" src="./plugins/core/scripts/core.js"></script>
+		<!-- Nav tabs -->
+		<ul class="nav nav-tabs">
+		  <li class="active"><a href="#core_theme_list" data-toggle="tab">{$label_themes}</a></li>
+		  <li><a href="#core_theme_install" data-toggle="tab">{$label_install}</a></li>
+		</ul>
+
+		<!-- Tab panes -->
+		<div class="tab-content">
+		  <div class="tab-pane active" id="core_theme_list">
+		  <!-- content -->
+					<table class="table">
+			        <thead>
+			            <tr>
+			                <th>#</th>
+			                <th>{$label_screen}</th>
+			                <th>{$label_name}</th>
+			                <th>{$label_author}</th>
+			                <th>{$label_options}</th>
+			            </tr>
+			        </thead>
+			        <tbody>
+			    	   	{loop="themes"}
+
+			    	    	<tr  id="core_plugin_{$value.name}" class="info">
+							    <td>{$key +1}</td>
+							    <td><img src="{$value.img}" height="50px" width="100px"></td>
+							    <td>{$value.folder_name}</td>
+							    <td>{$value.author}</td>			    	   		
+							    <td>
+						    	   			    	   	
+											    	   	{if="$theme_count > 1"}
+												    	   	{if="$value.default == 0"}
+								  								<button type="button" class="btn btn-success btn-xs" value="1*{$value.name}" onclick="core_plugins_changestate(this.id, this.value)">{$label_enable}</button>
+												    	   	{/if}
+												    	   	{if="$value.default == 1"}
+							  									<button type="button" disabled="disabled" class="btn btn-primary btn-xs" value="0*{$value.name}" onclick="">{$label_disable}</button>
+											    	   		{/if}
+											    	   	{/if}
+											    	   	
+						    	   			
+						    	</td>
+							</tr>
+						{/loop}
+			        </tbody>
+			    </table>
+			<!-- /content -->
+	    
+		  </div>
+		  <div class="tab-pane" id="core_theme_install">
+		  sorry. This part is under development!
+		  </div>
+
+		</div>
+		
+		
+		  	

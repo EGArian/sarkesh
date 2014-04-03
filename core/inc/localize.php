@@ -5,7 +5,7 @@
 $obj_localize = new cls_localize;
 $sys_language = $obj_localize->get_language();
 putenv("LANG=" . $sys_language);
-setlocale('LC_ALL', $sys_language);
+setlocale(LC_ALL, $sys_language);
 bindtextdomain($sys_language, "./languages/");
 textdomain($sys_language);
 ?>

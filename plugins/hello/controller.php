@@ -14,7 +14,7 @@ class hello_controller{
 	public function action($action_name, $view){
 	      
 	      if($action_name == 'say'){
-		$this->view->say_hello($view);
+				$this->view->say_hello($view);
 	      }
 	  
 	}
@@ -26,9 +26,18 @@ class hello_controller{
 	public function service($service_name){
 		
 		if($service_name == 'say'){
-		echo 'Hello world';
+			echo 'Hello world';
 		}
 	}
+	/*
+	 * In sarkesh we use this function for create menu in core panel.
+	 * Core is a plugin for control system settings
+	 * you can see this menu in core admin menu
+	 */
+	 
+	 public function admin_menu(){
+	 	return '<li><a href="#" >Hello World!</a></li>';
+	 }
 	
 
 }

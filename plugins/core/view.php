@@ -44,7 +44,7 @@ class core_view{
 			$this->raintpl->assign( "url_regional", cls_general::create_url(array('panel','admin','plugin','language','action','default_core_page')));
 			$this->raintpl->assign( "RegionalandLanguages", _('Regional and Languages'));
 			
-			$this->raintpl->assign( "url_appearance", cls_general::create_url(array('panel','admin','plugin','language','action','default_core_page')));
+			$this->raintpl->assign( "url_appearance", cls_general::create_url(array('panel','admin','plugin','core','action','appearance')));
 			$this->raintpl->assign( "Appearance", _('Appearance'));
 			
 			$this->raintpl->assign( "url_plugins", cls_general::create_url(array('panel','admin','plugin','core','action','plugins_list')));
@@ -91,6 +91,22 @@ class core_view{
 	#this function return error message in MODAL VIEW
 	public function error_in_operation($show, $e){
 		return $this->page->show_block($show,  'Error!' , _('Error occurred in complete your request.<br />reason:' . $e->getMessage()), 'MODAL','danger');
+	}
+	
+	#this function show appearance for select themes and styles
+	public function show_appearance($view, $show, $themes){
+		$this->raintpl->configure("tpl_dir", "plugins/core/tpl/" );
+		$this->raintpl->assign( "label_themes", _('Themes'));
+		$this->raintpl->assign( "label_install", _('Install'));
+		$this->raintpl->assign( "label_screen", _('Preview'));
+		$this->raintpl->assign( "label_name", _('Name'));
+		$this->raintpl->assign( "label_author", _('Author'));
+		$this->raintpl->assign( "label_options", _('Options'));
+		$this->raintpl->assign( "label_enable", _('Enable'));
+		$this->raintpl->assign( "label_disable", _('Disable'));
+		$this->raintpl->assign( "theme_count", $themes[0]['count']);
+		$this->raintpl->assign( "themes", $themes);
+		return array(_('Appearcance'), $this->page->show_block($show,  '' , $this->raintpl->draw( 'core_appearance', true), $view));
 	}
 }
 ?>

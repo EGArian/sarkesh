@@ -1,0 +1,529 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: sarkesh\n"
+"POT-Creation-Date: 2014-04-03 13:11+0330\n"
+"PO-Revision-Date: 2014-04-03 13:19+0330\n"
+"Last-Translator: Babak Alizadeh <alizadeh.babak@live.com>\n"
+"Language-Team: sarkesh developers <info@sarkesh.org>\n"
+"Language: FA_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: plugins/menu/info.php:2 plugins/calendar/info.php:2
+#: plugins/content/info.php:2 plugins/users/info.php:2
+#: plugins/captcha/info.php:2 plugins/languages/info.php:2
+#: plugins/msg/info.php:2 plugins/email/info.php:2 plugins/core/info.php:2
+msgid "Sarkesh Developers Team"
+msgstr "تیم توسعه‌ی سرکش"
+
+#: plugins/menu/info.php:3 plugins/content/info.php:3
+#: plugins/languages/info.php:3 plugins/msg/info.php:3
+#: plugins/email/info.php:3 plugins/core/info.php:3
+msgid "With Core you can manage and controll base of system settings"
+msgstr ""
+
+#: plugins/menu/info.php:4 plugins/calendar/info.php:4
+#: plugins/content/info.php:4 plugins/users/info.php:4
+#: plugins/files/info.php:4 plugins/captcha/info.php:4
+#: plugins/hello/info.php:4 plugins/languages/info.php:4
+#: plugins/msg/info.php:4 plugins/email/info.php:4 plugins/core/info.php:4
+msgid "0.0.3"
+msgstr ""
+
+#: plugins/calendar/view.php:28 plugins/calendar/view.php:40
+#: plugins/calendar/view.php:46 plugins/calendar/view.php:55
+#: plugins/calendar/view.php:67 plugins/calendar/view.php:73
+msgid "Select Date"
+msgstr ""
+
+#: plugins/calendar/view.php:38 plugins/calendar/view.php:65
+msgid "Doctor name:"
+msgstr ""
+
+#: plugins/calendar/info.php:3
+msgid "Calendar system"
+msgstr ""
+
+#: plugins/content/controller.php:45 plugins/languages/controller.php:40
+msgid "message"
+msgstr ""
+
+#: plugins/content/controller.php:45 plugins/languages/controller.php:40
+msgid "changing language has some problem! Please try again later."
+msgstr ""
+
+#: plugins/content/view.php:39
+msgid "by"
+msgstr ""
+
+#: plugins/users/controller.php:112 plugins/users/controller.php:141
+#: plugins/users/controller.php:146 plugins/users/controller.php:152
+#: plugins/users/controller.php:164 plugins/users/controller.php:170
+#: plugins/users/controller.php:175 plugins/users/controller.php:191
+#: plugins/users/controller.php:194 plugins/users/controller.php:208
+#: plugins/users/controller.php:218 plugins/users/controller.php:221
+#: plugins/users/controller.php:227 plugins/users/controller.php:336
+msgid "Message"
+msgstr "پیام"
+
+#: plugins/users/controller.php:112
+msgid "You loged in with defferent account before! first logout."
+msgstr ""
+
+#: plugins/users/controller.php:141
+msgid "Your account not active! you can recive new active request from email."
+msgstr ""
+
+#: plugins/users/controller.php:146 plugins/users/controller.php:170
+msgid "Username or Password is incerrect!"
+msgstr ""
+
+#: plugins/users/controller.php:152
+msgid "Your request can not be prossed! try again later."
+msgstr ""
+
+#: plugins/users/controller.php:164
+msgid "Problem in log out! try again later"
+msgstr ""
+
+#: plugins/users/controller.php:175
+msgid "you was not regestered with this email."
+msgstr ""
+
+#: plugins/users/controller.php:187
+msgid "your code is:%"
+msgstr ""
+
+#: plugins/users/controller.php:187
+msgid "Reset Code"
+msgstr ""
+
+#: plugins/users/controller.php:191
+msgid "Check your email for more informations."
+msgstr ""
+
+#: plugins/users/controller.php:194 plugins/users/controller.php:221
+msgid "Error in sending email . please tell admins!"
+msgstr ""
+
+#: plugins/users/controller.php:208 plugins/users/controller.php:227
+msgid "Your entered code is invalid."
+msgstr ""
+
+#: plugins/users/controller.php:215
+msgid "your password is:%"
+msgstr ""
+
+#: plugins/users/controller.php:215 plugins/users/controller.php:216
+msgid "Reset Password"
+msgstr ""
+
+#: plugins/users/controller.php:218
+msgid "Your password changed! look at your email."
+msgstr ""
+
+#: plugins/users/controller.php:240 plugins/users/view.php:26
+#: plugins/users/view.php:96
+msgid "Username:"
+msgstr ""
+
+#: plugins/users/controller.php:240
+msgid "This username is not available."
+msgstr ""
+
+#: plugins/users/controller.php:253 plugins/users/controller.php:259
+#: plugins/users/view.php:65 plugins/users/view.php:99
+msgid "Email:"
+msgstr ""
+
+#: plugins/users/controller.php:253
+msgid "Email Patern is not cerrect"
+msgstr ""
+
+#: plugins/users/controller.php:259
+msgid "This email is not available."
+msgstr ""
+
+#: plugins/users/controller.php:274 plugins/users/controller.php:288
+#: plugins/users/view.php:29 plugins/users/view.php:101
+msgid "Password:"
+msgstr ""
+
+#: plugins/users/controller.php:274
+msgid "Your password must be between 8 and 32 characters long."
+msgstr ""
+
+#: plugins/users/controller.php:288
+msgid "Your entered passwords are not match!"
+msgstr ""
+
+#: plugins/users/controller.php:314 plugins/users/controller.php:318
+#: plugins/users/controller.php:322 plugins/users/controller.php:326
+#: plugins/users/view.php:93 plugins/users/view.php:113
+#: plugins/users/view.php:116 plugins/users/module.php:143
+msgid "Register"
+msgstr ""
+
+#: plugins/users/controller.php:314
+msgid "Check your email for active your account"
+msgstr ""
+
+#: plugins/users/controller.php:318
+msgid "You can login to your account with your login info."
+msgstr ""
+
+#: plugins/users/controller.php:322
+msgid "Error in registering . please try again later!"
+msgstr ""
+
+#: plugins/users/controller.php:326
+msgid "Your entered captcha is not cerrect!!"
+msgstr ""
+
+#: plugins/users/controller.php:336
+msgid "Please fill all fields that marked with *."
+msgstr ""
+
+#: plugins/users/view.php:19 plugins/users/view.php:34
+#: plugins/languages/view.php:15
+msgid "User Sign in"
+msgstr ""
+
+#: plugins/users/view.php:27
+msgid "Don't have account?"
+msgstr ""
+
+#: plugins/users/view.php:28 plugins/users/view.php:103
+msgid "Sign up"
+msgstr ""
+
+#: plugins/users/view.php:30 plugins/users/view.php:98
+msgid "Username"
+msgstr ""
+
+#: plugins/users/view.php:31
+msgid "Remember me!"
+msgstr ""
+
+#: plugins/users/view.php:32
+msgid "Sign in"
+msgstr ""
+
+#: plugins/users/view.php:33
+msgid "Forget your password?"
+msgstr ""
+
+#: plugins/users/view.php:36 plugins/files/view.php:35
+#: plugins/hello/view.php:35
+msgid "Users Login"
+msgstr ""
+
+#: plugins/users/view.php:44 plugins/users/view.php:52
+msgid "User State"
+msgstr ""
+
+#: plugins/users/view.php:48
+msgid "Hello!"
+msgstr ""
+
+#: plugins/users/view.php:49
+msgid "Admin panel"
+msgstr ""
+
+#: plugins/users/view.php:51
+msgid "Log out"
+msgstr ""
+
+#: plugins/users/view.php:54
+msgid "User Profile"
+msgstr ""
+
+#: plugins/users/view.php:61 plugins/users/view.php:68
+#: plugins/users/view.php:82 plugins/users/view.php:84
+msgid "Reset password"
+msgstr ""
+
+#: plugins/users/view.php:64 plugins/users/view.php:100
+msgid "Email"
+msgstr ""
+
+#: plugins/users/view.php:67
+msgid "Send email"
+msgstr ""
+
+#: plugins/users/view.php:70
+msgid "Forget Password?"
+msgstr ""
+
+#: plugins/users/view.php:77
+msgid "Input reset code"
+msgstr ""
+
+#: plugins/users/view.php:80
+msgid "Code"
+msgstr ""
+
+#: plugins/users/view.php:81
+msgid "Your reset code"
+msgstr ""
+
+#: plugins/users/view.php:86
+msgid "Reset Password?"
+msgstr ""
+
+#: plugins/users/view.php:97 core/lib/cls/cls_page.php:187
+msgid "Cancel"
+msgstr ""
+
+#: plugins/users/view.php:102
+msgid "Re Password"
+msgstr ""
+
+#: plugins/users/view.php:104
+msgid "By clicking submit you are agreeing to the Terms and Conditions."
+msgstr ""
+
+#: plugins/users/view.php:122 plugins/users/view.php:128
+#: plugins/users/view.php:129
+msgid "Active account"
+msgstr ""
+
+#: plugins/users/view.php:125 plugins/users/view.php:142
+msgid "Active code:"
+msgstr ""
+
+#: plugins/users/view.php:126
+msgid "Active code"
+msgstr ""
+
+#: plugins/users/view.php:127
+msgid "Enter code that you recived by email to active your account."
+msgstr ""
+
+#: plugins/users/view.php:131 plugins/users/view.php:145
+msgid "Active Acount"
+msgstr ""
+
+#: plugins/users/view.php:139 plugins/users/view.php:143
+#: plugins/core/view.php:57
+msgid "Users and permissions"
+msgstr ""
+
+#: plugins/users/info.php:3
+msgid "Users and permations controlled with this plugin."
+msgstr ""
+
+#: plugins/users/module.php:143
+msgid "your code is:"
+msgstr ""
+
+#: plugins/files/view.php:23 plugins/files/view.php:32
+#: plugins/hello/view.php:23 plugins/hello/view.php:32
+msgid "Tittle of message"
+msgstr ""
+
+#: plugins/files/view.php:30 plugins/hello/view.php:30
+msgid "Hello world!"
+msgstr ""
+
+#: plugins/files/info.php:2 plugins/hello/info.php:2
+msgid "Sarkesh Developers"
+msgstr ""
+
+#: plugins/files/info.php:3
+msgid ""
+"files is a plugin for create a way to access files that stored on several "
+"places"
+msgstr ""
+
+#: plugins/files/module.php:41 plugins/files/module.php:46
+msgid "File system"
+msgstr ""
+
+#: plugins/files/module.php:41
+msgid "Your file successfuly uploaded."
+msgstr ""
+
+#: plugins/files/module.php:46
+msgid "Upload fail! please refresh page and try again."
+msgstr ""
+
+#: plugins/captcha/view.php:17
+msgid "if you do not see capcha please refresh page again."
+msgstr ""
+
+#: plugins/captcha/view.php:18 plugins/captcha/view.php:20
+msgid "Captcha"
+msgstr ""
+
+#: plugins/captcha/view.php:19
+msgid "capcha is a way for seperate humans from machins."
+msgstr ""
+
+#: plugins/captcha/info.php:3
+msgid "Use for show captcha in system"
+msgstr ""
+
+#: plugins/hello/info.php:3
+msgid "Hello is a sample plugin for developers."
+msgstr ""
+
+#: plugins/languages/view.php:19
+msgid "Languages"
+msgstr ""
+
+#: plugins/msg/view.php:26 plugins/msg/view.php:35 plugins/msg/view.php:38
+msgid "Not Found!"
+msgstr "پیدا نشد!"
+
+#: plugins/msg/view.php:33
+msgid "Page Not Found!"
+msgstr ""
+
+#: plugins/msg/view.php:46 plugins/msg/view.php:55 plugins/msg/view.php:58
+msgid "Access Denied!"
+msgstr ""
+
+#: plugins/msg/view.php:53
+msgid "You have no permission to access this page!"
+msgstr ""
+
+#: plugins/core/view.php:17
+msgid "Main Menu"
+msgstr ""
+
+#: plugins/core/view.php:33
+msgid "Core Settings"
+msgstr ""
+
+#: plugins/core/view.php:41 plugins/core/view.php:61
+msgid "Default Core Page"
+msgstr ""
+
+#: plugins/core/view.php:45
+msgid "Regional and Languages"
+msgstr "نواحی و زبان ها"
+
+#: plugins/core/view.php:48
+msgid "Appearance"
+msgstr "ظاهر"
+
+#: plugins/core/view.php:51 plugins/core/view.php:85 plugins/core/view.php:87
+msgid "Plugins"
+msgstr "افزونه ها"
+
+#: plugins/core/view.php:54
+msgid "Blocks"
+msgstr "بلوک ها"
+
+#: plugins/core/view.php:60
+msgid "Basic Settings"
+msgstr "تنظیمات پایه"
+
+#: plugins/core/view.php:77
+msgid "Options"
+msgstr "تنظیمات"
+
+#: plugins/core/view.php:78
+msgid "Name"
+msgstr "نام"
+
+#: plugins/core/view.php:79
+msgid "Description"
+msgstr "توضیحات"
+
+#: plugins/core/view.php:80
+msgid "Version"
+msgstr "شماره نسخه"
+
+#: plugins/core/view.php:81
+msgid "Author"
+msgstr "نگارنده"
+
+#: plugins/core/view.php:82 plugins/core/view.php:83
+msgid "Disable"
+msgstr ""
+
+#: plugins/core/view.php:84
+msgid "Enable"
+msgstr "فعال سازی"
+
+#: plugins/core/view.php:86
+msgid "Install"
+msgstr "نصب"
+
+#: plugins/core/view.php:93
+msgid "Error occurred in complete your request.<br />reason:"
+msgstr ""
+
+#: themes/blog/index.php:53
+msgid "Copyright &copy; Sarkesh LTD 2013"
+msgstr ""
+
+#: core/lib/cls/cls_page.php:181
+msgid "Ok"
+msgstr "تایید"
+
+#: core/lib/cls/cls_page.php:184
+msgid "Back"
+msgstr "بازگشت"
+
+#: core/lib/cls/cls_zip.php:8
+msgid "can not open zip archive files"
+msgstr ""
+
+#: core/lib/controls/uploader/view.php:32
+msgid "Select File"
+msgstr "انتخاب فایل"
+
+#: core/lib/controls/uploader/view.php:37
+#: core/lib/controls/uploader/module.php:25
+msgid "Byte"
+msgstr "بایت"
+
+#: core/lib/controls/uploader/view.php:41
+#: core/lib/controls/uploader/module.php:29
+msgid "KiloByte"
+msgstr "کیلوبایت"
+
+#: core/lib/controls/uploader/view.php:45
+#: core/lib/controls/uploader/module.php:33
+msgid "MegaByte"
+msgstr "مگابایت"
+
+#: core/lib/controls/uploader/view.php:49
+msgid "Maximum File Size"
+msgstr "حداکثر حجم مجاز"
+
+#: core/lib/controls/uploader/view.php:50
+msgid "File Types"
+msgstr "پسوند های مجاز"
+
+#: core/lib/controls/uploader/view.php:51
+msgid "File name :"
+msgstr "نام:"
+
+#: core/lib/controls/uploader/view.php:52
+msgid "File size :"
+msgstr "اندازه فایل:"
+
+#: core/lib/controls/uploader/view.php:53
+msgid "File Type:"
+msgstr "پسوند فایل:"
+
+#: core/lib/controls/uploader/view.php:54
+msgid "Start Upload"
+msgstr "شروع آپلود"
+
+#: core/lib/controls/uploader/view.php:66
+msgid "Size or type of selected file is invalid!"
+msgstr "پسوند یا سایز فایل انتخابی غیر مجاز است."
+
+#: core/lib/controls/uploader/view.php:71
+msgid "File upload"
+msgstr "آپلود فایل"
