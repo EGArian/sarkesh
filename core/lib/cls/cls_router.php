@@ -51,7 +51,6 @@ class cls_router{
 	      //this function run from page class.
 	      // this function load plugin and run controller
 	      //checking for that plugin is enabled
-	       global $sys_page;
 	      if($this->obj_plugin->is_enabled($this->plugin)){
 	 	    	 $plugin_name = $this->plugin . '_controller';
 	     		 $plugin = new $plugin_name;
@@ -63,7 +62,7 @@ class cls_router{
 		  	$plugin = new msg_controller;
 			$content = $plugin->action(404, 'MAIN',true);
 		  }
-	      $sys_page->set_page_tittle($content[0]);
+	      cls_page::set_page_tittle($content[0]);
 	}
 	//this function run services and jump request do plugin
 	public function run_service(){

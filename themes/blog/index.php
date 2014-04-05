@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<?php $sys_page->load_headers();?>
+</#HEADERS#/>
 
 <title></#PAGE_TITTLE#/></title>
 </head>
@@ -22,7 +22,7 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
-          <?php $sys_page->set_position('header'); ?>
+          <?php cls_page::set_position('header'); ?>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container -->
     </nav>
@@ -31,15 +31,15 @@
 
       <div class="row">
         <div class="col-xs-8 main">
-	  <?php $sys_page->set_position('content'); ?>	
+	  <?php cls_page::set_position('content'); ?>	
         </div>
         
         <div class="col-xs-4 sidebar">
 	  <div class="row">
-	  <?php $sys_page->set_position('sidebar1'); ?>
+	  <?php cls_page::set_position('sidebar1'); ?>
 	  </div>
 	  <div class="row">
-	  <?php $sys_page->set_position('sidebar2'); ?>
+	  <?php cls_page::set_position('sidebar2'); ?>
           </div>
         </div>
       </div>
@@ -49,7 +49,7 @@
       <footer>
         <div class="row">
           <div class="col-xs-12">
-	    <p><?php $sys_page->set_position('footer'); ?></p>
+	    <p><?php cls_page::set_position('footer'); ?></p>
             <p><?php echo _('Copyright &copy; Sarkesh LTD 2013'); ?></p><br />
           </div>
         </div>

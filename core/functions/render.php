@@ -5,8 +5,11 @@ function sys_render($buffer)
 {
 	// first replace headers 
 	// like css java scripts and ect
-	global $sys_page;
-	$buffer = str_replace("</#PAGE_TITTLE#/>", $sys_page->get_page_tittle(), $buffer);
+	$buffer = str_replace("</#PAGE_TITTLE#/>", cls_page::get_page_tittle(), $buffer);
+	
+	//LOAD HEADERS
+	$buffer = str_replace("</#HEADERS#/>", cls_page::load_headers(false), $buffer);
+	
 	return $buffer;
 }
 

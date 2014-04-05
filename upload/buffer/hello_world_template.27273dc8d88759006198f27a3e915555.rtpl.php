@@ -1,0 +1,1 @@
+<?php echo $label_hello_world;?>

@@ -35,7 +35,6 @@ if(file_exists("./config.php")) {
 	//include core difines
 	include_once( AppPath . 'core/defines.php');
 	include_once(AppPath . 'core/inc/localize.php');
-	$sys_page = new cls_page;
 	#include functions
 	include_once("./core/functions/render.php");  
 	//check for that want work with services or normal use
@@ -56,7 +55,6 @@ if(file_exists("./config.php")) {
 		include_once("./core/inc/core_load.php");	
 	}
 	else{
-	
 		#load system in gui normal mode
 		include_once("./core/inc/load.php");
 	}
