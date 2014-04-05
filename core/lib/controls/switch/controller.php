@@ -1,9 +1,9 @@
 <?php
 /*
-	this class is a control for working with upload files
+	this class is a control for working with switches toggle buttons
 	
 */
-class ctr_uploader extends ctr_uploader_module{
+class ctr_uploader extends ctr_switch_module{
 	
 	//$name use to access this class on the page
 	private $uploader;

@@ -50,11 +50,11 @@ function ctr_uploader_file_selected(obj, id){
 			);
 			//show file if that's image
 			if(obj.files[0].type.match('image/*')){
-				var input = event.target;
+			    var input = event.target;
 			    var reader = new FileReader();
 			    reader.onload = function(event){
-			      var dataURL = event.target.result;
 			      $("img#" + id + "_uploader_image_preview").removeClass('hide');
+			      var dataURL = event.target.result;
 			      var output = document.getElementById(id + '_uploader_image_preview');
 			      output.src = dataURL;			      
 			    };
