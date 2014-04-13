@@ -183,7 +183,7 @@ class users_module{
 	
 	//this function show user profile page
 	public function show_user_page($view){
-	      $this->view->show_user_page($view, $this->get_current_user_info(), $this->has_permission('core_admin_panel'));
+	      return $this->view->show_user_page($view, $this->get_current_user_info(), $this->has_permission('core_admin_panel'));
 	}
 }
 ?>

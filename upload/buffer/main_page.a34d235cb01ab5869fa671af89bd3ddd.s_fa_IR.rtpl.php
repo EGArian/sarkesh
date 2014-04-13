@@ -4,7 +4,7 @@
 			<div class="thumbnail">
 				<img src="../plugins/core/images/Region _and_Language_64.png" alt="...">
 				<div class="caption">
-					<p class="text-center">نواحی و زبان ها</p>
+					<p class="text-center">منطقه و زبان‌ها</p>
 				</div>
 			</div>
 		</a>
@@ -37,7 +37,7 @@
 			<div class="thumbnail">
 				<img src="../plugins/core/images/Gadgets_alt_64.png" alt="...">
 				<div class="caption">
-					<p class="text-center">بلوک ها</p>
+					<p class="text-center">بوک ها</p>
 				</div>
 			</div>
 		</a>
@@ -47,7 +47,7 @@
 			<div class="thumbnail">
 				<img src="../plugins/core/images/User_Accounts_64.png" alt="...">
 				<div class="caption">
-					<p class="text-center">Users and permissions</p>
+					<p class="text-center">کاربران و دسترسی ها</p>
 				</div>
 			</div>
 		</a>
