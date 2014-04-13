@@ -19,7 +19,7 @@ class languages_controller{
 			//going to show language selection
 			$user_language = $this->obj_localize->get_language();
 			$languages = $this->madule->get_languages($user_language);
-			$this->view->languages_show($languages, $view);
+			return $this->view->languages_show($languages, $view);
 		}
 
 	}

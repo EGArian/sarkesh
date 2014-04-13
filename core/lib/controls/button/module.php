@@ -10,6 +10,6 @@ class ctr_switch_module extends ctr_switch_view{
 	}
 	
 	protected function module_draw($config){
-		return $this->view_draw($config);
+		$this->view_draw($config);
 	}
 }

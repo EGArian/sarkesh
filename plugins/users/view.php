@@ -17,19 +17,19 @@ class users_view{
 			$page_content = cls_page::show_block($show,  _('User Sign in') , $this->cache, $view);
 		}
 		else{
-		// can register
-		$registery = new cls_registry;
-		$this->raintpl->assign( "can_register", $registery->get('users', 'register') );
-		//add tag for show messages
-		$this->raintpl->assign( "label_username", _('Username:') );
-		$this->raintpl->assign( "dont_have_account", _("Don't have account?") );
-		$this->raintpl->assign( "signup", _('Sign up') );
-		$this->raintpl->assign( "label_password", _('Password:') );
-		$this->raintpl->assign( "username", _('Username') );
-		$this->raintpl->assign( "remember_me", _('Remember me!') );
-		$this->raintpl->assign( "sign_in", _('Sign in') );
-		$this->raintpl->assign( "forget_password", _('Forget your password?') );
-		$page_content = cls_page::show_block($show,  _('User Sign in') , $this->raintpl->draw( 'users_login', true ), $view);
+			// can register
+			$registery = new cls_registry;
+			$this->raintpl->assign( "can_register", $registery->get('users', 'register') );
+			//add tag for show messages
+			$this->raintpl->assign( "label_username", _('Username:') );
+			$this->raintpl->assign( "dont_have_account", _("Don't have account?") );
+			$this->raintpl->assign( "signup", _('Sign up') );
+			$this->raintpl->assign( "label_password", _('Password:') );
+			$this->raintpl->assign( "username", _('Username') );
+			$this->raintpl->assign( "remember_me", _('Remember me!') );
+			$this->raintpl->assign( "sign_in", _('Sign in') );
+			$this->raintpl->assign( "forget_password", _('Forget your password?') );
+			$page_content = cls_page::show_block($show,  _('User Sign in') , $this->raintpl->draw( 'users_login', true ), $view);
 		}
 		return array(_('Users Login'),$page_content);
 	}
@@ -39,7 +39,7 @@ class users_view{
 		$this->raintpl->configure("tpl_dir", "plugins/users/tpl/" );
 		$this->cache = $this->raintpl->cache('users_page', 60);
 		if( $this->cache){
-			$page_content = cls_page::show_block(true,  _('User State') , $this->cache, $view);
+			$page_content = cls_page::show_block(false,  _('User State') , $this->cache, $view);
 		}
 		else{
 			$this->raintpl->assign( "admin_permission", $admin_permission );
@@ -47,7 +47,7 @@ class users_view{
 			$this->raintpl->assign( "label_admin_area", _('Admin panel') );
 			$this->raintpl->assign( "username", $user_info['username'] );
 			$this->raintpl->assign( "logout", _('Log out') );
-			$page_content = cls_page::show_block(true,  _('User State') , $this->raintpl->draw( 'users_page', true ), $view);
+			$page_content = cls_page::show_block(false,  _('User State') , $this->raintpl->draw( 'users_page', true ), $view);
 		}
 		return array(_('User Profile'),$page_content);
 	}
@@ -56,14 +56,14 @@ class users_view{
 		$this->raintpl->configure("tpl_dir", "plugins/users/tpl/" );
 		$this->cache = $this->raintpl->cache('users_forget_password', 60);
 		if( $this->cache){
-			$page_content = cls_page::show_block(true,  _('Reset password') , $this->cache, $view);
+			$page_content = cls_page::show_block(false,  _('Reset password') , $this->cache, $view);
 		}
 		else{
 			$this->raintpl->assign( "email", _('Email') );
 			$this->raintpl->assign( "label_email", _('Email:') );
 			$this->raintpl->assign( "reset_password_note", "Enter your email and we send reset password request to your email.");
 			$this->raintpl->assign( "send_recover_email", _('Send email') );
-			$page_content = cls_page::show_block(true,  _('Reset password') , $this->raintpl->draw( 'users_forget_password', true ), $view);
+			$page_content = cls_page::show_block(false,  _('Reset password') , $this->raintpl->draw( 'users_forget_password', true ), $view);
 		}
 		return array(_('Forget Password?'),$page_content);
 	}
@@ -72,14 +72,14 @@ class users_view{
 		$this->raintpl->configure("tpl_dir", "plugins/users/tpl/" );
 		$this->cache == $this->raintpl->cache('users_reset_password', 60);
 		if( $this->cache){
-			$page_content = cls_page::show_block(true,  _('Input reset code') , $this->cache, $view);
+			$page_content = cls_page::show_block(false,  _('Input reset code') , $this->cache, $view);
 		}
 		else{
 			$this->raintpl->assign( "label_code", _('Code') );
 			$this->raintpl->assign( "reset_code", _('Your reset code') );
 			$this->raintpl->assign( "reset_password", _('Reset password'));
 			$this->raintpl->assign( "reset_password_note", "For reset your password enter code that you get from your email.");
-			$page_content = cls_page::show_block(true,  _('Reset password') , $this->raintpl->draw( 'users_reset_password', true ), $view);
+			$page_content = cls_page::show_block(false,  _('Reset password') , $this->raintpl->draw( 'users_reset_password', true ), $view);
 		}
 		return array(_('Reset Password?'),$page_content);
 		
@@ -88,7 +88,7 @@ class users_view{
 		$this->raintpl->configure("tpl_dir", "plugins/users/tpl/" );
 		$this->cache == $this->raintpl->cache('users_register', 60);
 		if( $this->cache){
-			$page_content = cls_page::show_block(true,  _('Register') , $this->cache, $view);
+			$page_content = cls_page::show_block(false,  _('Register') , $this->cache, $view);
 		}
 		else{
 			$this->raintpl->assign( "label_username", _('Username:') );
@@ -110,21 +110,21 @@ class users_view{
 			}
 				$page_content = cls_page::show_block(false,  _('Register') , $this->raintpl->draw( 'users_reset_password', true ), $view);
 		}	
-
-		return array(_('Register'),$page_content);
+		
+		return array(_('Register'), $page_content);
 	}
 	public function show_register_active_page($view){
 		$this->raintpl->configure("tpl_dir", "plugins/users/tpl/" );
 		$this->cache == $this->raintpl->cache('users_register_active', 60);
 		if( $this->cache ){
-			$page_content = cls_page::show_block(true,  _('Active account') , $this->cache, $view);
+			$page_content = cls_page::show_block(false,  _('Active account') , $this->cache, $view);
 		}
 		else{
 			$this->raintpl->assign( "label_code", _('Active code:') );
 			$this->raintpl->assign( "users_register_active_code", _('Active code') );
 			$this->raintpl->assign( "users_register_active_note", _('Enter code that you recived by email to active your account.') );
 			$this->raintpl->assign( "active_account", _('Active account'));
-			$page_content = cls_page::show_block(true,  _('Active account') , $this->raintpl->draw( 'users_register_active',true ), $view);
+			$page_content = cls_page::show_block(false,  _('Active account') , $this->raintpl->draw( 'users_register_active',true ), $view);
 		}	
 		return array(_('Active Acount'),$page_content);
 	}
@@ -134,7 +134,7 @@ class users_view{
 		$this->raintpl->configure("tpl_dir", "plugins/users/tpl/" );
 		$this->cache == $this->raintpl->cache('default_core_page', 60);
 		if( $this->cache ){
-			$page_content = cls_page::show_block(true,  _('Users and permissions') , $this->cache, $view);
+			$page_content = cls_page::show_block(false,  _('Users and permissions') , $this->cache, $view);
 		}
 		else{
 			$this->raintpl->assign( "label_code", _('Active code:') );

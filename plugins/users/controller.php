@@ -26,7 +26,7 @@ class users_controller{
 	}
 	// $view has to value 1- 'block' for show with block header
 	// 		2-content for show with orginal state
-	public function action($action_name, $view = 'BLOCK',$show){
+	public function action($action_name, $view = 'BLOCK',$position, $show){
 		if($action_name == 'login'){
 			
 			if($this->is_logedin()){
@@ -87,8 +87,9 @@ class users_controller{
 		elseif($action_name == 'test'){
 			
 			$a = new ctr_switch();
-			
-			$a->draw();
+			$a->configure('OFF_LABLE','BABAK');
+			$b = new ctr_switch();
+			echo $a->draw() . $b->draw();
 		}
 		else{
 			//not found
@@ -108,7 +109,6 @@ class users_controller{
 			if($this->is_logedin()){
 				//user is loged in before
 				$this->view->show_in_box(_('Message'), _('You loged in with defferent account before! first logout.'));
-				echo 4;
 				return false;
 			}
 			elseif(isset($_GET['username']) && isset($_GET['password'])){

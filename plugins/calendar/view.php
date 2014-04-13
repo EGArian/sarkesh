@@ -1,13 +1,11 @@
 <?php
 	class calendar_view{
 
-		private $obj_page;
 		private $raintpl;
 		private $cache;
 		function __construct(){
 			//config raintpl
 			$this->raintpl = new cls_raintpl;
-			$this->obj_page = new cls_page;
 		}
 		
 		public function select_date($type='', $view, $show = true){
@@ -25,7 +23,7 @@
 			$this->cache = $this->raintpl->cache('calendar_jallali_selector', 60);
 			if($this->cache){
 				if($show){
-					$this->obj_page->show_block(true,  _('Select Date') , $this->cache, $view);
+					cls_page::show_block(false,  _('Select Date') , $this->cache, $view);
 				}
 				else{
 				
@@ -35,9 +33,8 @@
 			else{
 		
 				//add tag for show messages
-				$this->raintpl->assign( "label_doctor_name", _('Doctor name:') );
 				if($show){
-					$this->obj_page->show_block(true,  _('Select Date') , $this->raintpl->draw( 'calendar_jallali_selector', true ), $view);				}
+					cls_page::show_block(false,  _('Select Date') , $this->raintpl->draw( 'calendar_jallali_selector', true ), $view);				}
 				else{
 					return $this->raintpl->draw( 'calendar_jallali_selector', true );
 				}
@@ -52,7 +49,7 @@
 			$this->cache = $this->raintpl->cache('calendar_gregorian_selector', 60);
 			if($this->cache){
 				if($show){
-					$this->obj_page->show_block(true,  _('Select Date') , $this->cache, $view);
+					cls_page::show_block(false,  _('Select Date') , $this->cache, $view);
 				}
 				else{
 				
@@ -62,9 +59,8 @@
 			else{
 		
 				//add tag for show messages
-				$this->raintpl->assign( "label_doctor_name", _('Doctor name:') );
 				if($show){
-					$this->obj_page->show_block(true,  _('Select Date') , $this->raintpl->draw( 'calendar_gregorian_selector', true ), $view);				}
+					cls_page::show_block(false,  _('Select Date') , $this->raintpl->draw( 'calendar_gregorian_selector', true ), $view);				}
 				else{
 					return $this->raintpl->draw( 'calendar_gregorian_selector', true );
 				}

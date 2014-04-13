@@ -68,7 +68,7 @@ class core_controller{
 		else{
 			//access denied
 			$users_controller = new users_controller;
-			$content = $users_controller->action('login_panel','MAIN',false);
+			$content = $users_controller->action('login_panel','MAIN','content', false);
 			$this->view->show_single_page($content);
 		}	
 	}

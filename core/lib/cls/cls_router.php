@@ -54,15 +54,16 @@ class cls_router{
 	      if($this->obj_plugin->is_enabled($this->plugin)){
 	 	    	 $plugin_name = $this->plugin . '_controller';
 	     		 $plugin = new $plugin_name;
-			 $content = $plugin->action($this->action, 'MAIN',true);	
+			 $content = $plugin->action($this->action, 'MAIN','content', false);	
 	      }
 		  else{
 		  	//plugin is not enabled
 		  	//show 404 page not found page
 		  	$plugin = new msg_controller;
-			$content = $plugin->action(404, 'MAIN',true);
+			$content = $plugin->action(404, 'MAIN',false);
 		  }
 	      cls_page::set_page_tittle($content[0]);
+	      echo $content[1];
 	}
 	//this function run services and jump request do plugin
 	public function run_service(){

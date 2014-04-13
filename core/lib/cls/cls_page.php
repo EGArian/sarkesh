@@ -40,54 +40,56 @@ class cls_page{
 		if(is_null(self::$header_tags)){
 			self::$header_tags = array();
 		}
+		$default_headers = array();
 		#LOAD HEEFAL GENERATOR META TAG
-		array_push(self::$header_tags, '<meta name="generator" content=" Sarkesh CMS! - Open Source Content Management" />');
+		array_push($default_headers, '<meta name="generator" content=" Sarkesh CMS! - Open Source Content Management" />');
 		//cache control
-		array_push(self::$header_tags, '<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">') ;
+		array_push($default_headers, '<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">') ;
 		#load jquery
 		if(self::$settings['jquery'] == '1'){
-			array_push(self::$header_tags, '<script src="./core/ect/scripts/jquery.js"></script>');
-			array_push(self::$header_tags, '<script src="./core/ect/scripts/bootstrap.min.js"></script>');
-			array_push(self::$header_tags, '<script src="./core/ect/scripts/bootstrap-dialog.js"></script>');
-			array_push(self::$header_tags, '<script src="./core/ect/scripts/pace.min.js"></script>');
-			array_push(self::$header_tags, '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap.min.css" />');
-			array_push(self::$header_tags, '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap-dialog.css" />');
+			array_push($default_headers, '<script src="./core/ect/scripts/jquery.js"></script>');
+			array_push($default_headers, '<script src="./core/ect/scripts/bootstrap.min.js"></script>');
+			array_push($default_headers, '<script src="./core/ect/scripts/bootstrap-dialog.js"></script>');
+			array_push($default_headers, '<script src="./core/ect/scripts/pace.min.js"></script>');
+			array_push($default_headers, '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap.min.css" />');
+			array_push($default_headers, '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap-dialog.css" />');
 			//for more information about normalize project see http://necolas.github.io/normalize.css/
-			array_push(self::$header_tags, '<link rel="stylesheet" type="text/css" href="./core/ect/styles/normalize.css" />');
+			array_push($default_headers, '<link rel="stylesheet" type="text/css" href="./core/ect/styles/normalize.css" />');
 			//get bootstrap theme
-			array_push(self::$header_tags, '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap/' . self::$settings['bootstrap_theme'] . '.min.css" />');
+			array_push($default_headers, '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap/' . self::$settings['bootstrap_theme'] . '.min.css" />');
 			//get pace(loading in ajax theme
 			if(self::$settings['pace_theme'] != '0'){
-				array_push(self::$header_tags, '<link rel="stylesheet" type="text/css" href="./core/ect/styles/pace/' . self::$settings['pace_theme'] . '.css" />');
+				array_push($default_headers, '<link rel="stylesheet" type="text/css" href="./core/ect/styles/pace/' . self::$settings['pace_theme'] . '.css" />');
 			}
-			array_push(self::$header_tags, '<meta name="viewport" content="width=device-width, initial-scale=1.0">');
+			array_push($default_headers, '<meta name="viewport" content="width=device-width, initial-scale=1.0">');
 		}
 		#load style sheet pages (css)
 		$theme_name = self::$settings['active_theme'];
-		array_push(self::$header_tags, '<link rel="stylesheet" type="text/css" href="./themes/'  . $theme_name . '/style.css" />');
+		array_push($default_headers, '<link rel="stylesheet" type="text/css" href="./themes/'  . $theme_name . '/style.css" />');
 		#load rtl stylesheets
 		if (self::is_rtl()){ 
-			array_push(self::$header_tags, '<link rel="stylesheet" type="text/css" href="./themes/'  . $theme_name . '/rtl-style.css" />');
+			array_push($default_headers, '<link rel="stylesheet" type="text/css" href="./themes/'  . $theme_name . '/rtl-style.css" />');
 		}
 
 		#load favicon
 		if(file_exists("./themes/"  . $theme_name . "/favicon.ico")){ 
-			array_push(self::$header_tags, '<link rel="shortcut icon" href="./themes/'. $theme_name .'/favicon.ico" type="image/x-icon">');
-			array_push(self::$header_tags, '<link rel="icon" href="./themes/'.$theme_name .'/favicon.ico" type="image/x-icon">');
+			array_push($default_headers, '<link rel="shortcut icon" href="./themes/'. $theme_name .'/favicon.ico" type="image/x-icon">');
+			array_push($default_headers, '<link rel="icon" href="./themes/'.$theme_name .'/favicon.ico" type="image/x-icon">');
 		}
 		//enable texteditor if that's enabled from registery
 		//for enable editor textarea tag should has class with 'editor' name
 
 		if(self::$settings['editor'] == '1'){
 			$obj_localize = new cls_localize;
-			array_push(self::$header_tags, '<script src="./core/ect/scripts/tinymce/tinymce.min.js"></script>');
-			array_push(self::$header_tags, "<script> tinymce.init({selector:'textarea.editor',directionality: " . '"' . self::$localize_settings['direction'] . '",language: "' . $obj_localize->convert_language_code(self::$localize_settings['language']) .'"});</script>');
+			array_push($default_headers, '<script src="./core/ect/scripts/tinymce/tinymce.min.js"></script>');
+			array_push($default_headers, "<script> tinymce.init({selector:'textarea.editor',directionality: " . '"' . self::$localize_settings['direction'] . '",language: "' . $obj_localize->convert_language_code(self::$localize_settings['language']) .'"});</script>');
 
                          
 		}
 		#load nessasery java script functions
-		array_push(self::$header_tags, '<script src="./core/ect/scripts/functions.js"></script>');
-	     
+		array_push($default_headers, '<script src="./core/ect/scripts/functions.js"></script>');
+		
+		self::$header_tags = $default_headers + self::$header_tags;
 		
 	}
 	//this function add headers to page
@@ -254,8 +256,8 @@ class cls_page{
 						$plugin = new $plugin_name;
 						//run action method for show block
 						//all blocks name should be like  'blk_blockname'
-						$plugin->action($block['b.name'], 'BLOCK', $position);
-					
+						$content = $plugin->action($block['b.name'], 'BLOCK', $position,false);
+						echo $content[1];
 					}
 				}
 			
@@ -267,11 +269,11 @@ class cls_page{
 	//this function return content for show in custombox for show on page
 	static public function show_in_box($header, $content, $type = 'warning', $result = '0'){
 		$type = 'type-' . $type;
-		self::$show_block(true, $header,$content,'MODAL', $type, $result);
+		self::show_block(true, $header,$content,'MODAL', $type, $result);
 	
 	}
 	static public function show_message($header, $content, $type = 'warning', $result = '0'){
-		self::$show_block(true, $header,$content,'MSG', $type, $result);
+		self::show_block(true, $header,$content,'MSG', $type, $result);
 	
 	}
 	

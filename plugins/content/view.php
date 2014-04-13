@@ -1,7 +1,6 @@
 <?php
 class content_view{
 
-	private $page;
 	private $raintpl;
 	//this varible is for use calendar plugin
 	private $calendar;
@@ -15,7 +14,6 @@ class content_view{
 		//config raintpl
 		$this->raintpl = new cls_raintpl;
 		$this->users = new users_module;
-		$this->page = new cls_page;
 		$this->calendar = new calendar_module;
 		$this->registry = new cls_registry;
 		$this->settings = $this->registry->get_plugin('content');
@@ -46,7 +44,7 @@ class content_view{
 				//assign fields
 				$this->raintpl->assign( "post_content", $content[1]);
 				
-				$page_content = $this->page->show_block(true,  $content[0][0]['tittle'] , $this->raintpl->draw( 'page_content', true ), $view);
+				$page_content = cls_page::show_block(false,  $content[0][0]['tittle'] , $this->raintpl->draw( 'page_content', true ), $view);
 				return array($content[0][0]['tittle'], $page_content);
 			}
 			else{

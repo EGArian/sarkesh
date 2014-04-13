@@ -1,25 +1,22 @@
 <?php
 class core_view{
-	private $page;
 	private $raintpl;
 	
 	function __construct(){
 		//create an object from raintpl class//
 		$this->raintpl = new cls_raintpl;
-		$this->page = new cls_page;
 		
 	}
 	public function show_core_page($plugins_menu,$content){
 		//atteche headers to page//
 		$this->raintpl->configure("tpl_dir", "plugins/core/tpl/" );
-		$this->raintpl->assign( "page_headers", $this->page->load_headers(false));
+		$this->raintpl->assign( "page_headers", cls_page::load_headers(false));
 		$this->raintpl->assign( "plugins_menu", $plugins_menu);
 		$this->raintpl->assign( "main_menu", _('Main Menu'));
 		$this->raintpl->assign( "content", $content[1]);
 		//set_page_tittle//
-		global $sys_page;
-		$sys_page->set_page_tittle($content[0]);
-		$this->page->show_block(true,  'title not show' , $this->raintpl->draw( 'panel', true ), 'NONE');
+		cls_page::set_page_tittle($content[0]);
+		cls_page::show_block(true,  'title not show' , $this->raintpl->draw( 'panel', true ), 'NONE');
 	
 	}
 	public function core_menu(){
@@ -31,7 +28,7 @@ class core_view{
 		else{
 			$this->raintpl->assign( "url", cls_general::create_url(array('panel','admin','plugin','core','action','default_core_page')));
 			$this->raintpl->assign( "core_menu_label", _('Core Settings') );
-			return $this->page->show_block(false,  '' , $this->raintpl->draw( 'core_menu', true), 'NONE');
+			return cls_page::show_block(false,  '' , $this->raintpl->draw( 'core_menu', true), 'NONE');
 		}	
 	}
 	public function show_default_page($view){
@@ -58,15 +55,15 @@ class core_view{
 			
 			$this->raintpl->assign( "url_basic", cls_general::create_url(array('panel','admin','plugin','core','action','basic_settings')));
 			$this->raintpl->assign( "BasicSettings", _('Basic Settings'));
-			return array(_('Default Core Page'), $this->page->show_block(false,  'tittle not show' , $this->raintpl->draw( 'main_page', true), 'NONE'));
+			return array(_('Default Core Page'), cls_page::show_block(false,  'tittle not show' , $this->raintpl->draw( 'main_page', true), 'NONE'));
 		}
 	}
 	//this function show single content on page without any menus and ect and just show $content that send for this//
 	public function show_single_page($content){
 		$this->raintpl->configure("tpl_dir", "plugins/core/tpl/" );
 		$this->raintpl->assign( "content", $content[1]);
-		$this->raintpl->assign( "page_headers", $this->page->load_headers(false));
-		return array($content[0], $this->page->show_block(true,  '' , $this->raintpl->draw( 'core_single_page', true), 'NONE'));
+		$this->raintpl->assign( "page_headers", cls_page::load_headers(false));
+		return array($content[0], cls_page::show_block(true,  '' , $this->raintpl->draw( 'core_single_page', true), 'NONE'));
 
 	
 	}
@@ -84,13 +81,13 @@ class core_view{
 		$this->raintpl->assign( "label_Edite_enable", _('Enable'));
 		$this->raintpl->assign( "label_plugins", _('Plugins'));
 		$this->raintpl->assign( "label_install", _('Install'));
-		return array(_('Plugins'), $this->page->show_block($show,  '' , $this->raintpl->draw( 'core_plugins_list', true), $view));
+		return array(_('Plugins'), cls_page::show_block($show,  '' , $this->raintpl->draw( 'core_plugins_list', true), $view));
 	
 	}
 	
 	#this function return error message in MODAL VIEW
 	public function error_in_operation($show, $e){
-		return $this->page->show_block($show,  'Error!' , _('Error occurred in complete your request.<br />reason:' . $e->getMessage()), 'MODAL','danger');
+		return cls_page::show_block($show,  'Error!' , _('Error occurred in complete your request.<br />reason:' . $e->getMessage()), 'MODAL','danger');
 	}
 	
 	#this function show appearance for select themes and styles
@@ -106,7 +103,7 @@ class core_view{
 		$this->raintpl->assign( "label_disable", _('Disable'));
 		$this->raintpl->assign( "theme_count", $themes[0]['count']);
 		$this->raintpl->assign( "themes", $themes);
-		return array(_('Appearcance'), $this->page->show_block($show,  '' , $this->raintpl->draw( 'core_appearance', true), $view));
+		return array(_('Appearcance'), cls_page::show_block($show,  '' , $this->raintpl->draw( 'core_appearance', true), $view));
 	}
 }
 ?>
