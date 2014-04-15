@@ -1,5 +1,5 @@
 <?php
-class ctr_switch_view{
+class ctr_button_view{
 	
 	private $raintpl;
 	private $page;
@@ -10,16 +10,30 @@ class ctr_switch_view{
 	
 	public function view_draw($config){
 		//configure raintpl 
-		$this->raintpl->configure('tpl_dir','core/lib/controls/switch/tpl/');
+		$this->raintpl->configure('tpl_dir','core/lib/controls/button/tpl/');
 		
 		//add headers to page
-		cls_page::add_header('<link rel="stylesheet" type="text/css" href="./core/lib/controls/switch/bootstrap-switch.css" />');
-		cls_page::add_header('<script src="./core/lib/controls/switch/scripts/bootstrap-switch.min.js"></script>');
+		cls_page::add_header('<script src="./core/lib/controls/button/scripts/ctr_button.js"></script>');
+		cls_page::add_header($config['J_ONCLICK_SRC']);
+		//cls_page::add_header($config['']);
+		$this->raintpl->assign( "id", $config['NAME']);
+		$this->raintpl->assign( "label", $config['LABLE']);
+		$this->raintpl->assign( "type", $config['TYPE']);
+		$this->raintpl->assign( "class", $config['CLASS']);
+		$this->raintpl->assign( "j_click", $config['J_ONCLICK_FUNCTION']);
+		$this->raintpl->assign( "p_click_f", $config['P_ONCLICK_FUNCTION']);
+		$this->raintpl->assign( "p_click_p", $config['P_ONCLICK_PLUGIN']);
+		$this->raintpl->assign( "j_afterclick", $config['J_AFTERCLICK_FUNCTION']);
 		
-
-		$this->raintpl->assign( "form_name", 11);
 		
-		echo $this->raintpl->draw('ctr_switch', true );
+		if($config['DISABLE']){
+			$this->raintpl->assign( "disabled", 'disabled');
+		}
+		else{
+			$this->raintpl->assign( "disabled", 'enabled');
+		}
+		
+		echo $this->raintpl->draw('ctr_button', true );
 			
 			
 	}

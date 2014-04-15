@@ -1,20 +1,32 @@
 <?php
 /*
-	this class is a control for working with switches toggle buttons
+	this class is a control for working with buttones toggle buttons
 	
 */
-class ctr_switch extends ctr_switch_module{
+class ctr_button extends ctr_button_module{
 	
 	//$name use to access this class on the page
 	private $config;
 		
 	function __construct(){
 		parent::__construct();
-		$this->config['ID'] = 'ID';
-		$this->config['NAME'] = 'SWITCH';
-		$this->config['ON_LABLE'] = 'ON';
-		$this->config['OFF_LABLE'] = 'OFF';		
+		$this->config['NAME'] = 'ctr_button';
+		$this->config['LABLE'] = 'ON';
 		$this->config['FORM'] = 'DEFAULT_FORM_NAME';
+		$this->config['TYPE'] = 'default';
+		$this->config['DISABLE'] = FALSE;
+		//This config for use add css classes to control
+		$this->config['CLASS'] = '';
+		//this configs set php plugin and function that should run with onclick event
+		$this->config['P_ONCLICK_PLUGIN'] = '0';
+		$this->config['P_ONCLICK_FUNCTION'] = '0';
+		//This configs set javascript function and src for run with onclick event
+		$this->config['J_ONCLICK_SRC'] = '0';
+		$this->config['J_ONCLICK_FUNCTION'] = '0';
+		//This configs set javascript function and src that should run after php click
+		//it's can get all data from returned from php onclick event(return means data that's showing on page)
+		$this->config['J_AFTERCLICK_SRC'] = '0';
+		$this->config['J_AFTERCLICK_FUNCTION'] = '0';
 	}
 	
 	//this function configure control
@@ -32,7 +44,9 @@ class ctr_switch extends ctr_switch_module{
 	}
 	
 	public function service($service){
-		
+		if($service == 'p_click'){
+			$this->module->p_click();
+		}
 			
 	}
 }

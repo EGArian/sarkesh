@@ -86,10 +86,10 @@ class users_controller{
 		}
 		elseif($action_name == 'test'){
 			
-			$a = new ctr_switch();
-			$a->configure('OFF_LABLE','BABAK');
-			$b = new ctr_switch();
-			echo $a->draw() . $b->draw();
+			$a = new ctr_button();
+			$a->configure('J_ONCLICK_SRC','<script src="./plugins/hello/hello.js"></script>');
+			$a->configure('J_ONCLICK_FUNCTION','test');
+			echo $a->draw();
 		}
 		else{
 			//not found

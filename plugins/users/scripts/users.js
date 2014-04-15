@@ -68,7 +68,7 @@ function users_login(){
 }
 
 function users_logout(){
-	var url = url = "?service=1&plugin=users&action=logout";
+	var url  = "?service=1&plugin=users&action=logout";
 	$.get(url ,
 		function(data){
 			//if recive 1 that mean log out successfull else show msg
