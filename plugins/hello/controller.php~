@@ -34,7 +34,7 @@ class hello_controller{
 	}
 
 	public function test(){
-		echo 'this is a test for get back data from php code';	
+		echo 56565656;	
 	}
 	/*
 	 * In sarkesh we use this function for create menu in core panel.

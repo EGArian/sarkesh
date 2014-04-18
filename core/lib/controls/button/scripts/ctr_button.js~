@@ -7,6 +7,7 @@ function ctr_button_click(obj, id, j_click, p_click_p, p_click_f, j_afterclick){
 	
 	//run php click function
 	if(p_click_p != '0'){
+		alert(3434);
 		url = "?control=1&plugin=button&action=p_click&p=" + p_click_p + "&f=" + p_click_f;
 		$.get(url ,
 			function(data){

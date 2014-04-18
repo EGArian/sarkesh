@@ -99,8 +99,6 @@ class users_controller{
 		elseif($action_name == 'test'){
 			
 			$a = new ctr_button();
-			$a->configure('STYLE','color:blue;');
-			$a->configure('TYPE','danger');
 			$a->configure('J_ONCLICK_SRC','<script src="./plugins/hello/hello.js"></script>');
 			$a->configure('J_ONCLICK_FUNCTION','test');
 			$a->configure('P_ONCLICK_PLUGIN','hello');

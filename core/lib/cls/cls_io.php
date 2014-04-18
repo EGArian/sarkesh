@@ -2,10 +2,10 @@
 //THIS CLASS FILTER INPUT AND OUTPUT STRINGS
 //To know and use filter types visit http://www.php.net/manual/en/filter.filters.php
 class cls_io{
-	public $FilterType;
+	static $FilterType;
 	########################################
 	
-	function cin($VaribleName,$Type="get",$Filter=515,$Flags=""){
+	static public function cin($VaribleName,$Type="get",$Filter=515,$Flags=""){
 		#change const to integer
 		$filter_num = $Filter;
 		if($VaribleName == "" || $Filter=""){ return 0;	}
@@ -37,7 +37,7 @@ class cls_io{
 			#is invalid type
 			return 0;
 		}	
-		$this->FilterType=$Filter;	
+		self::$FilterType=$Filter;	
 		return $Result;
 	}
 		

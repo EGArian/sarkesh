@@ -19,7 +19,7 @@ class ctr_button_module extends ctr_button_view{
 			$plugin_name = cls_io::cin('p', 'get') . '_controller';
 			//going to run function//
 			$plugin = new $plugin_name;
-		   call_user_func(array($plugin, $function_name));
+		   call_user_func(array($function_name, $plugin));
 		}
 	}
 }
