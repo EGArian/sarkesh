@@ -23,6 +23,7 @@ class ctr_button_view{
 		
 		//Assign variables
 		$this->raintpl->assign( "id", $config['NAME']);
+		$this->raintpl->assign( "form", $config['FORM']);
 		$this->raintpl->assign( "label", $config['LABLE']);
 		$this->raintpl->assign( "type", $config['TYPE']);
 		$this->raintpl->assign( "styles", $config['STYLE']);

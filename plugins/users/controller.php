@@ -107,8 +107,11 @@ class users_controller{
 			$a->configure('P_ONCLICK_FUNCTION','test');
 			$a->configure('J_AFTERCLICK_SRC','<script src="./plugins/hello/hello.js"></script>');
 			$a->configure('J_AFTERCLICK_FUNCTION','test1');
+			echo '<form name="DEFAULT_FORM_NAME" id="DEFAULT_FORM_NAME"><input type="button">';
 			echo $a->draw();
+			echo '</form>';
 		}
+		
 		else{
 			//not found
 			
@@ -123,10 +126,10 @@ class users_controller{
 	
 	public function service($service_name){
 		if($service_name == 'login'){
-			//checking user entered username and password
-			//if cerrect do_login and else return negative 
-			//1 ->username and password was cerrect user loged in 
-			
+			/*checking user entered username and password
+			*if cerrect do_login and else return negative 
+			*1->username and password was cerrect user loged in 
+			*/
 			if($this->is_logedin()){
 				//user is loged in before
 				
