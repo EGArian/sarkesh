@@ -73,9 +73,12 @@ class cls_router{
 	}
 	//this function is for runing services from controls
 	public function run_control(){
+		//first create object from form elements
+		$elements = new cls_uiobjects($_GET['options']);
+		//run control
 		$ctr_name = 'ctr_' . $this->plugin;
 		$ctr = new $ctr_name;
-		$ctr->service($this->action);
+		$ctr->service($this->action,$elements->get_elements());
 	}
 	#this function is for refresh page and jump to address
 	public function site_refresh($url='0',$inner_url=true , $time=5){

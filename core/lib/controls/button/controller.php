@@ -15,7 +15,8 @@ class ctr_button extends ctr_button_module{
 		$this->config['LABLE'] = 'Button';
 		//This variable set form name of this element
 		$this->config['FORM'] = 'DEFAULT_FORM_NAME';
-		
+		//this config is for set value for element
+		$this->config['VALUE'] = 'DEFAULT_VALUE';
 		$this->config['TYPE'] = 'btn btn-default';
 		$this->config['DISABLE'] = FALSE;
 		//This config for use add css classes to control//
@@ -64,9 +65,9 @@ class ctr_button extends ctr_button_module{
 		$this->module_draw($this->config);
 	}
 	
-	public function service($service){
+	public function service($service,$elements){
 		if($service == 'p_click'){
-			$this->module_p_click();
+			$this->module_p_click($elements);
 		}
 			
 	}

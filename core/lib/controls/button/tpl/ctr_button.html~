@@ -1,0 +1,1 @@
+<button type="button" value="JJJ" name="{$id}" id="{$id}" form="{$form}" class="{$type} {$class} ca_{$form}" style="{$styles}" {if="$disabled == 'disabled'"}disabled="disabled"{/if} onclick="ctr_button_click(this,'{$id}','{$j_click}','{$p_click_p}','{$p_click_f}','{$j_afterclick}');">{$label}</button>
