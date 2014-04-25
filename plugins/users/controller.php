@@ -27,7 +27,7 @@ class users_controller{
 
 	}
 	// $view has to value 1- 'block' for show with block header
-	// 		2-content for show with orginal state
+	// 2-content for show with orginal state
 	
 	public function action($action_name, $view = 'BLOCK',$position, $show){
 		if($action_name == 'login'){
@@ -100,7 +100,7 @@ class users_controller{
 			
 			$a = new ctr_button();
 			$a->configure('STYLE','color:blue;');
-			$a->configure('TYPE','danger');
+			$a->configure('TYPE','none');
 			$a->configure('J_ONCLICK_SRC','<script src="./plugins/hello/hello.js"></script>');
 			$a->configure('J_ONCLICK_FUNCTION','test');
 			$a->configure('P_ONCLICK_PLUGIN','hello');

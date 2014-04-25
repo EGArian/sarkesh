@@ -78,7 +78,11 @@ class cls_router{
 		//run control
 		$ctr_name = 'ctr_' . $this->plugin;
 		$ctr = new $ctr_name;
-		$ctr->service($this->action,$elements->get_elements());
+		$result = $ctr->service($this->action,$elements->get_elements());
+		
+		//now show result in xml for use in javascript
+		$xml = new cls_xml($result);
+		
 	}
 	#this function is for refresh page and jump to address
 	public function site_refresh($url='0',$inner_url=true , $time=5){
