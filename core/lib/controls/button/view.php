@@ -13,12 +13,8 @@ class ctr_button_view{
 		$this->raintpl->configure('tpl_dir','core/lib/controls/button/tpl/');
 		
 		//add headers to page//
-		cls_page::add_header('<script src="./core/lib/controls/button/scripts/ctr_button.js"></script>');
-		
-		if($config['J_ONCLICK_SRC'] != ''){cls_page::add_header($config['J_ONCLICK_SRC']); }
-		
-		if($config['J_AFTERCLICK_SRC'] != ''){cls_page::add_header($config['J_AFTERCLICK_SRC']); }
-		
+		cls_page::add_header('<script src="./core/ect/scripts/events/functions.js"></script>');		
+		if($config['SCRIPT_SRC'] != ''){cls_page::add_header('<script src="' . $config['SCRIPT_SRC'] . '"></script>'); }		
 		if($config['CSS_FILE'] != ''){ cls_page::add_header('<link rel="stylesheet" type="text/css" href="' . $config['CSS_FILE']) . '" />';}
 		
 		//Assign variables
@@ -29,10 +25,20 @@ class ctr_button_view{
 		$this->raintpl->assign( "type", $config['TYPE']);
 		$this->raintpl->assign( "styles", $config['STYLE']);
 		$this->raintpl->assign( "class", $config['CLASS']);
-		$this->raintpl->assign( "j_click", $config['J_ONCLICK_FUNCTION']);
-		$this->raintpl->assign( "p_click_f", $config['P_ONCLICK_FUNCTION']);
-		$this->raintpl->assign( "p_click_p", $config['P_ONCLICK_PLUGIN']);
-		$this->raintpl->assign( "j_afterclick", $config['J_AFTERCLICK_FUNCTION']);
+		$this->raintpl->assign( "j_onclick", $config['J_ONCLICK']);
+		$this->raintpl->assign( "p_onclick_f", $config['P_ONCLICK_FUNCTION']);
+		$this->raintpl->assign( "p_onclick_p", $config['P_ONCLICK_PLUGIN']);
+		$this->raintpl->assign( "j_after_onclick", $config['J_AFTER_ONCLICK']);
+
+		$this->raintpl->assign( "j_onfocus", $config['J_ONFOCUS']);
+		$this->raintpl->assign( "p_onfocus_f", $config['P_ONFOCUS_FUNCTION']);
+		$this->raintpl->assign( "p_onfocus_p", $config['P_ONFOCUS_PLUGIN']);
+		$this->raintpl->assign( "j_after_onfocus", $config['J_AFTER_ONFOCUS']);
+		
+		$this->raintpl->assign( "j_onblur", $config['J_ONBLUR']);
+		$this->raintpl->assign( "p_onblur_f", $config['P_ONBLUR_FUNCTION']);
+		$this->raintpl->assign( "p_onblur_p", $config['P_ONBLUR_PLUGIN']);
+		$this->raintpl->assign( "j_after_onblur", $config['J_AFTER_ONBLUR']);
 		
 		
 		if($config['DISABLE']){

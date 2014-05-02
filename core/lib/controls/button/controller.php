@@ -22,28 +22,46 @@ class ctr_button extends ctr_button_module{
 		$this->config['VALUE'] = 'DEFAULT_VALUE';
 		$this->config['TYPE'] = 'btn btn-default';
 		$this->config['DISABLE'] = FALSE;
+		//this config use for attech javascript(js) file to header of page
+		$this->config['SCRIPT_SRC'] = '0';
+		
 		//This config for use add css classes to control//
-		
 		$this->config['CLASS'] = '';
+		
 		//THIS config set css file for paste to headet of page
-		
 		$this->config['CSS_FILE'] = '';
-		//this config add inline css style to html element
 		
+		//this config add inline css style to html element
 		$this->config['STYLE'] = '';
+		
+		//------------------------------------------------------
 		//this configs set php plugin and function that should run with onclick event//
 		
 		$this->config['P_ONCLICK_PLUGIN'] = '0';
 		$this->config['P_ONCLICK_FUNCTION'] = '0';
 		//This configs set javascript function and src for run with onclick event//
 		
-		$this->config['J_ONCLICK_SRC'] = '0';
-		$this->config['J_ONCLICK_FUNCTION'] = '0';
-		//This configs set javascript function and src that should run after php click//
-		//it's can get all data from returned from php onclick event(return means data that's showing on page)//
+		$this->config['J_ONCLICK'] = '0';
+		//it's can get all data from returned from php Argoman $arg['RV']['value']
+		$this->config['J_AFTER_ONCLICK'] = '0';
 		
-		$this->config['J_AFTERCLICK_SRC'] = '0';
-		$this->config['J_AFTERCLICK_FUNCTION'] = '0';
+		//-------------------------------------------------------
+		//this configs set php plugin and function that should run with onfocus event//
+		
+		$this->config['P_ONFOCUS_PLUGIN'] = '0';
+		$this->config['P_ONFOCUS_FUNCTION'] = '0';		
+		$this->config['J_ONFOCUS'] = '0';
+		//it's can get all data from returned from php Argoman $arg['RV']['value']
+		$this->config['J_AFTER_ONFOCUS'] = '0';
+
+		//------------------------------------------------------
+		//this configs set php plugin and function that should run with onblur event//
+		$this->config['P_ONBLUR_PLUGIN'] = '0';
+		$this->config['P_ONBLUR_FUNCTION'] = '0';
+		//This configs set javascript function and src for run with onblur event//
+		$this->config['J_ONBLUR'] = '0';
+		//it's can get all data from returned from php Argoman $arg['RV']['value']
+		$this->config['J_AFTER_ONBLUR'] = '0';
 	}
 	
 	//this function configure control//
@@ -67,7 +85,6 @@ class ctr_button extends ctr_button_module{
 
 			}
 					
-			
 			$this->config[$key] = $value;
 			return TRUE;
 		}
@@ -81,8 +98,7 @@ class ctr_button extends ctr_button_module{
 	
 	public function service($service,$elements){
 		if($service == 'p_click'){
-			$elements['control']['label'] = 123;
-			$this->module_p_click($elements);
+			return $this->module_p_click($elements);
 		}
 			
 	}

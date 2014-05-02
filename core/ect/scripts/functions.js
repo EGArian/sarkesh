@@ -4,6 +4,10 @@ paceOptions = {
   restartOnRequestAfter: false,
   minTime: 500
 }
+//This variable is for use in circles
+var Counter=0;
+//this variable store value that return from events from server
+var ReturnValue;
 
 //this function jump page to input address
 function sys_jump_page(url){

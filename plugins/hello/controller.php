@@ -16,6 +16,9 @@ class hello_controller{
 	      if($action_name == 'say'){
 				$this->view->say_hello($view);
 	      }
+	      elseif($action_name =="xxl"){
+			  return $this->module->sample();
+		  }
 	  
 	}
 	/*
@@ -33,8 +36,11 @@ class hello_controller{
 		}
 	}
 
-	public function test(){
-		echo 'this is a test for get back data from php code';	
+	public function ksh($elements){
+		//echo 'this is a test for get back data from php code';	
+		$elements['BABAK']['label'] = "4004";
+		$elements['RV']['value'] = "babak";
+		return $elements;
 	}
 	/*
 	 * In sarkesh we use this function for create menu in core panel.

@@ -1,1 +1,16 @@
-<button type="button" value="{$value}" name="{$id}" id="{$id}" form="{$form}" class="{$type} {$class} ca_{$form}" style="{$styles}" {if="$disabled == 'disabled'"}disabled="disabled"{/if} onclick="ctr_button_click(this,'{$id}','{$j_click}','{$p_click_p}','{$p_click_f}','{$j_afterclick}');">{$label}</button>
+
+<button 
+	type="button"
+	value="{$value}" 
+	name="{$id}" 
+	id="{$id}" 
+	form="{$form}" 
+	class="{$type} {$class} ca_{$form}" 
+	style="{$styles}" 
+	{if="$disabled == 'disabled'"} disabled="disabled"{/if} 
+	{if="$j_onblur != '0' || $p_onblur_p != '0' || $j_after_onblur !='0'"} onblur="ctr_system_lost_focus(this,'ctr_button','{$j_onblur}','{$p_onblur_p}','{$p_onblur_f}','{$j_after_onblur}');"{/if} 
+	{if="$j_onfocus != '0' || $p_onfocus_p != '0' || $j_after_onfocus !='0'"}onfocus="ctr_system_got_focus(this,'ctr_button','{$j_onfocus}','{$p_onfocus_p}','{$p_onfocus_f}','{$j_after_onfocus}');"{/if} 
+	{if="$j_onclick != '0' || $p_onclick_p != '0' || $j_after_onclick !='0'"}onclick="ctr_system_click(this,'ctr_button','{$j_onclick}','{$p_onclick_p}','{$p_onclick_f}','{$j_after_onclick}');"{/if}
+>
+	{$label}
+</button>

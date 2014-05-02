@@ -11,7 +11,7 @@ class hello_view{
 	public function say_hello($view){
 		  //first configurate raintpl 
 		  //you should set that place you store your templates files
-		  $this->raintpl->configure("tpl_dir", "plugins/hello/tpl/" );
+			$this->raintpl->configure("tpl_dir", "plugins/hello/tpl/" );
 		  $this->cache = $this->raintpl->cache('hello_world_template', 60);
 		  if($this->cache){
 			  //file is exist in cache 
@@ -32,6 +32,15 @@ class hello_view{
 		  return array(_('Users Login'), $content);;
 		  //seccend check for that this file is cached before
 		  
+	}
+	
+	public function sample(){
+		cls_page::add_header('<script src="./plugins/hello/hello.js"></script>');
+		$this->raintpl->configure("tpl_dir", "plugins/hello/tpl/" );
+		$res = $this->raintpl->draw("sample",true);
+		$content = cls_page::show_block(false,"test me",$res,"MAIN");
+		return array("test", $content);
+		//echo $res;
 	}
 
 }

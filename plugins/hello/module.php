@@ -5,6 +5,9 @@ class hello_module{
 	function __construct(){
 		$this->view = new hello_view;
 	}
+	public function sample(){
+		return $this->view->sample();
+	}
 
 }
 ?>

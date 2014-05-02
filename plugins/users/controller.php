@@ -98,16 +98,17 @@ class users_controller{
 		}
 		elseif($action_name == 'test'){
 			
-			$a = new ctr_button();
+			$a = new ctr_button;			
+			echo '<form name="DEFAULT_FORM_NAME" id="DEFAULT_FORM_NAME">';
+			$a->configure('NAME','BABAK');
+			$a->configure('TYPE','info');
 			$a->configure('STYLE','color:blue;');
-			$a->configure('TYPE','none');
-			$a->configure('J_ONCLICK_SRC','<script src="./plugins/hello/hello.js"></script>');
-			$a->configure('J_ONCLICK_FUNCTION','test');
-			$a->configure('P_ONCLICK_PLUGIN','hello');
-			$a->configure('P_ONCLICK_FUNCTION','test');
-			$a->configure('J_AFTERCLICK_SRC','<script src="./plugins/hello/hello.js"></script>');
-			$a->configure('J_AFTERCLICK_FUNCTION','test1');
-			echo '<form name="DEFAULT_FORM_NAME" id="DEFAULT_FORM_NAME"><input type="button">';
+			$a->configure('TYPE','info');
+			//$a->configure('J_ONCLICK','test');
+			$a->configure('P_ONBLUR_PLUGIN','hello');
+			$a->configure('P_ONBLUR_FUNCTION','ksh');
+			$a->configure('SCRIPT_SRC','./plugins/hello/hello.js');
+			$a->configure('J_AFTER_ONBLUR','test1');
 			echo $a->draw();
 			echo '</form>';
 		}

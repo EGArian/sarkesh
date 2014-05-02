@@ -15,14 +15,16 @@ class ctr_button_module extends ctr_button_view{
 	//this function run php click event //
 	
 	protected function module_p_click($elements){
+	
 		if(isset($_REQUEST['p']) && isset($_REQUEST['f'])){
 			$function_name = cls_io::cin('f', 'get');
 			$plugin_name = cls_io::cin('p', 'get') . '_controller';
 			//going to run function//
-			$a = new cls_xml;
-			echo $a->simple_array_to_xml($elements, "root");
+
+			
 			$plugin = new $plugin_name;
-		   $result = call_user_func(array($plugin, $function_name),$elements);
+			return call_user_func(array($plugin, $function_name),$elements);
+			
 		}
 	}
 }

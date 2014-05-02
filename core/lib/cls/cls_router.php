@@ -76,12 +76,12 @@ class cls_router{
 		//first create object from form elements
 		$elements = new cls_uiobjects($_GET['options']);
 		//run control
-		$ctr_name = 'ctr_' . $this->plugin;
+		$ctr_name = $this->plugin;
 		$ctr = new $ctr_name;
 		$result = $ctr->service($this->action,$elements->get_elements());
-		
 		//now show result in xml for use in javascript
 		$xml = new cls_xml($result);
+		echo $xml->simple_array_to_xml($result, "root");
 		
 	}
 	#this function is for refresh page and jump to address
