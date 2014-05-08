@@ -7,8 +7,8 @@ class hello_view{
 		$this->raintpl->configure("tpl_dir", "plugins/hello/tpl/" );
 	}
 	protected function view_test_button(){
-		$t = new ctr_tabbar;
-		
+		$t = new ctr_form('bb');
+		$tt = new ctr_tabbar;
 		$button = new ctr_button;
 		$button->configure("NAME","M");
 		$button->configure("SIZE","lg");
@@ -23,9 +23,9 @@ class hello_view{
 		$button->configure("NAME","FARMAN");
 		$button->configure("SIZE","lg");
 		$button->configure("LABEL","FARMAN");
-		$button->configure("TOOLTIP","FARMAN");
 		$t->add($button);
-		$this->raintpl->assign("button",$t->draw());
+		$tt->add($t);
+		$this->raintpl->assign("button",$tt->draw());
 		$b = $this->raintpl->draw("test_button",false);
 		return array(1,$b);
 	}

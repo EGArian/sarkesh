@@ -15,7 +15,7 @@
              <span class="icon-bar"></span>
              <span class="icon-bar"></span>
            </button>
-           <a class="navbar-brand" href="#">Project Name</a>
+           <a class="navbar-brand" href="/">Sarkesh</a>
     	</div>
        </div>
     </div>
@@ -30,9 +30,9 @@
   	
         <!-- main area -->
         <div class="col-xs-12 col-sm-9">
-			<p>
-          <?php cls_page::set_position('content'); ?>
-          </p>
+			<p><?php cls_page::set_position('content'); ?></p>
+          
+          
         </div><!-- /.col-xs-12 main -->
     </div><!--/.row-->
   </div><!--/.container-->

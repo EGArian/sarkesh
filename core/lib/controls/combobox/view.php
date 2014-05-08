@@ -24,17 +24,20 @@ class ctr_combobox_view{
 		$this->raintpl->assign( "label", $config['LABEL']);
 		
 		$elements = [];
-		if($config['COLUMN'] == ''){
+		
+		if($config['COLUMN_LABELS'] == ''){
 			//WANT TO SHOW SIMPLE ARRAY
 			$indexes = array_keys($config['SOURCE']);
 			foreach($config['SOURCE'] as $keys => $source){
-				$elements[$keys] = $source;
+				$elements[$keys]['label'] = $source;
+				$elements[$keys]['value'] = $source;
 			}
 		}
 		else{
 			//want to bind control to table
 			foreach($config['TABLE'] as $keys => $source){
-				$elements[$keys] = $source[$config['COLUMN']];
+				$elements[$keys]['label'] = $source[$config['COLUMN_LABELS']];
+				$elements[$keys]['value'] = $source[$config['COLUMN_VALUES']];
 			}
 		} 
 		
@@ -45,21 +48,10 @@ class ctr_combobox_view{
 		$this->raintpl->assign( "inline", $config['INLINE']);
 		$this->raintpl->assign( "styles", $config['STYLE']);
 		$this->raintpl->assign( "class", $config['CLASS']);
-		$this->raintpl->assign( "j_onclick", $config['J_ONCLICK']);
-		$this->raintpl->assign( "p_onclick_f", $config['P_ONCLICK_FUNCTION']);
-		$this->raintpl->assign( "p_onclick_p", $config['P_ONCLICK_PLUGIN']);
-		$this->raintpl->assign( "j_after_onclick", $config['J_AFTER_ONCLICK']);
-
-		$this->raintpl->assign( "j_onfocus", $config['J_ONFOCUS']);
-		$this->raintpl->assign( "p_onfocus_f", $config['P_ONFOCUS_FUNCTION']);
-		$this->raintpl->assign( "p_onfocus_p", $config['P_ONFOCUS_PLUGIN']);
-		$this->raintpl->assign( "j_after_onfocus", $config['J_AFTER_ONFOCUS']);
-		
-		$this->raintpl->assign( "j_onblur", $config['J_ONBLUR']);
-		$this->raintpl->assign( "p_onblur_f", $config['P_ONBLUR_FUNCTION']);
-		$this->raintpl->assign( "p_onblur_p", $config['P_ONBLUR_PLUGIN']);
-		$this->raintpl->assign( "j_after_onblur", $config['J_AFTER_ONBLUR']);
-		
+		$this->raintpl->assign( "j_onchange", $config['J_ONCHANGE']);
+		$this->raintpl->assign( "p_onchange_f", $config['P_ONCHANGE_FUNCTION']);
+		$this->raintpl->assign( "p_onchange_p", $config['P_ONCHANGE_PLUGIN']);
+		$this->raintpl->assign( "j_after_onchange", $config['J_AFTER_ONCHANGE']);
 		
 		if($config['DISABLE']){
 			$this->raintpl->assign( "disabled", 'disabled');

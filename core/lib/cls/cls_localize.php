@@ -31,7 +31,9 @@ class cls_localize{
 		if($language != ''){
 			$this->obj_cookie->set('core_language' , $language);
 			$this->obj_session->set('core_language', $language);
+			return true;
 		}
+		return false;
 	}
 	//this function get language name from cookie if that not defined return system default localize language
 	public function get_language(){

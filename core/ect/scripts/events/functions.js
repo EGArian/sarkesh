@@ -18,26 +18,26 @@ function SystemGetFormString(obj){
 	 $('.ca_' + form).each(function(){
 		 //start control tag
 		options += "control";
-		options += "<!!>name<!>";
+		options += "<!!>NAME<!>";
 		options += this.name;
 		//seperate controls
 		if(this.type == 'select-one'){
-			options += "<!>selected<!>";
+			options += "<!>SELECTED<!>";
 			options += this.value;
 			options += "<!!>";
 		}
 		else{
 			
-			options += "<!>value<!>";
+			options += "<!>VALUE<!>";
 			options += this.value;
-			options += "<!>label<!>";
+			options += "<!>LABEL<!>";
 			options += $(this).html();	
 			options += "<!!>";
 		}
 	 });
 	//create return element
 	options += "control";
-	options += "<!!>name<!>RV<!>value<!>0";
+	options += "<!!>name<!>RV<!>VALUE<!>0";
 	return options;
 }
 

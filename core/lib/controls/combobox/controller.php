@@ -29,8 +29,11 @@ class ctr_combobox extends ctr_combobox_module{
 		//table is 2d array
 		$this->config['TABLE'] = '';
 		
+		//This config set coloum value of table config for bind
+		$this->config['COLUMN_VALUES'] = '';
+		
 		//This config set coloum name of table config for bind
-		$this->config['COLUMN'] = '';
+		$this->config['COLUMN_LABELS'] = '';
 		
 		//if enable this config control perpare for showing in inline mode
 		$this->config['INLINE'] = false;
@@ -58,33 +61,16 @@ class ctr_combobox extends ctr_combobox_module{
 		$this->config['STYLE'] = '';
 		
 		//------------------------------------------------------
-		//this configs set php plugin and function that should run with onclick event//
+		//this configs set php plugin and function that should run with ONCHANGE event//
 		
-		$this->config['P_ONCLICK_PLUGIN'] = '0';
-		$this->config['P_ONCLICK_FUNCTION'] = '0';
-		//This configs set javascript function and src for run with onclick event//
+		$this->config['P_ONCHANGE_PLUGIN'] = '0';
+		$this->config['P_ONCHANGE_FUNCTION'] = '0';
+		//This configs set javascript function and src for run with ONCHANGE event//
 		
-		$this->config['J_ONCLICK'] = '0';
+		$this->config['J_ONCHANGE'] = '0';
 		//it's can get all data from returned from php Argoman $arg['RV']['value']
-		$this->config['J_AFTER_ONCLICK'] = '0';
+		$this->config['J_AFTER_ONCHANGE'] = '0';
 		
-		//-------------------------------------------------------
-		//this configs set php plugin and function that should run with onfocus event//
-		
-		$this->config['P_ONFOCUS_PLUGIN'] = '0';
-		$this->config['P_ONFOCUS_FUNCTION'] = '0';		
-		$this->config['J_ONFOCUS'] = '0';
-		//it's can get all data from returned from php Argoman $arg['RV']['value']
-		$this->config['J_AFTER_ONFOCUS'] = '0';
-
-		//------------------------------------------------------
-		//this configs set php plugin and function that should run with onblur event//
-		$this->config['P_ONBLUR_PLUGIN'] = '0';
-		$this->config['P_ONBLUR_FUNCTION'] = '0';
-		//This configs set javascript function and src for run with onblur event//
-		$this->config['J_ONBLUR'] = '0';
-		//it's can get all data from returned from php Argoman $arg['RV']['value']
-		$this->config['J_AFTER_ONBLUR'] = '0';
 	}
 	
 	//this function configure control//
