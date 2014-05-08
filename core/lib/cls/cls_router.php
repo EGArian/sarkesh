@@ -78,7 +78,11 @@ class cls_router{
 		//run control
 		$ctr_name = $this->plugin;
 		$ctr = new $ctr_name;
-		$result = $ctr->service($this->action,$elements->get_elements());
+		
+		//run event
+		//going to run function//	
+		$plugin = new $this->plugin;
+		$result = call_user_func(array($plugin, $this->action),$elements->get_elements());
 		//now show result in xml for use in javascript
 		$xml = new cls_xml($result);
 		echo $xml->simple_array_to_xml($result, "root");

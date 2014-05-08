@@ -4,20 +4,9 @@ function SystemRunEvent(obj,type ,j_before, p_events_p, p_event_f, j_after){
 	 var form_elements = SystemGetFormArray(obj);
 	 SystemEventsHandle(type,j_before, p_events_p, p_event_f,j_after,form_elements,options);
 }
-function ctr_system_click(obj,type, j_before, p_events_p, p_event_f, j_after){ 
+function ctr_system_event(obj,type, j_before, p_events_p, p_event_f, j_after){ 
 	 SystemRunEvent(obj,type, j_before, p_events_p, p_event_f, j_after);
 }
-
-//this function handle gotfocus event
-function ctr_system_got_focus(obj,type, j_before, p_events_p, p_event_f, j_after){
-	 SystemRunEvent(obj,type, j_before, p_events_p, p_event_f, j_after);
-}
-
-//this function handle lostfocus event
-function ctr_system_lost_focus(obj,type, j_before, p_events_p, p_event_f, j_after){
-	 SystemRunEvent(obj,type, j_before, p_events_p, p_event_f, j_after);
-}
-
 //this function return form in string
 //obj is an element for input
 function SystemGetFormString(obj){
@@ -31,11 +20,20 @@ function SystemGetFormString(obj){
 		options += "control";
 		options += "<!!>name<!>";
 		options += this.name;
-		options += "<!>value<!>";
-		options += this.value;
-		options += "<!>label<!>";
-		options += $(this).html();	
-		options += "<!!>";
+		//seperate controls
+		if(this.type == 'select-one'){
+			options += "<!>selected<!>";
+			options += this.value;
+			options += "<!!>";
+		}
+		else{
+			
+			options += "<!>value<!>";
+			options += this.value;
+			options += "<!>label<!>";
+			options += $(this).html();	
+			options += "<!!>";
+		}
 	 });
 	//create return element
 	options += "control";
@@ -61,13 +59,13 @@ function SystemGetFormArray(obj){
 function SystemEventsHandle(ctr_type,j_before,p_event_p, p_event_f,j_after,form_elements,options){
 	
 	if(j_before != '0'){
-	  window[j_click](form_elements);
+	  window[j_before](form_elements);
 	}
 	//run php click function
 
 	if(p_event_p != '0'){
-		url = "?control=1&plugin=" + ctr_type + "&action=p_click&p=" + p_event_p + "&f=" + p_event_f + "&options=" + options;
-		
+		url = "?control=1&plugin=" + p_event_p + "&action=" + p_event_f + "&options=" + options;
+		url = encodeURI(url);
 		$.get(url ,
 			function(data){
 				//find deference and set that
@@ -78,6 +76,12 @@ function SystemEventsHandle(ctr_type,j_before,p_event_p, p_event_f,j_after,form_
 						//check defernece
 						if(this.tagName.toLowerCase() == "label"){
 							$(form_elements[window['Counter']]).html($(this).html().trim());
+						}
+						else if(this.tagName.toLowerCase() == "selected"){
+							//it's from element like SELECT tag
+							
+							//It's under development
+							
 						}
 						else{
 							if(form_elements[window['Counter']][this.tagName.toLowerCase()].toLowerCase().trim() != $(this).html().toLowerCase().trim()){
@@ -94,7 +98,8 @@ function SystemEventsHandle(ctr_type,j_before,p_event_p, p_event_f,j_after,form_
 				//data back from php code is stored with xml
 				//get xml and create object of that
 				if(j_after != '0'){
-					window[j_after]($(data).find("RV").children("value").html());
+					var RV = $(data).find("RV").children("value").html();
+					window[j_after](RV.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&'));
 				}
 				
 			}

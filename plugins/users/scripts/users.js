@@ -28,6 +28,7 @@ function users_login(){
 					location.reload();
 				}
 				else{
+					
 					 //username or password is incerrect or user loged in before
 					 //we get message from server for show in localize matched
 					  xmlDoc = $.parseXML( data ),

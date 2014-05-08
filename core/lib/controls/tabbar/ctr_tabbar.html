@@ -1,0 +1,6 @@
+<ul class="nav nav-tabs" id="{$id}">
+	{loop="$tabs"}<li {if="$value.active"}Class="active"{/if}><a href="#{$value.id}" data-toggle="tab">{$value.label}</a></li>{/loop}
+</ul>
+<div class="tab-content">
+	{loop="$tabs"}<div Class="tab-pane {if="$value.active"} active{/if}" id="{$value.id}"><br /><div class="col-xs-12">{$value.body}</div></div>{/loop} 	  
+</div>

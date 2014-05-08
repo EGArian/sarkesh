@@ -1,47 +1,85 @@
 <?php
 class hello_view{
-	//if you want to work with templates you should use raintpl class
-	//for more information about raintpl see http://raintpl.com
 	private $raintpl;
-	public function __construct(){
-	      $this->raintpl = new cls_raintpl;
-	}
 	
-	//this function use cls_page and raintpl for show hello world message
-	public function say_hello($view){
-		  //first configurate raintpl 
-		  //you should set that place you store your templates files
-			$this->raintpl->configure("tpl_dir", "plugins/hello/tpl/" );
-		  $this->cache = $this->raintpl->cache('hello_world_template', 60);
-		  if($this->cache){
-			  //file is exist in cache 
-			  //going to show that on page with cls_page
-			  //for more information about show_block function in cls_page see cls_page documents
-			  $content = cls_page::show_block(false,  _('Tittle of message') , $this->cache, $view);
-		  }
-		  else{
-		  //file is not exist in cache going to create that
-		  //add tag for show messages
-		  //with assign you send value for varible in html file
-		  //for more information about cls_raintpl->assign see cls_raintpl documents
-		  $this->raintpl->assign( "label_hello_world", _('Hello world!') );
-		  //after set all varibles we going to show that on page with cls_page
-		  $content = cls_page::show_block(false,  _('Tittle of message') , $this->raintpl->draw( 'hello_world_template', true ), $view);
-		  }
-		  //return tittle of content you want to show
-		  return array(_('Users Login'), $content);;
-		  //seccend check for that this file is cached before
-		  
-	}
-	
-	public function sample(){
-		cls_page::add_header('<script src="./plugins/hello/hello.js"></script>');
+	function __construct(){
+		$this->raintpl = new cls_raintpl;
 		$this->raintpl->configure("tpl_dir", "plugins/hello/tpl/" );
-		$res = $this->raintpl->draw("sample",true);
-		$content = cls_page::show_block(false,"test me",$res,"MAIN");
-		return array("test", $content);
-		//echo $res;
 	}
-
+	protected function view_test_button(){
+		$t = new ctr_tabbar;
+		
+		$button = new ctr_button;
+		$button->configure("NAME","M");
+		$button->configure("SIZE","lg");
+		$button->configure("LABEL","Sample label for textbox");
+		$button->configure("TYPE","success");
+		$button->configure("SIZE","sm");
+		$button->configure("SCRIPT_SRC","./plugins/hello/hello.js");
+		$button->configure("J_AFTER_ONCLICK","SysShowModal");
+		$button->configure("P_ONCLICK_PLUGIN","hello_controller");
+		$button->configure("P_ONCLICK_FUNCTION","roydad");
+		$t->add($button);
+		$button->configure("NAME","FARMAN");
+		$button->configure("SIZE","lg");
+		$button->configure("LABEL","FARMAN");
+		$button->configure("TOOLTIP","FARMAN");
+		$t->add($button);
+		$this->raintpl->assign("button",$t->draw());
+		$b = $this->raintpl->draw("test_button",false);
+		return array(1,$b);
+	}
+	
+	protected function view_test_textbox(){
+		$textbox = new ctr_textbox;
+		$textbox->configure("NAME","M");
+		$textbox->configure("HELP","for complete your textbox please read this note.");
+		$textbox->configure("LABEL","Sample label for textbox");
+		$textbox->configure("PLACE_HOLDER","sample placeholder");
+		$textbox->configure("BS_CONTROL",TRUE);
+		$textbox->configure("SCRIPT_SRC","./plugins/hello/hello.js");
+		//$textbox->configure("J_ONCLICK","test_button");
+		$textbox->configure("INLINE",FALSE);
+		//$textbox->configure("P_ONCLICK_PLUGIN","hello");
+		//$textbox->configure("P_ONCLICK_FUNCTION","roydad");
+		$a = $textbox->draw(false);
+		$f = new ctr_button;
+		$f->configure("NAME","ff");
+		$f->configure("VALUE","0");
+		$f->configure("P_ONCLICK_PLUGIN","hello");
+		$f->configure("P_ONCLICK_FUNCTION","roydad");
+		$f->configure("TYPE","success");
+		
+		$this->raintpl->assign("textbox",$a. $f->draw(false));
+		$b = $this->raintpl->draw("test_textbox",false);
+		return array(1,$b);
+	}
+	protected function view_test_combobox(){
+		$combo = new ctr_combobox;
+		$combo->configure("NAME","M");
+		$combo->configure("LABEL","ali ghili sh  wali");
+		$combo->configure("PLACE_HOLDER","MEYSAM");
+		$db = new cls_database;;
+		$db->do_query('select * from users');
+		$combo->configure("TABLE",$db->get_array());
+		$combo->configure("COLUMN","username");
+		$combo->configure("SCRIPT_SRC","./plugins/hello/hello.js");
+		//$combo->configure("J_ONCLICK","test_button");
+		$combo->configure("INLINE",FALSE);
+		//$combo->configure("P_ONCLICK_PLUGIN","hello");
+		//$combo->configure("P_ONCLICK_FUNCTION","roydad");
+		$a = $combo->draw(false);
+		$f = new ctr_button;
+		$f->configure("NAME","ff");
+		$f->configure("VALUE","0");
+		$f->configure("P_ONCLICK_PLUGIN","hello");
+		$f->configure("P_ONCLICK_FUNCTION","roydad");
+		$f->configure("TYPE","success");
+		
+		$this->raintpl->assign("textbox",$a. $f->draw(false));
+		$b = $this->raintpl->draw("test_textbox",false);
+		return array(1,$b);
+	}
 }
-?>
+			
+		 

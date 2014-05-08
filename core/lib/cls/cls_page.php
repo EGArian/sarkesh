@@ -42,6 +42,7 @@ class cls_page{
 		}
 		$default_headers = array();
 		#LOAD HEEFAL GENERATOR META TAG
+		array_push($default_headers, '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />');
 		array_push($default_headers, '<meta name="generator" content=" Sarkesh CMS! - Open Source Content Management" />');
 		//cache control
 		array_push($default_headers, '<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">') ;
@@ -52,6 +53,10 @@ class cls_page{
 			array_push($default_headers, '<script src="./core/ect/scripts/bootstrap-dialog.js"></script>');
 			array_push($default_headers, '<script src="./core/ect/scripts/pace.min.js"></script>');
 			array_push($default_headers, '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap.min.css" />');
+			#load rtl bootstrap
+			if (self::is_rtl()){ 
+				array_push($default_headers, '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap-rtl.min.css" />');
+			}
 			array_push($default_headers, '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap-dialog.css" />');
 			//for more information about normalize project see http://necolas.github.io/normalize.css/
 			array_push($default_headers, '<link rel="stylesheet" type="text/css" href="./core/ect/styles/normalize.css" />');
@@ -219,7 +224,7 @@ class cls_page{
 		if($show){
 			echo $content;
 		}
-		return $content;
+		return html_entity_decode($content);
 	}
 	//this function set and show blocks
 	static public function set_position($position){

@@ -1,0 +1,25 @@
+<div class="form-group">
+	<div class="row">
+		<div class="col-sm-{$size}">
+			<label class="{if="$inline"} sr-only {/if}" for="{$id}"> {if="$label != ''"}{$label}{/if} </label>
+			
+			<select
+			type="text"
+			name="{$id}" 
+			id="{$id}" 
+			form="{$form}" 
+			class="{if="$bs_control"}form-control{/if} {$class} ca_{$form}" 
+			style="{$styles}" 
+			{if="$disabled == 'disabled'"} disabled="disabled"{/if} 
+			{if="$j_onblur != '0' || $p_onblur_p != '0' || $j_after_onblur !='0'"} onblur="ctr_system_event(this,'ctr_button','{$j_onblur}','{$p_onblur_p}','{$p_onblur_f}','{$j_after_onblur}');"{/if} 
+			{if="$j_onfocus != '0' || $p_onfocus_p != '0' || $j_after_onfocus !='0'"}onfocus="ctr_system_event(this,'ctr_button','{$j_onfocus}','{$p_onfocus_p}','{$p_onfocus_f}','{$j_after_onfocus}');"{/if} 
+			{if="$j_onclick != '0' || $p_onclick_p != '0' || $j_after_onclick !='0'"}onclick="ctr_system_event(this,'ctr_button','{$j_onclick}','{$p_onclick_p}','{$p_onclick_f}','{$j_after_onclick}');"{/if}
+			>
+			{loop="source"}
+				<option value="{$value}">{$value}</option>
+			{/loop}
+			</select>
+			{if="$help!=''"}<span class="help-block">{$help}</span>{/if}
+		</div>
+	</div>
+</div>

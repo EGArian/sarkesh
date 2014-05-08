@@ -4,8 +4,8 @@ class languages_view{
 	private $raintpl;
 	function __construct(){
 		//config raintpl
-		cls_raintpl::configure("tpl_dir", "plugins/languages/tpl/" );
 		$this->raintpl = new cls_raintpl;
+		$this->raintpl->configure("tpl_dir", "plugins/languages/tpl/" );
 	}
 	
 	public function languages_show($languages, $view){

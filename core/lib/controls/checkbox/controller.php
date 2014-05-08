@@ -1,9 +1,5 @@
 <?php
-/*
-	this class is a control for working with buttones toggle buttons
-	
-*/
-class ctr_button extends ctr_button_module{
+class ctr_checkbox extends ctr_checkbox_module{
 	
 	#$name use to access this class on the page#
 	
@@ -11,28 +7,31 @@ class ctr_button extends ctr_button_module{
 		
 	function __construct(){
 		parent::__construct();
-		$this->config['NAME'] = 'ctr_button';
+		$this->config['NAME'] = 'ctr_combobox';
 		
-		$this->config['LABEL'] = 'Button';
-		//This variable set form name of this element
-
+		//this config show abow of element
+		$this->config['LABEL'] = 'checkbox';
+		
+		//this config show below of element
+		$this->config['HELP'] = '';
+		
+		//this config is for show width of element and most be between 1 and 12
+		$this->config['SIZE'] = '6';
+		
 		$this->config['FORM'] = 'DEFAULT_FORM_NAME';
 		//this config is for set value for element
 		
-		$this->config['VALUE'] = 'DEFAULT_VALUE';
-		//this config if == false system donot use bootstrap
+		//THIS CONFIG IS FOR SET STATE OF CHECKBOX
+		$this->config['CHECKED'] = TRUE;
 		
-		$this->config['BS_CONTROL'] = true;
+
+		//this config is for set value for element
 		
-		$this->config['TYPE'] = 'btn btn-default';
+		$this->config['VALUE'] = '';
 		
 		$this->config['DISABLE'] = FALSE;
-		
-		//this config is for set size of element
-		//Valid : lg sm xs
-		$this->config['SIZE'] = '';
-		
 		//this config use for attech javascript(js) file to header of page
+		
 		$this->config['SCRIPT_SRC'] = '0';
 		
 		//This config for use add css classes to control//
@@ -75,43 +74,19 @@ class ctr_button extends ctr_button_module{
 	}
 	
 	//this function configure control//
-	
 	public function configure($key, $value){
 		// checking for that key is exists//
-		
-		if(key_exists($key, $this->config)){
-			//check for type
-			 
-			if($key == 'TYPE'){
-				if($value == 'none'){
-					# do not use bootstrap class
-					
-					$this->config[$key] = '';
-				}	
-				else{
-					$this->config[$key] = 'btn btn-' . $value;
-				}
-					return TRUE;
-
-			}
-					
+		if(key_exists($key, $this->config)){		
 			$this->config[$key] = $value;
 			return TRUE;
 		}
 		//key not exists//
-		
 		return FALSE;
 	}
 	public function draw($show = false){
 		return $this->module_draw($this->config, $show);
 	}
 	
-	public function service($service,$elements){
-		if($service == 'event'){
-			return $this->module_event($elements);
-		}
-			
-	}
 	public function get($key){
 		if(key_exists($key, $this->config)){
 			return $this->config[$key];

@@ -21,7 +21,7 @@ class cls_raintpl{
 		 *
 		 * @var string
 		 */
-		static $tpl_dir = "plugins/email.default/";
+		private $tpl_dir = "plugins/email.default/";
 		
 		//for cache pages in some localize
 		private $localize;
@@ -31,7 +31,7 @@ class cls_raintpl{
 		 *
 		 * @var string
 		 */
-		static $cache_dir = "upload/buffer";
+		private $cache_dir = "upload/buffer/";
 
 
 		/**
@@ -39,7 +39,7 @@ class cls_raintpl{
 		 *
 		 * @var string
 		 */
-		static $base_url = null;
+		private $base_url = null;
 
 
 		/**
@@ -47,7 +47,7 @@ class cls_raintpl{
 		 *
 		 * @var string
 		 */
-		static $tpl_ext = "html";
+		private $tpl_ext = "html";
 
 
 		/**
@@ -56,7 +56,7 @@ class cls_raintpl{
 		 *
 		 * @var unknown_type
 		 */
-		static $path_replace = true;
+		private $path_replace = true;
 
 
 		/**
@@ -65,7 +65,7 @@ class cls_raintpl{
 		 *
 		 * @var array
 		 */
-		static $path_replace_list = array( 'a', 'img', 'link', 'script', 'input' );
+		private $path_replace_list = array( 'a', 'img', 'link', 'script', 'input' );
 
 
 		/**
@@ -73,7 +73,7 @@ class cls_raintpl{
 		 *
 		 * @var unknown_type
 		 */
-		static $black_list = array( '\$this', 'raintpl::', 'self::', '_SESSION', '_SERVER', '_ENV',  'eval', 'exec', 'unlink', 'rmdir' );
+		private $black_list = array( '\$this', 'raintpl::', 'self::', '_SESSION', '_SERVER', '_ENV',  'eval', 'exec', 'unlink', 'rmdir' );
 
 
 		/**
@@ -82,7 +82,7 @@ class cls_raintpl{
 		 * false: loads the compiled template. Set false if server doesn't have write permission for cache_directory.
 		 *
 		 */
-		static $check_template_update = true;
+		private $check_template_update = true;
                 
 
 		/**
@@ -92,7 +92,7 @@ class cls_raintpl{
 		 *
 		 * @var bool
 		 */
-		static $php_enabled = false;
+		private $php_enabled = false;
 
 		
 		/**
@@ -102,7 +102,7 @@ class cls_raintpl{
 		 *
 		 * @var bool
 		 */
-		static $debug = false;
+		private $debug = false;
 
 	// -------------------------
 
@@ -124,7 +124,7 @@ class cls_raintpl{
 				  $cache = false,		// static cache enabled / disabled
                   $cache_id = null;       // identify only one cache
 
-                protected static $config_name_sum = array();   // takes all the config to create the md5 of the file
+                protected  $config_name_sum = array();   // takes all the config to create the md5 of the file
 
 	// -------------------------
 
@@ -248,13 +248,13 @@ class cls_raintpl{
 	 * Configure the settings of RainTPL
 	 *
 	 */
-	static function configure( $setting, $value = null ){
+	public function configure( $setting, $value = null ){
 		if( is_array( $setting ) )
 			foreach( $setting as $key => $value )
-				self::configure( $key, $value );
+				$this->configure( $key, $value );
 		else if( property_exists( __CLASS__, $setting ) ){
-			self::$$setting = $value;
-            self::$config_name_sum[ $setting ] = $value; // take trace of all config
+			$this->$setting = $value;
+            $config_name_sum[ $setting ] = $value; // take trace of all config
         }
 	}
 
@@ -268,26 +268,26 @@ class cls_raintpl{
 
 			$tpl_basename                       = basename( $tpl_name );														// template basename
 			$tpl_basedir                        = strpos($tpl_name,"/") ? dirname($tpl_name) . '/' : null;						// template basedirectory
-			$this->tpl['template_directory']    = self::$tpl_dir . $tpl_basedir;								// template directory
-			$this->tpl['tpl_filename']          = $this->tpl['template_directory'] . $tpl_basename . '.' . self::$tpl_ext;	// template filename
-			$temp_compiled_filename             = self::$cache_dir . $tpl_basename . "." . md5( $this->tpl['template_directory'] . serialize(self::$config_name_sum));
+			$this->tpl['template_directory']    = $this->tpl_dir . $tpl_basedir;								// template directory
+			$this->tpl['tpl_filename']          = $this->tpl['template_directory'] . $tpl_basename . '.' . $this->tpl_ext;	// template filename
+			$temp_compiled_filename             = $this->cache_dir . $tpl_basename . "." . md5( $this->tpl['template_directory'] . serialize($this->config_name_sum));
 			$this->tpl['compiled_filename']     = $temp_compiled_filename . '.rtpl.php';	// cache filename
 			$this->tpl['cache_filename']        = $temp_compiled_filename . '.s_' . $this->cache_id . '.rtpl.php';	// static cache filename
                         $this->tpl['checked']               = true;
 			// if the template doesn't exist and is not an external source throw an error
-			if( self::$check_template_update && !file_exists( $this->tpl['tpl_filename'] ) && !preg_match('/http/', $tpl_name) ){
+			if( $this->check_template_update && !file_exists( $this->tpl['tpl_filename'] ) && !preg_match('/http/', $tpl_name) ){
 				$e = new RainTpl_NotFoundException( 'Template '. $tpl_basename .' not found!' );
 				throw $e->setTemplateFile($this->tpl['tpl_filename']);
 			}
 
 			// We check if the template is not an external source
 			if(preg_match('/http/', $tpl_name)){
-				$this->compileFile('', '', $tpl_name, self::$cache_dir, $this->tpl['compiled_filename'] );
+				$this->compileFile('', '', $tpl_name, $this->cache_dir, $this->tpl['compiled_filename'] );
 				return true;
 			}
 			// file doesn't exist, or the template was updated, Rain will compile the template
-			elseif( !file_exists( $this->tpl['compiled_filename'] ) || ( self::$check_template_update && filemtime($this->tpl['compiled_filename']) < filemtime( $this->tpl['tpl_filename'] ) ) ){
-				$this->compileFile( $tpl_basename, $tpl_basedir, $this->tpl['tpl_filename'], self::$cache_dir, $this->tpl['compiled_filename'] );
+			elseif( !file_exists( $this->tpl['compiled_filename'] ) || ( $this->check_template_update && filemtime($this->tpl['compiled_filename']) < filemtime( $this->tpl['tpl_filename'] ) ) ){
+				$this->compileFile( $tpl_basename, $tpl_basedir, $this->tpl['tpl_filename'], $this->cache_dir, $this->tpl['compiled_filename'] );
 				return true;
 			}
 			
@@ -316,7 +316,7 @@ class cls_raintpl{
 		$template_code = preg_replace( "/<\?xml(.*?)\?>/s", "##XML\\1XML##", $template_code );
 
 		//disable php tag
-		if( !self::$php_enabled )
+		if( !$this->php_enabled )
 			$template_code = str_replace( array("<?","?>"), array("&lt;?","?&gt;"), $template_code );
 
 		//xml re-substitution
@@ -436,7 +436,7 @@ class cls_raintpl{
 					$include_var = $this->var_replace( $code[ 1 ], $left_delimiter = null, $right_delimiter = null, $php_left_delimiter = '".' , $php_right_delimiter = '."', $loop_level );
 
                                         //get the folder of the actual template
-                                        $actual_folder = substr( $this->tpl['template_directory'], strlen(self::$tpl_dir) );
+                                        $actual_folder = substr( $this->tpl['template_directory'], strlen($this->tpl_dir) );
 
                                         //get the included template
                                         $include_template = $actual_folder . $include_var;
@@ -645,36 +645,36 @@ class cls_raintpl{
 	 */
 	protected function path_replace( $html, $tpl_basedir ){
 
-		if( self::$path_replace ){
+		if( $this->path_replace ){
 
-			$tpl_dir = self::$base_url . $tpl_basedir;
+			$tpl_dir = $this->base_url . $tpl_basedir;
 			
 			// reduce the path
 			$path = $this->reduce_path($tpl_dir);
 
 			$exp = $sub = array();
 
-			if( in_array( "img", self::$path_replace_list ) ){
+			if( in_array( "img", $this->path_replace_list ) ){
 				$exp = array( '/<img(.*?)src=(?:")(http|https)\:\/\/([^"]+?)(?:")/i', '/<img(.*?)src=(?:")([^"]+?)#(?:")/i', '/<img(.*?)src="(.*?)"/', '/<img(.*?)src=(?:\@)([^"]+?)(?:\@)/i' );
 				$sub = array( '<img$1src=@$2://$3@', '<img$1src=@$2@', '<img$1src="' . $path . '$2"', '<img$1src="$2"' );
 			}
 
-			if( in_array( "script", self::$path_replace_list ) ){
+			if( in_array( "script", $this->path_replace_list ) ){
 				$exp = array_merge( $exp , array( '/<script(.*?)src=(?:")(http|https)\:\/\/([^"]+?)(?:")/i', '/<script(.*?)src=(?:")([^"]+?)#(?:")/i', '/<script(.*?)src="(.*?)"/', '/<script(.*?)src=(?:\@)([^"]+?)(?:\@)/i' ) );
 				$sub = array_merge( $sub , array( '<script$1src=@$2://$3@', '<script$1src=@$2@', '<script$1src="' . $path . '$2"', '<script$1src="$2"' ) );
 			}
 
-			if( in_array( "link", self::$path_replace_list ) ){
+			if( in_array( "link", $this->path_replace_list ) ){
 				$exp = array_merge( $exp , array( '/<link(.*?)href=(?:")(http|https)\:\/\/([^"]+?)(?:")/i', '/<link(.*?)href=(?:")([^"]+?)#(?:")/i', '/<link(.*?)href="(.*?)"/', '/<link(.*?)href=(?:\@)([^"]+?)(?:\@)/i' ) );
 				$sub = array_merge( $sub , array( '<link$1href=@$2://$3@', '<link$1href=@$2@' , '<link$1href="' . $path . '$2"', '<link$1href="$2"' ) );
 			}
 
-			if( in_array( "a", self::$path_replace_list ) ){
+			if( in_array( "a", $this->path_replace_list ) ){
 				$exp = array_merge( $exp , array( '/<a(.*?)href=(?:")(http\:\/\/|https\:\/\/|javascript:|mailto:)([^"]+?)(?:")/i', '/<a(.*?)href="(.*?)"/', '/<a(.*?)href=(?:\@)([^"]+?)(?:\@)/i'  ) );
-				$sub = array_merge( $sub , array( '<a$1href=@$2$3@', '<a$1href="' . self::$base_url . '$2"', '<a$1href="$2"' ) );
+				$sub = array_merge( $sub , array( '<a$1href=@$2$3@', '<a$1href="' . $this->base_url . '$2"', '<a$1href="$2"' ) );
 			}
 
-			if( in_array( "input", self::$path_replace_list ) ){
+			if( in_array( "input", $this->path_replace_list ) ){
 				$exp = array_merge( $exp , array( '/<input(.*?)src=(?:")(http|https)\:\/\/([^"]+?)(?:")/i', '/<input(.*?)src=(?:")([^"]+?)#(?:")/i', '/<input(.*?)src="(.*?)"/', '/<input(.*?)src=(?:\@)([^"]+?)(?:\@)/i' ) );
 				$sub = array_merge( $sub , array( '<input$1src=@$2://$3@', '<input$1src=@$2@', '<input$1src="' . $path . '$2"', '<input$1src="$2"' ) );
 			}
@@ -917,10 +917,10 @@ class cls_raintpl{
 	 */
 	protected function function_check( $code ){
 
-		$preg = '#(\W|\s)' . implode( '(\W|\s)|(\W|\s)', self::$black_list ) . '(\W|\s)#';
+		$preg = '#(\W|\s)' . implode( '(\W|\s)|(\W|\s)', $this->black_list ) . '(\W|\s)#';
 
 		// check if the function is in the black list (or not in white list)
-		if( count(self::$black_list) && preg_match( $preg, $code, $match ) ){
+		if( count($this->black_list) && preg_match( $preg, $code, $match ) ){
 
 			// find the line of the error
 			$line = 0;
@@ -944,7 +944,7 @@ class cls_raintpl{
 	 * @return string
 	 */
 	protected function printDebug(RainTpl_Exception $e){
-		if (!self::$debug) {
+		if (!$this->debug) {
 			throw $e;
 		}
 		$output = sprintf('<h2>Exception: %s</h2><h3>%s</h3><p>template: %s</p>',

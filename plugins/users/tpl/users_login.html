@@ -16,13 +16,6 @@
 			<input type="button" class="form-control btn btn-primary" onclick="users_login()" value="{$sign_in}">
 			<a href="?plugin=users&action=forget_password" >{$forget_password}</a>
 			<br />
-			{if="$can_register == '1'"}
-				
-				<br />
-				<div>
-					<p>{$dont_have_account} <a href="?plugin=users&action=register" class="btn btn-primary btn-sm" role="button"> {$signup} </a></p>
-				</div>
-			{/if}
 		</div>
 	</form>
 </div>

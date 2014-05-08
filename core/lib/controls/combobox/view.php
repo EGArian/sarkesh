@@ -1,5 +1,5 @@
 <?php
-class ctr_button_view{
+class ctr_combobox_view{
 	
 	private $raintpl;
 	private $page;
@@ -10,7 +10,7 @@ class ctr_button_view{
 	
 	public function view_draw($config, $show){
 		//configure raintpl //
-		$this->raintpl->configure('tpl_dir','core/lib/controls/button/tpl/');
+		$this->raintpl->configure('tpl_dir','core/lib/controls/combobox/tpl/');
 		
 		//add headers to page//
 		cls_page::add_header('<script src="./core/ect/scripts/events/functions.js"></script>');		
@@ -21,10 +21,28 @@ class ctr_button_view{
 		$this->raintpl->assign( "id", $config['NAME']);
 		$this->raintpl->assign( "form", $config['FORM']);
 		$this->raintpl->assign( "value", $config['VALUE']);
-		$this->raintpl->assign( "bs_control", $config['BS_CONTROL']);
-		$this->raintpl->assign( "size", $config['SIZE']);
 		$this->raintpl->assign( "label", $config['LABEL']);
-		$this->raintpl->assign( "type", $config['TYPE']);
+		
+		$elements = [];
+		if($config['COLUMN'] == ''){
+			//WANT TO SHOW SIMPLE ARRAY
+			$indexes = array_keys($config['SOURCE']);
+			foreach($config['SOURCE'] as $keys => $source){
+				$elements[$keys] = $source;
+			}
+		}
+		else{
+			//want to bind control to table
+			foreach($config['TABLE'] as $keys => $source){
+				$elements[$keys] = $source[$config['COLUMN']];
+			}
+		} 
+		
+		$this->raintpl->assign( "source", $elements);
+		$this->raintpl->assign( "size", $config['SIZE']);
+		$this->raintpl->assign( "help", $config['HELP']);
+		$this->raintpl->assign( "bs_control", $config['BS_CONTROL']);
+		$this->raintpl->assign( "inline", $config['INLINE']);
 		$this->raintpl->assign( "styles", $config['STYLE']);
 		$this->raintpl->assign( "class", $config['CLASS']);
 		$this->raintpl->assign( "j_onclick", $config['J_ONCLICK']);
@@ -52,7 +70,7 @@ class ctr_button_view{
 		
 		
 		//return control
-		$ctr = $this->raintpl->draw('ctr_button', true );
+		$ctr = $this->raintpl->draw('ctr_combobox', true );
 		if($show){
 			echo $ctr;
 		}	

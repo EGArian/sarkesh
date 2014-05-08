@@ -1,9 +1,5 @@
 <?php
-/*
-	this class is a module for working with button
-	
-*/
-class ctr_button_module extends ctr_button_view{
+class ctr_checkbox_module extends ctr_checkbox_view{
 	
 	function __construct(){
 		 parent::__construct();
@@ -12,4 +8,5 @@ class ctr_button_module extends ctr_button_view{
 	protected function module_draw($config, $show){
 		return $this->view_draw($config, $show);
 	}
+	
 }

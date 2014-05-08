@@ -24,13 +24,6 @@ if(empty($sess_id)){ session_start();}
 if(file_exists("./config.php")) {
 	//going to run sarkesh!
 	include_once("./config.php");
-	//this part is for configure template engine
-	//base url add to all src attributes
-	cls_raintpl::configure("base_url", "." );
-	//base folder that tpl files stored on that
-	cls_raintpl::configure("tpl_dir", "tpl/" );
-	//path for store temp files
-	cls_raintpl::configure("cache_dir", "upload/buffer/" );
 	//LOAD INC Files
 	//include core difines
 	include_once( AppPath . 'core/defines.php');
