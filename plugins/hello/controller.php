@@ -22,6 +22,15 @@ class hello_controller extends hello_module{
 			
 			echo $a->draw(true);
 		}
+		elseif($action == "test_table"){
+			$a = new ctr_table;
+			$b = new ctr_button;
+			$a->configure('HEADERS',array(1,2,3));
+			$a->add_source(array(array(9,9,9),array('v','v',$b->draw())));
+			$a->add_row(array(4,5,6));
+			$a->add_row(array(7,8,9));
+			echo $a->draw();
+		}
 	}
 	public function roydad($e){
 		$e['M']['label'] = "TEST TEST JUST TEST!";
