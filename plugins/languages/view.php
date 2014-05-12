@@ -8,7 +8,7 @@ class languages_view{
 		$this->raintpl->configure("tpl_dir", "plugins/languages/tpl/" );
 	}
 	
-	public function view_show_languages($languages, $view){
+	public function view_select_lang($languages){
 		//$form = new ctr_form('languages');
 		$lang = new ctr_combobox;
 		$lang->configure('NAME','lang');
@@ -19,10 +19,10 @@ class languages_view{
 		$lang->configure('COLUMN_VALUES','language');
 		$lang->configure('SCRIPT_SRC',"./plugins/languages/scripts/languages.js");
 		$lang->configure('J_AFTER_ONCHANGE','languages_check_change');
-		$lang->configure('P_ONCHANGE_PLUGIN','languages_controller');
+		$lang->configure('P_ONCHANGE_PLUGIN','languages');
 		$lang->configure('P_ONCHANGE_FUNCTION','languages_onchange');
 		//$form->add($lang);
-		return array(_('Languages'), cls_page::show_block(false,  _('Languages') , $lang->draw(), $view));
+		return array(_('Languages'), $lang->draw());
 		
 	}
 	

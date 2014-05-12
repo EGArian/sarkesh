@@ -24,7 +24,8 @@ class ctr_button extends ctr_button_module{
 		
 		$this->config['BS_CONTROL'] = true;
 		
-		$this->config['TYPE'] = 'btn btn-default';
+		//valid types : default,primary,success,info,warning,danger,link
+		$this->config['TYPE'] = 'default';
 		
 		$this->config['DISABLE'] = FALSE;
 		
@@ -33,7 +34,7 @@ class ctr_button extends ctr_button_module{
 		$this->config['SIZE'] = '';
 		
 		//this config use for attech javascript(js) file to header of page
-		$this->config['SCRIPT_SRC'] = '0';
+		$this->config['SCRIPT_SRC'] = '';
 		
 		//This config for use add css classes to control//
 		$this->config['CLASS'] = '';
@@ -78,23 +79,8 @@ class ctr_button extends ctr_button_module{
 	
 	public function configure($key, $value){
 		// checking for that key is exists//
-		
 		if(key_exists($key, $this->config)){
-			//check for type
-			 
-			if($key == 'TYPE'){
-				if($value == 'none'){
-					# do not use bootstrap class
-					
-					$this->config[$key] = '';
-				}	
-				else{
-					$this->config[$key] = 'btn btn-' . $value;
-				}
-					return TRUE;
-
-			}
-					
+			//check for type		
 			$this->config[$key] = $value;
 			return TRUE;
 		}

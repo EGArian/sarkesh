@@ -24,7 +24,7 @@ class ctr_button_view{
 		$this->raintpl->assign( "bs_control", $config['BS_CONTROL']);
 		$this->raintpl->assign( "size", $config['SIZE']);
 		$this->raintpl->assign( "label", $config['LABEL']);
-		$this->raintpl->assign( "type", $config['TYPE']);
+		$this->raintpl->assign( "type", 'btn btn-' . $config['TYPE']);
 		$this->raintpl->assign( "styles", $config['STYLE']);
 		$this->raintpl->assign( "class", $config['CLASS']);
 		$this->raintpl->assign( "j_onclick", $config['J_ONCLICK']);

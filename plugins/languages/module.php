@@ -12,8 +12,8 @@ class languages_module extends languages_view{
 		$this->db->do_query("SELECT language,language_name FROM localize ORDER BY language=? DESC;", array($this->obj_localize->get_language()));
 		return $this->db->get_array();
 	}
-	protected function module_show_languages($view){
-		return $this->view_show_languages($this->module_get_languages(),$view);
+	protected function module_select_lang(){
+		return $this->view_select_lang($this->module_get_languages());
 	}
 	protected function module_change_language($e){
 		

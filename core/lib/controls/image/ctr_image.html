@@ -1,0 +1,9 @@
+<div class="row {if="$border"}img-border{/if}">
+	<div class="col-xs-{$size} text-center">
+		{if="$href != ''"}<a href="{$href}">{/if}
+		<img class="{if="$responsive"}img-responsive{/if} {if="$bs_control"}{$type}{/if} {$class}" {if="$style != ''"}style="{$style}"{/if} src="{$src}" alt="{$alt}" />
+		<p><label>{$label}</label></p>
+		{if="$href != ''"}</a>{/if}
+	</div>
+</div>
+

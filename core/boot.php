@@ -1,4 +1,7 @@
 <?php
+//set error reporting
+error_reporting(E_ALL);
+
 function __autoload($class_name){
 	 $result = explode('_', $class_name ,2);
 	 //it's system classes going to attech that
@@ -11,9 +14,12 @@ function __autoload($class_name){
 	 elseif($result[0] == 'cls'){
 		 @include_once(dirname(__FILE__) . '/lib/cls/' . $class_name . '.php');
 	 }
+	 elseif(@$result[1] == 'module' || @$result[1] == 'view'){
+		 @include_once(AppPath . '/plugins/' . $result[0] . '/' . $result[1] . '.php');
+	 }
 	 else{
 		//going to include plugin
-		@include_once(AppPath . '/plugins/' . $result[0] . '/' . $result[1] . '.php');
+		@include_once(AppPath . '/plugins/' . $result[0] . '/controller.php');
 	 }
 }
 

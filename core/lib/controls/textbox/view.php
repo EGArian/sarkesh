@@ -30,6 +30,8 @@ class ctr_textbox_view{
 		$this->raintpl->assign( "placeholder", $config['PLACE_HOLDER']);
 		$this->raintpl->assign( "styles", $config['STYLE']);
 		$this->raintpl->assign( "class", $config['CLASS']);
+		$this->raintpl->assign( "addon", $config['ADDON']);
+		
 		$this->raintpl->assign( "j_onclick", $config['J_ONCLICK']);
 		$this->raintpl->assign( "p_onclick_f", $config['P_ONCLICK_FUNCTION']);
 		$this->raintpl->assign( "p_onclick_p", $config['P_ONCLICK_PLUGIN']);

@@ -203,8 +203,8 @@ class cls_raintpl{
             // free memory
             unset( $this->tpl );
 
-            // return or print the template
-            if( $return_string ) return $raintpl_contents; else echo $raintpl_contents;
+            // return template
+           return $raintpl_contents;
 
         }
 

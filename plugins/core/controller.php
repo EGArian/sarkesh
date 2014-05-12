@@ -1,5 +1,5 @@
 <?php
-class core_controller{
+class core{
 	private $module;
 	private $view;
 	private $msg;

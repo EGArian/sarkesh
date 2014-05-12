@@ -25,11 +25,21 @@ class ctr_form extends ctr_form_module{
 		//key not exists//
 		return FALSE;
 	}
+	public function add_array($element){
+		foreach($element as $control){
+			$this->add($control);
+		}
+	}
 	public function add($element){
+		
 		//change form name of element
 		call_user_func(array($element,"configure"),'FORM',$this->config['NAME']);
-		$e['object'] = $element;
 		$e['body'] = $element->draw();
+		array_push($this->e, $e);
+
+	}
+	public function add_spc(){
+		$e['body'] = '<hr />';
 		array_push($this->e, $e);
 	}
 	public function get($key){

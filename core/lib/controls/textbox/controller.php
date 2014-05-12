@@ -16,11 +16,14 @@ class ctr_textbox extends ctr_textbox_module{
 		//this config show abow of element
 		$this->config['LABEL'] = 'Textbox';
 		
+		//this config is for show addon on element
+		$this->config['ADDON'] = 'T';
+		
 		//this config show below of element
 		$this->config['HELP'] = '';
 		
 		//this config is for show width of element and most be between 1 and 12
-		$this->config['SIZE'] = '6';
+		$this->config['SIZE'] = 12;
 		
 		//if enable this config control perpare for showing in inline mode
 		$this->config['INLINE'] = false;
@@ -42,7 +45,7 @@ class ctr_textbox extends ctr_textbox_module{
 		$this->config['DISABLE'] = FALSE;
 		//this config use for attech javascript(js) file to header of page
 		
-		$this->config['SCRIPT_SRC'] = '0';
+		$this->config['SCRIPT_SRC'] = '';
 		
 		//This config for use add css classes to control//
 		$this->config['CLASS'] = '';

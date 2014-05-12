@@ -32,7 +32,7 @@ class ctr_checkbox extends ctr_checkbox_module{
 		$this->config['DISABLE'] = FALSE;
 		//this config use for attech javascript(js) file to header of page
 		
-		$this->config['SCRIPT_SRC'] = '0';
+		$this->config['SCRIPT_SRC'] = '';
 		
 		//This config for use add css classes to control//
 		$this->config['CLASS'] = '';

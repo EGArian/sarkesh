@@ -1,11 +1,11 @@
 <?php
-class hello_controller extends hello_module{
+class hello extends hello_module{
 	
 	function __construct(){
 		parent::__construct();
 	}
 	public function action($action){
-		if($action == "test_testbox"){
+		if($action == "test_textbox"){
 			return $this->module_test_textbox();
 		}
 		elseif($action == "test_button"){
@@ -35,6 +35,17 @@ class hello_controller extends hello_module{
 	public function roydad($e){
 		$e['M']['label'] = "TEST TEST JUST TEST!";
 		return $e;
+	}
+	public function abc(){
+		
+			$a = new ctr_image;
+			$a->configure('SRC',"./1.png");
+			$a->configure('HREF',"/");
+			
+			$a->configure('BS_CONTROL',true);
+			
+			echo $a->draw();
+		return array(44,44);
 	}
 }
 ?>

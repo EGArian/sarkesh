@@ -60,8 +60,6 @@ class cls_page{
 			array_push($default_headers, '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap-dialog.css" />');
 			//for more information about normalize project see http://necolas.github.io/normalize.css/
 			array_push($default_headers, '<link rel="stylesheet" type="text/css" href="./core/ect/styles/normalize.css" />');
-			//get bootstrap theme
-			array_push($default_headers, '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap/' . self::$settings['bootstrap_theme'] . '.min.css" />');
 			//get pace(loading in ajax theme
 			if(self::$settings['pace_theme'] != '0'){
 				array_push($default_headers, '<link rel="stylesheet" type="text/css" href="./core/ect/styles/pace/' . self::$settings['pace_theme'] . '.css" />');
@@ -144,7 +142,7 @@ class cls_page{
 		return self::$page_tittle;
 	}
 	//this function atteche some tags to blocks and show that.
-	static public function show_block($show, $header, $body, $view='NONE' ,$type = null, $result = 0){
+	static public function show_block($header, $body, $view='NONE' ,$type = null, $result = 0){
 		$content = '';
 		//create special value for access to that
 		if($view == 'BLOCK'){
@@ -221,9 +219,7 @@ class cls_page{
 				$content .=  '</message>' . "\n";
 
 		}
-		if($show){
-			echo $content;
-		}
+
 		return html_entity_decode($content);
 	}
 	//this function set and show blocks
@@ -257,12 +253,13 @@ class cls_page{
 				else{
 					//checking that plugin is enabled
 					if(self::$plugin->is_enabled($block['p.name'])){
-						$plugin_name = $block['p.name'] . '_controller';
-						$plugin = new $plugin_name;
+						
+						$plugin = new $block['p.name'];
 						//run action method for show block
 						//all blocks name should be like  'blk_blockname'
-						$content = $plugin->action($block['b.name'], 'BLOCK', $position,false);
-						echo $content[1];
+						
+						$content = call_user_func(array($plugin, $block['b.name']),'BLOCK', $position);
+						echo self::show_block($content[0], $content[1], 'BLOCK');
 					}
 				}
 			

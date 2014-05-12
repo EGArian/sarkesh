@@ -38,21 +38,14 @@ class hello_view{
 		$textbox->configure("PLACE_HOLDER","sample placeholder");
 		$textbox->configure("BS_CONTROL",TRUE);
 		$textbox->configure("SCRIPT_SRC","./plugins/hello/hello.js");
-		//$textbox->configure("J_ONCLICK","test_button");
+		$textbox->configure("J_ONCLICK","test_button");
 		$textbox->configure("INLINE",FALSE);
-		//$textbox->configure("P_ONCLICK_PLUGIN","hello");
-		//$textbox->configure("P_ONCLICK_FUNCTION","roydad");
-		$a = $textbox->draw(false);
-		$f = new ctr_button;
-		$f->configure("NAME","ff");
-		$f->configure("VALUE","0");
-		$f->configure("P_ONCLICK_PLUGIN","hello");
-		$f->configure("P_ONCLICK_FUNCTION","roydad");
-		$f->configure("TYPE","success");
+		$textbox->configure("P_ONCLICK_PLUGIN","hello");
+		$textbox->configure("P_ONCLICK_FUNCTION","roydad");
 		
-		$this->raintpl->assign("textbox",$a. $f->draw(false));
+		$this->raintpl->assign("textbox",$textbox->draw(false));
 		$b = $this->raintpl->draw("test_textbox",false);
-		return array(1,$b);
+		return array(1,'ffff');
 	}
 	protected function view_test_combobox(){
 		$combo = new ctr_combobox;

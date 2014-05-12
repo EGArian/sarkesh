@@ -52,9 +52,16 @@ class cls_router{
 	      // this function load plugin and run controller
 	      //checking for that plugin is enabled
 	      if($this->obj_plugin->is_enabled($this->plugin)){
-	 	    	 $plugin_name = $this->plugin . '_controller';
-	     		 $plugin = new $plugin_name;
-			 $content = $plugin->action($this->action, 'MAIN','content', false);	
+	 	    	
+	     		 $plugin = new $this->plugin;
+	     		 //run action directly
+	     		 if(method_exists($plugin,$this->action)){
+					 $content = call_user_func(array($plugin,$this->action));
+				 }
+				 else{
+					 $content = $plugin->action($this->action, 'MAIN','content', false);	
+				 }
+				
 	      }
 		  else{
 		  	//plugin is not enabled
@@ -67,8 +74,8 @@ class cls_router{
 	}
 	//this function run services and jump request do plugin
 	public function run_service(){
-		$plugin_name = $this->plugin . '_controller';
-		$plugin = new $plugin_name;
+		
+		$plugin = new $this->plugin;
 		$plugin->service($this->action);
 	}
 	//this function is for runing services from controls
