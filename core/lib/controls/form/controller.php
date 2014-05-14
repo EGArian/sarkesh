@@ -7,12 +7,14 @@ class ctr_form extends ctr_form_module{
 		$this->e = [];
 		$this->config = [];
 		$this->config['NAME'] = $form_name;
+		$this->config['SIZE'] = 12;
 		$this->config['LABEL'] = 'Form Label';
+		$this->config['INLINE'] = FALSE;
 	}
 	
 	public function draw(){
 		
-		return $this->module_draw($this->e);
+		return $this->module_draw($this->e,$this->config);
 	}
 	
 	//this function configure control//

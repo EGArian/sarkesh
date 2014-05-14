@@ -6,7 +6,7 @@
 				
 				{if="$addon != ''"}<span class="input-group-addon">{$addon}</span>{/if}
 				<input 
-				type="text"
+				type="{if="$password"}password{else}text{/if}"
 				name="{$id}" 
 				placeholder="{$placeholder}"
 				id="{$id}" 

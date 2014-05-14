@@ -16,7 +16,7 @@ class ctr_checkbox extends ctr_checkbox_module{
 		$this->config['HELP'] = '';
 		
 		//this config is for show width of element and most be between 1 and 12
-		$this->config['SIZE'] = '6';
+		$this->config['SIZE'] = '12';
 		
 		$this->config['FORM'] = 'DEFAULT_FORM_NAME';
 		//this config is for set value for element

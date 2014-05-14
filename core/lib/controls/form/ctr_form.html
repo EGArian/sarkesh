@@ -1,9 +1,12 @@
 <div class="row">
-	<div class="col-xs-12">
-		{loop="$e"}
-			<div Class="row">
-				<div class="col-xs-12">{$value.body}</div>
-			</div>
-		{/loop}
+	<div class="col-xs-{$size}">
+		<form name="{$name}" class="{if="$inline"}form-inline{/if}">
+			{loop="$e"}
+				{if="$inline"}<div Class="row">{/if}
+					<div class="col-xs-12">{$value.body}</div>
+				{if="$inline"}</div>{/if}
+			{/loop}
+		</form>
+
 	</div>
 </div>

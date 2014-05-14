@@ -16,6 +16,9 @@ class ctr_textbox extends ctr_textbox_module{
 		//this config show abow of element
 		$this->config['LABEL'] = 'Textbox';
 		
+		//this config show set element type to password
+		$this->config['PASSWORD'] = false;
+		
 		//this config is for show addon on element
 		$this->config['ADDON'] = 'T';
 		

@@ -37,7 +37,7 @@ function SystemGetFormString(obj){
 	 });
 	//create return element
 	options += "control";
-	options += "<!!>name<!>RV<!>VALUE<!>0";
+	options += "<!!>name<!>RV<!>VALUE<!>0<!>URL<!>0";
 	return options;
 }
 
@@ -68,7 +68,7 @@ function SystemEventsHandle(ctr_type,j_before,p_event_p, p_event_f,j_after,form_
 		url = encodeURI(url);
 		$.get(url ,
 			function(data){
-				
+				//alert(data);
 				//find deference and set that
 				window['Counter'] = 0;
 				$(form_elements).each(function(){
@@ -95,11 +95,20 @@ function SystemEventsHandle(ctr_type,j_before,p_event_p, p_event_f,j_after,form_
 					});
 					window['Counter'] ++;
 				});
+				//REDRICT PAGE IF IT'S NEED
+				
+				if($(data).find("RV").children("URL").html() != '0'){
+					window.location.assign($(data).find("RV").children("URL").html());
+				}
+				else if($(data).find("RV").children("URL").html() != 'R'){
+					window.location.reload(true)
+				}
+				
 				//control is afterclick input value
 				//data back from php code is stored with xml
 				//get xml and create object of that
 				if(j_after != '0'){
-					var RV = $(data).find("RV").children("value").html();
+					var RV = $(data).find("RV").children("VALUE").html();
 					window[j_after](RV.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&'));
 				}
 				

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.6deb1
+-- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 13, 2014 at 08:35 PM
--- Server version: 5.5.35-0ubuntu0.13.10.2
--- PHP Version: 5.5.3-1ubuntu2.3
+-- Generation Time: May 13, 2014 at 03:32 AM
+-- Server version: 5.5.37-0ubuntu0.14.04.1
+-- PHP Version: 5.5.9-1ubuntu4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `pezeshkan`
+-- Database: `test`
 --
 
 -- --------------------------------------------------------
@@ -38,112 +38,16 @@ CREATE TABLE IF NOT EXISTS `blocks` (
   `rank` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `plugin_idx` (`plugin`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `blocks`
 --
 
 INSERT INTO `blocks` (`id`, `name`, `value`, `plugin`, `position`, `permissions`, `pages`, `show_header`, `rank`) VALUES
-(6, 'content', '0', 3, 'content', NULL, NULL, 0, 0),
+(6, 'content', '0', 3, 'content', NULL, '', 0, 0),
 (7, 'login', '0', 2, 'sidebar1', NULL, NULL, 1, 3),
-(9, 'language_select', '0', 4, 'sidebar1', NULL, NULL, 0, 1),
-(10, 'forget_password', '0', 2, 'sidebar1', NULL, NULL, NULL, 2),
-(11, 'say', '0', 6, 'off', NULL, NULL, NULL, 0),
-(12, 'show_menu', '0', 7, 'header', NULL, NULL, NULL, 0),
-(13, 'show_menu', '0', 7, 'sidebar1', NULL, NULL, NULL, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `content`
---
-
-CREATE TABLE IF NOT EXISTS `content` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `entry_id` int(11) NOT NULL,
-  `tittle` varchar(100) DEFAULT NULL,
-  `user` int(11) NOT NULL,
-  `localize` int(11) NOT NULL,
-  `date_publish` int(11) NOT NULL,
-  `date_edite` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `content`
---
-
-INSERT INTO `content` (`id`, `entry_id`, `tittle`, `user`, `localize`, `date_publish`, `date_edite`) VALUES
-(1, 1, 'First news about sarkesh CMS', 1, 1, 123455555, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `entries`
---
-
-CREATE TABLE IF NOT EXISTS `entries` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(90) NOT NULL,
-  `label` varchar(90) NOT NULL,
-  `show_tittle` tinyint(4) NOT NULL DEFAULT '1',
-  `des` text,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `entries`
---
-
-INSERT INTO `entries` (`id`, `name`, `label`, `show_tittle`, `des`) VALUES
-(1, 'last_news', 'Last News', 1, 'This entry is for publish last news about sarkesh cms.');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `fields`
---
-
-CREATE TABLE IF NOT EXISTS `fields` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `ref_id` int(11) NOT NULL,
-  `value` text NOT NULL,
-  `patern_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `fields`
---
-
-INSERT INTO `fields` (`id`, `ref_id`, `value`, `patern_id`) VALUES
-(1, 1, 'Sarkesh is open source software maintained and developed by a community of 12+ users and developers. It''s distributed under the terms of the GNU General Public License (or "GPL"), which means anyone is free to download it and share it with others. This open development model means that people are constantly working to make sure Drupal is a cutting-edge platform that supports the latest technologies that the Web has to offer. The Sarkesh project''s principles encourage modularity, standards, collaboration, ease-of-use, and more.\n<br /><kbd>this is a code</kbd>', 2);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `fields_patern`
---
-
-CREATE TABLE IF NOT EXISTS `fields_patern` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(90) NOT NULL,
-  `type` varchar(20) NOT NULL DEFAULT 'string',
-  `label` varchar(90) NOT NULL DEFAULT 'label',
-  `help` text,
-  `options` text,
-  `rank` int(11) NOT NULL DEFAULT '0',
-  `entry_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
-
---
--- Dumping data for table `fields_patern`
---
-
-INSERT INTO `fields_patern` (`id`, `name`, `type`, `label`, `help`, `options`, `rank`, `entry_id`) VALUES
-(2, 'last_news_body', 'string', 'Body', NULL, NULL, 1, 1);
+(12, 'select_lang', '0', 4, 'sidebar1', NULL, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -312,8 +216,8 @@ CREATE TABLE IF NOT EXISTS `localize` (
 --
 
 INSERT INTO `localize` (`id`, `main`, `name`, `language`, `language_name`, `home`, `email`, `calendar`, `direction`) VALUES
-(1, 1, 'Sarkesh', 'en_US', 'English - United States', '?plugin=users&action=register', 'info@sarkesh.org', 'gregorian', 'LTR'),
-(2, 0, 'سرکش', 'fa_IR', 'فارسی - ایران', '?plugin=users&action=register', 'info@sarkesh.org', 'jallali', 'RTL');
+(1, 0, 'Sarkesh', 'en_US', 'English - United States', '?plugin=users&action=register', 'info@sarkesh.org', 'gregorian', 'LTR'),
+(2, 1, 'سرکش', 'fa_IR', 'فارسی - ایران', '?plugin=users', 'info@sarkesh.org', 'jallali', 'RTL');
 
 -- --------------------------------------------------------
 
@@ -323,21 +227,13 @@ INSERT INTO `localize` (`id`, `main`, `name`, `language`, `language_name`, `home
 
 CREATE TABLE IF NOT EXISTS `menus` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `name` varchar(50) NOT NULL,
   `header` varchar(50) DEFAULT NULL,
   `direction` varchar(1) NOT NULL DEFAULT 'h',
   `position` varchar(50) NOT NULL,
   `localize` varchar(10) NOT NULL DEFAULT 'en_US',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=4 ;
-
---
--- Dumping data for table `menus`
---
-
-INSERT INTO `menus` (`id`, `name`, `header`, `direction`, `position`, `localize`) VALUES
-(1, 'home_menu', NULL, 'h', 'header', 'en_US'),
-(3, 'home_menu', 'User Menu', 'v', 'sidebar1', 'en_US');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -415,18 +311,17 @@ INSERT INTO `registry` (`id`, `plugin`, `a_key`, `value`) VALUES
 (2, 3, 'validator_max_time', '77000'),
 (3, 3, 'cookie_max_time', '77000'),
 (4, 3, 'jquery', '1'),
-(5, 3, 'editor', '1'),
+(5, 3, 'editor', '0'),
 (6, 2, 'register', '1'),
 (7, 3, 'bootstrap', '1'),
 (8, 2, 'active_from_email', '1'),
 (9, 2, 'default_permation', '2'),
 (10, 5, 'template', 'simple'),
-(11, 3, 'bootstrap_theme', 'bootstrap-theme'),
-(12, 3, 'pace_theme', 'pace-theme-corner-indicator'),
+(12, 3, 'pace_theme', 'pace-theme-center-simple'),
 (13, 2, 'register_captcha', '1'),
 (14, 8, 'date_format', 'l jS \\of F Y h:i:s A'),
 (15, 3, 'default_timezone', 'America/Los_Angeles'),
-(16, 3, 'active_theme', 'blog');
+(16, 3, 'active_theme', 'simple');
 
 -- --------------------------------------------------------
 
@@ -444,14 +339,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   `forget` int(11) DEFAULT NULL,
   `last_login` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `permission`, `validator`, `forget`, `last_login`) VALUES
-(1, 'sarkesh', '621ac6ee82f8b66eea661745a05f96ef', 'info@sarkesh.org', 1, 43, NULL, NULL);
+(1, 'test', '098f6bcd4621d373cade4e832627b4f6', 'info@test.org', 1, 55, NULL, NULL),
+(2, 'sarttt', '25d55ad283aa400af464c76d713c07ad', 'ughugu@Ugugu.com', 3, 45, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -465,7 +361,7 @@ CREATE TABLE IF NOT EXISTS `validator` (
   `special_id` varchar(45) NOT NULL,
   `valid_time` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=44 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=56 ;
 
 --
 -- Dumping data for table `validator`
@@ -477,7 +373,16 @@ INSERT INTO `validator` (`id`, `source`, `special_id`, `valid_time`) VALUES
 (40, 'USERS_LOGIN', 'mury4ymxnw', '1396590297'),
 (41, 'USERS_LOGIN', '2z373wajoe', '1396874206'),
 (42, 'USERS_LOGIN', 'paq2ivf5mn', '1397334024'),
-(43, 'USERS_LOGIN', 'l2rfq2dqem', '1397334329');
+(43, 'USERS_LOGIN', 'l2rfq2dqem', '1397334329'),
+(45, 'USERS_ACTIVE', 'u85erc8xwk', '1397505851'),
+(46, 'USERS_LOGIN', 'wm16a6365n', '1398237718'),
+(47, 'USERS_LOGIN', '0zng1vgc2f', '1398426134'),
+(48, 'USERS_LOGIN', 'jfcjaqz3n0', '1399013450'),
+(49, 'USERS_LOGIN', 'l9l43zebcp', '1399039852'),
+(50, 'USERS_LOGIN', '7v40usd1f3', '1399134305'),
+(51, 'USERS_LOGIN', 'o8uxh6jswn', '1399352212'),
+(54, 'USERS_LOGIN', 'qj4knruvgw', '1399639054'),
+(55, 'USERS_LOGIN', 'onf0cooh46', '1399700686');
 
 --
 -- Constraints for dumped tables

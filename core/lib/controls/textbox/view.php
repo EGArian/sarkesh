@@ -20,6 +20,7 @@ class ctr_textbox_view{
 		//Assign variables
 		$this->raintpl->assign( "id", $config['NAME']);
 		$this->raintpl->assign( "form", $config['FORM']);
+		$this->raintpl->assign( "password", $config['PASSWORD']);
 		$this->raintpl->assign( "value", $config['VALUE']);
 		$this->raintpl->assign( "label", $config['LABEL']);
 		$this->raintpl->assign( "help", $config['HELP']);

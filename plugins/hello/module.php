@@ -5,14 +5,18 @@ class hello_module extends hello_view{
 		parent::__construct();
 	}
 	
-	public function module_test_button(){
-		return $this->view_test_button();
+	protected function module_show(){
+		$db = new cls_database;
+		$db->do_query('SELECT * FROM rr');
+		$res = $db->get_array();
+		return $this->view_show($res);
 	}
-	public function module_test_textbox(){
-		return $this->view_test_textbox();
-	}
-	public function module_test_combobox(){
-		return $this->view_test_combobox();
+	protected function module_abc($r){
+		$db = new cls_database;
+		$db->do_query("INSERT INTO rr (user,pass) VALUES ('?','?')",array($r['username']['VALUE'],$r['password']['VALUE']));
+		$r['RV']['VALUE'] = cls_page::SHOW_BLOCK('YOHO','YOUR MSG WAS RECIVED','MODAL','type-danger');
+		$r['RV']['URL'] = "HTTP://GOOGLE.COM";
+		return $r;
 	}
 
 }
