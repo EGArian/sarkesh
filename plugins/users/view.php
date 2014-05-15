@@ -26,11 +26,13 @@ class users_view{
 		$login->configure('LABEL',_('Sign in'));
 		$login->configure('P_ONCLICK_PLUGIN','users');
 		$login->configure('P_ONCLICK_FUNCTION','btn_login_onclick');
+		$login->configure('J_ONCLICK','alert');
 		$login->configure('TYPE','primary');
 		
 		$forget = new ctr_button;
 		$forget->configure('NAME','btn_reset_password');
 		$forget->configure('LABEL', _('Reset Password'));
+		$forget->configure('HREF',cls_general::create_url(array('plugin','users','action','reset_password')));
 		$forget->configure('TYPE','link');
 		
 		$r = new ctr_row;
@@ -48,7 +50,7 @@ class users_view{
 			$register = new ctr_button;
 			$register->configure('NAME','btn_register');
 			$register->configure('LABEL', _('Register'));
-			$register->configure('J_ONCLICK', _('Register'));
+			$register->configure('HREF',cls_general::create_url(array('plugin','users','action','register')));
 			$register->configure('TYPE','success');
 			$r1 = new ctr_row;
 			$r1->add($lbl,7);

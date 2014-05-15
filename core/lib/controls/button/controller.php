@@ -24,6 +24,9 @@ class ctr_button extends ctr_button_module{
 		
 		$this->config['BS_CONTROL'] = true;
 		
+		//This config is for set jump page
+		$this->config['HREF'] = '';
+		
 		//valid types : default,primary,success,info,warning,danger,link
 		$this->config['TYPE'] = 'default';
 		

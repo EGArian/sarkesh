@@ -1,10 +1,12 @@
 <?php
-class msg_module{
-	private $view;
-	
-	function __construct(){
-		$this->view = new hello_view;
-	}
+class msg_module extends msg_view{
 
+	function __construct(){
+		parent::__construct();
+	}
+	
+	protected function module_404(){
+		return $this->view_404();
+	}
 }
 ?>

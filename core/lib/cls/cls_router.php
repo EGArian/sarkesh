@@ -58,16 +58,21 @@ class cls_router{
 	     		 if(method_exists($plugin,$this->action)){
 					 $content = call_user_func(array($plugin,$this->action));
 				 }
-				 else{
-					 $content = $plugin->action($this->action, 'MAIN','content', false);	
+				 else{	
+					 if(method_exists($plugin,'default')){
+						$content = call_user_func(array($plugin,'default'));
+					 }
+						//show 404 page not found page
+						$plugin = new msg;
+						$content = call_user_func(array($plugin,'msg_404'));	
 				 }
 				
 	      }
 		  else{
 		  	//plugin is not enabled
 		  	//show 404 page not found page
-		  	$plugin = new msg_controller;
-			$content = $plugin->action(404, 'MAIN',false);
+		  	$plugin = new msg;
+			$content = call_user_func(array($plugin,'msg_404'));
 		  }
 	      cls_page::set_page_tittle($content[0]);
 	      echo $content[1];

@@ -19,6 +19,14 @@ class ctr_button_view{
 		
 		//Assign variables
 		$this->raintpl->assign( "id", $config['NAME']);
+		$this->raintpl->assign( "href", $config['HREF']);
+		//if href config is enabled we are sorry for do onclick events
+		if($config['HREF'] != ''){
+			$config['J_ONCLICK'] = '0';
+			$config['P_ONCLICK_FUNCTION'] = '0';
+			$config['P_ONCLICK_PLUGIN'] = '0';
+			$config['J_AFTER_ONCLICK'] = '0';
+		}
 		$this->raintpl->assign( "form", $config['FORM']);
 		$this->raintpl->assign( "value", $config['VALUE']);
 		$this->raintpl->assign( "bs_control", $config['BS_CONTROL']);
