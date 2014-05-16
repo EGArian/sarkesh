@@ -1,11 +1,9 @@
-function SystemRunEvent(obj,type ,j_before, p_events_p, p_event_f, j_after){
-	 //Get all elements and push in array
+//this function handel events
+function ctr_system_event(obj,type, j_before, p_events_p, p_event_f, j_after){ 
+	  //Get all elements and push in array
 	 var options = SystemGetFormString(obj);
 	 var form_elements = SystemGetFormArray(obj);
 	 SystemEventsHandle(type,j_before, p_events_p, p_event_f,j_after,form_elements,options);
-}
-function ctr_system_event(obj,type, j_before, p_events_p, p_event_f, j_after){ 
-	 SystemRunEvent(obj,type, j_before, p_events_p, p_event_f, j_after);
 }
 //this function return form in string
 //obj is an element for input
@@ -45,10 +43,9 @@ function SystemGetFormString(obj){
 function SystemGetFormArray(obj){
 	 //run javascript click function
 	 var form = $(obj).attr('form');
-	  
 	 //Get all elements and push in array
 	 var form_elements = [];
-	 $('.ca_' + form).each(function(){
+	 $('[form=' + form + ']').each(function(){
 		 //add element for store
 		 form_elements.push(this);
 	 });
@@ -61,7 +58,6 @@ function SystemEventsHandle(ctr_type,j_before,p_event_p, p_event_f,j_after,form_
 	if(j_before != '0'){
 	  window[j_before](form_elements);
 	}
-	//run php click function
 
 	if(p_event_p != '0'){
 		url = "?control=1&plugin=" + p_event_p + "&action=" + p_event_f + "&options=" + options;
@@ -72,9 +68,9 @@ function SystemEventsHandle(ctr_type,j_before,p_event_p, p_event_f,j_after,form_
 				//find deference and set that
 				window['Counter'] = 0;
 				$(form_elements).each(function(){
-				
 					$(data).find($(this).attr("id")).children().each(function(){
 						//check defernece
+
 						if(this.tagName.toLowerCase() == "label"){
 							$(form_elements[window['Counter']]).html($(this).html().trim());
 						}
@@ -84,15 +80,25 @@ function SystemEventsHandle(ctr_type,j_before,p_event_p, p_event_f,j_after,form_
 							//It's under development
 							
 						}
+						else if(this.tagName.toLowerCase() == "value"){
+							if(form_elements[window['Counter']][this.tagName.toLowerCase()].toLowerCase().trim() != $(this).html().toLowerCase().trim()){	
+									$(form_elements[window['Counter']]).val($(this).html());
+		
+							}
+							
+						}
 						else{
+
 							if(form_elements[window['Counter']][this.tagName.toLowerCase()].toLowerCase().trim() != $(this).html().toLowerCase().trim()){
-								$(form_elements[window['Counter']]).attr(this.tagName.toLowerCase(), $(this).html().toLowerCase().trim());
+									$(form_elements[window['Counter']]).attr('value', $(this).html());
+								
 									
 							}
 						}
 									
 						
 					});
+					
 					window['Counter'] ++;
 				});
 				//REDRICT PAGE IF IT'S NEED
@@ -100,7 +106,7 @@ function SystemEventsHandle(ctr_type,j_before,p_event_p, p_event_f,j_after,form_
 				if($(data).find("RV").children("URL").html() != '0'){
 					window.location.assign($(data).find("RV").children("URL").html());
 				}
-				else if($(data).find("RV").children("URL").html() != 'R'){
+				else if($(data).find("RV").children("URL").html() == 'R'){
 					window.location.reload(true)
 				}
 				

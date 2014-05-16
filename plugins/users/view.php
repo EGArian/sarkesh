@@ -26,7 +26,6 @@ class users_view{
 		$login->configure('LABEL',_('Sign in'));
 		$login->configure('P_ONCLICK_PLUGIN','users');
 		$login->configure('P_ONCLICK_FUNCTION','btn_login_onclick');
-		$login->configure('J_ONCLICK','alert');
 		$login->configure('TYPE','primary');
 		
 		$forget = new ctr_button;
