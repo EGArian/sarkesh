@@ -1,0 +1,11 @@
+<div class="row"><div class="col-xs-3">
+<textarea class="{if="$class != ''"}{$class}{/if}" id="{$name}" form ="{$form}" {if="$style != ''"} style="{$style}"{/if} rows="{$rows}" cols="{$cols}">
+{$value}
+</textarea> 
+</div></div>
+
+{if="$editor"}
+	<script type="text/javascript">$(document).ready(function() {	 
+	bkLib.onDomLoaded(nicEditors.allTextAreas);
+	});</script>
+{/if}

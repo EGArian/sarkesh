@@ -9,7 +9,7 @@ class ctr_button_module extends ctr_button_view{
 		 parent::__construct();
 	}
 	
-	protected function module_draw($config, $show){
-		return $this->view_draw($config, $show);
+	protected function module_draw($config){
+		return $this->view_draw($config);
 	}
 }

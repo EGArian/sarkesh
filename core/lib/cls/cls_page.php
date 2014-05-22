@@ -79,16 +79,7 @@ class cls_page{
 			array_push($default_headers, '<link rel="shortcut icon" href="./themes/'. $theme_name .'/favicon.ico" type="image/x-icon">');
 			array_push($default_headers, '<link rel="icon" href="./themes/'.$theme_name .'/favicon.ico" type="image/x-icon">');
 		}
-		//enable texteditor if that's enabled from registery
-		//for enable editor textarea tag should has class with 'editor' name
 
-		if(self::$settings['editor'] == '1'){
-			$obj_localize = new cls_localize;
-			array_push($default_headers, '<script src="./core/ect/scripts/tinymce/tinymce.min.js"></script>');
-			array_push($default_headers, "<script> tinymce.init({selector:'textarea.editor',directionality: " . '"' . self::$localize_settings['direction'] . '",language: "' . $obj_localize->convert_language_code(self::$localize_settings['language']) .'"});</script>');
-
-                         
-		}
 		#load nessasery java script functions
 		array_push($default_headers, '<script src="./core/ect/scripts/functions.js"></script>');
 		

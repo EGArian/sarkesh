@@ -91,16 +91,10 @@ class ctr_button extends ctr_button_module{
 		
 		return FALSE;
 	}
-	public function draw($show = false){
-		return $this->module_draw($this->config, $show);
+	public function draw(){
+		return $this->module_draw($this->config);
 	}
-	
-	public function service($service,$elements){
-		if($service == 'event'){
-			return $this->module_event($elements);
-		}
-			
-	}
+
 	public function get($key){
 		if(key_exists($key, $this->config)){
 			return $this->config[$key];

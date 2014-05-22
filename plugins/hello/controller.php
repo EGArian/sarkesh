@@ -6,7 +6,9 @@ class hello extends hello_module{
 	}
 
 	public function login(){
-		return $this->module_show();
+		$a = new ctr_textarea;
+		$a->configure("STYLE","border: 1px black;");
+		return array(1,$a->draw());
 	}
 	
 	public function abc($e){

@@ -9,7 +9,6 @@ define ("DatabaseUser","root");
 define ("DatabasePassword","136431");
 define ("DatabaseHost","localhost");
 define ("DatabaseName","test");
-//define ("TablePrefix","");
 
 #save system Access domain
 define ("SiteDomain","http://localhost/");
