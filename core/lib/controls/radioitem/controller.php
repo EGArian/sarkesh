@@ -1,27 +1,30 @@
 <?php
-class ctr_textarea extends ctr_textarea_module{
+class ctr_radioitem extends ctr_radioitem_module{
+
 	private $config;
-	
 	function __construct(){
 		parent::__construct();
 		$this->config = [];
-		$this->config['NAME'] = 'TEXTAREA';
-		$this->config['LABEL'] = 'TEXTAREA';
-		$this->config['HELP'] = 'some help text';
-		$this->config['EDITOR'] = true;
-		$this->config['ROWS'] = '10';
-		$this->config['SIZE'] = '12';
+		$this->config['NAME'] = 'radiobutton';
+		$this->config['ID'] = 'radiobutton';
+		$this->config['FORM'] = 'R_FORM';
 		$this->config['STYLE'] = '';
-		$this->config['FORM'] = 'default_form';
 		$this->config['CLASS'] = '';
 		$this->config['CSS_FILE'] = '';
-		$this->config['VALUE'] = '';
+		$this->config['VALUE'] = 'radiobutton';
+		$this->config['SIZE'] = 12;
+		$this->config['LABEL'] = 'Form Label';
+		$this->config['CHECKED'] = FALSE;
+		$this->config['DISABLED'] = FALSE;
+		$this->config['LABEL'] = 'radiobutton';
 	}
 	
 	public function draw(){
+		
 		return $this->module_draw($this->config);
 	}
 	
+	//this function configure control//
 	public function configure($key, $value){
 		// checking for that key is exists//
 		if(key_exists($key, $this->config)){		
@@ -31,12 +34,11 @@ class ctr_textarea extends ctr_textarea_module{
 		//key not exists//
 		return FALSE;
 	}
-	
 	public function get($key){
 		if(key_exists($key, $this->config)){
 			return $this->config[$key];
 		}
-		die('Index is out of range');
+		die('Index is out of range form');
 	}
+	
 }
-?>

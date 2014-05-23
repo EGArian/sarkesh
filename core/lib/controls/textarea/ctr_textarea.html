@@ -1,8 +1,14 @@
-<div class="row"><div class="col-xs-3">
-<textarea class="{if="$class != ''"}{$class}{/if}" id="{$name}" form ="{$form}" {if="$style != ''"} style="{$style}"{/if} rows="{$rows}" cols="{$cols}">
-{$value}
-</textarea> 
-</div></div>
+<div class="row">
+	<div class="form-group">
+		<div class="col-xs-{$size}">
+			<label for="{$id}"> {if="$label != ''"}{$label}{/if} </label>
+			<textarea id="{$id}" class="form-control {$id} {if="$class != ''"}{$class}{/if}" id="{$name}" form ="{$form}" {if="$style != ''"} style="{$style}"{/if} rows="{$rows}" >
+			{$value}
+			</textarea> 
+			{if="$help!=''"}<span class="help-block">{$help}</span>{/if}
+		</div>	
+	</div>
+</div>
 
 {if="$editor"}
 	<script type="text/javascript">$(document).ready(function() {	 

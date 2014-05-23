@@ -16,8 +16,11 @@ class ctr_textarea_view{
 
 		
 		$this->raintpl->assign("name",$config['NAME']);
+		$this->raintpl->assign("label",$config['LABEL']);
+		$this->raintpl->assign("help",$config['HELP']);
+		$this->raintpl->assign("id",$config['NAME']);
 		$this->raintpl->assign("rows",$config['ROWS']);
-		$this->raintpl->assign("cols",$config['COLS']);
+		$this->raintpl->assign("size",$config['SIZE']);
 		$this->raintpl->assign("style",$config['STYLE']);
 		$this->raintpl->assign("value",$config['VALUE']);
 		$this->raintpl->assign("editor",$config['EDITOR']);

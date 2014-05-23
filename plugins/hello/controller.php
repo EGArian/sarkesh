@@ -6,9 +6,15 @@ class hello extends hello_module{
 	}
 
 	public function login(){
-		$a = new ctr_textarea;
-		$a->configure("STYLE","border: 1px black;");
-		return array(1,$a->draw());
+		$a = new ctr_radioitem;
+		$a->configure("LABEL","ALIREZE");
+		$a->configure("CHECKED",TRUE);
+		$b= new ctr_radiobuttons;
+		$b->add($a);
+		$b->add($a);
+		$c= new ctr_form("ali");
+		$c->add($b);
+		return array(1,$c->draw());
 	}
 	
 	public function abc($e){

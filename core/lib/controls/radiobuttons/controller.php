@@ -1,19 +1,18 @@
 <?php
-class ctr_form extends ctr_form_module{
+class ctr_radiobuttons extends ctr_radiobuttons_module{
 	private $e;
 	private $config;
-	function __construct($form_name="form"){
+	function __construct(){
 		parent::__construct();
 		$this->e = [];
 		$this->config = [];
-		$this->config['NAME'] = $form_name;
+		$this->config['NAME'] = 'radiobutton';
 		$this->config['SIZE'] = 12;
 		$this->config['LABEL'] = 'Form Label';
 		$this->config['INLINE'] = FALSE;
 	}
 	
 	public function draw(){
-		
 		return $this->module_draw($this->e,$this->config);
 	}
 	
@@ -35,23 +34,20 @@ class ctr_form extends ctr_form_module{
 	public function add($element){
 		
 		//change form name of element
-		call_user_func(array($element,"configure"),'FORM',$this->config['NAME']);
-		//set form name on all child of element
-		if(method_exists($element,'childs')){
-			call_user_func(array($element,"childs"),'FORM',$this->config['NAME']);
-		}
-		$e['body'] = $element->draw();
-		array_push($this->e, $e);
+		call_user_func(array($element,"configure"),'NAME',$this->config['NAME']);
+		array_push($this->e, $element);
 
 	}
-	public function add_spc(){
-		$e['body'] = '<hr />';
-		array_push($this->e, $e);
-	}
+
 	public function get($key){
 		if(key_exists($key, $this->config)){
 			return $this->config[$key];
 		}
 		die('Index is out of range form');
+	}
+	public function childs($property,$value){
+		foreach($this->e as $e){
+			call_user_func(array($e,"configure"),$property,$value);
+		}
 	}
 }
