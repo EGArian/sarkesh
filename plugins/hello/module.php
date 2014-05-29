@@ -11,6 +11,11 @@ class hello_module extends hello_view{
 		$res = $db->get_array();
 		return $this->view_show($res);
 	}
+	
+	protected function module_table(){
+		return $this->view_table();
+	}
+	
 	protected function module_abc($r){
 		$db = new cls_database;
 		$db->do_query("INSERT INTO rr (user,pass) VALUES ('?','?')",array($r['username']['VALUE'],$r['password']['VALUE']));

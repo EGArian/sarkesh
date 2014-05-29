@@ -6,7 +6,23 @@ class hello_view{
 		$this->raintpl = new cls_raintpl;
 		$this->raintpl->configure("tpl_dir", "plugins/hello/tpl/" );
 	}
-	
+	protected function view_table(){
+		
+		$form = new ctr_form('name');
+		$table = new ctr_table;
+		$row = new ctr_row;
+		$text = new ctr_textbox;
+		$button = new ctr_button;
+		$row->add($text,6);
+		$row->add($button,6);
+		
+		$table->add_row($row->draw());
+		echo $table->draw();
+		$form->add($table);
+		return array('tittle',$form->draw());
+		
+		
+	}
 	protected function view_show($result){
 		
 

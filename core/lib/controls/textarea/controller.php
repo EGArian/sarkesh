@@ -6,8 +6,8 @@ class ctr_textarea extends ctr_textarea_module{
 		parent::__construct();
 		$this->config = [];
 		$this->config['NAME'] = 'TEXTAREA';
-		$this->config['LABEL'] = 'TEXTAREA';
-		$this->config['HELP'] = 'some help text';
+		$this->config['LABEL'] = '';
+		$this->config['HELP'] = '';
 		$this->config['EDITOR'] = true;
 		$this->config['ROWS'] = '10';
 		$this->config['SIZE'] = '12';

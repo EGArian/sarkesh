@@ -6,6 +6,7 @@ class users extends users_module{
 	
 	//this function return login form
 	public function login(){
+		$a = new cls_orm;
 		return $this->module_login();
 	}
 	
@@ -16,7 +17,7 @@ class users extends users_module{
 	
 	//this function in ligin button onclick event
 	public function btn_login_onclick($e){
-		$e['txt_username']['VALUE'] = "mmm";
+		$e['txt_username']['VALUE'] = "";
 		$e['txt_password']['VALUE'] = "";
 		RETURN $e;
 	}
