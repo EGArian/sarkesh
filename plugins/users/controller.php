@@ -17,7 +17,8 @@ class users extends users_module{
 	
 	//this function in ligin button onclick event
 	public function btn_login_onclick($e){
-		$e['txt_username']['VALUE'] = "";
+		
+		$e['txt_username']['VALUE'] = $e['ckb_remember']['CHECKED'];
 		$e['txt_password']['VALUE'] = "";
 		RETURN $e;
 	}

@@ -19,6 +19,7 @@ class users_view{
 		$password->configure('PLACE_HOLDER',_('Password'));
 		
 		$remember = new ctr_checkbox;
+		$remember->configure('NAME','ckb_remember');
 		$remember->configure('LABEL',_('Remember me!'));
 		
 		$login = new ctr_button;

@@ -8,9 +8,11 @@ class ctr_table extends ctr_table_module{
 		
 		$this->config = [];
 		$this->config['NAME'] = 'TABLE';
+		// valid : NORMAL | SOURCE
+		$this->config['TYPE'] = 'NORMAL';
 		$this->config['ROWS'] = [];
 		$this->config['HEADERS'] = [];
-		$this->config['SIZE'] = 6;
+		$this->config['SIZE'] = 12;
 		$this->config['BS_CONTROL'] = true;
 		$this->config['BORDER'] = TRUE;
 		$this->config['HOVER'] = TRUE;
@@ -21,11 +23,12 @@ class ctr_table extends ctr_table_module{
 	}
 	//this function designed for add rows
 	public function add_row($row){
-		array_push($this->config['ROWS'],$row);
+		$this->config['TYPE'] = 'NORMAL';
+		array_push($this->config['ROWS'],$row->draw());
 		
 	}
 	public function add_source($source){
-		
+		$this->config['TYPE'] = 'SOURCE';
 		$this->config['ROWS'] = array_merge($this->config['ROWS'],$source);
 		
 	}

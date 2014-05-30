@@ -20,7 +20,14 @@ class ctr_table_view{
 		$this->raintpl->assign('hover',$config['HOVER']);
 		$this->raintpl->assign('striped',$config['STRIPED']);
 		$this->raintpl->assign('class',$config['CLASS']);
-		return $this->raintpl->draw("ctr_table",true);
+		
+		if($config['TYPE'] == 'NORMAL'){
+			return $this->raintpl->draw("ctr_table_normal",true);
+		}
+		else{
+			return $this->raintpl->draw("ctr_table_source",true);
+		}
+		
 	}
 }
 

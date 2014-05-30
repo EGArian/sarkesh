@@ -7,7 +7,7 @@ class core{
 	function __construct(){
 		$this->module = new core_module;
 		$this->view = new core_view;
-		$this->msg = new msg_controller;
+		$this->msg = new msg;
 		$this->users = new users_module;
 	}
 	

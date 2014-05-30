@@ -15,9 +15,10 @@ class hello_view{
 		$button = new ctr_button;
 		$row->add($text,6);
 		$row->add($button,6);
+		$db = new cls_database;
+		$db->do_query('select * from users');
 		
-		$table->add_row($row->draw());
-		echo $table->draw();
+		$table->add_source($db->get_array());
 		$form->add($table);
 		return array('tittle',$form->draw());
 		

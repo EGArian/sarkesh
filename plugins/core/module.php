@@ -9,7 +9,7 @@ class core_module{
 		$this->view = new core_view;
 		$this->db = new cls_database;
 		$this->user = new users_module;
-		$this->msg = new msg_controller;
+		$this->msg = new msg;
 		$this->io = new cls_io;
 	}
 

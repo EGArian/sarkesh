@@ -19,9 +19,20 @@ function SystemGetFormString(obj){
 		options += "<!!>NAME<!>";
 		options += this.name;
 		//seperate controls
+
 		if(this.type == 'select-one'){
 			options += "<!>SELECTED<!>";
 			options += this.value;
+			options += "<!!>";
+		}
+		if(this.type == 'checkbox'){
+			options += "<!>CHECKED<!>";
+			if(this.checked){
+				options += '1';
+			}
+			else{
+				options += '0';
+			}
 			options += "<!!>";
 		}
 		else{

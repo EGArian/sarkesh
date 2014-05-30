@@ -18,7 +18,7 @@ ob_start("sys_render");
 		else{
 			$action = 'default';
 		}
-		$admin = new core_controller;
+		$admin = new core;
 		$admin->core_controller($plugin, $action);
 ob_end_flush();
 ?>
