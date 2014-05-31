@@ -46,7 +46,7 @@ function SystemGetFormString(obj){
 	 });
 	//create return element
 	options += "control";
-	options += "<!!>name<!>RV<!>VALUE<!>0<!>URL<!>0";
+	options += "<!!>name<!>RV<!>VALUE<!>0<!>URL<!>0<!>MODAL<!>0";
 	return options;
 }
 
@@ -75,7 +75,7 @@ function SystemEventsHandle(ctr_type,j_before,p_event_p, p_event_f,j_after,form_
 		url = encodeURI(url);
 		$.get(url ,
 			function(data){
-				//alert(data);
+				alert(data);
 				//find deference and set that
 				window['Counter'] = 0;
 				$(form_elements).each(function(){
@@ -87,6 +87,12 @@ function SystemEventsHandle(ctr_type,j_before,p_event_p, p_event_f,j_after,form_
 						}
 						else if(this.tagName.toLowerCase() == "selected"){
 							//it's from element like SELECT tag
+							
+							//It's under development
+							
+						}
+						else if(this.tagName.toLowerCase() == "checked"){
+							//it's from element like checkbox tag
 							
 							//It's under development
 							
@@ -114,11 +120,18 @@ function SystemEventsHandle(ctr_type,j_before,p_event_p, p_event_f,j_after,form_
 				});
 				//REDRICT PAGE IF IT'S NEED
 				
-				if($(data).find("RV").children("URL").html() != '0'){
+				if($(data).find("RV").children("URL").html() == 'R'){
+					window.location.reload(true);
+				}
+				else if($(data).find("RV").children("URL").html() != '0'){
 					window.location.assign($(data).find("RV").children("URL").html());
 				}
-				else if($(data).find("RV").children("URL").html() == 'R'){
-					window.location.reload(true)
+				
+				//SHOW MODAL MESSAGES
+				if($(data).find("RV").children("MODAL").html() != '0'){
+					
+					var modal = $(data).find("RV").children("MODAL").html();
+					SysShowModal(modal.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&'));
 				}
 				
 				//control is afterclick input value

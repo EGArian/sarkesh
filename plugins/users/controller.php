@@ -6,7 +6,6 @@ class users extends users_module{
 	
 	//this function return login form
 	public function login(){
-		$a = new cls_orm;
 		return $this->module_login();
 	}
 	
@@ -17,10 +16,33 @@ class users extends users_module{
 	
 	//this function in ligin button onclick event
 	public function btn_login_onclick($e){
+		//first check for that username and password is filled
+		if(trim($e['txt_username']['VALUE']) == '' || trim($e['txt_password']['VALUE'])==''){
+			$e['RV']['MODAL'] = cls_page::show_block(_('Message'),_('Please fill in all of the required fields"'),'MODAL','type-warning');
+			return $e;
+		}
+		else{
+			//handle request to module
+			return $this->module_btn_login_onclick($e);
+		}
 		
-		$e['txt_username']['VALUE'] = $e['ckb_remember']['CHECKED'];
-		$e['txt_password']['VALUE'] = "";
-		RETURN $e;
 	}
+	
+	 /*
+	 * this function check user loged in before or not
+	 * boolean 
+	 */
+	 public function is_logedin(){
+		 return $this->module_is_logedin();
+	 }
+	 
+	 /*
+	  * INPUT: ELEMENTS | NULL
+	  * this function do logout proccess
+	  * OUTPUT: boolean | ELEMENTS
+	  */
+	  public function logout($e == ''){
+		  return $this->module_logout();
+	  }
 }
 ?>

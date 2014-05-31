@@ -19,7 +19,7 @@ class languages_module extends languages_view{
 		
 		if($this->obj_localize->set_language($e['lang']['SELECTED'])){
 		//change successfull return 1
-		$e['RV']['VALUE'] = 1;
+		$e['RV']['URL'] = 'R';
 		}
 		else{
 			$e['RV']['VALUE'] = cls_page::show_block(false,_('message'), _('changing language has some problem! Please try again later.'), 'MODAL','type-warning');

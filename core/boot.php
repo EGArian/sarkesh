@@ -36,6 +36,8 @@ if(file_exists("./config.php")) {
 	include_once(AppPath . 'core/inc/localize.php');
 	#include functions
 	include_once("./core/functions/render.php");  
+	// config and setup cls_orm // RedBeanphp
+	cls_orm::run();
 	//check for that want work with services or normal use
 	if(isset($_REQUEST['service'])){
 		#run system in service mode

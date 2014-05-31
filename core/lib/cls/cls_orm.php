@@ -8986,10 +8986,10 @@ class Facade
 	 */
 	public static function addDatabase( $key, $dsn, $user = NULL, $pass = NULL, $frozen = FALSE )
 	{
+		
 		if ( isset( self::$toolboxes[$key] ) ) {
 			throw new RedException( 'A database has already be specified for this key.' );
 		}
-
 		if ( is_object($dsn) ) {
 			$db  = new RPDO( $dsn );
 			$dbType = $db->getDatabaseType();
@@ -10711,7 +10711,19 @@ namespace {
 class RedBean_SimpleModel extends \RedBeanPHP\SimpleModel {};
 
 if (!class_exists('cls_orm')) {
-	class cls_orm extends \RedBeanPHP\Facade{};
+	class cls_orm extends \RedBeanPHP\Facade{
+		
+			//setup with default
+			public static function run($connection='',$username ='' ,$password = ''){
+				if($connection == ''){
+					//first check for default connection
+					if(DatabaseType == 'mysql' || DatabaseType == 'mariaDB'){
+						self::setup('mysql:host=' . DatabaseHost . ';dbname=' . DatabaseName,DatabaseUser,DatabasePassword);
+					}
+				}
+				
+			}
+	};
 }
 
 

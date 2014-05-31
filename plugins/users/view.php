@@ -60,6 +60,27 @@ class users_view{
 		
 		return array(_('Sign in'),$form->draw());
 	}
+	
+	/*
+	 * INPUT: string > BLOCK|CONTENT
+	 * INPUT: array > a row from users table
+	 * INPUT: boolean > Admin permation
+	 * 
+	 * This function show user profile in block mode and content mode
+	 * block mode draw with small information about user
+	 * content mode draw all information about user
+	 * OUTPUT:form
+	 */
+	 protected function view_profile($type,$user_info,$admin_permission){
+		 if($type == 'BLOCK'){
+			 //Show profile in block mode
+			 
+		 }
+		 else{
+			 //show profile in content mode
+		 }
+	 }
+	 
 
 }
 ?>
