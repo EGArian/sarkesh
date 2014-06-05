@@ -56,11 +56,11 @@ class cls_router{
 	     		 $plugin = new $this->plugin;
 	     		 //run action directly
 	     		 if(method_exists($plugin,$this->action)){
-					 $content = call_user_func(array($plugin,$this->action));
+					 $content = call_user_func(array($plugin,$this->action),'content');
 				 }
 				 else{	
 					 if(method_exists($plugin,'default')){
-						$content = call_user_func(array($plugin,'default'));
+						$content = call_user_func(array($plugin,'default'),'content');
 					 }
 						//show 404 page not found page
 						$plugin = new msg;

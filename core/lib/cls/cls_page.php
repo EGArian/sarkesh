@@ -53,6 +53,7 @@ class cls_page{
 			array_push($default_headers, '<script src="./core/ect/scripts/bootstrap-dialog.js"></script>');
 			array_push($default_headers, '<script src="./core/ect/scripts/pace.min.js"></script>');
 			array_push($default_headers, '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap.min.css" />');
+			array_push($default_headers, '<link rel="stylesheet" type="text/css" href="./core/ect/styles/default.css" />');
 			#load rtl bootstrap
 			if (self::is_rtl()){ 
 				array_push($default_headers, '<link rel="stylesheet" type="text/css" href="./core/ect/styles/bootstrap-rtl.min.css" />');
@@ -249,7 +250,7 @@ class cls_page{
 						//run action method for show block
 						//all blocks name should be like  'blk_blockname'
 						
-						$content = call_user_func(array($plugin, $block['b.name']),'BLOCK', $position);
+						$content = call_user_func(array($plugin, $block['b.name']),$position);
 						echo self::show_block($content[0], $content[1], 'BLOCK');
 					}
 				}

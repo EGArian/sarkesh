@@ -4,17 +4,33 @@ class users extends users_module{
 		parent::__construct();
 	}
 	
-	//this function return login form
-	public function login(){
-		return $this->module_login();
+	/*
+	 * INPUT:string: position name in theme file
+	 * this function return login form
+	 * OUTPUT:elements
+	 */
+	public function login_block($position){
+
+		if($position != 'content'){
+			return $this->module_login_block();
+		}
 	}
 	
-	//this function show register form
-	public function register(){
+	/*
+	 * INPUT:string: position name in theme file
+	 * this function return register form
+	 * OUTPUT:elements
+	 */
+	public function register($position){
+		//WARRNING : UNDER DEVELOPMENT
 		return array(2,2);
 	}
 	
-	//this function in ligin button onclick event
+	/*
+	 * INPUT:elements array
+	 * this function run with btn_login onclick event
+	 * OUTPUT:elements array
+	 */
 	public function btn_login_onclick($e){
 		//first check for that username and password is filled
 		if(trim($e['txt_username']['VALUE']) == '' || trim($e['txt_password']['VALUE'])==''){
@@ -29,8 +45,9 @@ class users extends users_module{
 	}
 	
 	 /*
+	 * 
 	 * this function check user loged in before or not
-	 * boolean 
+	 * OUTPUT: boolean 
 	 */
 	 public function is_logedin(){
 		 return $this->module_is_logedin();
@@ -41,8 +58,18 @@ class users extends users_module{
 	  * this function do logout proccess
 	  * OUTPUT: boolean | ELEMENTS
 	  */
-	  public function logout($e == ''){
-		  return $this->module_logout();
+	  public function btn_logout_onclick($e = ''){
+		  return $this->module_logout($e);
 	  }
+	  
+	  /*
+	   * INPUT: string : permission name
+	   * INPUT: string:username | NULL: for cerrent user
+	   * this function check for that user has access to entered permission
+	   * OUTPUT: boolean
+	   */
+	   public function has_permission($name, $username=''){
+		   return $this->module_has_permission($name,$username);
+	   }
 }
 ?>

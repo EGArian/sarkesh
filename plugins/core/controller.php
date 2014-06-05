@@ -1,14 +1,15 @@
 <?php
-class core{
+class core extends core_module{
 	private $module;
 	private $view;
 	private $msg;
 	private $users;
 	function __construct(){
+		parent::__construct();
 		$this->module = new core_module;
 		$this->view = new core_view;
 		$this->msg = new msg;
-		$this->users = new users_module;
+		$this->users = new users;
 	}
 	
 	public function action($action, $view, $show=true){
@@ -43,7 +44,7 @@ class core{
 	}
 	public function core_controller($plugin, $action){
 		//first of all we want to check that user has permission to access to admin area?
-		if($this->users->has_permission('core_admin_panel')){
+		if($this->users->has_permission('core_admin_panel','test')){
 			//going to show admin panel
 			if($action == 'default' && $plugin == 'default'){
 				//no plugin set so user want to see admin panel(main)
@@ -67,8 +68,8 @@ class core{
 		}
 		else{
 			//access denied
-			$users_controller = new users_controller;
-			$content = $users_controller->action('login_panel','MAIN','content', false);
+			$users_controller = new users;
+			$content = $users_controller->login_block('content');
 			$this->view->show_single_page($content);
 		}	
 	}

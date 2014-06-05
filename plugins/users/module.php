@@ -17,17 +17,18 @@ class users_module extends users_view{
 	 * if user was logedin before return user profile
 	 * form
 	 */
-	protected function module_login(){
+	protected function module_login_block(){
+
 		//checking for that is logedin before
 		if($this->module_is_logedin()){
 			//show user profile
 			//get user information
-			
-			return $this->view_profile('BLOCK');
+			$user=$this->module_get_user_info();
+			return $this->view_profile_block($user, $this->module_has_permission('core_admin_panel'));
 		}
 		else{
 			//show login form in block mode
-			return $this->view_login();
+			return $this->view_login_block();
 		}
 		
 	}
@@ -50,7 +51,7 @@ class users_module extends users_view{
 			}
 			//INSERT VALID ID IN USER ROW
 			$user = cls_orm::load('users',$this->get_user_id($e['txt_username']['VALUE']));
-			$user->login = $valid_id;
+			$user->login_key = $valid_id;
 			cls_orm::store($user);
 			//refresh page
 			$e['RV']['URL'] = 'R';
@@ -70,7 +71,15 @@ class users_module extends users_view{
 	 * boolean 
 	 */
 	 protected function module_is_logedin(){
-		 return $this->validator->is_set('USERS_LOGIN');
+		 if($this->validator->is_set('USERS_LOGIN')){
+				$id = $this->validator->get_id('USERS_LOGIN');
+				if(cls_orm::count('users','login_key = ?',array($id)) != 0){
+					//user is loged in before
+					return true;
+				}
+		 }
+		 //user not loged in before
+		 return false;
 	 }
 	 
 	 /*
@@ -88,16 +97,25 @@ class users_module extends users_view{
 	   * INPUT: Integer > user id | NULL for get legedin user info
 	   * this function return array of user info
 	   * if 
-	   * OUTPUT: Array > user info | False > if user not found
+	   * OUTPUT: OBJECT of bean > user info | False > if user not found
 	   */
-	   protected function get_user_info($id = 0){
-		   if($id == 0){
+	   protected function module_get_user_info($username = ''){
+		   if($username == ''){
 				//going to find logedin user info
-				echo $this->validator->get_id('USERS_LOGIN');
+				if($this->module_is_logedin()){
+					$id = $this->validator->get_id('USERS_LOGIN');	
+					return cls_orm::findOne('users',"login_key = ?",array($id));
+				}
+					
 			}
-			else{
-				//get info of user id
+			//get user info by username
+			$res = cls_orm::findOne('users',"username = ?",array($username));
+			if($res == array()){
+				//result was empty
+				return false;
 			}
+			//return user info 
+			return $res;
 	   }
 	   
 	  /*
@@ -105,9 +123,57 @@ class users_module extends users_view{
 	  * this function do logout proccess
 	  * OUTPUT: boolean | ELEMENTS
 	  */
-	  public function module_logout(){
-		  
+	  protected function module_logout($e = ''){
+		  $this->validator->delete('USERS_LOGIN');
+		  $e['RV']['URL'] = 'R';
+		  return $e;
 	  }
+	  
+	  /*
+	   * * INPUT:STRING >permation
+	   * INPUT: STRING >USERNAME | NULL >for get cerrent user
+	   * this function check permission of user
+	   * OUTPUT:boolean
+	   */
+	   protected function module_has_permission($permission,$username=''){
+		   if($username == ''){
+			   //get cerrent user info
+			   $user = $this->module_get_user_info();
+			   if($user == null){
+				   //user is guest
+				   //4 = guest primary key
+				   $id = 4;
+			   }
+			   else{
+				   //get user permation id
+				   $id = $user['permission'];
+			   }
+			   $per = cls_orm::findOne('permissions',"id = ?", array($id));
+			   if($per->$permission == '1'){	return true;}   
+
+			   return false;
+			   
+		   } 
+		   else{
+				//get permation with username
+				//check for that user exists
+				
+				if(cls_orm::count('users',"username = ?",array($username)) != 0){
+					//going to find permission
+					$res = cls_orm::getRow('SELECT * FROM users s INNER JOIN permissions p ON s.permission=p.id where s.username=?',array($username));
+					
+					//checking for that permission is exist
+					if(array_key_exists($permission,$res)){
+						if($res[$permission] == '1'){
+							return true;
+						}
+					}
+					
+				}
+				//user not found return false
+				return false;
+			}
+	   }
 	 
 }
 ?>

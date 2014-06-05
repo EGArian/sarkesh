@@ -4,7 +4,7 @@ class users_view{
 	function __construct($settings){
 		$this->settings = $settings;
 	}
-	public function view_login(){
+	public function view_login_block(){
 		$username = new ctr_textbox();
 		$username->configure('NAME','txt_username');
 		$username->configure('INLINE',TRUE);
@@ -17,6 +17,7 @@ class users_view{
 		$password->configure('LABEL',_('Password:'));
 		$password->configure('ADDON','P');
 		$password->configure('PLACE_HOLDER',_('Password'));
+		$password->configure('PASSWORD',true);
 		
 		$remember = new ctr_checkbox;
 		$remember->configure('NAME','ckb_remember');
@@ -62,8 +63,7 @@ class users_view{
 	}
 	
 	/*
-	 * INPUT: string > BLOCK|CONTENT
-	 * INPUT: array > a row from users table
+	 * INPUT: Object >redbeanphp user info
 	 * INPUT: boolean > Admin permation
 	 * 
 	 * This function show user profile in block mode and content mode
@@ -71,14 +71,34 @@ class users_view{
 	 * content mode draw all information about user
 	 * OUTPUT:form
 	 */
-	 protected function view_profile($type,$user_info,$admin_permission){
-		 if($type == 'BLOCK'){
-			 //Show profile in block mode
-			 
+	 protected function view_profile_block($user,$admin){
+		 $form = new ctr_form('USERS_PROFILE_BLOCK');
+		 $row = new ctr_row;
+		 $avatar = new ctr_image;
+		 $avatar->configure('SRC','./plugins/users/images/def_avatar_64.png');
+		 $avatar->configure('TYPE','img-thumbnail');
+		 $avatar->configure('LABEL',_('Hello') . ' ' . $user->username);
+		 $row->add($avatar,12);
+		 
+		 $row1 = new ctr_row;
+		 $btn_logout = new ctr_button;
+		 $btn_logout->configure('NAME','btn_logout');
+		 $btn_logout->configure('LABEL','Sign Out!');
+		 $btn_logout->configure('TYPE','info');
+		 $btn_logout->configure('P_ONCLICK_PLUGIN','users');
+		 $btn_logout->configure('P_ONCLICK_FUNCTION','btn_logout_onclick');
+		 $row1->add($btn_logout,6);
+		 
+		 if($admin){
+			$btn_admin = new ctr_button;
+			$btn_admin->configure('NAME','JUMP_ADMIN');
+			$btn_admin->configure('LABEL',_('Admin panel'));
+			$btn_admin->configure('HREF',cls_general::create_url(array('panel','admin')));
+			$row1->add($btn_admin,6);
 		 }
-		 else{
-			 //show profile in content mode
-		 }
+		 
+		 $form->add_array(array($row,$row1));
+		 return array(_('User Profile'),$form->draw());
 	 }
 	 
 

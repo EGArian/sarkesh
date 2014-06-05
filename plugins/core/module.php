@@ -1,12 +1,12 @@
 <?php
-class core_module{
-	private $view;
+class core_module extends core_view{
+	
 	private $db;
 	private $user;
 	private $msg;
 	private $io;
 	function __construct(){
-		$this->view = new core_view;
+		parent::__construct();
 		$this->db = new cls_database;
 		$this->user = new users_module;
 		$this->msg = new msg;

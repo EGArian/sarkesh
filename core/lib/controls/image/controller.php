@@ -17,7 +17,7 @@ class ctr_image extends ctr_image_module{
 		$this->config['STYLE'] = '';
 		$this->config['CLASS'] = '';
 		$this->config['SIZE'] = 12;
-		$this->config['BORDER'] = TRUE;
+		$this->config['BORDER'] = false;
 		
 	}
 	
