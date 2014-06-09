@@ -34,7 +34,7 @@ class ctr_button extends ctr_button_module{
 		
 		//this config is for set size of element
 		//Valid : lg sm xs
-		$this->config['SIZE'] = '';
+		$this->config['SIZE'] = 'sm';
 		
 		//this config use for attech javascript(js) file to header of page
 		$this->config['SCRIPT_SRC'] = '';

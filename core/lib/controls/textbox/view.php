@@ -25,6 +25,7 @@ class ctr_textbox_view{
 		$this->raintpl->assign( "label", $config['LABEL']);
 		$this->raintpl->assign( "help", $config['HELP']);
 		$this->raintpl->assign( "size", $config['SIZE']);
+		$this->raintpl->assign( "bs_size", $config['BS_SIZE']);
 		$this->raintpl->assign( "type", $config['TYPE']);
 		$this->raintpl->assign( "bs_control", $config['BS_CONTROL']);
 		$this->raintpl->assign( "inline", $config['INLINE']);

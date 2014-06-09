@@ -44,7 +44,7 @@ class core extends core_module{
 	}
 	public function core_controller($plugin, $action){
 		//first of all we want to check that user has permission to access to admin area?
-		if($this->users->has_permission('core_admin_panel','test')){
+		if($this->users->has_permission('core_admin_panel')){
 			//going to show admin panel
 			if($action == 'default' && $plugin == 'default'){
 				//no plugin set so user want to see admin panel(main)

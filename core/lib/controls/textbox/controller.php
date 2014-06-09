@@ -28,6 +28,9 @@ class ctr_textbox extends ctr_textbox_module{
 		//this config is for show width of element and most be between 1 and 12
 		$this->config['SIZE'] = 12;
 		
+		//valid values is "default" "sm" "lg"
+		$this->config['BS_SIZE'] = 'sm';
+		
 		//if enable this config control perpare for showing in inline mode
 		$this->config['INLINE'] = false;
 		

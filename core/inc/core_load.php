@@ -19,7 +19,22 @@ ob_start("sys_render");
 			$action = 'default';
 		}
 		$admin = new core;
-		$admin->core_controller($plugin, $action);
+		$users = new users;
+		if($users->is_logedin()){
+			//first of all we want to check that user has permission to access to admin area?
+			if($users->has_permission('core_admin_panel')){
+				//going to show admin panel
+			}
+			else{
+				//access deined
+				echo 'no access';
+			}
+		}
+		else{
+			//show login panel
+			cls_router::jump_page(cls_general::create_url(array('plugin','users','action','login','jump','panel=admin')));
+		}
+			
 ob_end_flush();
 ?>
 

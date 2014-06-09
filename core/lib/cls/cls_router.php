@@ -75,7 +75,7 @@ class cls_router{
 			$content = call_user_func(array($plugin,'msg_404'));
 		  }
 	      cls_page::set_page_tittle($content[0]);
-	      echo $content[1];
+	      echo cls_page::show_block($content[0],$content[1],'MAIN');
 	}
 	//this function run services and jump request do plugin
 	public function run_service(){

@@ -10,6 +10,9 @@ class ctr_form extends ctr_form_module{
 		$this->config['SIZE'] = 12;
 		$this->config['LABEL'] = 'Form Label';
 		$this->config['INLINE'] = FALSE;
+		$this->config['PANEL'] = FALSE;
+		$this->config['TYPE'] = 'default';
+		
 	}
 	
 	public function draw(){

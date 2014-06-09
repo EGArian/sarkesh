@@ -1,12 +1,31 @@
+
 <div class="row">
 	<div class="col-xs-{$size}">
+		{if="$panel"}
+		<div class="panel panel-{$type}">
+		  <div class="panel-heading">
+			<h3 class="panel-title">{$label}</h3>
+		  </div>
+		  <div class="panel-body">
+			<form name="{$name}" class="{if="$inline"}form-inline{/if}">
+				{loop="$e"}
+					{if="$inline"}<div Class="row">{/if}
+						<div class="col-xs-12">{$value.body}</div>
+					{if="$inline"}</div>{/if}
+				{/loop}
+			</form>
+		  </div>
+		</div>
+		{else}
 		<form name="{$name}" class="{if="$inline"}form-inline{/if}">
-			{loop="$e"}
-				{if="$inline"}<div Class="row">{/if}
-					<div class="col-xs-12">{$value.body}</div>
-				{if="$inline"}</div>{/if}
-			{/loop}
-		</form>
+				{loop="$e"}
+					{if="$inline"}<div Class="row">{/if}
+						<div class="col-xs-12">{$value.body}</div>
+					{if="$inline"}</div>{/if}
+				{/loop}
+			</form>
+		{/if}
+			
 
 	</div>
 </div>

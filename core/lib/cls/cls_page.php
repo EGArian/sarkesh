@@ -153,7 +153,7 @@ class cls_page{
 
 		}
 		elseif($view == 'MAIN'){
-			$content .=  '<div class="well well-sm">';
+			$content .=  '<div class="">';
 				$content .=  '<div class="panel-heading">';
 					$content .=  '<h2 class="panel-title">';
 					      //block header show in here

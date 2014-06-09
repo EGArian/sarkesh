@@ -12,8 +12,10 @@ class users extends users_module{
 	public function login_block($position){
 
 		if($position != 'content'){
-			return $this->module_login_block();
+			return $this->module_login_block('block');
 		}
+		return $this->module_login_block('content');
+		
 	}
 	
 	/*
@@ -22,8 +24,7 @@ class users extends users_module{
 	 * OUTPUT:elements
 	 */
 	public function register($position){
-		//WARRNING : UNDER DEVELOPMENT
-		return array(2,2);
+		return $this->module_register();
 	}
 	
 	/*

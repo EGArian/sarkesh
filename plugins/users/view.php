@@ -10,6 +10,7 @@ class users_view{
 		$username->configure('INLINE',TRUE);
 		$username->configure('ADDON','U');
 		$username->configure('PLACE_HOLDER',_('Username'));
+		$username->configure('HELP',_('Enter your Sarkesh username.'));
 		
 		$password = new ctr_textbox();
 		$password->configure('NAME','txt_password');
@@ -18,6 +19,7 @@ class users_view{
 		$password->configure('ADDON','P');
 		$password->configure('PLACE_HOLDER',_('Password'));
 		$password->configure('PASSWORD',true);
+		$password->configure('HELP',_('Enter the password that accompanies your username.'));
 		
 		$remember = new ctr_checkbox;
 		$remember->configure('NAME','ckb_remember');
@@ -50,7 +52,7 @@ class users_view{
 			$lbl = new ctr_label(_("Don't have account?"));
 			$register = new ctr_button;
 			$register->configure('NAME','btn_register');
-			$register->configure('LABEL', _('Register'));
+			$register->configure('LABEL', _('Sign up'));
 			$register->configure('HREF',cls_general::create_url(array('plugin','users','action','register')));
 			$register->configure('TYPE','success');
 			$r1 = new ctr_row;
@@ -99,6 +101,66 @@ class users_view{
 		 
 		 $form->add_array(array($row,$row1));
 		 return array(_('User Profile'),$form->draw());
+	 }
+	 
+	 /*
+	 * OUTPUT:HTML ELEMENTS
+	 * Tis function show register form 
+	 */
+	 protected function view_register(){
+		 $form = new ctr_form('USERS_REGISTER');
+		 $form->configure('LABEL',_('Register'));
+		 
+		 $username = new ctr_textbox;
+		 $username->configure('LABEL',_('Username:'));
+		 $username->configure('ADDON',_('*'));
+		 $username->configure('PLACE_HOLDER',_('Username'));
+		 $username->configure('HELP',_('Spaces are allowed; punctuation is not allowed except for periods, hyphens, apostrophes, and underscores.'));
+		 $username->configure('SIZE',4);
+		 
+		 $email = new ctr_textbox;
+		 $email->configure('LABEL',_('Email:'));
+		 $email->configure('ADDON',_('*'));
+		 $email->configure('PLACE_HOLDER',_('Email'));
+		 $email->configure('HELP',_('A valid e-mail address. All e-mails from the system will be sent to this address. The e-mail address is not made public and will only be used if you wish to receive a new password or wish to receive certain news or notifications by e-mail.'));
+		 $email->configure('SIZE',6);
+		 
+		 $form->add_array(array($username,$email));
+		 
+		 $password = new ctr_textbox;
+		 $password->configure('LABEL',_('Password:'));
+		 $password->configure('ADDON',_('*'));
+		 $password->configure('PLACE_HOLDER',_('Password'));
+		 $password->configure('PASSWORD',true);
+		 $password->configure('SIZE',4);
+		 
+		 $repassword = new ctr_textbox;
+		 $repassword->configure('LABEL',_('Confirm password :'));
+		 $repassword->configure('ADDON',_('*'));
+		 $repassword->configure('PLACE_HOLDER',_('Password'));
+		 $repassword->configure('PASSWORD',true);
+		 $repassword->configure('SIZE',4);
+		 
+		 $signup = new ctr_button;
+		 $signup->configure('NAME','btn_signup');
+		 $signup->configure('TYPE','primary');
+		 $signup->configure('LABEL',_('Create new account'));
+		 
+		 $cancel = new ctr_button;
+		 $cancel->configure('NAME','btn_cancel');
+		 $cancel->configure('TYPE','warning');
+		 $cancel->configure('LABEL',_('Cancel'));
+		  $cancel->configure('HREF','?');
+		 
+		 $row = new ctr_row();
+		 $row->add($signup,3);
+		 $row->add($cancel,2);
+		 
+		 $form->add_array(array($password,$repassword));
+		 $form->add_spc();
+		 $form->add($row);
+		 
+		 return array(_('Sign up'),$form->draw());
 	 }
 	 
 

@@ -30,7 +30,7 @@
   	
         <!-- main area -->
         <div class="col-xs-12 col-sm-8">
-			<p><?php cls_page::set_position('content'); ?></p>
+			<div class="row"><div class="col-xs-12" id="sidebar"><?php cls_page::set_position('content'); ?></div></div>
           
           
         </div><!-- /.col-xs-12 main -->

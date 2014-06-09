@@ -17,4 +17,4 @@ Some of new feature:
 - and many other...
 
 ----------------------------------------
-If upload/buffer directory not exist . create it first
+For more information about classes,functions and ... of sarkesh please visit wiki pages

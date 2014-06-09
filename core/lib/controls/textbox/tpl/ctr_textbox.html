@@ -1,4 +1,4 @@
-<div class="form-group {if="$type != 'default'"}has-{$type}{/if}">
+<div class="form-group sm {if="$type != 'default'"}has-{$type}{/if}">
 	<div class="row">
 		<div class="col-sm-{$size}">
 			<label class="{if="$inline"} sr-only {/if}" for="{$id}"> {if="$label != ''"}{$label}{/if} </label>
@@ -11,7 +11,7 @@
 				placeholder="{$placeholder}"
 				id="{$id}" 
 				form="{$form}" 
-				class="{if="$bs_control"}form-control{/if} {$class} ca_{$form}" 
+				class="{if="$bs_control"}form-control{/if} {$class} ca_{$form} {if="$bs_size != 'default'"}input-{$bs_size}{/if}" 
 				style="{$styles}" 
 				{if="$disabled == 'disabled'"} disabled="disabled"{/if} 
 				{if="$j_onblur != '0' || $p_onblur_p != '0' || $j_after_onblur !='0'"} onblur="ctr_system_event(this,'ctr_button','{$j_onblur}','{$p_onblur_p}','{$p_onblur_f}','{$j_after_onblur}');"{/if} 
@@ -21,7 +21,8 @@
 					{$value}
 				</input>
 			</div>
-			{if="$help!=''"}<span class="help-block">{$help}</span>{/if}
+			
 		</div>
 	</div>
+	{if="$help!=''"}<span class="help-block">{$help}</span>{/if}
 </div>

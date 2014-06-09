@@ -17,7 +17,7 @@ class users_module extends users_view{
 	 * if user was logedin before return user profile
 	 * form
 	 */
-	protected function module_login_block(){
+	protected function module_login_block($pos){
 
 		//checking for that is logedin before
 		if($this->module_is_logedin()){
@@ -33,6 +33,16 @@ class users_module extends users_view{
 		
 	}
 	
+	/*
+	 * OUTPUT:HTML ELEMENTS
+	 * Tis function show register form 
+	 */
+	 protected function module_register(){
+		 if($this->module_is_logedin()){
+			 header("Location:" . cls_general::create_url(array('plugin','users','action','profile')));
+		 }
+		 return $this->view_register();		 
+	 }
 	//this function check user login data and do login proccess
 	protected function module_btn_login_onclick($e){
 		
