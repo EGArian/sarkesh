@@ -17,9 +17,18 @@ class users extends users_module{
 		return $this->module_login_block('content');
 		
 	}
-	
 	/*
-	 * INPUT:string: position name in theme file
+	 *INPUT:string:position
+	 *this function return reset password form
+	 *OUTPUT:elements
+	 */
+	public function reset_password($position){
+		if(!$this->is_logedin()){
+			return $this->module_reset_password();
+		}
+		cls_router::jump_page(array('plugin','users','action','profile'));
+	}
+	/* INPUT:string: position name in theme file
 	 * this function return register form
 	 * OUTPUT:elements
 	 */
@@ -72,5 +81,15 @@ class users extends users_module{
 	   public function has_permission($name, $username=''){
 		   return $this->module_has_permission($name,$username);
 	   }
+	   
+	   /*
+	    * INPUT:ELEMENTS
+	    * This function run with botton that's in reset password form
+	    * OUTPUT:ELEMENTS
+	    */
+	    public function btn_reset_password_onclick($e){
+			
+			return $this->module_btn_reset_password_onclick($e);
+		}
 }
 ?>

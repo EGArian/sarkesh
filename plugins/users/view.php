@@ -163,6 +163,33 @@ class users_view{
 		 return array(_('Sign up'),$form->draw());
 	 }
 	 
+	 /*
+	  * This function draw reset password form and return back that
+	  * OUTPUT: elements
+	  */
+	  protected function view_reset_password(){
+		  $form = new ctr_form('USERS_RESET_PASSWORD');
+		  
+		  //create textbox for enter email or username
+		  $email = new ctr_textbox;
+		  $email->configure('NAME','txt_email');
+		  $email->configure('LABEL',_('Username or e-mail address'));
+		  $email->configure('HELP',_('Enter your Alternate Email Address or username'));
+		  $email->configure('PLACE_HOLDER',_('Username or e-mail address'));
+		  $email->configure('ADDON',_('*'));
+		  $email->configure('SIZE',8);
+		  
+		  $reset = new ctr_button;
+		  $reset->configure('NAME','btn_reset');
+		  $reset->configure('LABEL',_('Email new password'));
+		  $reset->configure('P_ONCLICK_PLUGIN','users');
+		  $reset->configure('P_ONCLICK_FUNCTION','btn_reset_password_onclick');
+		  $reset->configure('TYPE','primary');		  
+		  $form->add_array(array($email, $reset));
+		  
+		  return array(_('Request new password'),$form->draw());
+		  
+	  }
 
 }
 ?>

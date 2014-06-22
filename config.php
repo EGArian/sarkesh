@@ -6,12 +6,12 @@ define ("DatabaseType","mysql");
 
 #mysql connect information
 define ("DatabaseUser","root");
-define ("DatabasePassword","136431");
+define ("DatabasePassword","");
 define ("DatabaseHost","localhost");
 define ("DatabaseName","test");
 
 #save system Access domain
-define ("SiteDomain","http://localhost/");
+define ("SiteDomain","http://localhost/sarkesh/");
 
 #config file system
 define('AppPath',dirname(__file__) . '/');

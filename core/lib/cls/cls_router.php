@@ -109,6 +109,9 @@ class cls_router{
 	public static function jump_page($url,$inner_url=true){
 		if(!$inner_url && $url != SiteRoot){ $url= SiteRoot . $url;}
 		elseif($url==SiteRoot){ $url= SiteRoot;}
+		elseif(is_array($url)){
+			$url = cls_general::create_url($url);
+		}
 		header("Location:$url");
 		/* Make sure that code below does not get executed when we redirect. */
 		exit;

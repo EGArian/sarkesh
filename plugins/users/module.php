@@ -184,6 +184,25 @@ class users_module extends users_view{
 				return false;
 			}
 	   }
+	   
+	   /*
+	    * This function return reset password form
+	    * OUTPUT:elements
+	    */
+	    protected function module_reset_password(){
+			return $this->view_reset_password();
+		}
+		
+		/*
+	    * INPUT:ELEMENTS
+	    * This function run with botton that's in reset password form
+	    * OUTPUT:ELEMENTS
+	    */
+	    public function module_btn_reset_password_onclick($e){
+			
+			$e['RV']['MODAL'] = cls_page::show_block(1,1,'MODAL','type-warning');
+			return $e;
+		}
 	 
 }
 ?>
