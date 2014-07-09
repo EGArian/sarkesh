@@ -17,6 +17,17 @@ class msg extends msg_module{
 	      
 	  
 	}
+	
+	/*
+	 * INPUT:STRING:HEADER
+	 * INPUT:STRING:BODY OF MESSAGE
+	 * INPUT:STRING:TYPE(success,danger,warrning,info)
+	 * This function show custom mesage
+	 * OUTPUT:ELEMENTS
+	 */
+	 public function msg($header, $body, $type = 'success'){
+		 return $this->module_msg($header,$body,$type);
+	 }
 
 	
 

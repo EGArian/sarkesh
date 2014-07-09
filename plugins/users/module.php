@@ -28,7 +28,7 @@ class users_module extends users_view{
 		}
 		else{
 			//show login form in block mode
-			return $this->view_login_block();
+			return $this->view_login_block($pos);
 		}
 		
 	}
@@ -41,12 +41,18 @@ class users_module extends users_view{
 		 if($this->module_is_logedin()){
 			 header("Location:" . cls_general::create_url(array('plugin','users','action','profile')));
 		 }
+		 elseif($this->settings['register'] == '0'){
+			 //new register was closed
+			 $msg = new msg;
+			 return $msg->msg('Warrning!','Register new user was closed by Administrator.','danger');
+			 
+		 }
 		 return $this->view_register();		 
 	 }
 	//this function check user login data and do login proccess
 	protected function module_btn_login_onclick($e){
 		
-		$count = cls_orm::count('users',"username = ? and password = ?", array($e['txt_username']['VALUE'],md5($e['txt_password']['VALUE'])));
+		$count = cls_orm::count('users',"username = ? or email=? and password = ?", array($e['txt_username']['VALUE'],$e['txt_username']['VALUE'],md5($e['txt_password']['VALUE'])));
 		if($count != 0){
 			//login data is cerrect
 			//set validator
@@ -63,9 +69,15 @@ class users_module extends users_view{
 			$user = cls_orm::load('users',$this->get_user_id($e['txt_username']['VALUE']));
 			$user->login_key = $valid_id;
 			cls_orm::store($user);
-			//refresh page
-			$e['RV']['URL'] = 'R';
-		
+			
+			//now jump or relod page
+			if(isset($_GET['jump'])){
+				$e['RV']['URL'] = $_GET['jump'];
+			}
+			else{
+				//refresh page
+				$e['RV']['URL'] = 'R';
+			}
 		}
 		else{
 			//username or password is incerrect

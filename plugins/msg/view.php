@@ -35,6 +35,18 @@ class msg_view{
 			return array(_('Not Found!'),$page_content);
 	  
 	}
+	
+	protected function view_msg($header, $body, $type){
+		$label = new ctr_label($body);
+		$label->configure('TYPE', $type);
+		
+		$form = new ctr_form('msg');
+		$form->add($label);
+		$form->configure('PANEL',TRUE);
+		$form->configure('LABEL',$header);
+		$form->configure('TYPE',$type);
+		return ['',$form->draw()];
+	}
 
 }
 ?>

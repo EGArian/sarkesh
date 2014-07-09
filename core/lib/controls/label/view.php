@@ -8,7 +8,7 @@ class ctr_label_view{
 	}
 	public function view_draw($e){
 		$this->raintpl->assign("style",$e['STYLE']);
-		$this->raintpl->assign("value",$e['VALUE']);
+		$this->raintpl->assign("value",$e['LABEL']);
 		$this->raintpl->assign("type",'label label-' . $e['TYPE']);
 		$this->raintpl->assign("class",$e['CLASS']);
 		$this->raintpl->assign("bs_control",$e['BS_CONTROL']);

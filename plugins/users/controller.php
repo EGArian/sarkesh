@@ -6,16 +6,23 @@ class users extends users_module{
 	
 	/*
 	 * INPUT:string: position name in theme file
-	 * this function return login form
+	 * this function return login form in blocks else content area
 	 * OUTPUT:elements
 	 */
 	public function login_block($position){
 
-		if($position != 'content'){
-			return $this->module_login_block('block');
-		}
-		return $this->module_login_block('content');
+		return $this->module_login_block('block');
 		
+	}
+	
+	/*
+	 * INPUT:string: position name in theme file
+	 * this function return login form in blocks in content area
+	 * OUTPUT:elements
+	 */
+	public function login($position){
+
+		return $this->module_login_block('content');
 	}
 	/*
 	 *INPUT:string:position
@@ -90,6 +97,23 @@ class users extends users_module{
 	    public function btn_reset_password_onclick($e){
 			
 			return $this->module_btn_reset_password_onclick($e);
+		}
+		
+		/*
+	    * INPUT:ELEMENTS
+	    * This function run with botton that's in register form
+	    * OUTPUT:ELEMENTS
+	    */
+	    public function btn_signup_onclick($e){
+			//check input
+			if( $e['txt_username']['VALUE'] == '' || $e['txt_email']['VALUE'] == '' || $e['txt_password']['VALUE'] == '' || $e['txt_repassword']['VALUE'] == '' ){
+				//invalid field
+				$e['RV']['MODAL'] = cls_page::show_block(_('Message'),_('Please fill out all the field that are marked with an asterisk (*).'),'MODAL','type-warning');
+				return $e;
+			}
+			else{
+				return $this->module_btn_signup_onclick($e);
+			}
 		}
 }
 ?>

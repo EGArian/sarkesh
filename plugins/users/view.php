@@ -4,13 +4,13 @@ class users_view{
 	function __construct($settings){
 		$this->settings = $settings;
 	}
-	public function view_login_block(){
+	public function view_login_block($pos){
 		$username = new ctr_textbox();
 		$username->configure('NAME','txt_username');
 		$username->configure('INLINE',TRUE);
 		$username->configure('ADDON','U');
-		$username->configure('PLACE_HOLDER',_('Username'));
-		$username->configure('HELP',_('Enter your Sarkesh username.'));
+		$username->configure('PLACE_HOLDER',_('Username or e-mail address'));
+		$username->configure('HELP',_('Enter your Sarkesh username or email.'));
 		
 		$password = new ctr_textbox();
 		$password->configure('NAME','txt_password');
@@ -43,7 +43,13 @@ class users_view{
 		$r->add($forget,9);
 		
 		$form = new ctr_form;
-		$form->configure('NAME','users_login');
+		
+		if($pos == 'block'){
+			$form->configure('NAME','users_login_block');
+		}
+		else{
+			$form->configure('NAME','users_login');
+		}
 		$form->add_array(array($username,$password,$remember,$r));
 		
 		//users can register?
@@ -112,6 +118,7 @@ class users_view{
 		 $form->configure('LABEL',_('Register'));
 		 
 		 $username = new ctr_textbox;
+		 $username->configure('NAME','txt_username');
 		 $username->configure('LABEL',_('Username:'));
 		 $username->configure('ADDON',_('*'));
 		 $username->configure('PLACE_HOLDER',_('Username'));
@@ -119,6 +126,7 @@ class users_view{
 		 $username->configure('SIZE',4);
 		 
 		 $email = new ctr_textbox;
+		 $email->configure('NAME','txt_email');
 		 $email->configure('LABEL',_('Email:'));
 		 $email->configure('ADDON',_('*'));
 		 $email->configure('PLACE_HOLDER',_('Email'));
@@ -128,6 +136,7 @@ class users_view{
 		 $form->add_array(array($username,$email));
 		 
 		 $password = new ctr_textbox;
+		 $password->configure('NAME','txt_password');
 		 $password->configure('LABEL',_('Password:'));
 		 $password->configure('ADDON',_('*'));
 		 $password->configure('PLACE_HOLDER',_('Password'));
@@ -135,6 +144,7 @@ class users_view{
 		 $password->configure('SIZE',4);
 		 
 		 $repassword = new ctr_textbox;
+		 $repassword->configure('NAME','txt_repassword');
 		 $repassword->configure('LABEL',_('Confirm password :'));
 		 $repassword->configure('ADDON',_('*'));
 		 $repassword->configure('PLACE_HOLDER',_('Password'));
@@ -145,6 +155,8 @@ class users_view{
 		 $signup->configure('NAME','btn_signup');
 		 $signup->configure('TYPE','primary');
 		 $signup->configure('LABEL',_('Create new account'));
+		 $signup->configure('P_ONCLICK_PLUGIN','users');
+		 $signup->configure('P_ONCLICK_FUNCTION','btn_signup_onclick');
 		 
 		 $cancel = new ctr_button;
 		 $cancel->configure('NAME','btn_cancel');

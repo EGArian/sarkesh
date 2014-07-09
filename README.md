@@ -1,4 +1,5 @@
 sarkesh
+By Babak Alizadeh (sarkesh.org)
 =======
 Sarkesh is php framework with server side events support for html controlls.
 php events in sarkesh handel with jquery. 

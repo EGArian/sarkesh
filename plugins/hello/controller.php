@@ -20,6 +20,15 @@ class hello extends hello_module{
 		return $this->module_table();
 	}
 	
+	public function  gh(){
+		
+		$t = new ctr_uploader;
+		$t->configure('SIZE',6);
+		
+		
+		return array(1,$t->draw());
+	}
+	
 	
 	
 }
