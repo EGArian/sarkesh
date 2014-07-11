@@ -16,6 +16,7 @@ class ctr_uploader_view{
 		
 		//add headers to page//
 		cls_page::add_header('<script src="./core/ect/scripts/events/functions.js"></script>');		
+		cls_page::add_header('<script src="./core/lib/controls/uploader/ctr_uploader.js"></script>');
 		
 		if($config['SCRIPT_SRC'] != ''){cls_page::add_header('<script src="' . $config['SCRIPT_SRC'] . '"></script>'); }		
 		if($config['CSS_FILE'] != ''){ cls_page::add_header('<link rel="stylesheet" type="text/css" href="' . $config['CSS_FILE']) . '" />';}
@@ -26,6 +27,16 @@ class ctr_uploader_view{
 		$this->raintpl->assign( "form", $config['FORM']);
 		$this->raintpl->assign( "name", $config['NAME']);
 		$this->raintpl->assign( "label", $config['LABEL']);
+		$this->raintpl->assign( "help", $config['HELP']);
+		$this->raintpl->assign( "type", $config['TYPE']);
+		$this->raintpl->assign( "txt_file_address", _('File Location'));
+		$this->raintpl->assign( "txt_upload", _('Upload'));
+		$this->raintpl->assign( "txt_select", _('Select'));
+		$this->raintpl->assign( "txt_max_size", _('Max Size'));
+		$this->raintpl->assign( "txt_max_size_unit", _('KByte'));
+		$this->raintpl->assign( "max_size", _('123'));
+		$this->raintpl->assign( "txt_file_types", _('Valid types'));
+		$this->raintpl->assign( "file_types", _('jpeg,png'));
 	
 		//return control
 		return $this->raintpl->draw('ctr_uploader',true);

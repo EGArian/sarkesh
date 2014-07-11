@@ -22,7 +22,7 @@ class ctr_uploader extends ctr_uploader_module{
 		$this->config['LABEL'] = 'File uploader';
 		
 		//help is a text that show on control for take some note to user
-		$this->config['HELP'] = '';
+		$this->config['HELP'] = 'Select files to upload.';
 		
 		//this config set width of controll that most be between 1 and 12 
 		//default value is 12 (full width)
@@ -47,7 +47,8 @@ class ctr_uploader extends ctr_uploader_module{
 		//Use this config for add javascript files to header of page
 		$this->config['SCRIPT_SRC'] = '';
 		
-		
+		//type is config for show block , success info danger primary 
+		$this->config['TYPE'] = 'danger';
 	}
 	
 	//this function configure control//

@@ -23,7 +23,7 @@ class hello extends hello_module{
 	public function  gh(){
 		
 		$t = new ctr_uploader;
-		$t->configure('SIZE',6);
+		$t->configure('SIZE',12);
 		
 		
 		return array(1,$t->draw());

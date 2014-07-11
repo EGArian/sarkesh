@@ -1,16 +1,36 @@
 <div class="row">
 	<div class="col-xs-{$size} {$class}">
+		
 	<input form ="{$form}" name="{$name}" class="ca_{$form}" type="hidden" value="" />
+	<input type="file" name ="{$name}" id ="ctr_uploader_{$name}" style="display: none;" />
 	
-	<div class="panel panel-default">
+	
+	<div class="panel panel-{$type}">
 		<div class="panel-heading">
 			<div class="panel-tittle">
-				{$label}
+				{$label} : <span>{$help}</span>
 			</div>
 		</div>
 		<div class="panel-body">
-		
+
+				  <div class="row">
+						<div class="col-xs-8">
+								<input type="textbox" class="form-control" id="" placeholder="{$txt_file_address}" readonly>
+						</div>  
+						<div class="col-xs-4">
+								<button type="button" class="btn btn-default" onclick="ctr_uploader_select('ctr_uploader_{$name}')">{$txt_select}</button>
+								<button type="button" class="btn btn-info">{$txt_upload}</button>
+						</div>
+				  </div>
+				  <div class="row">
+						<div class="col-xs-8">
+							<span class="label label-default">
+								{$txt_max_size} : {$max_size} {$txt_max_size_unit}    
+								{$txt_file_types} : {$file_types}
+							</span>
+						</div>
+				  </div>
+			  
 		</div>
-	</div>
 	</div>
 </div>
