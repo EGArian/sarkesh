@@ -81,7 +81,8 @@ class cls_router{
 	public function run_service(){
 		
 		$plugin = new $this->plugin;
-		$plugin->service($this->action);
+		$result = call_user_func(array($plugin, $this->action));
+		echo $result;
 	}
 	//this function is for runing services from controls
 	public function run_control(){

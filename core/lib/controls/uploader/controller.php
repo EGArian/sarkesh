@@ -22,15 +22,15 @@ class ctr_uploader extends ctr_uploader_module{
 		$this->config['LABEL'] = 'File uploader';
 		
 		//help is a text that show on control for take some note to user
-		$this->config['HELP'] = 'Select files to upload.';
+		$this->config['HELP'] = 'Select file and click on upload button.';
 		
 		//this config set width of controll that most be between 1 and 12 
 		//default value is 12 (full width)
 		$this->config['SIZE'] = 12;
 		
 		//this config set max size of file that can be uploaded 
-		//unit of this number is kilo byte
-		$this->config['MAX_FILE_SIZE'] = '40'; //KByte
+		//unit of this number is byte
+		$this->config['MAX_FILE_SIZE'] = '12333333322'; //Byte
 		
 		//for set number of files that user can upload ,use this config . default value is 1 and can be between 1 and 15
 		// 0  is not valid number for this config
@@ -38,17 +38,17 @@ class ctr_uploader extends ctr_uploader_module{
 		
 		//for set type of files that user can upload set this config
 		//file types should be seperate with (,) 
-		$this->config['FILE_TYPES'] = 'png,jpeg,jpg,gif';
+		$this->config['FILE_TYPES'] = 'image/png,image/jpeg,image/jpg,image/gif';
 		
 		//if user want to upload picture. it's better for show preview of picture to user.
 		//this config is boolean and default of that is false (not enabled by default)
-		$this->config['PREVIEW'] = false;
+		$this->config['PREVIEW'] = true;
 		
 		//Use this config for add javascript files to header of page
 		$this->config['SCRIPT_SRC'] = '';
 		
 		//type is config for show block , success info danger primary 
-		$this->config['TYPE'] = 'danger';
+		$this->config['TYPE'] = 'default';
 	}
 	
 	//this function configure control//

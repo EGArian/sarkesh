@@ -2,7 +2,9 @@
 	<div class="col-xs-{$size} {$class}">
 		
 	<input form ="{$form}" name="{$name}" class="ca_{$form}" type="hidden" value="" />
-	<input type="file" name ="{$name}" id ="ctr_uploader_{$name}" style="display: none;" />
+	<input type="file" name ="{$name}" id ="ctr_uploader_{$name}" style="display: none;" onchange="ctr_uploader_onchange(this.files, 'ctr_uploader_{$name}')"  accept="audio/*|video/*|image/*|MIME_type" />
+	<input type="hidden" id="ctr_uploader_{$name}_types" value="{$file_types}" />
+	<input type="hidden" id="ctr_uploader_{$name}_size" value="{$max_size}" />
 	
 	
 	<div class="panel panel-{$type}">
@@ -14,23 +16,34 @@
 		<div class="panel-body">
 
 				  <div class="row">
-						<div class="col-xs-8">
-								<input type="textbox" class="form-control" id="" placeholder="{$txt_file_address}" readonly>
+					  {if="$preview"}
+						<div class="col-xs-2">
+							<img class="ctr_uploader_img img-thumbnail" id="ctr_uploader_{$name}_img" src="./core/lib/controls/uploader/preview.png" alt="uploader privew"  />
+						</div>
+					  {/if}
+						<div class="col-xs-5">
+								<div class="row">
+										<div class="col-xs-12">
+											<input type="textbox" class="form-control" id="ctr_uploader_{$name}_txt" placeholder="{$txt_file_address}" readonly>
+										</div>
+								</div>
+								<div class="row">
+										<div class="col-xs-12">
+											<span class="label label-default">
+												{$txt_max_size} : {$max_size_unit} {$txt_max_size_unit}    
+												{$txt_file_types} : {$file_types}
+											</span>
+										</div>
+								</div>
+				  
 						</div>  
 						<div class="col-xs-4">
 								<button type="button" class="btn btn-default" onclick="ctr_uploader_select('ctr_uploader_{$name}')">{$txt_select}</button>
-								<button type="button" class="btn btn-info">{$txt_upload}</button>
+								<button type="button" class="btn btn-info" onclick="ctr_uploader_upload('{$name}')" >{$txt_upload}</button>
 						</div>
 				  </div>
-				  <div class="row">
-						<div class="col-xs-8">
-							<span class="label label-default">
-								{$txt_max_size} : {$max_size} {$txt_max_size_unit}    
-								{$txt_file_types} : {$file_types}
-							</span>
-						</div>
-				  </div>
+				  
 			  
-		</div>
+		</div>	
 	</div>
 </div>
