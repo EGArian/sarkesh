@@ -19,10 +19,10 @@ class ctr_uploader extends ctr_uploader_module{
 		$this->config['FORM'] = 'Form';
 		
 		//label is a text that show at the abow of element
-		$this->config['LABEL'] = 'File uploader';
+		$this->config['LABEL'] = _('File uploader');
 		
 		//help is a text that show on control for take some note to user
-		$this->config['HELP'] = 'Select file and click on upload button.';
+		$this->config['HELP'] = _('Select file and click on upload button.');
 		
 		//this config set width of controll that most be between 1 and 12 
 		//default value is 12 (full width)

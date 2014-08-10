@@ -1,6 +1,7 @@
 function ctr_uploader_select(obj){
 
-	$("#" + obj).click();
+	$("#ctr_uploader_" + obj).click();
+    $( "#btn_ctr_uploader_" + obj ).prop( "disabled", false );
 }
 
 function ctr_uploader_onchange( files, obj){
@@ -30,7 +31,6 @@ function ctr_uploader_onchange( files, obj){
 							
 							if(valid_type){
 							   $('#' + obj + '_img').attr('src', e.target.result);
-							   $('#' + obj + '_img').show()
 							   $("#" + obj + "_txt").val(filename.name);
 						   }
 						   else{
@@ -63,8 +63,55 @@ function ctr_uploader_onchange( files, obj){
 }
 
 function ctr_uploader_upload(obj){
-	
-	 
+   
+    var fileSelect = document.getElementById('ctr_uploader_' + obj);
+    var files = fileSelect.files;
+    
+    // Create a new FormData object.
+    var formData = new FormData();
+    var file = files[0];
+
+  
+
+    // Add the file to the request.
+    formData.append('uploads', file, file.name);
+    
+     $.ajax({
+            url: 'index.php?service=1&plugin=files&action=do_upload',
+            type: 'POST',
+            data: formData,
+            cache: false,
+            dataType: 'html',
+            processData: false, // Don't process the files
+            contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+            success: function(data, textStatus, jqXHR){
+                 if(data != '-1'){
+                    //upload was successfull
+                    //set number in input element
+                    $('#id_ctr_uploader_' + obj).val(data);
+                    
+                    //disable control
+                    $('.body_ctr_uploader_' + obj).prop('disabled',true);
+                    alert(obj);
+                    
+                 }
+                 else{
+                    //error in upload file
+                    //FILE IS BIG 
+    					url = "?service=1&plugin=files&action=upload_error" ;
+    					url = encodeURI(url);
+    					   $.get(url ,
+                               function(data){
+    									SysShowModal(data);
+    					       }
+    					);
+                 }
+            }
+        
+    });
+    
+    
+    
 	
 	
 }

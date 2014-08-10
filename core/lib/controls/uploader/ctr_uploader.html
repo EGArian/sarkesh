@@ -1,10 +1,15 @@
-<div class="row">
+<div class="row body_ctr_uploader_{$name}">
 	<div class="col-xs-{$size} {$class}">
 		
-	<input form ="{$form}" name="{$name}" class="ca_{$form}" type="hidden" value="" />
-	<input type="file" name ="{$name}" id ="ctr_uploader_{$name}" style="display: none;" onchange="ctr_uploader_onchange(this.files, 'ctr_uploader_{$name}')"  accept="audio/*|video/*|image/*|MIME_type" />
-	<input type="hidden" id="ctr_uploader_{$name}_types" value="{$file_types}" />
-	<input type="hidden" id="ctr_uploader_{$name}_size" value="{$max_size}" />
+	<input form ="{$form}" name="{$name}" id="id_ctr_uploader_{$name}" class="ca_{$form}" type="hidden" value="" />
+    
+    <form name="form_ctr_upload_{$name}" id="form_ctr_upload_{$name}" enctype="multipart/form-data" >
+        <input type="file" name ="uploader" form="form_ctr_upload" id ="ctr_uploader_{$name}" style="display: none;" onchange="ctr_uploader_onchange(this.files, 'ctr_uploader_{$name}')"  />
+    	<input type="hidden" id="ctr_uploader_{$name}_types" form="form_ctr_upload_{$name}" value="{$file_types}" />
+	    <input type="hidden" id="ctr_uploader_{$name}_size" form="form_ctr_upload_{$name}" value="{$max_size}" />
+    </form>
+	
+
 	
 	
 	<div class="panel panel-{$type}">
@@ -38,8 +43,8 @@
 				  
 						</div>  
 						<div class="col-xs-4">
-								<button type="button" class="btn btn-default" onclick="ctr_uploader_select('ctr_uploader_{$name}')">{$txt_select}</button>
-								<button type="button" class="btn btn-info" onclick="ctr_uploader_upload('{$name}')" >{$txt_upload}</button>
+								<button type="button" class="btn btn-default" onclick="ctr_uploader_select('{$name}')">{$txt_select}</button>
+								<button type="button" class="btn btn-info" id="btn_ctr_uploader_{$name}" onclick="ctr_uploader_upload('{$name}')" disabled="disabled" >{$txt_upload}</button>
 						</div>
 				  </div>
 				  

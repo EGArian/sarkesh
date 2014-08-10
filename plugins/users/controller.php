@@ -115,5 +115,15 @@ class users extends users_module{
 				return $this->module_btn_signup_onclick($e);
 			}
 		}
+        
+        /*
+         *This function return user id
+         * if user be a guest this function return false
+         */
+         public function get_id($username = ''){
+            
+            //WARRNING: UNDER DEVELOPMENT
+            
+         }
 }
 ?>
