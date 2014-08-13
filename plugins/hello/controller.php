@@ -17,6 +17,7 @@ class hello extends hello_module{
 	}
 	
 	public function table(){
+	   $r = new cls_string;
 		return $this->module_table();
 	}
 	

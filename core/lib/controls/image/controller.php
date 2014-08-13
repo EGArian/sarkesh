@@ -6,7 +6,7 @@ class ctr_image extends ctr_image_module{
 		parent::__construct();
 		$this->e = [];
 		$this->config = [];
-		$this->config['LABEL'] = 'Form Label';
+		$this->config['LABEL'] = '';
 		$this->config['ALT'] = '';
 		$this->config['SRC'] = '';
 		$this->config['HREF'] = '';
@@ -16,7 +16,7 @@ class ctr_image extends ctr_image_module{
 		$this->config['RESPONSIVE'] = FALSE;
 		$this->config['STYLE'] = '';
 		$this->config['CLASS'] = '';
-		$this->config['SIZE'] = 12;
+		$this->config['SIZE'] =12;
 		$this->config['BORDER'] = false;
 		
 	}
