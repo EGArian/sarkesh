@@ -1,6 +1,6 @@
 <?php
 /*
-	this class is a control for working with buttones toggle buttons
+	this class is a control for working with buttons toggle buttons
 	
 */
 class ctr_button extends ctr_button_module{
@@ -9,9 +9,16 @@ class ctr_button extends ctr_button_module{
 	
 	private $config;
 		
-	function __construct(){
+	function __construct($name = ''){
 		parent::__construct();
-		$this->config['NAME'] = 'ctr_button';
+		
+		//set name of control
+		if($name != ''){
+			$this->config['NAME'] = $name;
+		}
+		else{
+			$this->config['NAME'] = 'ctr_button';
+		}
 		
 		$this->config['LABEL'] = 'Button';
 		//This variable set form name of this element
