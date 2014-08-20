@@ -1,27 +1,31 @@
 <?php
-class ctr_textarea extends ctr_textarea_module{
-	private $config;
+class ctr_image extends ctr_image_module{
 	
+	private $config;
 	function __construct(){
 		parent::__construct();
 		$this->config = [];
-		$this->config['NAME'] = 'TEXTAREA';
 		$this->config['LABEL'] = '';
-		$this->config['HELP'] = '';
-		$this->config['EDITOR'] = true;
-		$this->config['ROWS'] = '10';
-		$this->config['SIZE'] = '12';
+		$this->config['ALT'] = '';
+		$this->config['SRC'] = '';
+		$this->config['HREF'] = '';
+		//valid types is => img-thumbnail , img-circle , img-rounded
+		$this->config['TYPE'] = 'img-thumbnail';
+		$this->config['BS_CONTROL'] = TRUE;
+		$this->config['RESPONSIVE'] = FALSE;
 		$this->config['STYLE'] = '';
-		$this->config['FORM'] = 'DEFAULT_FORM_NAME';
 		$this->config['CLASS'] = '';
-		$this->config['CSS_FILE'] = '';
-		$this->config['VALUE'] = '';
+		$this->config['SIZE'] =12;
+		$this->config['BORDER'] = false;
+		
 	}
 	
 	public function draw(){
+		
 		return $this->module_draw($this->config);
 	}
 	
+	//this function configure control//
 	public function configure($key, $value){
 		// checking for that key is exists//
 		if(key_exists($key, $this->config)){		
@@ -31,12 +35,11 @@ class ctr_textarea extends ctr_textarea_module{
 		//key not exists//
 		return FALSE;
 	}
-	
+
 	public function get($key){
 		if(key_exists($key, $this->config)){
 			return $this->config[$key];
 		}
-		die('Index is out of range');
+		die('Index is out of range form');
 	}
 }
-?>

@@ -47,6 +47,7 @@ function SystemGetFormString(obj){
 	//create return element
 	options += "control";
 	options += "<!!>name<!>RV<!>VALUE<!>0<!>URL<!>0<!>MODAL<!>0";
+	alert(options);
 	return options;
 }
 

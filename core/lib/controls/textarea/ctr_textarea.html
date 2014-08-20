@@ -2,7 +2,7 @@
 	<div class="form-group">
 		<div class="col-xs-{$size}">
 			<label for="{$id}"> {if="$label != ''"}{$label}{/if} </label>
-			<textarea id="{$id}" class="form-control {$id} {if="$class != ''"}{$class}{/if}" id="{$name}" form ="{$form}" {if="$style != ''"} style="{$style}"{/if} rows="{$rows}" >
+			<textarea id="{$id}" class="form-control {$id} ca_{$form} {if="$class != ''"}{$class}{/if}" id="{$name}" form ="{$form}" {if="$style != ''"} style="{$style}"{/if} rows="{$rows}" >
 			{$value}
 			</textarea> 
 			{if="$help!=''"}<span class="help-block">{$help}</span>{/if}

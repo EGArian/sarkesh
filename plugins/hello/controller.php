@@ -8,7 +8,15 @@ class hello extends hello_module{
 	public function textarea(){
 		$c = new ctr_textarea;
 		$c->configure('VALUE','ALI');
-		return array(1,$c->draw());
+		
+		$b = new ctr_button;
+		$b->configure('P_ONCLICK_PLUGIN','hello');
+		$b->configure('P_ONCLICK_FUNCTION','onclick');
+		
+		$f = new ctr_form('vv');
+		$f->add($c);
+		$f->add($b);
+		return array(1,$f->draw());
 	}
 	
 	public function abc($e){
@@ -28,6 +36,10 @@ class hello extends hello_module{
 		
 		
 		return array(1,$t->draw());
+	}
+	public function onclick($e){
+	
+	return $e;
 	}
 	
 	
