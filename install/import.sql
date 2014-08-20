@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10deb1
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: May 13, 2014 at 03:32 AM
--- Server version: 5.5.37-0ubuntu0.14.04.1
--- PHP Version: 5.5.9-1ubuntu4
+-- Host: 127.0.0.1
+-- Generation Time: Aug 20, 2014 at 10:19 PM
+-- Server version: 5.6.17
+-- PHP Version: 5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -46,8 +46,44 @@ CREATE TABLE IF NOT EXISTS `blocks` (
 
 INSERT INTO `blocks` (`id`, `name`, `value`, `plugin`, `position`, `permissions`, `pages`, `show_header`, `rank`) VALUES
 (6, 'content', '0', 3, 'content', NULL, '', 0, 0),
-(7, 'login', '0', 2, 'sidebar1', NULL, NULL, 1, 3),
+(7, 'login_block', '0', 2, 'sidebar1', NULL, NULL, 1, 3),
 (12, 'select_lang', '0', 4, 'sidebar1', NULL, NULL, NULL, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `capcha`
+--
+
+CREATE TABLE IF NOT EXISTS `capcha` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `serial` varchar(50) NOT NULL,
+  `ip` varchar(50) NOT NULL,
+  `value` varchar(50) NOT NULL,
+  `solved` int(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='this table store capcha values' AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `card`
+--
+
+CREATE TABLE IF NOT EXISTS `card` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `cardname` int(11) unsigned DEFAULT NULL,
+  `price` int(11) unsigned DEFAULT NULL,
+  `state` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `card`
+--
+
+INSERT INTO `card` (`id`, `cardname`, `price`, `state`) VALUES
+(1, 43434, 3434, 1);
 
 -- --------------------------------------------------------
 
@@ -64,83 +100,7 @@ CREATE TABLE IF NOT EXISTS `files` (
   `user` int(11) NOT NULL,
   `size` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=74 ;
-
---
--- Dumping data for table `files`
---
-
-INSERT INTO `files` (`id`, `name`, `place`, `address`, `date`, `user`, `size`) VALUES
-(4, 'pezeshkan(3).sql', 1, '87u2flwj7r.pezeshkan(3).sql', '1396203581', 1, 12526),
-(5, 'pezeshkan(3).sql', 1, 's5f39g5j6d.pezeshkan(3).sql', '1396203721', 1, 12526),
-(6, 'pezeshkan(3).sql', 1, 't9171sbp9l.pezeshkan(3).sql', '1396203734', 1, 12526),
-(7, 'pezeshkan(3).sql', 1, 'wwq0crwy96.pezeshkan(3).sql', '1396206931', 1, 12526),
-(8, 'pezeshkan(3).sql', 1, '5laik8e182.pezeshkan(3).sql', '1396207437', 1, 12526),
-(9, 'pezeshkan(3).sql', 1, '4mxn09o8u0.pezeshkan(3).sql', '1396207629', 1, 12526),
-(10, 'pezeshkan(3).sql', 1, '6xw0a8m1sb.pezeshkan(3).sql', '1396208134', 1, 12526),
-(11, 'pezeshkan(3).sql', 1, '5qko5lfjur.pezeshkan(3).sql', '1396208145', 1, 12526),
-(12, 'pezeshkan(3).sql', 1, 'qkscgq9vj5.pezeshkan(3).sql', '1396208178', 1, 12526),
-(13, 'pezeshkan(3).sql', 1, '8ezbcherzq.pezeshkan(3).sql', '1396208246', 1, 12526),
-(14, 'pezeshkan(3).sql', 1, 'j3krf6x8ob.pezeshkan(3).sql', '1396208262', 1, 12526),
-(15, 'pezeshkan(3).sql', 1, '1gbfwae7xp.pezeshkan(3).sql', '1396208300', 1, 12526),
-(16, 'pezeshkan(3).sql', 1, '6dmztnj2tw.pezeshkan(3).sql', '1396208350', 1, 12526),
-(17, 'pezeshkan(3).sql', 1, 'gk6h5pvrja.pezeshkan(3).sql', '1396208405', 1, 12526),
-(18, 'pezeshkan(3).sql', 1, 'x5nnzwt924.pezeshkan(3).sql', '1396208425', 1, 12526),
-(19, 'pezeshkan(3).sql', 1, 'uzwgj1k8h4.pezeshkan(3).sql', '1396208445', 1, 12526),
-(20, 'pezeshkan(3).sql', 1, 'ncrps0yryv.pezeshkan(3).sql', '1396208544', 1, 12526),
-(21, 'pezeshkan(3).sql', 1, 'ghy6a32g9j.pezeshkan(3).sql', '1396208572', 1, 12526),
-(22, 'pezeshkan(3).sql', 1, 'wv4uaucm1a.pezeshkan(3).sql', '1396208627', 1, 12526),
-(23, 'pezeshkan(3).sql', 1, 'fa9b8kqkl1.pezeshkan(3).sql', '1396208645', 1, 12526),
-(24, 'pezeshkan(3).sql', 1, 'vbgyz64d0k.pezeshkan(3).sql', '1396209287', 1, 12526),
-(25, 'pezeshkan(3).sql', 1, 'p2xfyb4hi7.pezeshkan(3).sql', '1396209301', 1, 12526),
-(26, 'pezeshkan(3).sql', 1, 'm09jwrexy1.pezeshkan(3).sql', '1396209352', 1, 12526),
-(27, 'pezeshkan(3).sql', 1, 'y9qgz78rf1.pezeshkan(3).sql', '1396209485', 1, 12526),
-(28, 'pezeshkan(3).sql', 1, 'kw3kbc5hbv.pezeshkan(3).sql', '1396209525', 1, 12526),
-(29, 'pezeshkan(3).sql', 1, '5zckxsbehk.pezeshkan(3).sql', '1396209618', 1, 12526),
-(30, 'pezeshkan(3).sql', 1, 'kuo7hacao7.pezeshkan(3).sql', '1396209658', 1, 12526),
-(31, 'pezeshkan(3).sql', 1, 'czxu0bvdpb.pezeshkan(3).sql', '1396209735', 1, 12526),
-(32, 'pezeshkan(3).sql', 1, 'hha6kqj8hx.pezeshkan(3).sql', '1396209979', 1, 12526),
-(33, 'pezeshkan(3).sql', 1, 'knwk30rb9y.pezeshkan(3).sql', '1396210093', 1, 12526),
-(34, 'pezeshkan(3).sql', 1, 'ujgruqwgy9.pezeshkan(3).sql', '1396210175', 1, 12526),
-(35, 'pezeshkan(3).sql', 1, '6vih37bptj.pezeshkan(3).sql', '1396210218', 1, 12526),
-(36, 'pezeshkan(3).sql', 1, 'lqu2vnbew2.pezeshkan(3).sql', '1396210876', 1, 12526),
-(37, 'folder_64.png', 1, '3qntuml66i.folder_64.png', '1396471277', 0, 470),
-(38, 'folder_64.png', 1, 'gtkcc37yoi.folder_64.png', '1396471284', 0, 470),
-(39, 'folder_64.png', 1, 'lz3ezmzwbz.folder_64.png', '1396471285', 0, 470),
-(40, 'folder_64.png', 1, 'yu7wo9ed2f.folder_64.png', '1396471290', 0, 470),
-(41, 'def_avatar_32.png', 1, '69r27xcb04.def_avatar_32.png', '1396472658', 0, 3499),
-(42, 'def_avatar_32.png', 1, 'vcsrcda0y2.def_avatar_32.png', '1396472700', 0, 3499),
-(43, 'def_avatar_32.png', 1, 'h0aeldq7q0.def_avatar_32.png', '1396472707', 0, 3499),
-(44, 'def_avatar_64.png', 1, '2g2k0sktx5.def_avatar_64.png', '1396472725', 0, 4224),
-(45, 'folder_64.png', 1, '1z94pc51sq.folder_64.png', '1396472753', 0, 470),
-(46, 'folder_64.png', 1, 'jp4hzm3i8k.folder_64.png', '1396472860', 0, 470),
-(47, 'folder_64.png', 1, 'svc9a1z8i9.folder_64.png', '1396473001', 0, 470),
-(48, 'folder_64.png', 1, 'lyjb10zxjr.folder_64.png', '1396473058', 0, 470),
-(49, 'def_avatar_64.png', 1, 'ykjxduid3h.def_avatar_64.png', '1396473111', 0, 4224),
-(50, 'def_avatar_64.png', 1, 'sc4fs54rgl.def_avatar_64.png', '1396473148', 0, 4224),
-(51, 'def_avatar_64.png', 1, 'n8crz34qp1.def_avatar_64.png', '1396473239', 0, 4224),
-(52, 'def_avatar_64.png', 1, '7oz23fhax2.def_avatar_64.png', '1396473257', 0, 4224),
-(53, 'def_avatar_64.png', 1, 'x7l99trcnq.def_avatar_64.png', '1396473319', -1, 4224),
-(54, 'def_avatar_32.png', 1, 'cbdohbbuej.def_avatar_32.png', '1396473368', -1, 3499),
-(55, 'def_avatar_32.png', 1, 'jvvgsnxy99.def_avatar_32.png', '1396473409', -1, 3499),
-(56, 'folder_64.png', 1, 'qkr9eqrcdc.folder_64.png', '1396473442', -1, 470),
-(57, 'def_avatar_32.png', 1, 'vy7mxl5e83.def_avatar_32.png', '1396473726', -1, 3499),
-(58, 'def_avatar_32.png', 1, '4a0j0nmifo.def_avatar_32.png', '1396473804', -1, 3499),
-(59, 'def_avatar_64.png', 1, 'cgyq1p7otk.def_avatar_64.png', '1396509727', -1, 4224),
-(60, 'def_avatar_32.png', 1, '51s41fbixg.def_avatar_32.png', '1396511346', -1, 3499),
-(61, 'def_avatar_64.png', 1, 'fias2whz8n.def_avatar_64.png', '1396511553', -1, 4224),
-(62, 'def_avatar_32.png', 1, 'g7tcvzrgze.def_avatar_32.png', '1396511582', -1, 3499),
-(63, 'def_avatar_32.png', 1, 'k2406mngks.def_avatar_32.png', '1396511805', -1, 3499),
-(64, 'def_avatar_64.png', 1, 'pw8lyxkj9b.def_avatar_64.png', '1396511913', -1, 4224),
-(65, 'def_avatar_32.png', 1, 'f211j10bfg.def_avatar_32.png', '1396512025', -1, 3499),
-(66, 'def_avatar_32.png', 1, '0v780lu7wj.def_avatar_32.png', '1396512069', -1, 3499),
-(67, 'def_avatar_32.png', 1, 'm92knzt9bn.def_avatar_32.png', '1396512084', -1, 3499),
-(68, 'def_avatar_32.png', 1, '1sk56lb7km.def_avatar_32.png', '1396512119', -1, 3499),
-(69, 'def_avatar_64.png', 1, 'mgz7966unv.def_avatar_64.png', '1396512244', -1, 4224),
-(70, 'def_avatar_32.png', 1, 'me9sflamd0.def_avatar_32.png', '1396512255', -1, 3499),
-(71, 'complete_64.png', 1, 'qciznn01ky.complete_64.png', '1396515665', 1, 2067),
-(72, 'folder_64.png', 1, 'rnr4okp9ov.folder_64.png', '1396677897', -1, 470),
-(73, 'def_avatar_128.png', 1, '75pmirl6j6.def_avatar_128.png', '1396686369', -1, 5823);
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 -- --------------------------------------------------------
 
@@ -271,7 +231,7 @@ CREATE TABLE IF NOT EXISTS `plugins` (
   `enable` tinyint(1) NOT NULL,
   `can_edite` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `plugins`
@@ -285,7 +245,8 @@ INSERT INTO `plugins` (`id`, `name`, `enable`, `can_edite`) VALUES
 (6, 'hello', 1, 1),
 (7, 'menu', 1, 0),
 (8, 'content', 1, 1),
-(11, 'files', 1, 0);
+(11, 'files', 1, 0),
+(12, 'card', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -321,7 +282,7 @@ INSERT INTO `registry` (`id`, `plugin`, `a_key`, `value`) VALUES
 (13, 2, 'register_captcha', '1'),
 (14, 8, 'date_format', 'l jS \\of F Y h:i:s A'),
 (15, 3, 'default_timezone', 'America/Los_Angeles'),
-(16, 3, 'active_theme', 'simple');
+(16, 3, 'active_theme', 'sarkesh');
 
 -- --------------------------------------------------------
 
@@ -338,16 +299,18 @@ CREATE TABLE IF NOT EXISTS `users` (
   `validator` int(11) DEFAULT NULL,
   `forget` int(11) DEFAULT NULL,
   `last_login` int(11) DEFAULT NULL,
+  `login_key` int(11) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `email`, `permission`, `validator`, `forget`, `last_login`) VALUES
-(1, 'test', '098f6bcd4621d373cade4e832627b4f6', 'info@test.org', 1, 55, NULL, NULL),
-(2, 'sarttt', '25d55ad283aa400af464c76d713c07ad', 'ughugu@Ugugu.com', 3, 45, NULL, NULL);
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `permission`, `validator`, `forget`, `last_login`, `login_key`) VALUES
+(1, 'test', '098f6bcd4621d373cade4e832627b4f6', 'info@test.org', 1, 55, NULL, NULL, 56),
+(2, 'sarttt', '25d55ad283aa400af464c76d713c07ad', 'ughugu@Ugugu.com', 3, 45, NULL, NULL, NULL),
+(3, '', '', '', 0, NULL, NULL, NULL, 56);
 
 -- --------------------------------------------------------
 
@@ -361,7 +324,7 @@ CREATE TABLE IF NOT EXISTS `validator` (
   `special_id` varchar(45) NOT NULL,
   `valid_time` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=56 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=57 ;
 
 --
 -- Dumping data for table `validator`
@@ -382,7 +345,8 @@ INSERT INTO `validator` (`id`, `source`, `special_id`, `valid_time`) VALUES
 (50, 'USERS_LOGIN', '7v40usd1f3', '1399134305'),
 (51, 'USERS_LOGIN', 'o8uxh6jswn', '1399352212'),
 (54, 'USERS_LOGIN', 'qj4knruvgw', '1399639054'),
-(55, 'USERS_LOGIN', 'onf0cooh46', '1399700686');
+(55, 'USERS_LOGIN', 'onf0cooh46', '1399700686'),
+(56, 'USERS_LOGIN', 'irbd4su8gv', '1408439000');
 
 --
 -- Constraints for dumped tables
