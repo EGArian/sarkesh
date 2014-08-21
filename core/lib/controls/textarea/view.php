@@ -10,7 +10,7 @@ class ctr_textarea_view{
 	protected function view_draw($config){
 		
 		if($config['EDITOR']){
-				cls_page::add_header('<script src="./core/lib/controls/textarea/nicedit/nicEdit.js" type="text/javascript"></script>');
+				cls_page::add_header('<script src="./core/lib/controls/textarea/editors/nicedit/nicEdit.js" type="text/javascript"></script>');
 }
 		if($config['CSS_FILE'] != ''){ cls_page::add_header('<link rel="stylesheet" type="text/css" href="' . $config['CSS_FILE']) . '" />';}
 

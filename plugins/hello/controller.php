@@ -10,6 +10,7 @@ class hello extends hello_module{
 		$c->configure('VALUE','ALI');
 		
 		$b = new ctr_button;
+		//$c->configure('EDITOR',FALSE);
 		$b->configure('P_ONCLICK_PLUGIN','hello');
 		$b->configure('P_ONCLICK_FUNCTION','onclick');
 		
@@ -38,7 +39,7 @@ class hello extends hello_module{
 		return array(1,$t->draw());
 	}
 	public function onclick($e){
-	
+		$e['ctr_button']['LABEL'] =$e['TEXTAREA']['VALUE'];
 	return $e;
 	}
 	
