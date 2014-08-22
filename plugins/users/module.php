@@ -123,10 +123,14 @@ class users_module extends users_view{
 	   */
 	   protected function module_get_user_info($username = ''){
 		   if($username == ''){
-				//going to find logedin user info
+				//going to find loged in user info
 				if($this->module_is_logedin()){
 					$id = $this->validator->get_id('USERS_LOGIN');	
 					return cls_orm::findOne('users',"login_key = ?",array($id));
+				}
+				else{
+					//user is guest 
+					return null;
 				}
 					
 			}
@@ -161,6 +165,7 @@ class users_module extends users_view{
 		   if($username == ''){
 			   //get cerrent user info
 			   $user = $this->module_get_user_info();
+			   echo $user;
 			   if($user == null){
 				   //user is guest
 				   //4 = guest primary key
@@ -171,7 +176,7 @@ class users_module extends users_view{
 				   $id = $user['permission'];
 			   }
 			   $per = cls_orm::findOne('permissions',"id = ?", array($id));
-			   if($per->$permission == '1'){	return true;}   
+			   if($per->permission == '1'){	return true;}   
 
 			   return false;
 			   

@@ -1,556 +1,269 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sarkesh\n"
-"POT-Creation-Date: 2014-04-12 03:09+0330\n"
-"PO-Revision-Date: 2014-04-12 03:14+0330\n"
-"Last-Translator: Babak Alizadeh <alizadeh.babak@live.com>\n"
+"POT-Creation-Date: 2014-07-24 03:59-0800\n"
+"PO-Revision-Date: 2014-08-21 12:19-0400\n"
+"Last-Translator: morrning <alizadeh.babak@gmail.com>\n"
 "Language-Team: Persian\n"
 "Language: fa_IR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: crowdin.com\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-SearchPath-0: .\n"
+"\n"
 
-#: plugins/menu/info.php:2 plugins/calendar/info.php:2
-#: plugins/content/info.php:2 plugins/users/info.php:2
-#: plugins/captcha/info.php:2 plugins/languages/info.php:2
-#: plugins/msg/info.php:2 plugins/email/info.php:2 plugins/core/info.php:2
-msgid "Sarkesh Developers Team"
-msgstr "تیم توسعه دهنده سرکش"
-
-#: plugins/menu/info.php:3 plugins/languages/info.php:3 plugins/msg/info.php:3
-#: plugins/email/info.php:3 plugins/core/info.php:3
-msgid "With Core you can manage and controll base of system settings"
-msgstr "با هسته شما می توانید تنظیمات پایه ی سیتم را مدیریت و کنترل کنید"
-
-#: plugins/menu/info.php:4 plugins/calendar/info.php:4
-#: plugins/content/info.php:4 plugins/users/info.php:4
-#: plugins/files/info.php:4 plugins/captcha/info.php:4
-#: plugins/hello/info.php:4 plugins/languages/info.php:4
-#: plugins/msg/info.php:4 plugins/email/info.php:4 plugins/core/info.php:4
-msgid "0.0.3"
-msgstr "0.0.3"
-
-#: plugins/calendar/view.php:26 plugins/calendar/view.php:38
-#: plugins/calendar/view.php:44 plugins/calendar/view.php:53
-#: plugins/calendar/view.php:65 plugins/calendar/view.php:71
-msgid "Select Date"
-msgstr "انتخاب تاریخ"
-
-#: plugins/calendar/view.php:36 plugins/calendar/view.php:63
-msgid "Doctor name:"
-msgstr "نام دکتر:"
-
-#: plugins/calendar/info.php:3
-msgid "Calendar system"
-msgstr "سامانه تقویم"
-
-#: plugins/content/controller.php:45 plugins/languages/controller.php:40
-msgid "message"
-msgstr "پیام"
-
-#: plugins/content/controller.php:45 plugins/languages/controller.php:40
-msgid "changing language has some problem! Please try again later."
-msgstr "فرایند تغییر زبان با مشکل مواجه شد! لطفا مجددا تلاش کنید."
-
-#: plugins/content/view.php:37
-msgid "by"
-msgstr "توسط"
-
-#: plugins/content/info.php:3
-msgid ""
-"With this plugin you can manage content on your freamwork. like publish news "
-"and ..."
-msgstr ""
-
-#: plugins/users/controller.php:111 plugins/users/controller.php:139
-#: plugins/users/controller.php:144 plugins/users/controller.php:150
-#: plugins/users/controller.php:162 plugins/users/controller.php:168
-#: plugins/users/controller.php:173 plugins/users/controller.php:189
-#: plugins/users/controller.php:192 plugins/users/controller.php:206
-#: plugins/users/controller.php:216 plugins/users/controller.php:219
-#: plugins/users/controller.php:225 plugins/users/controller.php:334
-msgid "Message"
-msgstr "پیام"
-
-#: plugins/users/controller.php:111
-msgid "You loged in with defferent account before! first logout."
-msgstr ""
-"شما قبلا با یک حساب کاربری دیگر وارد سایت شده اید! ابتدا از سایت خارج شوید."
-
-#: plugins/users/controller.php:139
-msgid "Your account not active! you can recive new active request from email."
-msgstr ""
-"حساب کاربری شما فعال نشده است! شما می توانید یک درخواست فعالسازی جدید از "
-"طریق رایانامه خود دریافت کنید."
-
-#: plugins/users/controller.php:144 plugins/users/controller.php:168
-msgid "Username or Password is incerrect!"
-msgstr "نام کاربری و یا گذرواژه نادرست است!"
-
-#: plugins/users/controller.php:150
-msgid "Your request can not be prossed! try again later."
-msgstr "درخواست شما با مشکل مواجه شد! لطفا مجددا تلاش کنید."
-
-#: plugins/users/controller.php:162
-msgid "Problem in log out! try again later"
-msgstr "خطا در خروج از سایت! لطفا مجددا تلاش کنید."
-
-#: plugins/users/controller.php:173
-msgid "you was not regestered with this email."
-msgstr "شما با این رایانامه ثبت نام نکرده اید."
-
-#: plugins/users/controller.php:185
-msgid "your code is:%"
-msgstr "کد شما : %"
-
-#: plugins/users/controller.php:185
-msgid "Reset Code"
-msgstr "تنظیم مجدد کد"
-
-#: plugins/users/controller.php:189
-msgid "Check your email for more informations."
-msgstr "رایانامه خود را برای اطلاعات بیشتر بررسی کنید."
-
-#: plugins/users/controller.php:192 plugins/users/controller.php:219
-msgid "Error in sending email . please tell admins!"
-msgstr "خطا در ارسال رایانامه. لطفا به مدیران گزارش دهید!"
-
-#: plugins/users/controller.php:206 plugins/users/controller.php:225
-msgid "Your entered code is invalid."
-msgstr "کد وارد شده توسط شما نامعتبر است."
-
-#: plugins/users/controller.php:213
-msgid "your password is:%"
-msgstr "گذرواژه شما:%"
-
-#: plugins/users/controller.php:213 plugins/users/controller.php:214
-msgid "Reset Password"
-msgstr "بازیابی گذرواژه"
-
-#: plugins/users/controller.php:216
-msgid "Your password changed! look at your email."
-msgstr "گذرواژه شما تغییر یافت! رایانامه خود را بررسی کنید."
-
-#: plugins/users/controller.php:238 plugins/users/view.php:24
-#: plugins/users/view.php:94
-msgid "Username:"
-msgstr "نام کاربری:"
-
-#: plugins/users/controller.php:238
-msgid "This username is not available."
-msgstr "این نام کاربری در دسترس نیست."
-
-#: plugins/users/controller.php:251 plugins/users/controller.php:257
-#: plugins/users/view.php:63 plugins/users/view.php:97
-msgid "Email:"
-msgstr "رایانامه:"
-
-#: plugins/users/controller.php:251
-msgid "Email Patern is not cerrect"
-msgstr "رایانامه نامعتبر است"
-
-#: plugins/users/controller.php:257
-msgid "This email is not available."
-msgstr "این رایانامه در دسترس نیست."
-
-#: plugins/users/controller.php:272 plugins/users/controller.php:286
-#: plugins/users/view.php:27 plugins/users/view.php:99
-msgid "Password:"
-msgstr "گذرواژه:"
-
-#: plugins/users/controller.php:272
-msgid "Your password must be between 8 and 32 characters long."
-msgstr "گذرواژه شما می بایست حداقل 6 و حداکثر 32 حرف باشد."
-
-#: plugins/users/controller.php:286
-msgid "Your entered passwords are not match!"
-msgstr "گذرواژه های وارد شده یکسان نیستند!"
-
-#: plugins/users/controller.php:312 plugins/users/controller.php:316
-#: plugins/users/controller.php:320 plugins/users/controller.php:324
-#: plugins/users/view.php:91 plugins/users/view.php:111
-#: plugins/users/view.php:114 plugins/users/module.php:143
-msgid "Register"
-msgstr "ثبت نام"
-
-#: plugins/users/controller.php:312
-msgid "Check your email for active your account"
-msgstr "رایانامه خود را برای فعالسازی حساب کاربری بررسی کنید"
-
-#: plugins/users/controller.php:316
-msgid "You can login to your account with your login info."
-msgstr "شما می توانید با استفاده از اطلاعات حساب خود وارد سایت شوید."
-
-#: plugins/users/controller.php:320
-msgid "Error in registering . please try again later!"
-msgstr "خطا در ثبت نام. لطفا مجددا تلاش کنید!"
-
-#: plugins/users/controller.php:324
-msgid "Your entered captcha is not cerrect!!"
-msgstr "کد امنیتی وارد شده صحیح نمی باشد!"
-
-#: plugins/users/controller.php:334
-msgid "Please fill all fields that marked with *."
-msgstr "لطفا تمامی فیلد هایی را که علامت * دارند پر کنید."
-
-#: plugins/users/view.php:17 plugins/users/view.php:32
-msgid "User Sign in"
-msgstr "ورود کاربر"
-
-#: plugins/users/view.php:25
-msgid "Don't have account?"
-msgstr "حساب کاربری ندارید؟"
-
-#: plugins/users/view.php:26 plugins/users/view.php:101
-msgid "Sign up"
-msgstr "ثبت نام"
-
-#: plugins/users/view.php:28 plugins/users/view.php:96
-msgid "Username"
-msgstr "نام کاربری"
-
-#: plugins/users/view.php:29
-msgid "Remember me!"
-msgstr "مرا فراموش مکن!"
-
-#: plugins/users/view.php:30
-msgid "Sign in"
-msgstr "ورود"
-
-#: plugins/users/view.php:31
-msgid "Forget your password?"
-msgstr "گذر واژه خود را فراموش کرده اید؟"
-
-#: plugins/users/view.php:34 plugins/files/view.php:33
-#: plugins/hello/view.php:32
-msgid "Users Login"
-msgstr "ورود کاربران"
-
-#: plugins/users/view.php:42 plugins/users/view.php:50
-msgid "User State"
-msgstr "وضعیت کاربر"
-
-#: plugins/users/view.php:46
-msgid "Hello!"
-msgstr "سلام!"
-
-#: plugins/users/view.php:47
-msgid "Admin panel"
-msgstr "محیط مدیریت"
-
-#: plugins/users/view.php:49
-msgid "Log out"
-msgstr "خروج"
-
-#: plugins/users/view.php:52
-msgid "User Profile"
-msgstr "پروفایل کاربر"
-
-#: plugins/users/view.php:59 plugins/users/view.php:66
-#: plugins/users/view.php:80 plugins/users/view.php:82
-msgid "Reset password"
-msgstr "بازیابی گذرواژه"
-
-#: plugins/users/view.php:62 plugins/users/view.php:98
-msgid "Email"
-msgstr "رایانامه"
-
-#: plugins/users/view.php:65
-msgid "Send email"
-msgstr "ارسال رایانامه"
-
-#: plugins/users/view.php:68
-msgid "Forget Password?"
-msgstr "گذر واژه را فراموش کرده اید؟"
-
-#: plugins/users/view.php:75
-msgid "Input reset code"
-msgstr "بازیابی کد ورودی"
-
-#: plugins/users/view.php:78
-msgid "Code"
-msgstr "کد"
-
-#: plugins/users/view.php:79
-msgid "Your reset code"
-msgstr "کد بازیابی شما"
-
-#: plugins/users/view.php:84
-msgid "Reset Password?"
-msgstr "بازنشانی رمز عبور؟"
-
-#: plugins/users/view.php:95 core/lib/cls/cls_page.php:214
-msgid "Cancel"
-msgstr "لغو"
-
-#: plugins/users/view.php:100
-msgid "Re Password"
-msgstr "تکرار گذر واژه"
-
-#: plugins/users/view.php:102
-msgid "By clicking submit you are agreeing to the Terms and Conditions."
-msgstr "با کلیک کردن شما با شرایط و ضوابط را پذیرفته اید."
-
-#: plugins/users/view.php:120 plugins/users/view.php:126
-#: plugins/users/view.php:127
-msgid "Active account"
-msgstr "فعالسازی حساب کاربری"
-
-#: plugins/users/view.php:123 plugins/users/view.php:140
-msgid "Active code:"
-msgstr "کد فعالسازی:"
-
-#: plugins/users/view.php:124
-msgid "Active code"
-msgstr "کد فعالسازی"
-
-#: plugins/users/view.php:125
-msgid "Enter code that you recived by email to active your account."
-msgstr "کدی که شما توسط رایانامه دریافت کرده اید برای فعال شدن حساب وارد کنید."
-
-#: plugins/users/view.php:129 plugins/users/view.php:143
-msgid "Active Acount"
-msgstr "فعالسازی حساب کاربری"
-
-#: plugins/users/view.php:137 plugins/users/view.php:141
-#: plugins/core/view.php:54
-msgid "Users and permissions"
-msgstr "کاربران و دسترسی ها"
-
-#: plugins/users/info.php:3
-msgid "Users and permations controlled with this plugin."
-msgstr "کاربران و دسترسی ها کنترل می شوند به وسیله ی این افزونه."
-
-#: plugins/users/module.php:143
-msgid "your code is:"
-msgstr "کد شما هست:"
-
-#: plugins/files/view.php:21 plugins/files/view.php:30
-#: plugins/hello/view.php:20 plugins/hello/view.php:29
-msgid "Tittle of message"
-msgstr "موضوع پیام"
-
-#: plugins/files/view.php:28 plugins/hello/view.php:27
-msgid "Hello world!"
-msgstr "سلام دنیا!"
-
-#: plugins/files/info.php:2 plugins/hello/info.php:2 themes/blog/info.php:4
-msgid "Sarkesh Developers"
-msgstr "برنامه نویسان سرکش"
-
-#: plugins/files/info.php:3
-msgid ""
-"files is a plugin for create a way to access files that stored on several "
-"places"
-msgstr ""
-"files افزونه ای برای ساخت یک راه دسترسی به فایل های ذخیره شده در چندین مکان"
-
-#: plugins/files/module.php:41 plugins/files/module.php:46
-msgid "File system"
-msgstr "فایل سیستم"
-
-#: plugins/files/module.php:41
-msgid "Your file successfuly uploaded."
-msgstr "فایل شما با موفقیت بارگذاری شد."
-
-#: plugins/files/module.php:46
-msgid "Upload fail! please refresh page and try again."
-msgstr "بارگذاری ناموفق بود! لطفا صفحه را نوسازی کنید و دوباره تلاش کنید."
-
-#: plugins/captcha/view.php:17
-msgid "if you do not see capcha please refresh page again."
-msgstr "اگر تصویر امنیتی را نمی بینید صفحه را نوسازی کنید."
-
-#: plugins/captcha/view.php:18 plugins/captcha/view.php:20
-msgid "Captcha"
-msgstr "تصویر امنیتی"
-
-#: plugins/captcha/view.php:19
-msgid "capcha is a way for seperate humans from machins."
-msgstr "تصویر امنیتی راهیست برای جداسازی انسان ها از ماشین ها."
-
-#: plugins/captcha/info.php:3
-msgid "Use for show captcha in system"
-msgstr "استفاده کنید برای نمایش تصویر امنیتی در این سیستم"
-
-#: plugins/hello/info.php:3
-msgid "Hello is a sample plugin for developers."
-msgstr "سلام افزونه ی نمونه اییست برای توسعه دهندگان."
-
-#: plugins/languages/view.php:13 plugins/languages/view.php:17
-msgid "Languages"
-msgstr "زبان ها"
-
-#: plugins/msg/view.php:26 plugins/msg/view.php:35 plugins/msg/view.php:38
-msgid "Not Found!"
-msgstr "یافت نشد!"
-
-#: plugins/msg/view.php:33
-msgid "Page Not Found!"
-msgstr "صفحه یافت نشد!"
-
-#: plugins/msg/view.php:46 plugins/msg/view.php:55 plugins/msg/view.php:58
-msgid "Access Denied!"
-msgstr "دسترسی غیر مجاز!"
-
-#: plugins/msg/view.php:53
-msgid "You have no permission to access this page!"
-msgstr "شما اجازه ی دسترسی به این صفحه را ندارید!"
-
-#: plugins/core/view.php:15
-msgid "Main Menu"
-msgstr "منوی اصلی"
-
-#: plugins/core/view.php:30
-msgid "Core Settings"
-msgstr "تنظیمات اصلی"
-
-#: plugins/core/view.php:38 plugins/core/view.php:58
-msgid "Default Core Page"
-msgstr "صفحه ی پیشفرض"
-
-#: plugins/core/view.php:42
-msgid "Regional and Languages"
-msgstr "منطقه و زبان‌ها"
-
-#: plugins/core/view.php:45
-msgid "Appearance"
-msgstr "ظاهر"
-
-#: plugins/core/view.php:48 plugins/core/view.php:82 plugins/core/view.php:84
-msgid "Plugins"
-msgstr "افزونه ها"
-
-#: plugins/core/view.php:51
-msgid "Blocks"
-msgstr "بوک ها"
-
-#: plugins/core/view.php:57
-msgid "Basic Settings"
-msgstr "تنظیمات پایه"
-
-#: plugins/core/view.php:74 plugins/core/view.php:101
-msgid "Options"
-msgstr "گزینه ها"
-
-#: plugins/core/view.php:75 plugins/core/view.php:99
-msgid "Name"
-msgstr "نام"
-
-#: plugins/core/view.php:76
-msgid "Description"
-msgstr "توضیحات"
-
-#: plugins/core/view.php:77
-msgid "Version"
-msgstr "نسخه"
-
-#: plugins/core/view.php:78 plugins/core/view.php:100
-msgid "Author"
-msgstr "نویسنده"
-
-#: plugins/core/view.php:79 plugins/core/view.php:80 plugins/core/view.php:103
-msgid "Disable"
-msgstr "غیر فعال سازی"
-
-#: plugins/core/view.php:81 plugins/core/view.php:102
-msgid "Enable"
-msgstr "فعال سازی"
-
-#: plugins/core/view.php:83 plugins/core/view.php:97
-msgid "Install"
-msgstr "نصب"
-
-#: plugins/core/view.php:90
-msgid "Error occurred in complete your request.<br />reason:"
-msgstr ""
-"خطا هنگام کامل کردن درخواست شما<br/>\n"
-"دلیل:"
-
-#: plugins/core/view.php:96
-msgid "Themes"
-msgstr ""
-
-#: plugins/core/view.php:98
-msgid "Preview"
-msgstr ""
-
-#: plugins/core/view.php:106
-msgid "Appearcance"
-msgstr "ظاهر"
-
-#: themes/blog/index.php:53
-msgid "Copyright &copy; Sarkesh LTD 2013"
-msgstr "کپی رایت © سرکش 2013"
-
-#: themes/blog/info.php:5
-msgid "Blog"
-msgstr ""
-
-#: core/lib/cls/cls_page.php:208
+#: core/lib/cls/cls_page.php:203
 msgid "Ok"
 msgstr "باشه"
 
-#: core/lib/cls/cls_page.php:211
+#: core/lib/cls/cls_page.php:206
 msgid "Back"
 msgstr "بازگشت"
+
+#: core/lib/cls/cls_page.php:209 plugins/users/view.php:164
+msgid "Cancel"
+msgstr "انصراف"
 
 #: core/lib/cls/cls_zip.php:8
 msgid "can not open zip archive files"
 msgstr "فایل های آرشیو زیپ باز نمی شوند"
 
-#: core/lib/controls/uploader/view.php:32
-msgid "Select File"
-msgstr "فایل را انتخاب کنید"
+#: core/lib/controls/uploader/controller.php:22
+msgid "File uploader"
+msgstr "بارگزار فایل"
 
-#: core/lib/controls/uploader/view.php:37
-#: core/lib/controls/uploader/module.php:25
+#: core/lib/controls/uploader/controller.php:25
+msgid "Select file and click on upload button."
+msgstr "ابتدا فایل را انتخاب سپس روی دکمه بارگزاری کلیک کنید."
+
+#: core/lib/controls/uploader/module.php:10
 msgid "Byte"
 msgstr "بایت"
 
-#: core/lib/controls/uploader/view.php:41
-#: core/lib/controls/uploader/module.php:29
-msgid "KiloByte"
+#: core/lib/controls/uploader/module.php:14
+msgid "KByte"
 msgstr "کیلوبایت"
 
-#: core/lib/controls/uploader/view.php:45
-#: core/lib/controls/uploader/module.php:33
-msgid "MegaByte"
+#: core/lib/controls/uploader/module.php:18
+msgid "MByte"
 msgstr "مگابایت"
 
-#: core/lib/controls/uploader/view.php:49
-msgid "Maximum File Size"
-msgstr "بیشترین اندازه فایل"
+#: core/lib/controls/uploader/view.php:33
+msgid "File name"
+msgstr "نام فایل"
 
-#: core/lib/controls/uploader/view.php:50
-msgid "File Types"
-msgstr "نوع فایل ها"
+#: core/lib/controls/uploader/view.php:34
+msgid "Upload"
+msgstr "بارگزاری"
 
-#: core/lib/controls/uploader/view.php:51
-msgid "File name :"
-msgstr "نام فایل :"
+#: core/lib/controls/uploader/view.php:35
+msgid "Select"
+msgstr "انتخاب"
 
-#: core/lib/controls/uploader/view.php:52
-msgid "File size :"
-msgstr "اندازه فایل :"
+#: core/lib/controls/uploader/view.php:36
+msgid "Max Size"
+msgstr "حدکثر حجم"
 
-#: core/lib/controls/uploader/view.php:53
-msgid "File Type:"
-msgstr "نوع فایل:"
+#: core/lib/controls/uploader/view.php:40
+msgid "Valid types"
+msgstr "فرمت های مجاز"
 
-#: core/lib/controls/uploader/view.php:54
-msgid "Start Upload"
-msgstr "شروع بارگذاری"
+#: plugins/core/info.php:2 plugins/languages/info.php:2 plugins/msg/info.php:2
+#: plugins/users/info.php:2
+msgid "Sarkesh Developers Team"
+msgstr "تیم توسعه دهندگان سرکش"
 
-#: core/lib/controls/uploader/view.php:66
-msgid "Size or type of selected file is invalid!"
-msgstr "نوع یا اندازه فایل انتخاب شده نا معتبر است!"
+#: plugins/core/info.php:3 plugins/languages/info.php:3 plugins/msg/info.php:3
+msgid "With Core you can manage and controll base of system settings"
+msgstr "با هسته شما می توانید تنظیمات پایه ی سیتم را مدیریت و کنترل کنید"
 
-#: core/lib/controls/uploader/view.php:71
-msgid "File upload"
-msgstr "بازگذاری فایل"
+#: plugins/core/info.php:4 plugins/hello/info.php:4
+#: plugins/languages/info.php:4 plugins/msg/info.php:4
+msgid "0.0.3"
+msgstr "۰.۰.۳"
+
+#: plugins/files/controller.php:30 plugins/files/controller.php:39
+msgid "System message !"
+msgstr "پیام سیستم !"
+
+#: plugins/files/controller.php:30
+msgid "Type of selected file is invalid.please select another."
+msgstr "نوع فایل انتخاب شده قابل قبول نیست. لطفا مورد دیگری را انتخاب کنید."
+
+#: plugins/files/controller.php:39
+msgid "Size of selected file is too big. select another."
+msgstr "حجم فایل انتخاب شده بیش از حد بزرگ است. مورد دیگری را انتخاب کنید."
+
+#: plugins/hello/info.php:2 themes/blog/info.php:4 themes/simple/info.php:4
+msgid "Sarkesh Developers"
+msgstr "توسعه‌دهندگان سرکش"
+
+#: plugins/hello/info.php:3
+msgid "Hello is a sample plugin for developers."
+msgstr "سلام افزونه ی نمونه اییست برای توسعه دهندگان."
+
+#: plugins/languages/module.php:25
+msgid "message"
+msgstr "پیام"
+
+#: plugins/languages/module.php:25
+msgid "changing language has some problem! Please try again later."
+msgstr "فرایند تغییر زبان با مشکل مواجه شد! لطفا مجددا تلاش کنید."
+
+#: plugins/languages/view.php:25
+msgid "Languages"
+msgstr "زبان ها"
+
+#: plugins/msg/view.php:30
+msgid "Page Not Found!"
+msgstr "صفحه یافت نشد!"
+
+#: plugins/msg/view.php:35
+msgid "Not Found!"
+msgstr "یافت نشد!"
+
+#: plugins/users/controller.php:54 plugins/users/controller.php:111
+#: plugins/users/module.php:86
+msgid "Message"
+msgstr "پیام"
+
+#: plugins/users/controller.php:54
+msgid "Please fill in all of the required fields\""
+msgstr "لطفا  تمام موارد مورد نیاز را پر کنید"
+
+#: plugins/users/controller.php:111
+msgid "Please fill out all the field that are marked with an asterisk (*)."
+msgstr "لطفا تمام فیلد هایی را که با (*) علامت گذاری شده اند، پر کنید."
+
+#: plugins/users/info.php:3
+msgid "Users and permations controlled with this plugin."
+msgstr "کاربران و دسترسی ها کنترل می شوند به وسیله ی این افزونه."
+
+#: plugins/users/module.php:86
+msgid "Username or Password is incerrect!"
+msgstr "نام کاربری و یا گذرواژه نادرست است!"
+
+#: plugins/users/view.php:12 plugins/users/view.php:188
+#: plugins/users/view.php:190
+msgid "Username or e-mail address"
+msgstr "نام کاربری یا رایانامه"
+
+#: plugins/users/view.php:13
+msgid "Enter your Sarkesh username or email."
+msgstr "نام کاربری یا رایانامه حساب خود در سرکش را وارد کنید."
+
+#: plugins/users/view.php:18 plugins/users/view.php:140
+msgid "Password:"
+msgstr "گذرواژه:"
+
+#: plugins/users/view.php:20 plugins/users/view.php:142
+#: plugins/users/view.php:150
+msgid "Password"
+msgstr "کلمه عبور"
+
+#: plugins/users/view.php:22
+msgid "Enter the password that accompanies your username."
+msgstr "گذرواژه ای که برای حساب خود انتخاب کرده اید را وارد کنید."
+
+#: plugins/users/view.php:26
+msgid "Remember me!"
+msgstr "مرا فراموش مکن!"
+
+#: plugins/users/view.php:30 plugins/users/view.php:70
+msgid "Sign in"
+msgstr "ورود"
+
+#: plugins/users/view.php:37
+msgid "Reset Password"
+msgstr "بازیابی گذرواژه"
+
+#: plugins/users/view.php:58
+msgid "Don't have account?"
+msgstr "حساب کاربری ندارید؟"
+
+#: plugins/users/view.php:61 plugins/users/view.php:175
+msgid "Sign up"
+msgstr "ثبت نام"
+
+#: plugins/users/view.php:88
+msgid "Hello"
+msgstr "سلام"
+
+#: plugins/users/view.php:103
+msgid "Admin panel"
+msgstr "محیط مدیریت"
+
+#: plugins/users/view.php:109
+msgid "User Profile"
+msgstr "نمایه کاربر"
+
+#: plugins/users/view.php:118
+msgid "Register"
+msgstr "ثبت نام"
+
+#: plugins/users/view.php:122
+msgid "Username:"
+msgstr "نام کاربری:"
+
+#: plugins/users/view.php:123 plugins/users/view.php:131
+#: plugins/users/view.php:141 plugins/users/view.php:149
+#: plugins/users/view.php:191
+msgid "*"
+msgstr "*"
+
+#: plugins/users/view.php:124
+msgid "Username"
+msgstr "نام کاربری"
+
+#: plugins/users/view.php:125
+msgid "Spaces are allowed; punctuation is not allowed except for periods, hyphens, apostrophes, and underscores."
+msgstr "شما مجاز به استفاده از فاصله هستید؛ ولی مجاز به استفاده از نشانه های سجاوندی به جز نقطه، خط تیره، آپاستروف و زیرخط (_) نیستید."
+
+#: plugins/users/view.php:130
+msgid "Email:"
+msgstr "رایانامه:"
+
+#: plugins/users/view.php:132
+msgid "Email"
+msgstr "رایانامه"
+
+#: plugins/users/view.php:133
+msgid "A valid e-mail address. All e-mails from the system will be sent to this address. The e-mail address is not made public and will only be used if you wish to receive a new password or wish to receive certain news or notifications by e-mail."
+msgstr "یک رایانامه معتبر وارد کنید. تمامی پیام ها از سامانه به این رایانامه ارسال خواهند شد. آدرس رایانامه شما منتشر نخواهد شد و فقط برای کار هایی مانند درخواست گذرواژه جدید یا درخواست دریافت اخبار و اطلاعیه استفاده خواهد شد."
+
+#: plugins/users/view.php:148
+msgid "Confirm password :"
+msgstr "تأیید گذرواژه: "
+
+#: plugins/users/view.php:157
+msgid "Create new account"
+msgstr "ایجاد حساب جدید"
+
+#: plugins/users/view.php:189
+msgid "Enter your Alternate Email Address or username"
+msgstr "نام کاربری یا رایانامه جایگزین خود را وارد کنید"
+
+#: plugins/users/view.php:196
+msgid "Email new password"
+msgstr "ارسال گذرواژه جدید به ئست الکترونیکی"
+
+#: plugins/users/view.php:202
+msgid "Request new password"
+msgstr "درخواست گذرواژه جدید"
+
+#: themes/blog/index.php:49
+msgid "Copyright &copy; Sarkesh LTD 2013"
+msgstr "کپی رایت © سرکش 2013"
+
+#: themes/blog/info.php:5
+msgid "Blog"
+msgstr "وبلاگ"
+
+#: themes/simple/info.php:5
+msgid "simple"
+msgstr "ساده"
+

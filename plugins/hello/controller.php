@@ -10,7 +10,7 @@ class hello extends hello_module{
 		$c->configure('VALUE','ALI');
 		
 		$b = new ctr_button;
-		//$c->configure('EDITOR',FALSE);
+		$c->configure('EDITOR',FALSE);
 		$b->configure('P_ONCLICK_PLUGIN','hello');
 		$b->configure('P_ONCLICK_FUNCTION','onclick');
 		

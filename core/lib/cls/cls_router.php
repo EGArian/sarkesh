@@ -75,7 +75,7 @@ class cls_router{
 			$content = call_user_func(array($plugin,'msg_404'));
 		  }
 	      cls_page::set_page_tittle($content[0]);
-          //show header in abow of content or else
+          //show header in up of content or else
           if(sizeof($content) == 3 && $content[2] == false){
             
             echo cls_page::show_block('',$content[1],'MAIN');
@@ -88,10 +88,26 @@ class cls_router{
 	}
 	//this function run services and jump request do plugin
 	public function run_service(){
-		
-		$plugin = new $this->plugin;
-		$result = call_user_func(array($plugin, $this->action));
-		echo $result;
+		 if($this->obj_plugin->is_enabled($this->plugin)){
+	 	    	
+	     		 $plugin = new $this->plugin;
+	     		 //run action directly
+	     		 if(method_exists($plugin,$this->action)){
+					 $result = call_user_func(array($plugin,$this->action),'content');
+				 }
+				 else{	
+					//show service not found message
+					$result = _('Warning:Your requested service not found!');
+				 }
+				
+	      }
+		  else{
+					//plugin is not active
+		  			//show service not found message
+					$result = _('Warning:Your requested service not found!');
+		  }
+	      echo $result;
+	      
 	}
 	//this function is for runing services from controls
 	public function run_control(){

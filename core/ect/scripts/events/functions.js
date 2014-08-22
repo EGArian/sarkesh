@@ -47,7 +47,7 @@ function SystemGetFormString(obj){
 	//create return element
 	options += "control";
 	options += "<!!>name<!>RV<!>VALUE<!>0<!>URL<!>0<!>MODAL<!>0";
-	alert(options);
+	//alert(options);
 	return options;
 }
 
@@ -76,7 +76,7 @@ function SystemEventsHandle(ctr_type,j_before,p_event_p, p_event_f,j_after,form_
 		url = encodeURI(url);
 		$.get(url ,
 			function(data){
-				alert(data);
+				//alert(data);
 				//find deference and set that
 				window['Counter'] = 0;
 				$(form_elements).each(function(){
