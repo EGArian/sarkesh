@@ -25,7 +25,7 @@ class ctr_combobox extends ctr_combobox_module{
 		//this config use for show 1d array
 		$this->config['SOURCE'] = [];
 		
-		//this config for set table foe show
+		//this config for set table for show
 		//table is 2d array
 		$this->config['TABLE'] = '';
 		

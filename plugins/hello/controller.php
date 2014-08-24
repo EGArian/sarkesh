@@ -4,13 +4,16 @@ class hello extends hello_module{
 	function __construct(){
 		parent::__construct();
 	}
-
+	
+	public static function core_menu(){
+		return array(4,2);
+	}
 	public function textarea(){
 		$c = new ctr_textarea;
 		$c->configure('VALUE','ALI');
 		
 		$b = new ctr_button;
-		$c->configure('EDITOR',FALSE);
+		$c->configure('EDITOR',true);
 		$b->configure('P_ONCLICK_PLUGIN','hello');
 		$b->configure('P_ONCLICK_FUNCTION','onclick');
 		

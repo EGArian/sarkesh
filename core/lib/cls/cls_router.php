@@ -13,7 +13,7 @@ class cls_router{
 	private $obj_io;
 	private $localize;
 	private $obj_plugin;
-	function __construct(){
+	function __construct($plugin='' ,$action=''){
 		//create object from cls_plugin
 		$this->obj_plugin = new cls_plugin;
 		//set last page that user see
@@ -23,31 +23,38 @@ class cls_router{
 		$this->localize = $obj_localize->get_localize();
 		//-------------------------
 		$this->obj_io = new cls_io;
-		if(isset($_REQUEST['plugin'])){
-			$this->plugin = $_REQUEST['plugin'];
-			//now we check action
-			if(isset($_REQUEST['action'])){
-				//action set by user
-				$this->action = $_REQUEST['action'];
+
+		if($plugin == '' || $action == ''){
+			if(isset($_REQUEST['plugin'])){
+				$this->plugin = $_REQUEST['plugin'];
+				//now we check action
+				if(isset($_REQUEST['action'])){
+					//action set by user
+					$this->action = $_REQUEST['action'];
+				}
+				else{
+					//action not set. 
+					//now we jump to default action
+					$this->action = 'default';
+				}
+
 			}
 			else{
-				//action not set. 
-				//now we jump to default action
-				$this->action = 'default';
-			}
+				// plugin not set
+				// now jump to Home page
+				$obj_localize = new cls_localize;
+				$localize = $obj_localize->get_localize();
+				$this->jump_page($localize['home'] ,true);
 
+			}
 		}
 		else{
-			// plugin not set
-			// now jump to Home page
-			$obj_localize = new cls_localize;
-			$localize = $obj_localize->get_localize();
-			$this->jump_page($localize['home'] ,true);
-
+			$this->plugin = $plugin;
+			$this->action = $action;
 		}
 				
 	}
-	public function show_content(){
+	public function show_content($show_content = true){
 	      //this function run from page class.
 	      // this function load plugin and run controller
 	      //checking for that plugin is enabled
@@ -78,20 +85,28 @@ class cls_router{
           //show header in up of content or else
           if(sizeof($content) == 3 && $content[2] == false){
             
-            echo cls_page::show_block('',$content[1],'MAIN');
+            $output_content = cls_page::show_block('',$content[1],'MAIN');
           }
           else{
  
-            echo cls_page::show_block($content[0],$content[1],'MAIN');
+            $output_content = cls_page::show_block($content[0],$content[1],'MAIN');
           }
+		  
+		  //show content id show_content was set
+		  if($show_content){
+				echo $output_content;
+		  } 
+		  return $output_content;
 	      
 	}
 	//this function run services and jump request do plugin
 	public function run_service(){
+	 
 		 if($this->obj_plugin->is_enabled($this->plugin)){
 	 	    	
 	     		 $plugin = new $this->plugin;
 	     		 //run action directly
+				
 	     		 if(method_exists($plugin,$this->action)){
 					 $result = call_user_func(array($plugin,$this->action),'content');
 				 }

@@ -41,7 +41,7 @@ if(file_exists("./config.php")) {
 	//check for that want work with services or normal use
 	if(isset($_REQUEST['service'])){
 		#run system in service mode
-		$obj_router = new cls_router;
+		$obj_router = new cls_router('','');
 		$obj_router->run_service();
 	}
 	//check for that want work with controls
