@@ -6,7 +6,8 @@ class hello extends hello_module{
 	}
 	
 	public static function core_menu(){
-		return array(4,2);
+		$menu = [['#','Say Hello']];
+		return $menu;
 	}
 	public function textarea(){
 		$c = new ctr_textarea;

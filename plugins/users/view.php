@@ -10,7 +10,7 @@ class users_view{
 		$username->configure('INLINE',TRUE);
 		$username->configure('ADDON','U');
 		$username->configure('PLACE_HOLDER',_('Username or e-mail address'));
-		$username->configure('HELP',_('Enter your Sarkesh username or email.'));
+		$username->configure('HELP',_('Enter your username or email.'));
 		
 		$password = new ctr_textbox();
 		$password->configure('NAME','txt_password');
@@ -72,7 +72,7 @@ class users_view{
 	
 	/*
 	 * INPUT: Object >redbeanphp user info
-	 * INPUT: boolean > Admin permation
+	 * INPUT: boolean > Admin permission
 	 * 
 	 * This function show user profile in block mode and content mode
 	 * block mode draw with small information about user
@@ -101,7 +101,7 @@ class users_view{
 			$btn_admin = new ctr_button;
 			$btn_admin->configure('NAME','JUMP_ADMIN');
 			$btn_admin->configure('LABEL',_('Admin panel'));
-			$btn_admin->configure('HREF',cls_general::create_url(array('panel','admin')));
+			$btn_admin->configure('HREF',cls_general::create_url(array('service','1','plugin','core','action','main','p','core','a','default')));
 			$row1->add($btn_admin,6);
 		 }
 		 

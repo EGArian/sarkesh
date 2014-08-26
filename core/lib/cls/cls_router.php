@@ -96,7 +96,7 @@ class cls_router{
 		  if($show_content){
 				echo $output_content;
 		  } 
-		  return $output_content;
+		  return $content;
 	      
 	}
 	//this function run services and jump request do plugin

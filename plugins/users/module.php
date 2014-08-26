@@ -23,7 +23,7 @@ class users_module extends users_view{
 		if($this->module_is_logedin()){
 			//show user profile
 			//get user information
-			$user=$this->module_get_user_info();
+			$user=$this->module_get_info();
 			return $this->view_profile_block($user, $this->module_has_permission('core_admin_panel'));
 		}
 		else{
@@ -115,35 +115,7 @@ class users_module extends users_view{
 		  return $res->id;
 	  }
 	  
-	  /*
-	   * INPUT: Integer > user id | NULL for get legedin user info
-	   * this function return array of user info
-	   * if 
-	   * OUTPUT: OBJECT of bean > user info | False > if user not found
-	   */
-	   protected function module_get_user_info($username = ''){
-		   if($username == ''){
-				//going to find loged in user info
-				if($this->module_is_logedin()){
-					$id = $this->validator->get_id('USERS_LOGIN');	
-					return cls_orm::findOne('users',"login_key = ?",array($id));
-				}
-				else{
-					//user is guest 
-					return null;
-				}
-					
-			}
-			//get user info by username
-			$res = cls_orm::findOne('users',"username = ?",array($username));
-			if($res == array()){
-				//result was empty
-				return false;
-			}
-			//return user info 
-			return $res;
-	   }
-	   
+	 
 	  /*
 	  * INPUT: ELEMENTS | NULL
 	  * this function do logout proccess
@@ -151,7 +123,16 @@ class users_module extends users_view{
 	  */
 	  protected function module_logout($e = ''){
 		  $this->validator->delete('USERS_LOGIN');
-		  $e['RV']['URL'] = 'R';
+		  //if this action requested by content mode jump user to home page
+		  if($e == 'content'){
+				cls_router::jump_page(SiteDomain);
+				
+		  }
+		  else{
+			//jump page with events controller 
+			$e['RV']['URL'] = SiteDomain;
+		  }
+		  
 		  return $e;
 	  }
 	  
@@ -164,25 +145,24 @@ class users_module extends users_view{
 	   protected function module_has_permission($permission,$username=''){
 		   if($username == ''){
 			   //get cerrent user info
-			   $user = $this->module_get_user_info();
-			   echo $user;
+			   $user = $this->module_get_info();
 			   if($user == null){
 				   //user is guest
 				   //4 = guest primary key
 				   $id = 4;
 			   }
 			   else{
-				   //get user permation id
+				   //get user permission id
 				   $id = $user['permission'];
 			   }
 			   $per = cls_orm::findOne('permissions',"id = ?", array($id));
-			   if($per->permission == '1'){	return true;}   
+			   if($per[$permission] == '1'){return true;}   
 
 			   return false;
 			   
 		   } 
 		   else{
-				//get permation with username
+				//get permission with username
 				//check for that user exists
 				
 				if(cls_orm::count('users',"username = ?",array($username)) != 0){
@@ -215,10 +195,39 @@ class users_module extends users_view{
 	    * This function run with botton that's in reset password form
 	    * OUTPUT:ELEMENTS
 	    */
-	    public function module_btn_reset_password_onclick($e){
+	    protected function module_btn_reset_password_onclick($e){
 			
 			$e['RV']['MODAL'] = cls_page::show_block(1,1,'MODAL','type-warning');
 			return $e;
+		}
+		
+		//this function return back user information
+		protected function module_get_info($username = ''){
+		
+			//first check for that what type of user info you want
+			if($username == ''){
+				//you want user information that now in loged in
+				if($this->is_logedin()){
+					$id = $this->validator->get_id('USERS_LOGIN');
+					if(cls_orm::count('users','login_key = ?',array($id)) != 0){
+						return cls_orm::findOne('users','login_key = ?', array($id));
+					}
+				}
+				else{
+					//user is guest
+					return null;
+				}
+			}
+			else{
+				//check for username and return back information if exists
+				if(cls_orm::count('users','username = ?',array($username)) != 0){
+						return cls_orm::findOne('users','login_key = ?', array($username));
+				}
+				else{
+					//username not found
+					return 0;
+				}
+			}
 		}
 	 
 }

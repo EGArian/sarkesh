@@ -11,7 +11,7 @@ define ("DatabaseHost","localhost");
 define ("DatabaseName","test");
 
 #save system Access domain
-define ("SiteDomain","http://localhost/sarkesh/");
+define ("SiteDomain","http://localhost/");
 
 #config file system
 define('AppPath',dirname(__file__) . '/');

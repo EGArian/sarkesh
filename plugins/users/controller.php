@@ -9,7 +9,7 @@ class users extends users_module{
 	 * this function return login form in blocks else content area
 	 * OUTPUT:elements
 	 */
-	public function login_block($position){
+	public function login_block(){
 
 		return $this->module_login_block('block');
 		
@@ -20,7 +20,7 @@ class users extends users_module{
 	 * this function return login form in blocks in content area
 	 * OUTPUT:elements
 	 */
-	public function login($position){
+	public function login(){
 
 		return $this->module_login_block('content');
 	}
@@ -49,6 +49,10 @@ class users extends users_module{
 	 * OUTPUT:elements array
 	 */
 	public function btn_login_onclick($e){
+		//if this action requested by content mode i should reject that
+		if($e == 'content'){
+			cls_router::jump_page(SiteDomain);
+		}
 		//first check for that username and password is filled
 		if(trim($e['txt_username']['VALUE']) == '' || trim($e['txt_password']['VALUE'])==''){
 			$e['RV']['MODAL'] = cls_page::show_block(_('Message'),_('Please fill in all of the required fields"'),'MODAL','type-warning');
@@ -76,12 +80,12 @@ class users extends users_module{
 	  * OUTPUT: boolean | ELEMENTS
 	  */
 	  public function btn_logout_onclick($e = ''){
-		  return $this->module_logout($e);
+		return $this->module_logout($e);
 	  }
 	  
 	  /*
 	   * INPUT: string : permission name
-	   * INPUT: string:username | NULL: for cerrent user
+	   * INPUT: string:username | NULL: for current user
 	   * this function check for that user has access to entered permission
 	   * OUTPUT: boolean
 	   */
@@ -91,11 +95,14 @@ class users extends users_module{
 	   
 	   /*
 	    * INPUT:ELEMENTS
-	    * This function run with botton that's in reset password form
+	    * This function run with button that's in reset password form
 	    * OUTPUT:ELEMENTS
 	    */
 	    public function btn_reset_password_onclick($e){
-			
+			//if this action requested by content mode i should reject that
+			if($e == 'content'){
+				cls_router::jump_page(SiteDomain);
+			}
 			return $this->module_btn_reset_password_onclick($e);
 		}
 		
@@ -105,6 +112,11 @@ class users extends users_module{
 	    * OUTPUT:ELEMENTS
 	    */
 	    public function btn_signup_onclick($e){
+			//if this action requested by content mode i should reject that
+			if($e == 'content'){
+				cls_router::jump_page(SiteDomain);
+			}
+			
 			//check input
 			if( $e['txt_username']['VALUE'] == '' || $e['txt_email']['VALUE'] == '' || $e['txt_password']['VALUE'] == '' || $e['txt_repassword']['VALUE'] == '' ){
 				//invalid field
@@ -125,5 +137,16 @@ class users extends users_module{
             //WARRNING: UNDER DEVELOPMENT
             
          }
+		
+		/* INPUT:string(username).if username not set this function return back information of user that now is logined in
+		* if user will be guest this function return null;
+		* if user not found this function return 0
+	    * This function return array of user information
+	    * OUTPUT:array(user information);
+	    */
+	    public function get_info($username = ''){
+			
+			return $this->module_get_info($username);
+		}
 }
 ?>

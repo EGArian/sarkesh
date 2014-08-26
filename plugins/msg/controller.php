@@ -21,8 +21,8 @@ class msg extends msg_module{
 	/*
 	 * INPUT:STRING:HEADER
 	 * INPUT:STRING:BODY OF MESSAGE
-	 * INPUT:STRING:TYPE(success,danger,warrning,info)
-	 * This function show custom mesage
+	 * INPUT:STRING:TYPE(success,danger,warning,info)
+	 * This function show custom message
 	 * OUTPUT:ELEMENTS
 	 */
 	 public function msg($header, $body, $type = 'success'){
