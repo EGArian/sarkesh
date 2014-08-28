@@ -5,7 +5,7 @@
 	name="{$id}" 
 	id="{$id}" 
 	form="{$form}" 
-	class="{if="$bs_control"}{$type} {$class} {if="$size != ''"}btn-{$size}{/if}{/if} ca_{$form}" 
+	class="button {if="$bs_control"}{$type} {$class} {if="$size != ''"}btn-{$size}{/if}{/if} ca_{$form}" 
 	style="{$styles}" 
 	{if="$disabled == 'disabled'"} disabled="disabled"{/if} 
 	{if="$j_onblur != '0' || $p_onblur_p != '0' || $j_after_onblur !='0'"} onblur="ctr_system_event(this,'ctr_button','{$j_onblur}','{$p_onblur_p}','{$p_onblur_f}','{$j_after_onblur}');"{/if} 

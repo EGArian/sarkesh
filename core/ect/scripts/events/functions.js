@@ -1,9 +1,16 @@
+// Global variables
+//this variable store id of clicked button
+ var ClickedButton = '';
+
+//--------------------------------------------------------------------
+
 //this function handel events
 function ctr_system_event(obj,type, j_before, p_events_p, p_event_f, j_after){ 
-	  //Get all elements and push in array
-	 var options = SystemGetFormString(obj);
-	 var form_elements = SystemGetFormArray(obj);
-	 SystemEventsHandle(type,j_before, p_events_p, p_event_f,j_after,form_elements,options);
+
+	//Get all elements and push in array
+	var options = SystemGetFormString(obj);
+	var form_elements = SystemGetFormArray(obj);
+	SystemEventsHandle(type,j_before, p_events_p, p_event_f,j_after,form_elements,options);
 }
 //this function return form in string
 //obj is an element for input
@@ -47,6 +54,11 @@ function SystemGetFormString(obj){
 	//create return element
 	options += "control";
 	options += "<!!>name<!>RV<!>VALUE<!>0<!>URL<!>0<!>MODAL<!>0";
+	
+	//create clicked elements
+	window.ClickedButton = $("button#" + obj.id).val()
+	options += "<!!>control";
+	options += "<!!>name<!>CLICK<!>VALUE<!>" + window.ClickedButton + "<!>";
 	//alert(options);
 	return options;
 }

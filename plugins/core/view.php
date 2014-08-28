@@ -44,7 +44,7 @@ class core_view{
 		$this->raintpl->assign( "user_settings_url", cls_general::create_url(array('service','1','plugin','core','action','main','p','core','a','settings')	)	);
 
 		$this->raintpl->assign( "sarkesh_admin", _('Sarkesh Administrator')	);
-		$this->raintpl->assign( "sarkesh_admin_url", '#');
+		$this->raintpl->assign( "sarkesh_admin_url", cls_general::create_url(array('service','1','plugin','core','action','main','p','core','a','dashboard')	));
 		
 		//draw and return back menus
 		return $this->raintpl->draw('core_content', true );
@@ -57,10 +57,44 @@ class core_view{
 	
 	}
 	
-	#This function show single panel in window
-	protected function show_single_panel($title,$content){
+	#This function show themes panel
+	protected function view_themes($themes,$themes_info,$active_theme){
+		
+		//Assign variables
+		$this->raintpl->assign( "label_themes", _('Themes'));
+		$this->raintpl->assign( "label_disable", _('Disable'));
+		$this->raintpl->assign( "label_enable", _('Enable'));
+		$this->raintpl->assign( "label_install",_('Install new theme'));
+		$this->raintpl->assign( "label_name", _('Name'));
+		$this->raintpl->assign( "label_screen", _('Splash screen'));
+		$this->raintpl->assign( "label_author", _('Author'));
+		$this->raintpl->assign( "label_options", _('Options'));
+		$this->raintpl->assign( "active_theme", $active_theme);
+		$this->raintpl->assign( "themes", $themes_info);
+		$this->raintpl->assign( "theme_count", max(array_keys($themes_info)	)	);
+		
+		//draw and return back content
+		return array(_('Themes'),$this->raintpl->draw('core_appearance', true )	);
+	}
 	
-	
+	//this function return dashboard of administrator area
+	protected function view_dashboard(){
+		//Assign variables
+		$this->raintpl->assign( "BasicSettings", _('Basic Settings'));
+		$this->raintpl->assign( "RegionalandLanguages", _('Regional and Languages'));
+		$this->raintpl->assign( "Appearance", _('Appearance'));
+		$this->raintpl->assign( "Plugins",_('Plugins'));
+		$this->raintpl->assign( "Blocks", _('Blocks'));
+		$this->raintpl->assign( "Usersandpermissions", _('Users and permissions'));
+		$this->raintpl->assign( "url_regional", _('Author'));
+		$this->raintpl->assign( "url_appearance", cls_general::create_url(array('service','1','plugin','core','action','main','p','core','a','themes')	));
+		$this->raintpl->assign( "url_plugins", _('Author'));
+		$this->raintpl->assign( "url_blocks", _('Author'));
+		$this->raintpl->assign( "url_uap", _('Author'));
+		$this->raintpl->assign( "url_basic", _('Author'));
+		
+		//draw and return back content
+		return array(_('Dashboard'),$this->raintpl->draw('core_dashboard', true )	);
 	}
 }
 ?>

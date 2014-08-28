@@ -17,6 +17,8 @@ class hello extends hello_module{
 		$c->configure('EDITOR',true);
 		$b->configure('P_ONCLICK_PLUGIN','hello');
 		$b->configure('P_ONCLICK_FUNCTION','onclick');
+		$b->configure('NAME','hello');
+		$b->configure('VALUE','BBB');
 		
 		$f = new ctr_form('vv');
 		$f->add($c);
@@ -43,7 +45,7 @@ class hello extends hello_module{
 		return array(1,$t->draw());
 	}
 	public function onclick($e){
-		$e['ctr_button']['LABEL'] =$e['TEXTAREA']['VALUE'];
+		$e['hello']['LABEL'] =$e['CLICK']['VALUE'];
 	return $e;
 	}
 	

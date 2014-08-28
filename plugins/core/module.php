@@ -70,5 +70,34 @@ class core_module extends core_view{
 		$message = $this->msg->msg(_('no access'), _('you have no permission'),'danger');
 		return $this->module_load($message,true);
 	}
+	
+	protected function module_themes(){
+		//Get all themes that exists
+		$directory = scandir(AppPath. '/themes/');
+		$themes = (array) null;
+		foreach($directory as $files){
+			if(is_dir(AppPath . 'themes/' . $files) && $files != '.' && $files != '..'){	
+				array_push($themes,$files);
+			}
+		}
+		//get current active theme
+		$registry = new cls_registry;
+		$active_theme = $registry->get('core','active_theme');
+		
+		//get themes info
+		$themes_info = (array) null;
+		foreach($themes as $theme_file){
+			include_once(AppPath . '/themes/' . $theme_file . '/info.php');
+			array_push($themes_info,$theme);
+		}
+		//send to view for show themes
+		return $this->view_themes($themes,$themes_info,$active_theme);
+	}
+	
+	//this function return dashboard of administrator area
+	protected function module_dashboard(){
+	
+		return $this->view_dashboard();
+	}
 }	
 ?>

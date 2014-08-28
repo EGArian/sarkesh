@@ -25,7 +25,7 @@ class core extends core_module{
 			//check for that user come from login process
 			if($_GET['p'] == 'users' && $_GET['a'] == 'login'){
 				//user come from login process and now should jump to default administrator page
-				cls_router::jump_page(cls_general::create_url(array('service','1','plugin','core','action','main','p','core','a','default')	)	);
+				cls_router::jump_page(cls_general::create_url(array('service','1','plugin','core','action','main','p','core','a','dashboard')	)	);
 			}
 			else{
 				//going to show content
@@ -54,9 +54,21 @@ class core extends core_module{
 	
 	//this function return url of core menus to admin area
 	public static function core_menu(){
-		$menus = [[cls_general::create_url(array('service','1','plugin','core','action','main','p','core','a','settings')	),'General Settings'],[cls_general::create_url(array('service','1','plugin','core','action','main','p','core','a','themes')	), _('Appearance')],[cls_general::create_url(array('service','1','plugin','core','action','main','p','core','a','plugins')	),'Plugins'],[cls_general::create_url(array('service','1','plugin','core','action','main','p','core','a','settings')	),'Localize']];
+		$menus = [[cls_general::create_url(array('service','1','plugin','core','action','main','p','core','a','dashboard')	),_('Dashboard')],[cls_general::create_url(array('service','1','plugin','core','action','main','p','core','a','settings')	),_('General Settings')],[cls_general::create_url(array('service','1','plugin','core','action','main','p','core','a','themes')	), _('Appearance')],[cls_general::create_url(array('service','1','plugin','core','action','main','p','core','a','plugins')	),_('Plugins')],[cls_general::create_url(array('service','1','plugin','core','action','main','p','core','a','settings')	),_('Localize')]];
 		
 		return $menus;
+	}
+	
+	//This function show themes panel for manage and select
+	public function themes(){
+		
+		return $this->module_themes();
+	}
+	
+	#This function return back dashboard of administrator area
+	public function dashboard(){
+		
+		return $this->module_dashboard();
 	}
 	
 	

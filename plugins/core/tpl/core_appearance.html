@@ -26,15 +26,15 @@
 			    	    	<tr  id="core_plugin_{$value.name}" class="info">
 							    <td>{$key +1}</td>
 							    <td><img src="{$value.img}" height="50px" width="100px"></td>
-							    <td>{$value.folder_name}</td>
+							    <td>{$value.name}</td>
 							    <td>{$value.author}</td>			    	   		
 							    <td>
 						    	   			    	   	
 											    	   	{if="$theme_count > 1"}
-												    	   	{if="$value.default == 0"}
+												    	   	{if="$value.name != $active_theme"}
 								  								<button type="button" class="btn btn-success btn-xs" value="1*{$value.name}" onclick="core_plugins_changestate(this.id, this.value)">{$label_enable}</button>
 												    	   	{/if}
-												    	   	{if="$value.default == 1"}
+												    	   	{if="$value.name == $active_theme"}
 							  									<button type="button" disabled="disabled" class="btn btn-primary btn-xs" value="0*{$value.name}" onclick="">{$label_disable}</button>
 											    	   		{/if}
 											    	   	{/if}
