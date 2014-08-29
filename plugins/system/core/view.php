@@ -6,7 +6,7 @@ class core_view{
 		//create an object from raintpl class//
 		$this->raintpl = new cls_raintpl;
 		//configure raintpl //
-		$this->raintpl->configure('tpl_dir','plugins/core/tpl/');
+		$this->raintpl->configure('tpl_dir','plugins/system/core/tpl/');
 		
 	}
 	
@@ -27,7 +27,7 @@ class core_view{
 	//$menu is plugins special menu
 	protected function view_main($menu,$content,$user){
 		
-		cls_page::add_header('<link href="./plugins/core/style/core_content.css" rel="stylesheet">');
+		cls_page::add_header('<link href="./plugins/system/core/style/core_content.css" rel="stylesheet">');
 		//Assign variables
 		$this->raintpl->assign( "menu", $menu);	
 		$this->raintpl->assign( "content", $content);

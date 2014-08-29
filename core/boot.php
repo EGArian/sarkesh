@@ -15,11 +15,13 @@ function __autoload($class_name){
 		 @include_once(dirname(__FILE__) . '/lib/cls/' . $class_name . '.php');
 	 }
 	 elseif(@$result[1] == 'module' || @$result[1] == 'view'){
-		 @include_once(AppPath . '/plugins/' . $result[0] . '/' . $result[1] . '.php');
+		 @include_once(AppPath . '/plugins/system/' . $result[0] . '/' . $result[1] . '.php');
+		 @include_once(AppPath . '/plugins/defined/' . $result[0] . '/' . $result[1] . '.php');
 	 }
 	 else{
 		//going to include plugin
-		@include_once(AppPath . '/plugins/' . $result[0] . '/controller.php');
+		@include_once(AppPath . '/plugins/system/' . $result[0] . '/controller.php');
+		@include_once(AppPath . '/plugins/defined/' . $result[0] . '/controller.php');
 	 }
 }
 

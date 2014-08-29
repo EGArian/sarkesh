@@ -83,7 +83,7 @@ class users_view{
 		 $form = new ctr_form('USERS_PROFILE_BLOCK');
 		 $row = new ctr_row;
 		 $avatar = new ctr_image;
-		 $avatar->configure('SRC','./plugins/users/images/def_avatar_64.png');
+		 $avatar->configure('SRC','./plugins/system/users/images/def_avatar_64.png');
 		 $avatar->configure('TYPE','img-thumbnail');
 		 $avatar->configure('LABEL',_('Hello') . ' ' . $user->username);
 		 $row->add($avatar,12);

@@ -6,7 +6,7 @@ class msg_view{
 
 	public function __construct(){
 	      $this->raintpl = new cls_raintpl;
-	      $this->raintpl->configure("tpl_dir", "plugins/msg/tpl/" );
+	      $this->raintpl->configure("tpl_dir", "plugins/system/msg/tpl/" );
 
 	}
 	
