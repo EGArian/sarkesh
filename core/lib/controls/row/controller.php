@@ -1,7 +1,7 @@
 <?php
 class ctr_row extends ctr_row_module{
 	private $e;
-	private $controls;
+	public $controls;
 	private $config;
 	function __construct(){
 		parent::__construct();
@@ -18,6 +18,7 @@ class ctr_row extends ctr_row_module{
 		foreach($this->controls as $c){
 			call_user_func(array($c['object'],"configure"),'FORM',$this->config['FORM']);
 			$e['width'] = $c['width'];
+			$e['offset'] = $c['offset'];
 			$e['body'] = call_user_func(array($c['object'],"draw"));
 			array_push($this->e, $e);
 		}
@@ -35,10 +36,12 @@ class ctr_row extends ctr_row_module{
 		return FALSE;
 	}
 
-	public function add($element,$width){
+	public function add($element,$width=1,$offset=0){
 		
 		$e['width'] = $width;
 		$e['object'] = $element;
+		$e['offset'] = $offset;
+		
 		array_push($this->controls, $e);
 
 	}

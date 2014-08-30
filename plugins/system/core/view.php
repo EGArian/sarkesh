@@ -60,6 +60,47 @@ class core_view{
 	#This function show themes panel
 	protected function view_themes($themes,$themes_info,$active_theme){
 		
+		$form = new ctr_form("core_manage_themes");
+		$tab = new ctr_tabbar;
+		$table = new ctr_table;
+		
+		foreach($themes as $key=>$theme){
+			$row = new ctr_row;
+			
+			//add id to table for count rows
+			$lbl_id = new ctr_label($key+1);
+			$row->add($lbl_id,1,1);
+			
+			//add theme name
+			$lbl_theme_name = new ctr_label($themes_info[$key]['name']);
+			$row->add($lbl_theme_name,2);
+			
+			//add author of theme
+			$lbl_author = new ctr_label($themes_info[$key]['author']);
+			$row->add($lbl_author,2);
+			
+			
+			
+			//add active theme button
+			if($theme != $active_theme){
+				$btn_active = new ctr_button;
+				$btn_active->configure('LABEL',_('Active this'));
+				$btn_active->configure('TYPE','success');
+				$btn_active->configure('P_ONCLICK_PLUGIN','core');
+				$btn_active->configure('P_ONCLICK_FUNCTION','btn_change_theme');
+				$row->add($btn_active,1);
+			}
+			$table->add_row($row);
+			
+		}
+		
+		//add headers to table
+		$table->configure('HEADERS',array(_('ID'),_('Name'),_('Author'),_('Preview'),_('Options')));
+		$form->add($table);
+		
+		$tab->add($form);
+		
+		return array(_('Appearance'),$tab->draw());
 		//Assign variables
 		$this->raintpl->assign( "label_themes", _('Themes'));
 		$this->raintpl->assign( "label_disable", _('Disable'));
@@ -74,7 +115,7 @@ class core_view{
 		$this->raintpl->assign( "theme_count", max(array_keys($themes_info)	)	);
 		
 		//draw and return back content
-		return array(_('Themes'),$this->raintpl->draw('core_appearance', true )	);
+		//return array(_('Themes'),$this->raintpl->draw('core_appearance', true )	);
 	}
 	
 	//this function return dashboard of administrator area

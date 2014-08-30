@@ -13,10 +13,10 @@ class ctr_table extends ctr_table_module{
 		$this->config['ROWS'] = [];
 		$this->config['HEADERS'] = [];
 		$this->config['SIZE'] = 12;
-		$this->config['BS_CONTROL'] = true;
-		$this->config['BORDER'] = TRUE;
-		$this->config['HOVER'] = TRUE;
-		$this->config['STRIPED'] = TRUE;
+		$this->config['BS_CONTROL'] = false;
+		$this->config['BORDER'] = FALSE;
+		$this->config['HOVER'] = FALSE;
+		$this->config['STRIPED'] = FALSE;
 		$this->config['CSS_FILE'] = '';
 		$this->config['CLASS'] = '';
 		
@@ -24,7 +24,11 @@ class ctr_table extends ctr_table_module{
 	//this function designed for add rows
 	public function add_row($row){
 		$this->config['TYPE'] = 'NORMAL';
-		array_push($this->config['ROWS'],$row->draw());
+		$items = (array) null;
+		foreach($row->controls as $control){
+			array_push($items,$control['object']->draw());
+		}
+		array_push($this->config['ROWS'],$items);
 		
 	}
 	public function add_source($source){

@@ -71,6 +71,12 @@ class core extends core_module{
 		return $this->module_dashboard();
 	}
 	
+	//with this function change selected theme
+	public function btn_change_theme($e){
+	
+		
+	}
+	
 	
 }
 	
