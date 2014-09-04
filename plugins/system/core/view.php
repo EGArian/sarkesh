@@ -95,7 +95,8 @@ class core_view{
 		}
 		
 		//add headers to table
-		$table->configure('HEADERS',array(_('ID'),_('Name'),_('Author'),_('Preview'),_('Options')));
+		$table->configure('HEADERS',array(_('ID'),_('Name'),_('Author'),_('Options')));
+		$table->configure('HEADERS_WIDTH',array(1,2,3,4));
 		$form->add($table);
 		
 		$tab->add($form);

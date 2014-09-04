@@ -8,12 +8,14 @@ class ctr_table_view{
 	}
 	
 	protected function view_draw($config){
+	
 		if($config['CSS_FILE'] != ''){
 			cls_page::add_header($config['CSS_FILE']);
 		}
 		
 		$this->raintpl->assign('headers',$config['HEADERS']);
 		$this->raintpl->assign('rows',$config['ROWS']);
+		$this->raintpl->assign('headers_width',$config['HEADERS_WIDTH']);
 		$this->raintpl->assign('size',$config['SIZE']);
 		$this->raintpl->assign('bs_control',$config['BS_CONTROL']);
 		$this->raintpl->assign('border',$config['BORDER']);

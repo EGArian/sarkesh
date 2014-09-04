@@ -6,11 +6,11 @@ define ("DatabaseType","mysql");
 
 #mysql connect information
 define ("DatabaseUser","root");
-define ("DatabasePassword","");
+define ("DatabasePassword","123456");
 define ("DatabaseHost","localhost");
-define ("DatabaseName","test");
+define ("DatabaseName","sarkesh");
 
-#save system Access domain
+#save  domain for load system
 define ("SiteDomain","http://localhost/");
 
 #config file system
@@ -20,4 +20,6 @@ define('AppPath',dirname(__file__) . '/');
 #in this address sore plugins
 define('PluginsCenter','http://plugins.sarkesh.org/');
 
+#error reporting state. for more info about this variable see php documents
+define('ERROR_REPORTING',E_ALL);
 ?>

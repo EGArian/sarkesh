@@ -101,7 +101,7 @@ class users_view{
 			$btn_admin = new ctr_button;
 			$btn_admin->configure('NAME','JUMP_ADMIN');
 			$btn_admin->configure('LABEL',_('Admin panel'));
-			$btn_admin->configure('HREF',cls_general::create_url(array('service','1','plugin','core','action','main','p','core','a','default')));
+			$btn_admin->configure('HREF',cls_general::create_url(array('service','1','plugin','core','action','main','p','core','a','dashboard')));
 			$row1->add($btn_admin,6);
 		 }
 		 

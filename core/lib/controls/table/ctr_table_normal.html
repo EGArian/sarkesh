@@ -1,11 +1,11 @@
 <div class="row">
 	<div class="col-xs-{$size}">
 		<table {if="$bs_control"}class="table {if="$border"}table-bordered {/if} {if="$hover"}table-hover{/if} {if="$striped"}table-striped{/if} {if="$class != ''"} {$class}{/if}"{/if} >
-		<tr class="success">{loop="$headers"}<th class="text-center">{$value}</th>{/loop}</tr>
+		<tr class="success">{loop="$headers"}<th class="text-center col-md-{$headers_width[$key1]}">{$value}</th>{/loop}</tr>
 		{loop="$rows"}
 			<tr class="">
 			{loop="$value"}
-				<td class="text-center col-md-2">{$value}</td>
+				<td class="text-center ">{$value}</td>
 			{/loop}
 			</tr>
 		{/loop}

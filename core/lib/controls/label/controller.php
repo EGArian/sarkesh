@@ -8,7 +8,7 @@ class ctr_label extends ctr_label_module{
 		$this->config['CLASS'] = '';
 		$this->config['STYLE'] = '';
 		$this->config['TYPE'] = 'default';
-		$this->config['BS_CONTROL'] = false;
+		$this->config['BS_CONTROL'] = FALSE;
 		parent::__construct();
 	}
 	public function draw(){
@@ -18,7 +18,7 @@ class ctr_label extends ctr_label_module{
 		if(key_exists($key, $this->config)){
 			return $this->config[$key];
 		}
-		die('Index is out of range form');
+		return false;
 	}
 	//this function configure control//
 	public function configure($key, $value){

@@ -19,6 +19,7 @@ class ctr_table extends ctr_table_module{
 		$this->config['STRIPED'] = FALSE;
 		$this->config['CSS_FILE'] = '';
 		$this->config['CLASS'] = '';
+		$this->config['HEADERS_WIDTH'] = (array) null;
 		
 	}
 	//this function designed for add rows
