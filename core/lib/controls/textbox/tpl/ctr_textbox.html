@@ -10,7 +10,8 @@
 				name="{$id}" 
 				placeholder="{$placeholder}"
 				id="{$id}" 
-				form="{$form}" 
+				form="{$form}"
+				value="{$value}" 
 				class="{if="$bs_control"}form-control{/if} {$class} ca_{$form} {if="$bs_size != 'default'"}input-{$bs_size}{/if}" 
 				style="{$styles}" 
 				{if="$disabled == 'disabled'"} disabled="disabled"{/if} 
@@ -18,7 +19,6 @@
 				{if="$j_onfocus != '0' || $p_onfocus_p != '0' || $j_after_onfocus !='0'"}onfocus="ctr_system_event(this,'ctr_button','{$j_onfocus}','{$p_onfocus_p}','{$p_onfocus_f}','{$j_after_onfocus}');"{/if} 
 				{if="$j_onclick != '0' || $p_onclick_p != '0' || $j_after_onclick !='0'"}onclick="ctr_system_event(this,'ctr_button','{$j_onclick}','{$p_onclick_p}','{$p_onclick_f}','{$j_after_onclick}');"{/if}
 				>
-					{$value}
 				</input>
 			</div>
 			

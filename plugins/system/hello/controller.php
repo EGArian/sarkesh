@@ -49,6 +49,12 @@ class hello extends hello_module{
 	return $e;
 	}
 	
+	public function val(){
+		$a = new ctr_textbox;
+		$a->configure('VALUE',12);
+		return array(1,$a->draw());
+	}
+	
 	
 	
 }
