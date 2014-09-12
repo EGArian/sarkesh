@@ -9,18 +9,23 @@ class ctr_textbox extends ctr_textbox_module{
 	
 	private $config;
 		
-	function __construct(){
+	function __construct($name = ''){
 		parent::__construct();
-		$this->config['NAME'] = 'ctr_textbox';
+		if($name != ''){
+			$this->config['NAME'] = $name;
+		}
+		else{
+			$this->config['NAME'] = 'ctr_textbox';
+		}
 		
 		//this config show abow of element
-		$this->config['LABEL'] = 'Textbox';
+		$this->config['LABEL'] = '';
 		
 		//this config show set element type to password
 		$this->config['PASSWORD'] = false;
 		
 		//this config is for show addon on element
-		$this->config['ADDON'] = 'T';
+		$this->config['ADDON'] = '';
 		
 		//this config show below of element
 		$this->config['HELP'] = '';
@@ -37,7 +42,7 @@ class ctr_textbox extends ctr_textbox_module{
 		//this config set input color only config with default/success/warning/danger
 		$this->config['TYPE'] = "default";
 		
-		$this->config['PLACE_HOLDER'] = 'Textbox';
+		$this->config['PLACE_HOLDER'] = '';
 		//This variable set form name of this element
 		
 		$this->config['FORM'] = 'DEFAULT_FORM_NAME';

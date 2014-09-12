@@ -6,7 +6,7 @@ define ("DatabaseType","mysql");
 
 #mysql connect information
 define ("DatabaseUser","root");
-define ("DatabasePassword","123456");
+define ("DatabasePassword","136431");
 define ("DatabaseHost","localhost");
 define ("DatabaseName","sarkesh");
 

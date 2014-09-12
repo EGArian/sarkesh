@@ -65,6 +65,7 @@ class cls_page{
 			if(self::$settings['pace_theme'] != '0'){
 				array_push($default_headers, '<link rel="stylesheet" type="text/css" href="./core/ect/styles/pace/' . self::$settings['pace_theme'] . '.css" />');
 			}
+			
 			array_push($default_headers, '<meta name="viewport" content="width=device-width, initial-scale=1.0">');
 		}
 		#load style sheet pages (css)
@@ -80,7 +81,11 @@ class cls_page{
 			array_push($default_headers, '<link rel="shortcut icon" href="./themes/'. $theme_name .'/favicon.ico" type="image/x-icon">');
 			array_push($default_headers, '<link rel="icon" href="./themes/'.$theme_name .'/favicon.ico" type="image/x-icon">');
 		}
-
+		
+		//load first bootstrap skin
+		if(self::$settings['1st_template'] != '0'){
+			array_push($default_headers, '<link rel="stylesheet" type="text/css" href="./core/ect/styles/' . self::$settings['1st_template'] . '.min.css" />');
+		}
 		#load nessasery java script functions
 		array_push($default_headers, '<script src="./core/ect/scripts/functions.js"></script>');
 		
@@ -138,7 +143,7 @@ class cls_page{
 		$content = '';
 		//create special value for access to that
 		if($view == 'BLOCK'){
-			$content .=  '<div class="panel panel-default">';
+			$content .=  '<div class="panel panel-default panel-small">';
 				$content .=  '<div class="panel-heading">';
 					$content .=  '<h3 class="panel-title">';
 					      //block header show in here

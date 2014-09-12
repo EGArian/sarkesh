@@ -9,53 +9,32 @@ class hello extends hello_module{
 		$menu = [['#','Say Hello']];
 		return $menu;
 	}
-	public function textarea(){
-		$c = new ctr_textarea;
-		$c->configure('VALUE','ALI');
-		
-		$b = new ctr_button;
-		$c->configure('EDITOR',true);
-		$b->configure('P_ONCLICK_PLUGIN','hello');
-		$b->configure('P_ONCLICK_FUNCTION','onclick');
-		$b->configure('NAME','hello');
-		$b->configure('VALUE','BBB');
-		
-		$f = new ctr_form('vv');
-		$f->add($c);
-		$f->add($b);
-		return array(1,$f->draw());
-	}
 	
-	public function abc($e){
-		return $this->module_abc($e);
+	public function test(){
+		$form = new ctr_form('test');
+		
+		$text = new ctr_textbox('textbox');
+		$text->configure('LABEL','Name');
+		$text->configure('ADDON','N');
+		
+		$btn = new ctr_button('BTN');
+		$btn->configure('LABEL','Click me!');
+		
+		$btn->configure('P_ONCLICK_PLUGIN','hello');
+		$btn->configure('P_ONCLICK_FUNCTION','btn_onclick');
+		
+		$form->add_array(array($text,$btn));
+		
+		return array('TITTLE',$form->draw());
 		
 	}
-	
-	public function table(){
-	   $r = new cls_string;
-		return $this->module_table();
-	}
-	
-	public function  gh(){
+	public function btn_onclick($e){
 		
-		$t = new ctr_uploader;
-		$t->configure('SIZE',12);
+		$a = $e['textbox']['VALUE'];
+		$e['RV']['MODAL'] = cls_page::show_block('title',$a,'MODAL','type-danger');
+		return $e;
 		
-		
-		return array(1,$t->draw());
 	}
-	public function onclick($e){
-		$e['hello']['LABEL'] =$e['CLICK']['VALUE'];
-	return $e;
-	}
-	
-	public function val(){
-		$a = new ctr_textbox;
-		$a->configure('VALUE',12);
-		return array(1,$a->draw());
-	}
-	
-	
 	
 }
 ?>
