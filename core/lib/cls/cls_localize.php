@@ -1,6 +1,7 @@
 <?php
+namespace cls;
 // this class is for translate parameters in theme and plugins
-class cls_localize{
+class localize{
 	private $db;
 	private $localize;
 	private $obj_cookie;

@@ -1,6 +1,7 @@
 <?php
+	namespace cls\network;
 	//this class is for working with network objects
-	class cls_network{
+	class network{
 		
 		//this function get file from url and save that in temp directory with random file name 
 		//and return file address on serverto access that

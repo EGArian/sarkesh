@@ -1,7 +1,8 @@
 <?php
 #REQ = IO
 #this class is for control cookies
-class cls_cookie{
+namespace cls;
+class cookie{
 	private $obj_io;
 	function __construct(){
 		$this->obj_io = new cls_io;

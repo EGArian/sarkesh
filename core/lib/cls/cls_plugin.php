@@ -1,6 +1,7 @@
 <?php
+	namespace core;
 	//this class controll plugins
-	class cls_plugin{
+	class plugin{
 		private $db;
 		
 		function __construct(){

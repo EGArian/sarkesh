@@ -14,7 +14,8 @@ class msg_view{
 	protected function view_404(){
 		//first configurate raintpl 
 		//you should set that place you store your templates files
-
+			//add css page
+			cls_page::add_header('<link rel="stylesheet" type="text/css" href="./plugins/system/msg/styles/404.css" />');
 			$this->cache = $this->raintpl->cache('404', 60);
 			if($this->cache){
 				//file is exist in cache 

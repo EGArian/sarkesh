@@ -1,8 +1,8 @@
 <?php
 #this class work with database
 #this class use pdo extention for work with mysql database
-
-class cls_database{
+namespace cls\db;
+class mysql{
 	private $pdo_obj;
 	private $Query;
 	private $Result;

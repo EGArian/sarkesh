@@ -1,5 +1,5 @@
 <?php
-
+	namespace page
 /**
  *  RainTPL
  *  -------
@@ -10,7 +10,7 @@
  */
 
 
-class cls_raintpl{
+class raintpl{
 
 	// -------------------------
 	// 	CONFIGURATION

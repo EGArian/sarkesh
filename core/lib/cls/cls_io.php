@@ -1,7 +1,8 @@
 <?php
 //THIS CLASS FILTER INPUT AND OUTPUT STRINGS
 //To know and use filter types visit http://www.php.net/manual/en/filter.filters.php
-class cls_io{
+namespace cls;
+class io{
 	static $FilterType;
 	########################################
 	

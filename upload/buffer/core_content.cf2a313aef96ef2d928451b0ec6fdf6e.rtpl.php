@@ -8,15 +8,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{$sarkesh_admin_url}">{$sarkesh_admin}</a>
+                <a class="navbar-brand" href="<?php echo $sarkesh_admin_url;?>"><?php echo $sarkesh_admin;?></a>
             </div>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    {loop="menu"}
+                    <?php $counter1=-1; if( isset($menu) && is_array($menu) && sizeof($menu) ) foreach( $menu as $key1 => $value1 ){ $counter1++; ?>
 						<li>
-							<a href="{$value.0}"><i class="fa fa-fw fa-dashboard"></i>{$value.1}</a>
+							<a href="<?php echo $value1["0"];?>"><i class="fa fa-fw fa-dashboard"></i><?php echo $value1["1"];?></a>
 						</li>
-					{/loop}                
+					<?php } ?>                
                 </ul>
                 <ul class="nav navbar-nav navbar-right navbar-user">
                     <li class="dropdown messages-dropdown">
@@ -41,17 +41,17 @@
                         </ul>
                     </li>
                     <li class="dropdown user-dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {$user_name} <b class="caret"></b></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $user_name;?> <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li>
-								<a href="{$user_profile_url}"><i class="fa fa-fw fa-user"></i>{$user_profile}</a>
+								<a href="<?php echo $user_profile_url;?>"><i class="fa fa-fw fa-user"></i><?php echo $user_profile;?></a>
 							</li>
 							<li>
-								<a href="{$user_settings_url}"><i class="fa fa-fw fa-gear"></i> {$user_settings}</a>
+								<a href="<?php echo $user_settings_url;?>"><i class="fa fa-fw fa-gear"></i> <?php echo $user_settings;?></a>
 							</li>
 							<li class="divider"></li>
 							<li>
-								<a href="{$user_logout_url}"><i class="fa fa-fw fa-power-off"></i>{$user_logout}</a>
+								<a href="<?php echo $user_logout_url;?>"><i class="fa fa-fw fa-power-off"></i><?php echo $user_logout;?></a>
 							</li>
 						</ul>
 					</li>
@@ -61,7 +61,7 @@
         </nav>
         <div class="row">
 			<div id="page-wrapper">
-				<div class="col-xs-12">{$content}</div>
+				<div class="col-xs-12"><?php echo $content;?></div>
 				<div class="col-xs-12">
 					<div id="page-wrapper">
 						<div class="alert alert-success" role="alert">

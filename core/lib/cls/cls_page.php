@@ -1,7 +1,7 @@
 <?php
 #this class show website and replace blocks
-
-class cls_page{
+namespace browser;
+class page{
 	//settings will be saved in this varible
 	private static $localize_settings;
 	private static $settings ;

@@ -1,5 +1,8 @@
 <?php
-class cls_general{
+//this function is for general works
+
+namespace cls;
+class general{
 
 	#this function is for create raundom string	
 	static function random_string($length = 10 ,$type = 'NC') {
