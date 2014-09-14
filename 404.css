@@ -1,0 +1,37 @@
+body {
+	height: 100%;
+	width: 100%;
+	margin: 0px auto;
+	background: #7ABECC;
+
+	/* The html and body elements cannot have any padding or margin. */
+}
+
+#wrap {
+	height: 100%;
+	width: 50%;
+	margin: 0 auto;
+	padding: 50px 0;
+	height: 300px;
+	font-family: 'Rokkitt', serif;
+	color: #374365;
+	text-align: center;
+	font-size: 60px;
+	text-shadow: 1px 1px 0px #fff;
+}
+
+#middle {
+	width: 100%;
+	background: url("logo.png") no-repeat left;
+	margin: 0 0 30px 0 auto;
+	height: 300px;
+	font-family: 'Pacifico', cursive;
+	font-size: 200px;
+	color: #182344;
+	text-shadow: 1px 1px 0px #fff;
+	text-align: right;
+}
+
+#middle2 {
+	margin-top: 30px;
+}
