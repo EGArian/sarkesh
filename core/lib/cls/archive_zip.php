@@ -1,6 +1,7 @@
 <?php
+	namespace archive;
 	//this class is for working with tar.gz
-	class cls_zip{
+	class zip{
 		private $zip;
 		function __construct($file_name){
 			$this->zip = new ZipArchive;

@@ -10705,13 +10705,13 @@ interface Plugin
 
 ;
 }
-namespace {
+namespace db {
 
 //make some classes available for backward compatibility
 class RedBean_SimpleModel extends \RedBeanPHP\SimpleModel {};
 
-if (!class_exists('cls_orm')) {
-	class cls_orm extends \RedBeanPHP\Facade{
+if (!class_exists('\db\orm')) {
+	class orm extends \RedBeanPHP\Facade{
 		
 			//setup with default
 			public static function run($connection='',$username ='' ,$password = ''){

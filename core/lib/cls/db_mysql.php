@@ -1,7 +1,8 @@
 <?php
 #this class work with database
 #this class use pdo extention for work with mysql database
-namespace cls\db;
+namespace db;
+
 class mysql{
 	private $pdo_obj;
 	private $Query;
@@ -60,11 +61,11 @@ public function do_query_with_type($QueryString,$parameters){
 				 #find type on value
 				
 					if($parameters[$i][1] == 'integer'){
-						$type = PDO::PARAM_INT;
+						$type = \PDO::PARAM_INT;
 						$this->Query->bindValue($i+1 ,(int) $parameters[$i][0], $type);
 					} 
 					else{
-						$type = PDO::PARAM_STR;
+						$type = \PDO::PARAM_STR;
 						$this->Query->bindValue($i+1 ,$parameters[$i][0], $type);
 					 }
 				 
@@ -89,7 +90,7 @@ public function last_insert_id(){
 #you can use like this $resultobj->column_name
 public function get_object(){
 try{
-	$this->Quary->setFetchMode(PDO::FETCH_OBJ);
+	$this->Quary->setFetchMode(\PDO::FETCH_OBJ);
 	return $this->Query;
 }
  catch(PDOException $e) {
@@ -102,7 +103,7 @@ try{
 
 public function get_array(){
 	try{
-		$this->Query->setFetchMode(PDO::FETCH_ASSOC); 
+		$this->Query->setFetchMode(\PDO::FETCH_ASSOC); 
 		return $this->Query->fetchAll();
 	}
  	catch(PDOException $e) {
@@ -125,9 +126,9 @@ public function rows_count(){
 }
 //this function create pdo_obj to database
 private function connect(){
-	$options = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',PDO::ATTR_PERSISTENT => true); 
-	$this->pdo_obj = new PDO("mysql:host=" . DatabaseHost . ";dbname=" . DatabaseName , DatabaseUser, DatabasePassword,$options);
-	$this->pdo_obj->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+	$options = array(\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',\PDO::ATTR_PERSISTENT => true); 
+	$this->pdo_obj = new \PDO("mysql:host=" . DatabaseHost . ";dbname=" . DatabaseName , DatabaseUser, DatabasePassword,$options);
+	$this->pdo_obj->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION );
 }
 //this function disconnect from database
 private function disconnect(){

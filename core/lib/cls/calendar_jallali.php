@@ -1,5 +1,5 @@
 <?php
-namespace cls\calendar
+namespace calendar
 class jallali{
 	//in the name of allah
 	//this class is a fork of JDF project that writed by Reza Gholampanahi , http://jdf.scr.ir

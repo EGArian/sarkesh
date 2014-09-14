@@ -1,8 +1,9 @@
 <?php
+namespace data;
 /*
  * This class is for working with xml data
  */
- class cls_xml{
+ class xml{
 	private function array_to_xml(array $arr, SimpleXMLElement $xml){
 		foreach ($arr as $k => $v) {
 			is_array($v)

@@ -4,7 +4,7 @@
 //
 //	Copyright 2013 by Cory LaViska for A Beautiful Site, LLC.
 //
-namespace cls\security;
+namespace security;
 class captcha{
 	
 	private $bg_path;

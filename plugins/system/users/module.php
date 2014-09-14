@@ -1,13 +1,14 @@
 <?php
-class users_module extends users_view{
+namespace \plugin\users;
+class module extends view{
 	private $registry;
 	private $settings;
 	private $validator;
 	function __construct(){
 		
-		$this->registry = new cls_registry;
+		$this->registry = new \core\registry;
 		$this->settings = $this->registry->get_plugin('users');
-		$this->validator = new cls_validator;
+		$this->validator = new \network\validator;
 		
 		parent::__construct($this->settings);
 

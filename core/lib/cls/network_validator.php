@@ -1,7 +1,8 @@
 <?php
+namespace network;
 #REQ = DATABASE , COOKIE , SESSION , GENERAL
 #this class is for auth user and ect
-class cls_validator{
+class validator{
 private $db;
 private $obj_cookie;
 private $obj_session;

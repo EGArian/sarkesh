@@ -1,5 +1,7 @@
 <?php
-namespace cls;
+namespace core;
+use network as network;
+use db as db;
 // this class is for translate parameters in theme and plugins
 class localize{
 	private $db;
@@ -8,10 +10,10 @@ class localize{
 	private $session;
 	
 	function __construct(){
-		$this->obj_cookie = new cls_cookie;
-		$this->obj_session = new cls_session;
+		$this->obj_cookie = new network\cookie;
+		$this->obj_session = new network\session;
 		
-		$this->db = new cls_database;
+		$this->db = new db\mysql;
 		$this->db->do_query("select * from localize where main ='1';");
 		$this->localize = $this->db->get_first_row_array();
 		$this->get_language();
@@ -39,7 +41,7 @@ class localize{
 	//this function get language name from cookie if that not defined return system default localize language
 	public function get_language(){
 
-		$obj_io = new cls_io;
+		$obj_io = new network\io;
 		if($this->obj_session->is_set('core_language')){
 			
 			return $this->obj_session->get('core_language');		

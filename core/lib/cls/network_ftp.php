@@ -1,6 +1,6 @@
 <?php
 	//this class is for FTP file transfer
-	namespace cls\network;
+	namespace network;
 	
 	class ftp{
 	

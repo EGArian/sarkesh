@@ -1,11 +1,11 @@
 <?php
 #REQ = IO
 #this class is for control cookies
-namespace cls;
+namespace network;
 class cookie{
 	private $obj_io;
 	function __construct(){
-		$this->obj_io = new cls_io;
+		$this->obj_io = new io;
 	}
 	public function is_set($cookie_name){
 

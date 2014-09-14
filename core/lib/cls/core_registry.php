@@ -1,10 +1,12 @@
 <?php
+	namespace core;
+	 
 	//this classs for using registry table in database
-	class cls_registry{
+	class registry{
 		
 		private $db;
 		function __construct(){
-			$this->db = new cls_database;
+			$this->db = new \db\mysql;
 		}
 		
 		public function get($plugin, $key){

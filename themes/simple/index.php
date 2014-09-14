@@ -25,12 +25,12 @@
         
         <!-- sidebar -->
         <div class="col-xs-6 col-sm-4 sidebar-offcanvas" id="sidebar" role="navigation">
-            <?php cls_page::set_position('sidebar1'); ?>
+            <?php \browser\page::set_position('sidebar1'); ?>
         </div>
   	
         <!-- main area -->
         <div class="col-xs-12 col-sm-8">
-			<div class="row"><div class="col-xs-12" id="sidebar"><?php cls_page::set_position('content'); ?></div></div>
+			<div class="row"><div class="col-xs-12" id="sidebar"><?php \browser\page::set_position('content'); ?></div></div>
           
           
         </div><!-- /.col-xs-12 main -->

@@ -1,5 +1,5 @@
 <?php
-
+namespace core;
 //this class seperate url addrress
 // for doing process we have some parameters that send with GET 
 // 1- plugin parameter for finding what plugin do this process
@@ -7,7 +7,7 @@
 // and some etc parameters that plugin process that.
 // if nothing send with action with GET class change that to 'default' and send that to plugin
 
-class cls_router{
+class router{
 	private $plugin;
 	private $action;
 	private $obj_io;

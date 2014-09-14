@@ -1,5 +1,6 @@
 <?php
-class users_view{
+namespace users;
+class view{
 	private $settings;
 	function __construct($settings){
 		$this->settings = $settings;

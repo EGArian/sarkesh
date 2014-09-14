@@ -31,9 +31,9 @@ class page{
 	static function difault_headers () {
 		
 		if(is_null(self::$settings)){
-			$registry =new cls_registry;
+			$registry =new \core\registry;
 			self::$settings = $registry->get_plugin('core');
-			$obj_localize = new cls_localize;
+			$obj_localize = new \core\localize;
 			self::$localize_settings = $obj_localize->get_localize();
 			self::$page_tittle = self::$localize_settings['name'];
 		}
@@ -125,7 +125,7 @@ class page{
 	static public function set_page_tittle($tittle = ''){
 		//get site name in localize selected
 		if(is_null(self::$localize_settings)){
-			$obj_localize = new cls_localize;
+			$obj_localize = new \core\localize;
 			self::$localize_settings = $obj_localize->get_localize();
 			self::$page_tittle = self::$localize_settings['name'];
 		}
@@ -223,13 +223,13 @@ class page{
 	static public function set_position($position){
 		if(self::$blocks == null){
 			//load all blocks data from database
-			$db = new cls_database;
+			$db = new \db\mysql;
 			$query_string = "SELECT b.name AS 'b.name',";
 			$query_string .= "b.position AS 'b.position', b.permissions AS 'b.permissions', ";
 			$query_string .= "b.pages AS 'b.pages', b.show_header AS 'b.show_header', b.plugin AS 'b.plugin', p.id AS 'p.id', p.name AS 'p.name', b.rank FROM blocks b INNER JOIN plugins p ON b.plugin = p.id ORDER BY b.rank DESC;";
 			$db->do_query($query_string);
 			self::$blocks = $db->get_array();
-			self::$plugin = new cls_plugin;
+			self::$plugin = new \core\plugin;
 
 		}
 		
@@ -244,14 +244,14 @@ class page{
 				//going to process block
 				if($block['p.name'] == 'core'){
 					//going to show content;
-					$obj_router = new cls_router;
+					$obj_router = new \core\router;
 					$obj_router->show_content();
 				}
 				else{
 					//checking that plugin is enabled
 					if(self::$plugin->is_enabled($block['p.name'])){
-						
-						$plugin = new $block['p.name'];
+						$ClassName = 'plugin\\' . $block['p.name'] . '\\controller';
+						$plugin = new $ClassName;
 						//run action method for show block
 						//all blocks name should be like  'blk_blockname'
 						

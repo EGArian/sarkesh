@@ -1,5 +1,5 @@
 <?php
-	namespace cls\network;
+	namespace network;
 	//this class is for working with network objects
 	class network{
 		
