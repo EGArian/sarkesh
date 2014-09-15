@@ -1,9 +1,10 @@
 <?php
+namespace control;
 /*
 	this class is a control for working with buttones toggle buttons
 	
 */
-class ctr_textbox extends ctr_textbox_module{
+class textbox extends textbox\module{
 	
 	#$name use to access this class on the page#
 	

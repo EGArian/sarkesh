@@ -1,5 +1,6 @@
 <?php
-class ctr_label_module extends ctr_label_view{
+namespace control\label;
+class module extends control\label\view{
 	function __construct(){
 		parent::__construct();
 	}

@@ -1,5 +1,6 @@
 <?php
-class ctr_form_module extends ctr_form_view{
+namespace control\form;
+class module extends \control\form\view{
 	
 	function __construct(){
 		parent::__construct();

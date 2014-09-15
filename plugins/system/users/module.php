@@ -1,5 +1,5 @@
 <?php
-namespace \plugin\users;
+namespace plugin\users;
 class module extends view{
 	private $registry;
 	private $settings;

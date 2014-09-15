@@ -107,7 +107,7 @@ class raintpl{
 	// -------------------------
 
 	function __construct(){
-		$this->localize = new cls_localize;
+		$this->localize = new \core\localize;
 	}
 	// -------------------------
 	// 	RAINTPL VARIABLES
@@ -977,7 +977,7 @@ class raintpl{
 /**
  * Basic Rain tpl exception.
  */
-class RainTpl_Exception extends Exception{
+class RainTpl_Exception extends \Exception{
 	/**
 	 * Path of template file with error.
 	 */

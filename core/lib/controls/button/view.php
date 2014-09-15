@@ -1,11 +1,13 @@
 <?php
-class ctr_button_view{
+namespace control\button;
+
+class view{
 	
 	private $raintpl;
 	private $page;
 	function __construct(){
-		$this->page = new cls_page;
-		$this->raintpl = new cls_raintpl;
+		$this->page = new \browser\page;
+		$this->raintpl = new \template\raintpl;
 	}
 	
 	public function view_draw($config){

@@ -1,5 +1,6 @@
 <?php
-class ctr_checkbox_module extends ctr_checkbox_view{
+namespace control\checkbox;
+class module extends \control\checkbox\view{
 	
 	function __construct(){
 		 parent::__construct();

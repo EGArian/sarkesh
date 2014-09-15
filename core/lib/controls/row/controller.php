@@ -1,5 +1,6 @@
 <?php
-class ctr_row extends ctr_row_module{
+namespace control;
+class row extends \control\row\module{
 	private $e;
 	public $controls;
 	private $config;

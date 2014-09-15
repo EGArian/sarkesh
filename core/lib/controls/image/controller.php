@@ -1,5 +1,6 @@
 <?php
-class ctr_image extends ctr_image_module{
+namespace control;
+class image extends \control\image\module{
 	
 	private $config;
 	function __construct(){

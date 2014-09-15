@@ -1,5 +1,5 @@
 <?php
-namespace \plugin\languages;
+namespace plugin\languages;
 class languages extends module{
 
 	private $obj_io;

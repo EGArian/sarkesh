@@ -1,5 +1,6 @@
 <?php
-class ctr_form extends ctr_form_module{
+namespace control;
+class form extends \control\form\module{
 	private $e;
 	private $config;
 	function __construct($form_name="form"){

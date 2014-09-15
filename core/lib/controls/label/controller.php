@@ -1,5 +1,6 @@
 <?php
-class ctr_label extends ctr_label_module{
+namespace control;
+class label extends \control\label\module{
 	
 	private $config;
 	function __construct($label=""){

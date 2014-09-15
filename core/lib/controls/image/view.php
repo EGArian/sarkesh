@@ -1,10 +1,11 @@
 <?php
-class ctr_image_view{
+namespace control\image;
+class view{
 	
 	private $raintpl;
 	
 	function __construct(){
-		$this->raintpl = new cls_raintpl;
+		$this->raintpl = new \template\raintpl;
 		$this->raintpl->configure("tpl_dir","./core/lib/controls/image/");
 	}
 	public function view_draw($e){

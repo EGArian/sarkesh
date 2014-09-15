@@ -1,9 +1,10 @@
 <?php
-class ctr_hidden_view{
+namespace control\hidden;
+class view{
 	private $raintpl;
 	
 	function __construct(){
-		$this->raintpl = new cls_raintpl;
+		$this->raintpl = new \template\raintpl;
 		$this->raintpl->configure("tpl_dir",'./core/lib/controls/hidden/');
 	}
 	public function view_draw($e){

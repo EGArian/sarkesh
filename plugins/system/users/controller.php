@@ -1,7 +1,7 @@
 <?php
 namespace plugin\users;
 
-class controller extends module{
+class controller extends \plugin\users\module{
 	function __construct(){
 		parent::__construct();
 	}

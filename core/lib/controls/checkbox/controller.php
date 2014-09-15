@@ -1,5 +1,6 @@
 <?php
-class ctr_checkbox extends ctr_checkbox_module{
+namespace control;
+class checkbox extends \control\checkbox\module{
 	
 	#$name use to access this class on the page#
 	

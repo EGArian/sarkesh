@@ -1,5 +1,6 @@
 <?php
-class ctr_hidden extends ctr_hidden_module{
+namespace control;
+class hidden extends control\hidden\module{
 	
 	private $config;
 	function __construct($name=""){
