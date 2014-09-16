@@ -1,5 +1,6 @@
 <?php
-class ctr_radiobuttons_module extends ctr_radiobuttons_view{
+namespace control\radiobutton;
+class module extends \control\radiobutton\view{
 	
 	private $body;
 	function __construct(){

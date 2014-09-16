@@ -1,5 +1,5 @@
 <?php
-namespace contol\combobox;
+namespace control\combobox;
 /*
 	this class is a module for working with button
 	

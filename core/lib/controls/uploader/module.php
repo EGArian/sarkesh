@@ -1,5 +1,6 @@
 <?php
-class ctr_uploader_module extends ctr_uploader_view{
+namespace control\uploader;
+class module extends \control\uploader\view{
 	function __construct(){
 		parent::__construct();
 	}

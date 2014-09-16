@@ -5,8 +5,8 @@ class module extends \control\row\view{
 		parent::__construct();
 	}
 	
-	public function module_draw($config){
-		return $this->view_draw($config);
+	public function module_draw($e,$config){
+		return $this->view_draw($e,$config);
 	}
 }
 ?>

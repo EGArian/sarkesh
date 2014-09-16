@@ -1,4 +1,5 @@
 <?php
+namespace control\
 class ctr_radiobuttons_view{
 	
 	private $raintpl;

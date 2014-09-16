@@ -250,7 +250,7 @@ class page{
 				else{
 					//checking that plugin is enabled
 					if(self::$plugin->is_enabled($block['p.name'])){
-						$ClassName = 'plugin\\' . $block['p.name'] . '\\controller';
+						$ClassName = '\\plugin\\' . $block['p.name'] ;
 						$plugin = new $ClassName;
 						//run action method for show block
 						//all blocks name should be like  'blk_blockname'

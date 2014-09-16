@@ -15,7 +15,7 @@ class view{
 		$this->raintpl->configure('tpl_dir','core/lib/controls/textbox/tpl/');
 		
 		//add headers to page//
-		cls_page::add_header('<script src="./core/ect/scripts/events/functions.js"></script>');		
+		\browser\page::add_header('<script src="./core/ect/scripts/events/functions.js"></script>');		
 		if($config['SCRIPT_SRC'] != ''){cls_page::add_header('<script src="' . $config['SCRIPT_SRC'] . '"></script>'); }		
 		if($config['CSS_FILE'] != ''){ cls_page::add_header('<link rel="stylesheet" type="text/css" href="' . $config['CSS_FILE']) . '" />';}
 		

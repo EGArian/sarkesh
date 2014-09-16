@@ -1,6 +1,6 @@
 <?php
 namespace control\image;
-class module extends control\image\view{
+class module extends \control\image\view{
 	function __construct(){
 		parent::__construct();
 	}

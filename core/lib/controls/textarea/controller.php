@@ -1,5 +1,6 @@
 <?php
-class ctr_textarea extends ctr_textarea_module{
+namespace control;
+class textarea extends \control\textarea\module{
 	private $config;
 	
 	function __construct(){

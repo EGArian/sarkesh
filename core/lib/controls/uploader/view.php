@@ -1,12 +1,13 @@
 <?php
-class ctr_uploader_view{
+namespace control\uploader;
+class view{
 	
 	private $raintpl;
 	private $page;
 	function __construct(){
 		
-		$this->raintpl = new cls_raintpl;
-		$this->page = new cls_page;
+		$this->raintpl = new \template\raintpl;
+		$this->page = new browser\page;
 	}
 	
 	//this function draw control

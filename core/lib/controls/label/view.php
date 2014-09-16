@@ -1,5 +1,5 @@
 <?php
-namespace /control/label;
+namespace control\label;
 class view{
 	private $raintpl;
 	

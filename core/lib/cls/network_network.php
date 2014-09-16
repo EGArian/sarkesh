@@ -13,7 +13,7 @@
 			}
 			else{
 				//file exist going to download
-				$file_name = AppPath . "upload/buffer/" . cls_general::random_string(5) . ".zip";
+				$file_name = AppPath . "upload/buffer/" . \core\general::random_string(5) . ".zip";
 				echo $file_name;
 				file_put_contents($file_name, file_get_contents($url));
 				return $file_name;

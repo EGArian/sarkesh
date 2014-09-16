@@ -1,12 +1,13 @@
 <?php
-class hello_module extends hello_view{
+namespace plugin\hello;
+class module extends \plugin\hello\view{
 	
 	function __construct(){
 		parent::__construct();
 	}
 	
 	protected function module_show(){
-		$db = new cls_database;
+		$db = new \db\mysql;
 		$db->do_query('SELECT * FROM rr');
 		$res = $db->get_array();
 		return $this->view_show($res);

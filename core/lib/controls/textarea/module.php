@@ -1,5 +1,6 @@
 <?php
-class ctr_textarea_module extends ctr_textarea_view{
+namespace control\textarea;
+class module extends \control\uploader\view{
 	function __construct(){
 		parent::__construct();
 	}

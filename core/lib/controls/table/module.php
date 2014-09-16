@@ -1,5 +1,6 @@
 <?php
-class ctr_table_module extends ctr_table_view{
+namespace control\table;
+class module extends \control\table\view{
 	
 	function __construct(){
 		parent::__construct();

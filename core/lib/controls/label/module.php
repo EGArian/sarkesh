@@ -1,6 +1,6 @@
 <?php
 namespace control\label;
-class module extends control\label\view{
+class module extends \control\label\view{
 	function __construct(){
 		parent::__construct();
 	}

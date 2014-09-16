@@ -1,5 +1,6 @@
 <?php
-class ctr_tabbar_module extends ctr_tabbar_view{
+namespace control\tabbar;
+class module extends \control\tabbar\view{
 	
 	function __construct(){
 		parent::__construct();

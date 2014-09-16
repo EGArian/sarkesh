@@ -1,5 +1,6 @@
 <?php
-class ctr_uploader extends ctr_uploader_module{
+namespace control;
+class uploader extends \control\uploader\module{
 	private $config;
 	
 	function __construct(){
