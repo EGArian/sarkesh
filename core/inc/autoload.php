@@ -3,24 +3,24 @@
 //this function load class, plugins and ...
 function __autoload($class_name){
 	$Seperated = explode('\\',$class_name);
-	if($Seperated[0] == 'plugin'){
+	if($Seperated[0] == 'core' && $Seperated[1] == 'plugin'){
 		
-		if(max(array_keys($Seperated)) == 1){
-			include_once(AppPath . 'plugins/system/'  . $Seperated[1] . '/controller.php');
+		if(max(array_keys($Seperated)) == 2){
+			include_once(AppPath . 'plugins/system/'  . $Seperated[2] . '/controller.php');
 		}
-		elseif(max(array_keys($Seperated)) == 2){
+		elseif(max(array_keys($Seperated)) == 3){
 			
-			include_once(AppPath . 'plugins/system/'  . $Seperated[1] . '/' . $Seperated[2] . '.php');
+			include_once(AppPath . 'plugins/system/'  . $Seperated[2] . '/' . $Seperated[3] . '.php');
 		}
 	}
-	elseif($Seperated[0] == 'control'){
+	elseif($Seperated[0] == 'core' && $Seperated[1] == 'control'){
 		//going to include control
-		if(max(array_keys($Seperated)) == 1){
-			include_once(AppPath . 'core/lib/controls/'  . $Seperated[1] . '/controller.php');
+		if(max(array_keys($Seperated)) == 2){
+			include_once(AppPath . 'core/lib/controls/'  . $Seperated[2] . '/controller.php');
 		}
-		elseif(max(array_keys($Seperated)) == 2){
+		elseif(max(array_keys($Seperated)) == 3){
 			
-			include_once(AppPath . 'core/lib/controls/'  . $Seperated[1] . '/' . $Seperated[2] . '.php');
+			include_once(AppPath . 'core/lib/controls/'  . $Seperated[2] . '/' . $Seperated[3] . '.php');
 		}
 		
 	}

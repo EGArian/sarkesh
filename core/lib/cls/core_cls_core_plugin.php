@@ -1,12 +1,14 @@
 <?php
-	namespace core;
+	namespace core\cls\core;
+	use \core\cls\db as db;
+	
 	//this class controll plugins
 	class plugin{
 		private $db;
 		
 		function __construct(){
 		
-			$this->db = new \db\mysql;
+			$this->db = new db\mysql;
 		}
 		
 		// if plugin enabled this function return true and else return false

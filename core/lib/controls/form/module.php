@@ -1,6 +1,6 @@
 <?php
-namespace control\form;
-class module extends \control\form\view{
+namespace core\control\form;
+class module extends view{
 	
 	function __construct(){
 		parent::__construct();

@@ -1,10 +1,10 @@
 <?php
-namespace control\combobox;
+namespace core\control\combobox;
 /*
 	this class is a module for working with button
 	
 */
-class module extends \control\combobox\view{
+class module extends view{
 	
 	function __construct(){
 		 parent::__construct();

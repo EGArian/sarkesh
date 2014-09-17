@@ -1,5 +1,5 @@
 <?php
-namespace network;
+namespace core\cls\network;
 //for use this class we should start sessions			
 
 class session {

@@ -5,10 +5,10 @@ function sys_render($buffer)
 {
 	// first replace headers 
 	// like css java scripts and ect
-	$buffer = str_replace("</#PAGE_TITTLE#/>", \browser\page::get_page_tittle(), $buffer);
+	$buffer = str_replace("</#PAGE_TITTLE#/>", \core\cls\browser\page::get_page_tittle(), $buffer);
 	
 	//LOAD HEADERS
-	$buffer = str_replace("</#HEADERS#/>", \browser\page::load_headers(false), $buffer);
+	$buffer = str_replace("</#HEADERS#/>",  \core\cls\browser\page::load_headers(false), $buffer);
 	
 	return $buffer;
 }

@@ -1,13 +1,15 @@
 <?php
-namespace plugin\languages;
-class module extends \plugin\languages\view{
+namespace core\plugin\languages;
+use \core\cls\db as db;
+use \core\cls\core as core;
+class module extends view{
 	private $db;
 	private $obj_localize;
 	function __construct(){
 		parent::__construct();
 		
-		$this->obj_localize = new \core\localize;
-		$this->db = new \db\mysql;
+		$this->obj_localize = new core\localize;
+		$this->db = new db\mysql;
 	}
 	protected function module_get_languages(){
 		$this->db->do_query("SELECT language,language_name FROM localize ORDER BY language=? DESC;", array($this->obj_localize->get_language()));

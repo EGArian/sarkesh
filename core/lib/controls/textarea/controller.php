@@ -1,6 +1,7 @@
 <?php
-namespace control;
-class textarea extends \control\textarea\module{
+namespace core\control;
+use \core\control as control;
+class textarea extends control\textarea\module{
 	private $config;
 	
 	function __construct(){

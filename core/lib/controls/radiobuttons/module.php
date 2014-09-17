@@ -1,6 +1,6 @@
 <?php
-namespace control\radiobutton;
-class module extends \control\radiobutton\view{
+namespace core\control\radiobutton;
+class module extends view{
 	
 	private $body;
 	function __construct(){

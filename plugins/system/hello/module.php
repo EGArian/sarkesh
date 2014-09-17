@@ -1,6 +1,6 @@
 <?php
-namespace plugin\hello;
-class module extends \plugin\hello\view{
+namespace core\plugin\hello;
+class module extends view{
 	
 	function __construct(){
 		parent::__construct();

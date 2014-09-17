@@ -1,12 +1,14 @@
 <?php
-namespace control\uploader;
+namespace core\control\uploader;
+use \core\cls\template as template;
+use \core\cls\browser as browser;
 class view{
 	
 	private $raintpl;
 	private $page;
 	function __construct(){
 		
-		$this->raintpl = new \template\raintpl;
+		$this->raintpl = new template\raintpl;
 		$this->page = new browser\page;
 	}
 	
@@ -16,12 +18,12 @@ class view{
 		$this->raintpl->configure('tpl_dir','core/lib/controls/uploader/');
 		
 		//add headers to page//
-		cls_page::add_header('<script src="./core/ect/scripts/events/functions.js"></script>');		
-		cls_page::add_header('<script src="./core/lib/controls/uploader/ctr_uploader.js"></script>');
-		cls_page::add_header('<link rel="stylesheet" type="text/css" href="./core/lib/controls/uploader/ctr_uploader.css" />');
+		browser\page::add_header('<script src="./core/ect/scripts/events/functions.js"></script>');		
+		browser\page::add_header('<script src="./core/lib/controls/uploader/ctr_uploader.js"></script>');
+		browser\page::add_header('<link rel="stylesheet" type="text/css" href="./core/lib/controls/uploader/ctr_uploader.css" />');
 		
-		if($config['SCRIPT_SRC'] != ''){cls_page::add_header('<script src="' . $config['SCRIPT_SRC'] . '"></script>'); }		
-		if($config['CSS_FILE'] != ''){ cls_page::add_header('<link rel="stylesheet" type="text/css" href="' . $config['CSS_FILE']) . '" />';}
+		if($config['SCRIPT_SRC'] != ''){browser\page::add_header('<script src="' . $config['SCRIPT_SRC'] . '"></script>'); }		
+		if($config['CSS_FILE'] != ''){ browser\page::add_header('<link rel="stylesheet" type="text/css" href="' . $config['CSS_FILE']) . '" />';}
 	
 	
 		$this->raintpl->assign( "size", $config['SIZE']);

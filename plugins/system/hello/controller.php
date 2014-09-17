@@ -1,6 +1,7 @@
 <?php
-namespace plugin;
-class hello extends \plugin\hello\module{
+namespace core\plugin;
+use \core\plugin\hello as hello;
+class hello extends hello\module{
 	
 	function __construct(){
 		parent::__construct();

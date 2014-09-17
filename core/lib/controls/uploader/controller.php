@@ -1,6 +1,7 @@
 <?php
-namespace control;
-class uploader extends \control\uploader\module{
+namespace core\control;
+use \core\control as control;
+class uploader extends control\uploader\module{
 	private $config;
 	
 	function __construct(){

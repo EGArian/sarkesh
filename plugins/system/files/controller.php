@@ -1,11 +1,12 @@
 <?php
-
+namespace core\plugin;
+use \core\plugin\files as files;
 /*
  * This plugin is for store files on some places
  * By Babak alizadeh
  */
  
-class files extends files_module{
+class files extends files\module{
 	function __construct(){
 		parent::__construct();	
 	}

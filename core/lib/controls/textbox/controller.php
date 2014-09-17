@@ -1,10 +1,8 @@
 <?php
-namespace control;
-/*
-	this class is a control for working with buttones toggle buttons
-	
-*/
-class textbox extends textbox\module{
+namespace core\control;
+use \core\control as control;
+
+class textbox extends control\textbox\module{
 	
 	#$name use to access this class on the page#
 	

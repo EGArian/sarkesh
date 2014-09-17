@@ -1,6 +1,9 @@
 <?php
-namespace control;
-class checkbox extends \control\checkbox\module{
+namespace core\control;
+use \core\control as control;
+use \core\control\checkbox as checkbox;
+
+class checkbox extends checkbox\module{
 	
 	#$name use to access this class on the page#
 	

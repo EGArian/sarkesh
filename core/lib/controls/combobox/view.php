@@ -1,12 +1,14 @@
 <?php
-namespace control\combobox;
+namespace core\control\combobox;
+use \core\cls\template as template;
+use \core\cls\browser as browser;
 class view{
 	
 	private $raintpl;
 	private $page;
 	function __construct(){
-		$this->page = new \browser\page;
-		$this->raintpl = new \template\raintpl;
+		$this->page = new browser\page;
+		$this->raintpl = new template\raintpl;
 	}
 	
 	public function view_draw($config, $show){
@@ -14,9 +16,9 @@ class view{
 		$this->raintpl->configure('tpl_dir','core/lib/controls/combobox/tpl/');
 		
 		//add headers to page//
-		\browser\page::add_header('<script src="./core/ect/scripts/events/functions.js"></script>');		
-		if($config['SCRIPT_SRC'] != ''){\browser\page::add_header('<script src="' . $config['SCRIPT_SRC'] . '"></script>'); }		
-		if($config['CSS_FILE'] != ''){ \browser\page::add_header('<link rel="stylesheet" type="text/css" href="' . $config['CSS_FILE']) . '" />';}
+		browser\page::add_header('<script src="./core/ect/scripts/events/functions.js"></script>');		
+		if($config['SCRIPT_SRC'] != ''){browser\page::add_header('<script src="' . $config['SCRIPT_SRC'] . '"></script>'); }		
+		if($config['CSS_FILE'] != ''){ browser\page::add_header('<link rel="stylesheet" type="text/css" href="' . $config['CSS_FILE']) . '" />';}
 		
 		//Assign variables
 		$this->raintpl->assign( "id", $config['NAME']);

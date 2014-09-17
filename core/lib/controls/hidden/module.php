@@ -1,6 +1,6 @@
 <?php
-namespace control\hidden;
-class module extends control\hidden\view{
+namespace core\control\hidden;
+class module extends view{
 	function __construct(){
 		parent::__construct();
 	}

@@ -1,10 +1,10 @@
 <?php
-namespace control\button;
+namespace core\control\button;
 /*
 	this class is a module for working with button
 	
 */
-class module extends \control\button\view{
+class module extends view{
 	
 	function __construct(){
 		 parent::__construct();

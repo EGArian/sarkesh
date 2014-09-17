@@ -1,6 +1,7 @@
 <?php
-namespace control;
-class radiobuttons extends \control\radiobutton\module{
+namespace core\control;
+use \core\control as control;
+class radiobuttons extends control\radiobutton\module{
 	private $e;
 	private $config;
 	function __construct(){

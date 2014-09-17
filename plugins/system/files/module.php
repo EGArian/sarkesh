@@ -1,5 +1,6 @@
 <?php 
-class files_module extends files_view{
+namespace core\plugin\files;
+class module extends view{
 	function __construct(){
 		parent::__construct();	
 	}

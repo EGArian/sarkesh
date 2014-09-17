@@ -1,6 +1,8 @@
 <?php
-namespace control;
-class image extends \control\image\module{
+namespace core\control;
+use \core\control as control;
+
+class image extends control\image\module{
 	
 	private $config;
 	function __construct(){

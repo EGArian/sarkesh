@@ -1,6 +1,6 @@
 <?php
-namespace control\textarea;
-class module extends \control\uploader\view{
+namespace core\control\textarea;
+class module extends view{
 	function __construct(){
 		parent::__construct();
 	}

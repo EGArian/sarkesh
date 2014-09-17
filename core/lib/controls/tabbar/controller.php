@@ -1,6 +1,7 @@
 <?php
-namespace control;
-class tabbar extends \control\tabbar\module{
+namespace core\control;
+use \core\control as control;
+class tabbar extends control\tabbar\module{
 	private $tabs;
 	private $config;
 	public $active_tab;

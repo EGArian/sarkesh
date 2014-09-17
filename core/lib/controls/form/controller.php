@@ -1,6 +1,7 @@
 <?php
-namespace control;
-class form extends \control\form\module{
+namespace core\control;
+use \core\control as control;
+class form extends control\form\module{
 	private $e;
 	private $config;
 	function __construct($form_name="form"){

@@ -1,12 +1,12 @@
 <?php
-	namespace core;
-	 
+	namespace core\cls\core;
+	use \core\cls\db as db;
 	//this classs for using registry table in database
 	class registry{
 		
 		private $db;
 		function __construct(){
-			$this->db = new \db\mysql;
+			$this->db = new db\mysql;
 		}
 		
 		public function get($plugin, $key){

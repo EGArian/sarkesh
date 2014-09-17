@@ -1,7 +1,8 @@
 <?php
-namespace core;
-use network as network;
-use db as db;
+namespace core\cls\core;
+use \core\cls\network as network;
+use \core\cls\db as db;
+
 // this class is for translate parameters in theme and plugins
 class localize{
 	private $db;

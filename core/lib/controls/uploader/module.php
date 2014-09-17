@@ -1,6 +1,6 @@
 <?php
-namespace control\uploader;
-class module extends \control\uploader\view{
+namespace core\control\uploader;
+class module extends view{
 	function __construct(){
 		parent::__construct();
 	}

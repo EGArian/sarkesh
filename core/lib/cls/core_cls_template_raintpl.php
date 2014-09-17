@@ -1,5 +1,6 @@
 <?php
-	namespace template;
+	namespace core\cls\template;
+	use \core\cls\core as core;
 /**
  *  RainTPL
  *  -------
@@ -107,7 +108,7 @@ class raintpl{
 	// -------------------------
 
 	function __construct(){
-		$this->localize = new \core\localize;
+		$this->localize = new core\localize;
 	}
 	// -------------------------
 	// 	RAINTPL VARIABLES

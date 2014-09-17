@@ -1,5 +1,8 @@
 <?php
-class ctr_image extends ctr_image_module{
+namespace core\control;
+use \core\control as control;
+
+class captcha extends control\captcha\module{
 	
 	private $config;
 	function __construct(){

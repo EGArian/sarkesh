@@ -1,12 +1,14 @@
 <?php
-namespace plugin;
-class languages extends \plugin\languages\module{
+namespace core\plugin;
+use \core\plugin\languages as languages;
+use \core\cls\network as network;
+class languages extends languages\module{
 
 	private $obj_io;
 	
 	function __construct(){
 		parent::__construct();
-		$this->obj_io = new \network\io;
+		$this->obj_io = new network\io;
 	}
 
 	public function select_lang(){

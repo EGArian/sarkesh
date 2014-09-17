@@ -1,10 +1,10 @@
 <?php
-namespace control\textbox;
+namespace core\control\textbox;
 /*
 	this class is a module for working with textbox
 	
 */
-class module extends \control\textbox\view{
+class module extends view{
 	
 	function __construct(){
 		 parent::__construct();

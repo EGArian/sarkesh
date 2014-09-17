@@ -1,5 +1,7 @@
 <?php
-class ctr_tile extends ctr_tile_module{
+namespace core\control;
+use \core\control as control;
+class tile extends control\tile\module{
 	function __construct(){
 		parent::__construct();
 	}

@@ -1,6 +1,6 @@
 <?php
-namespace control;
-
+namespace core\control;
+use \core\control as control;
 class table extends control\table\module{
 	
 	private $config;

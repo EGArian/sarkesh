@@ -1,6 +1,6 @@
 <?php
-namespace control\table;
-class module extends \control\table\view{
+namespace core\control\table;
+class module extends view{
 	
 	function __construct(){
 		parent::__construct();

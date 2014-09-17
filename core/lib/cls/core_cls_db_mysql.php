@@ -1,7 +1,7 @@
 <?php
 #this class work with database
 #this class use pdo extention for work with mysql database
-namespace db;
+namespace core\cls\db;
 
 class mysql{
 	private $pdo_obj;

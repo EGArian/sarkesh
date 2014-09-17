@@ -1,7 +1,7 @@
 <?php
 //this function is for general works
 
-namespace core;
+namespace core\cls\core;
 class general{
 
 	#this function is for create raundom string	

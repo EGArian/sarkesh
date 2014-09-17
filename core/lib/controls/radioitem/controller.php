@@ -1,5 +1,8 @@
 <?php
-class ctr_radioitem extends ctr_radioitem_module{
+namespace core\control;
+use \core\control as control;
+
+class radioitem extends control\radioitem\module{
 
 	private $config;
 	function __construct(){

@@ -1,5 +1,5 @@
 <?php
-	namespace core;
+	namespace core\cls\core;
 	//this class is filled with html object and control that comes from browser
 	class uiobjects{
 		private $elements;

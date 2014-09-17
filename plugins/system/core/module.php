@@ -1,5 +1,6 @@
 <?php
-class core_module extends core_view{
+namespace core\plugin\core;
+class module extends view{
 
 	private $users;
 	private $msg;

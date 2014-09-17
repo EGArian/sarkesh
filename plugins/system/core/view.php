@@ -1,10 +1,13 @@
 <?php
-class core_view{
+namespace core\plugin\core;
+use \core\cls\template as template;
+use \core\cls\browser as browser;
+class view{
 	private $raintpl;
 	
 	function __construct(){
 		//create an object from raintpl class//
-		$this->raintpl = new cls_raintpl;
+		$this->raintpl = new template\raintpl;
 		//configure raintpl //
 		$this->raintpl->configure('tpl_dir','plugins/system/core/tpl/');
 		
@@ -13,7 +16,7 @@ class core_view{
 	protected function view_load($title,$content,$single_panel=false){
 
 		//Assign variables
-		$this->raintpl->assign( "page_headers", cls_page::load_headers(false));
+		$this->raintpl->assign( "page_headers", browser\page::load_headers(false));
 		$this->raintpl->assign( "page_title", $title);
 		$this->raintpl->assign( "page_content", $content);
 		$this->raintpl->assign( "single_panel", $single_panel);
@@ -27,7 +30,7 @@ class core_view{
 	//$menu is plugins special menu
 	protected function view_main($menu,$content,$user){
 		
-		cls_page::add_header('<link href="./plugins/system/core/style/core_content.css" rel="stylesheet">');
+		browser\page::add_header('<link href="./plugins/system/core/style/core_content.css" rel="stylesheet">');
 		//Assign variables
 		$this->raintpl->assign( "menu", $menu);	
 		$this->raintpl->assign( "content", $content);

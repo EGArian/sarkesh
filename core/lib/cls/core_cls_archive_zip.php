@@ -1,5 +1,5 @@
 <?php
-	namespace archive;
+	namespace core\cls\archive;
 	//this class is for working with tar.gz
 	class zip{
 		private $zip;

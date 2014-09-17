@@ -1,10 +1,11 @@
 <?php
-namespace control;
+namespace core\control;
+use \core\control as control;
 /*
 	this class is a control for working with buttones toggle buttons
 	
 */
-class combobox extends \control\combobox\module{
+class combobox extends control\combobox\module{
 	
 	#$name use to access this class on the page#
 	

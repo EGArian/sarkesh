@@ -1,6 +1,6 @@
 <?php
-namespace control\checkbox;
-class module extends \control\checkbox\view{
+namespace core\control\checkbox;
+class module extends view{
 	
 	function __construct(){
 		 parent::__construct();

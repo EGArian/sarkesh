@@ -1,3 +1,4 @@
+<?php use \core\cls\browser as browser;?>
 <!DOCTYPE html> 
 <head>
 </#HEADERS#/>
@@ -18,7 +19,7 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
-          <?php cls_page::set_position('header'); ?>
+          <?php browser\page::set_position('header'); ?>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container -->
     </nav>
@@ -27,15 +28,15 @@
 
       <div class="row">
         <div class="col-xs-8 main">
-	  <?php cls_page::set_position('content'); ?>	
+	  <?php browser\page::set_position('content'); ?>	
         </div>
         
         <div class="col-xs-4 sidebar">
 	  <div class="row">
-	  <?php cls_page::set_position('sidebar1'); ?>
+	  <?php browser\page::set_position('sidebar1'); ?>
 	  </div>
 	  <div class="row">
-	  <?php cls_page::set_position('sidebar2'); ?>
+	  <?php browser\page::set_position('sidebar2'); ?>
           </div>
         </div>
       </div>
@@ -45,7 +46,7 @@
       <footer>
         <div class="row">
           <div class="col-xs-12">
-	    <p><?php cls_page::set_position('footer'); ?></p>
+	    <p><?php browser\page::set_position('footer'); ?></p>
             <p><?php echo _('Copyright &copy; Sarkesh LTD 2013'); ?></p><br />
           </div>
         </div>

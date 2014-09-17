@@ -1,5 +1,5 @@
 <?php
-namespace network;
+namespace core\cls\network;
 /**
  * PHPMailer - PHP email creation and transport class.
  * PHP Version 5.0.0

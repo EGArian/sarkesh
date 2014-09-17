@@ -1,6 +1,6 @@
 <?php
-namespace control\row;
-class module extends \control\row\view{
+namespace core\control\row;
+class module extends view{
 	function __construct(){
 		parent::__construct();
 	}

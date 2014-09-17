@@ -1,5 +1,5 @@
 <?php
-namespace browser;
+namespace core\cls\browser;
 class window{
 	static $page_tittle;
 	

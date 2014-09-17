@@ -1,11 +1,13 @@
 <?php
 #REQ = IO
 #this class is for control cookies
-namespace network;
+namespace core\cls\network;
+use \core\cls\network as network;
+use \core\cls\core as core;
 class cookie{
 	private $obj_io;
 	function __construct(){
-		$this->obj_io = new \network\io;
+		$this->obj_io = new network\io;
 	}
 	public function is_set($cookie_name){
 
@@ -13,7 +15,7 @@ class cookie{
 		return false;
 	}
 	public function set($cookie_name, $cookie_value){
-		$boj_registry = new \core\registry;
+		$boj_registry = new core\registry;
 		$settings = $boj_registry->get_plugin('core');
 		setcookie($cookie_name,$cookie_value,time() + $settings['cookie_max_time']);
 		return true;

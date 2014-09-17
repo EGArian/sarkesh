@@ -1,6 +1,6 @@
 <?php
-namespace control\tabbar;
-class module extends \control\tabbar\view{
+namespace core\control\tabbar;
+class module extends view{
 	
 	function __construct(){
 		parent::__construct();

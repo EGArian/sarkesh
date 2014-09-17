@@ -1,5 +1,5 @@
 <?php
-	namespace network;
+	namespace core\cls\network;
 /**
  * PHPMailer POP-Before-SMTP Authentication Class.
  * PHP Version 5.0.0

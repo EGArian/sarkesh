@@ -1,5 +1,6 @@
 <?php
-class ctr_tile_module extends ctr_tile_view{
+namespace core\control\tile;
+class module extends view{
 	function __construct(){
 		parent::__construct();
 	}

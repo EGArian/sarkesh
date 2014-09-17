@@ -1,6 +1,7 @@
 <?php
-namespace control\table;
-
+namespace core\control\table;
+use \core\cls\template as template;
+use \core\cls\browser as browser;
 class view{	
 	private $raintpl;
 	function __construct(){
@@ -11,7 +12,7 @@ class view{
 	protected function view_draw($config){
 	
 		if($config['CSS_FILE'] != ''){
-			cls_page::add_header($config['CSS_FILE']);
+			browser\page::add_header($config['CSS_FILE']);
 		}
 		
 		$this->raintpl->assign('headers',$config['HEADERS']);

@@ -1,5 +1,5 @@
 <?php
-namespace data;
+namespace core\cls\db;
 /*
  * This class is for working with xml data
  */

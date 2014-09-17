@@ -1,6 +1,5 @@
 <?php
 
-
 //this include file has autoload function
 require_once('./core/inc/autoload.php');
 
@@ -25,18 +24,18 @@ if(file_exists("./config.php")) {
 	require_once("./core/functions/render.php");  
 	
 	// config and setup cls_orm // RedBeanphp
-	db\orm::run();
+	\core\cls\db\orm::run();
 	
 	//check for that want work with services or normal use
 	if(isset($_REQUEST['service'])){
 		#run system in service mode
-		$obj_router = new \core\router();
+		$obj_router = new \core\cls\core\router();
 		$obj_router->run_service();
 	}
 	//check for that want work with controls
 	elseif(isset($_REQUEST['control'])){
 		#run system in service mode
-		$obj_router = new \core\router;
+		$obj_router = new \core\cls\core\router;
 		$obj_router->run_control();
 	}
 	else{

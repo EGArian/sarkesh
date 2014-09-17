@@ -1,11 +1,13 @@
 <?php
-namespace control\image;
+namespace core\control\image;
+use \core\cls\template as template;
+use \core\cls\browser as browser;
 class view{
 	
 	private $raintpl;
 	
 	function __construct(){
-		$this->raintpl = new \template\raintpl;
+		$this->raintpl = new template\raintpl;
 		$this->raintpl->configure("tpl_dir","./core/lib/controls/image/");
 	}
 	public function view_draw($e){

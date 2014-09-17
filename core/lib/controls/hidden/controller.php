@@ -1,5 +1,7 @@
 <?php
-namespace control;
+namespace core\control;
+use \core\control as control;
+
 class hidden extends control\hidden\module{
 	
 	private $config;
