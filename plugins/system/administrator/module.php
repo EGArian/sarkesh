@@ -5,6 +5,7 @@ use \core\plugin as plugin;
 use \core\cls\network as network;
 use \core\cls\db as db;
 use \core\cls\core as core;
+use \core\cls\browser as browser;
 
 class module extends view{
 
@@ -35,7 +36,6 @@ class module extends view{
 			if(method_exists($PluginObject,'core_menu')){
 	
 				$plugin_menu = call_user_func(array($PluginObject,'core_menu'));
-				print_r($plugin_menu);
 				foreach($plugin_menu as $mnu){
 					array_push($menu,$mnu);
 				}
@@ -72,7 +72,7 @@ class module extends view{
 	protected function module_login_page(){
 		//get login panel
 		$login_panel = $this->users->login();
-		$login_panel[1] = cls_page::show_block($login_panel[0],$login_panel[1],'BLOCK');
+		$login_panel[1] = browser\page::show_block($login_panel[0],$login_panel[1],'BLOCK');
 		return $this->module_load($login_panel,true);
 	}
 	

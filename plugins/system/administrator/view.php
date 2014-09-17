@@ -10,7 +10,7 @@ class view{
 		//create an object from raintpl class//
 		$this->raintpl = new template\raintpl;
 		//configure raintpl //
-		$this->raintpl->configure('tpl_dir','plugins/system/core/tpl/');
+		$this->raintpl->configure('tpl_dir','plugins/system/administrator/tpl/');
 		
 	}
 	
@@ -31,7 +31,7 @@ class view{
 	//$menu is plugins special menu
 	protected function view_main($menu,$content,$user){
 		
-		browser\page::add_header('<link href="./plugins/system/core/style/core_content.css" rel="stylesheet">');
+		browser\page::add_header('<link href="./plugins/system/administrator/style/core_content.css" rel="stylesheet">');
 		//Assign variables
 		$this->raintpl->assign( "menu", $menu);	
 		$this->raintpl->assign( "content", $content);
@@ -45,10 +45,10 @@ class view{
 		$this->raintpl->assign( "user_profile_url", core\general::create_url(array('plugin','users','action','profile')	)	);
 		
 		$this->raintpl->assign( "user_settings", _('Settings')	);
-		$this->raintpl->assign( "user_settings_url", core\general::create_url(array('service','1','plugin','core','action','main','p','core','a','settings')	)	);
+		$this->raintpl->assign( "user_settings_url", core\general::create_url(array('service','1','plugin','administrator','action','main','p','core','a','settings')	)	);
 
 		$this->raintpl->assign( "sarkesh_admin", _('Sarkesh Administrator')	);
-		$this->raintpl->assign( "sarkesh_admin_url", core\general::create_url(array('service','1','plugin','core','action','main','p','core','a','dashboard')	));
+		$this->raintpl->assign( "sarkesh_admin_url", core\general::create_url(array('service','1','plugin','administrator','action','main','p','core','a','dashboard')	));
 		
 		//draw and return back menus
 		return $this->raintpl->draw('core_content', true );
