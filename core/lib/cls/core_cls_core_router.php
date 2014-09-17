@@ -1,4 +1,10 @@
 <?php
+namespace core\cls\core;
+use \core\cls\core as core;
+use \core\cls\network as network;
+use \core\cls\browser as browser;
+use \core\plugin as plugin;
+use \core\cls\db as db;
 
 //this class seperate url addrress
 // for doing process we have some parameters that send with GET 
@@ -7,7 +13,7 @@
 // and some etc parameters that plugin process that.
 // if nothing send with action with GET class change that to 'default' and send that to plugin
 
-class cls_router{
+class router{
 	private $plugin;
 	private $action;
 	private $obj_io;
@@ -15,14 +21,14 @@ class cls_router{
 	private $obj_plugin;
 	function __construct($plugin='' ,$action=''){
 		//create object from cls_plugin
-		$this->obj_plugin = new cls_plugin;
+		$this->obj_plugin = new core\plugin;
 		//set last page that user see
 		$this->set_last_page();
 		//get localize
-		$obj_localize = new cls_localize;
+		$obj_localize = new core\localize;
 		$this->localize = $obj_localize->get_localize();
 		//-------------------------
-		$this->obj_io = new cls_io;
+		$this->obj_io = new network\io;
 
 		if($plugin == '' || $action == ''){
 			if(isset($_REQUEST['plugin'])){
@@ -42,7 +48,7 @@ class cls_router{
 			else{
 				// plugin not set
 				// now jump to Home page
-				$obj_localize = new cls_localize;
+				$obj_localize = new core\localize;
 				$localize = $obj_localize->get_localize();
 				$this->jump_page($localize['home'] ,true);
 
@@ -59,8 +65,8 @@ class cls_router{
 	      // this function load plugin and run controller
 	      //checking for that plugin is enabled
 	      if($this->obj_plugin->is_enabled($this->plugin)){
-	 	    	
-	     		 $plugin = new $this->plugin;
+				 $PluginName = '\\core\\plugin\\' . $this->plugin;
+	     		 $plugin = new $PluginName;
 	     		 //run action directly
 	     		 if(method_exists($plugin,$this->action)){
 					 $content = call_user_func(array($plugin,$this->action),'content');
@@ -70,7 +76,7 @@ class cls_router{
 						$content = call_user_func(array($plugin,'default'),'content');
 					 }
 						//show 404 page not found page
-						$plugin = new msg;
+						$plugin = new plugin\msg;
 						$content = call_user_func(array($plugin,'msg_404'));	
 				 }
 				
@@ -78,18 +84,18 @@ class cls_router{
 		  else{
 		  	//plugin is not enabled
 		  	//show 404 page not found page
-		  	$plugin = new msg;
+		  	$plugin = new plugin\msg;
 			$content = call_user_func(array($plugin,'msg_404'));
 		  }
-	      cls_page::set_page_tittle($content[0]);
+	      browser\page::set_page_tittle($content[0]);
           //show header in up of content or else
           if(sizeof($content) == 3 && $content[2] == false){
             
-            $output_content = cls_page::show_block('',$content[1],'MAIN');
+            $output_content = browser\page::show_block('',$content[1],'MAIN');
           }
           else{
  
-            $output_content = cls_page::show_block($content[0],$content[1],'MAIN');
+            $output_content = browser\page::show_block($content[0],$content[1],'MAIN');
           }
 		  
 		  //show content id show_content was set
@@ -103,8 +109,8 @@ class cls_router{
 	public function run_service(){
 	 
 		 if($this->obj_plugin->is_enabled($this->plugin)){
-	 	    	
-	     		 $plugin = new $this->plugin;
+	 	    	 $PluginName = '\\core\\plugin\\' . $this->plugin;
+	     		 $plugin = new $PluginName;
 	     		 //run action directly
 				
 	     		 if(method_exists($plugin,$this->action)){
@@ -127,31 +133,32 @@ class cls_router{
 	//this function is for runing services from controls
 	public function run_control(){
 		//first create object from form elements
-		$elements = new cls_uiobjects($_GET['options']);
+		$elements = new core\uiobjects($_GET['options']);
 		//run control
-		$ctr_name = $this->plugin;
+		$ctr_name = '\\core\\plugin\\' . $this->plugin;
 		$ctr = new $ctr_name;
 		
 		//run event
-		//going to run function//	
-		$plugin = new $this->plugin;
+		//going to run function
+		$PluginName = '\\core\\plugin\\' . $this->plugin;
+		$plugin = new $PluginName;
 		$result = call_user_func(array($plugin, $this->action),$elements->get_elements());
 		//now show result in xml for use in javascript
-		$xml = new cls_xml($result);
+		$xml = new db\xml($result);
 		echo $xml->simple_array_to_xml($result, "root");
 		
 	}
 	#this function is for refresh page and jump to address
 	public function site_refresh($url='0',$inner_url=true , $time=5){
-		if($url=='0'){$url= SiteRoot;}
-		elseif($inner_url && $url != '0'){ $url= SiteRoot . $url;}
+		if($url=='0'){$url= SiteDomain;}
+		elseif($inner_url && $url != '0'){ $url= SiteDomain . $url;}
 		header("Refresh: $time ; url=$url");
 	}
 	public static function jump_page($url,$inner_url=true){
-		if(!$inner_url && $url != SiteRoot){ $url= SiteRoot . $url;}
-		elseif($url==SiteRoot){ $url= SiteRoot;}
+		if(!$inner_url && $url != SiteDomain){ $url= SiteDomain . $url;}
+		elseif($url==SiteDomain){ $url= SiteDomain;}
 		elseif(is_array($url)){
-			$url = cls_general::create_url($url);
+			$url = core\general::create_url($url);
 		}
 		header("Location:$url");
 		/* Make sure that code below does not get executed when we redirect. */
@@ -182,7 +189,7 @@ class cls_router{
 			header('Location: '. $obj_io->cin('SYS_LAST_PAGE','cookie'));
 		}
 		else{ 
-			header('Location: ' . SiteRoot );
+			header('Location: ' . SiteDomain );
 		}
 	}	
 	#this function return cerrent address of page(cerent url)

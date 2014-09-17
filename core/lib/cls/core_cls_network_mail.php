@@ -1,4 +1,5 @@
 <?php
+namespace core\cls\network;
 /**
  * PHPMailer - PHP email creation and transport class.
  * PHP Version 5.0.0
@@ -34,7 +35,7 @@ if (version_compare(PHP_VERSION, '5.0.0', '<')) {
  * @copyright 2010 - 2012 Jim Jagielski
  * @copyright 2004 - 2009 Andy Prevost
  */
-class cls_mail
+class mail
 {
     /**
      * The PHPMailer Version number.

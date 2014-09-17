@@ -1,5 +1,6 @@
 <?php
-class cls_window{
+namespace core\cls\browser;
+class window{
 	static $page_tittle;
 	
 	public function set_page_tittle($tittle){

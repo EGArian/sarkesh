@@ -1,11 +1,14 @@
 <?php
+	namespace core\cls\core;
+	use \core\cls\db as db;
+	
 	//this class controll plugins
-	class cls_plugin{
+	class plugin{
 		private $db;
 		
 		function __construct(){
 		
-			$this->db = new cls_database;
+			$this->db = new db\mysql;
 		}
 		
 		// if plugin enabled this function return true and else return false
@@ -37,9 +40,9 @@
 		
 		//this function get plugin from server and extract that on plugins folder
 		public function download($plugin_name){
-		$net = new cls_network;
+		$net = new \network\network;
 		$file_adr = $net->download(PluginsCenter . $plugin_name . '/latest.zip');
-		$zip = new cls_zip($file_adr);
+		$zip = new \archive\zip($file_adr);
 		$zip->extract('plugins');
 		
 		}

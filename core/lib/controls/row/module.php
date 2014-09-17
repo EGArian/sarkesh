@@ -1,11 +1,12 @@
 <?php
-class ctr_row_module extends ctr_row_view{
-	
+namespace core\control\row;
+class module extends view{
 	function __construct(){
 		parent::__construct();
 	}
-	protected function module_draw($e, $config){
-		return $this->view_draw($e, $config);
+	
+	public function module_draw($e,$config){
+		return $this->view_draw($e,$config);
 	}
 }
 ?>

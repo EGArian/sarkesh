@@ -1,4 +1,7 @@
 <?php
+namespace core\control\captcha;
+use \core\cls\template as template;
+use \core\cls\browser as browser;
 class ctr_image_view{
 	
 	private $raintpl;

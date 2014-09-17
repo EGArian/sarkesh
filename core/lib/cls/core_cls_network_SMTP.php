@@ -1,4 +1,5 @@
 <?php
+namespace core\cls\network;
 /**
  * PHPMailer RFC821 SMTP email transport class.
  * Version 5.2.7

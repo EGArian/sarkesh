@@ -1,5 +1,7 @@
 <?php
-class hello extends hello_module{
+namespace core\plugin;
+use \core\plugin\hello as hello;
+class hello extends hello\module{
 	
 	function __construct(){
 		parent::__construct();
@@ -11,13 +13,13 @@ class hello extends hello_module{
 	}
 	
 	public function test(){
-		$form = new ctr_form('test');
+		$form = new \control\form('test');
 		
-		$text = new ctr_textbox('textbox');
+		$text = new \control\textbox('textbox');
 		$text->configure('LABEL','Name');
 		$text->configure('ADDON','N');
 		
-		$btn = new ctr_button('BTN');
+		$btn = new \control\button('BTN');
 		$btn->configure('LABEL','Click me!');
 		
 		$btn->configure('P_ONCLICK_PLUGIN','hello');

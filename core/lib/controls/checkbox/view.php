@@ -1,11 +1,14 @@
 <?php
-class ctr_checkbox_view{
+namespace core\control\checkbox;
+use \core\cls\template as template;
+use \core\cls\browser as browser;
+class view{
 	
 	private $raintpl;
 	private $page;
 	function __construct(){
-		$this->page = new cls_page;
-		$this->raintpl = new cls_raintpl;
+		$this->page = new browser\page;
+		$this->raintpl = new template\raintpl;
 	}
 	
 	public function view_draw($config, $show){
@@ -13,9 +16,9 @@ class ctr_checkbox_view{
 		$this->raintpl->configure('tpl_dir','core/lib/controls/checkbox/');
 		
 		//add headers to page//
-		cls_page::add_header('<script src="./core/ect/scripts/events/functions.js"></script>');		
-		if($config['SCRIPT_SRC'] != ''){cls_page::add_header('<script src="' . $config['SCRIPT_SRC'] . '"></script>'); }		
-		if($config['CSS_FILE'] != ''){ cls_page::add_header('<link rel="stylesheet" type="text/css" href="' . $config['CSS_FILE']) . '" />';}
+		browser\page::add_header('<script src="./core/ect/scripts/events/functions.js"></script>');		
+		if($config['SCRIPT_SRC'] != ''){browser\page::add_header('<script src="' . $config['SCRIPT_SRC'] . '"></script>'); }		
+		if($config['CSS_FILE'] != ''){ browser\page::add_header('<link rel="stylesheet" type="text/css" href="' . $config['CSS_FILE']) . '" />';}
 		
 		//Assign variables
 		$this->raintpl->assign( "id", $config['NAME']);

@@ -1,13 +1,19 @@
 <?php
-class users_module extends users_view{
+namespace core\plugin\users;
+use \core\cls\core as core;
+use \core\cls\db as db;
+use \core\cls\network as network;
+use \core\cls\browser as browser;
+
+class module extends view{
 	private $registry;
 	private $settings;
 	private $validator;
 	function __construct(){
 		
-		$this->registry = new cls_registry;
+		$this->registry = new core\registry;
 		$this->settings = $this->registry->get_plugin('users');
-		$this->validator = new cls_validator;
+		$this->validator = new network\validator;
 		
 		parent::__construct($this->settings);
 
@@ -39,7 +45,7 @@ class users_module extends users_view{
 	 */
 	 protected function module_register(){
 		 if($this->module_is_logedin()){
-			 header("Location:" . cls_general::create_url(array('plugin','users','action','profile')));
+			 header("Location:" . core\general::create_url(array('plugin','users','action','profile')));
 		 }
 		 elseif($this->settings['register'] == '0'){
 			 //new register was closed
@@ -52,7 +58,7 @@ class users_module extends users_view{
 	//this function check user login data and do login proccess
 	protected function module_btn_login_onclick($e){
 		
-		$count = cls_orm::count('users',"username = ? or email=? and password = ?", array($e['txt_username']['VALUE'],$e['txt_username']['VALUE'],md5($e['txt_password']['VALUE'])));
+		$count = db\orm::count('users',"username = ? or email=? and password = ?", array($e['txt_username']['VALUE'],$e['txt_username']['VALUE'],md5($e['txt_password']['VALUE'])));
 		if($count != 0){
 			//login data is cerrect
 			//set validator
@@ -66,9 +72,9 @@ class users_module extends users_view{
 							
 			}
 			//INSERT VALID ID IN USER ROW
-			$user = cls_orm::load('users',$this->get_user_id($e['txt_username']['VALUE']));
+			$user = db\orm::load('users',$this->get_user_id($e['txt_username']['VALUE']));
 			$user->login_key = $valid_id;
-			cls_orm::store($user);
+			db\orm::store($user);
 			
 			//now jump or relod page
 			if(isset($_GET['jump'])){
@@ -83,7 +89,7 @@ class users_module extends users_view{
 			//username or password is incerrect
 			$e['txt_username']['VALUE'] = '';
 			$e['txt_password']['VALUE'] = '';
-			$e['RV']['MODAL'] = cls_page::show_block(_('Message'), _('Username or Password is incerrect!'), 'MODAL','type-warning');
+			$e['RV']['MODAL'] = browser\page::show_block(_('Message'), _('Username or Password is incerrect!'), 'MODAL','type-warning');
 		}
 		return $e;
 	}
@@ -95,7 +101,7 @@ class users_module extends users_view{
 	 protected function module_is_logedin(){
 		 if($this->validator->is_set('USERS_LOGIN')){
 				$id = $this->validator->get_id('USERS_LOGIN');
-				if(cls_orm::count('users','login_key = ?',array($id)) != 0){
+				if(db\orm::count('users','login_key = ?',array($id)) != 0){
 					//user is loged in before
 					return true;
 				}
@@ -111,7 +117,7 @@ class users_module extends users_view{
 	  * OUTPUT > integer | FALSE > not found
 	  */
 	  protected function get_user_id($username){
-		  $res = cls_orm::findOne('users',"username = ?",array($username));
+		  $res = db\orm::findOne('users',"username = ?",array($username));
 		  return $res->id;
 	  }
 	  
@@ -125,7 +131,7 @@ class users_module extends users_view{
 		  $this->validator->delete('USERS_LOGIN');
 		  //if this action requested by content mode jump user to home page
 		  if($e == 'content'){
-				cls_router::jump_page(SiteDomain);
+				core\router::jump_page(SiteDomain);
 				
 		  }
 		  else{
@@ -143,42 +149,37 @@ class users_module extends users_view{
 	   * OUTPUT:boolean
 	   */
 	   protected function module_has_permission($permission,$username=''){
-		   if($username == ''){
-			   //get cerrent user info
-			   $user = $this->module_get_info();
-			   if($user == null){
-				   //user is guest
-				   //4 = guest primary key
-				   $id = 4;
-			   }
-			   else{
-				   //get user permission id
-				   $id = $user['permission'];
-			   }
-			   $per = cls_orm::findOne('permissions',"id = ?", array($id));
-			   if($per[$permission] == '1'){return true;}   
-
-			   return false;
-			   
-		   } 
-		   else{
+			 if($username == ''){
+				//get cerrent user info
+				$user = $this->module_get_info();
+				if($user == null){
+					//user is guest
+					//4 = guest primary key
+					$id = 4;
+				}
+				else{
+					//get user permission id
+					$id = $user['permission'];
+				}
+				$per = db\orm::findOne('permissions',"id = ?", array($id));
+				if($per[$permission] == '1'){return true;}
+				return false;
+			}
+			else{
 				//get permission with username
 				//check for that user exists
-				
-				if(cls_orm::count('users',"username = ?",array($username)) != 0){
+				if(db\orm::count('users',"username = ?",array($username)) != 0){
 					//going to find permission
-					$res = cls_orm::getRow('SELECT * FROM users s INNER JOIN permissions p ON s.permission=p.id where s.username=?',array($username));
-					
+					$res = db\orm::getRow('SELECT * FROM users s INNER JOIN permissions p ON s.permission=p.id where s.username=?',array($username));
 					//checking for that permission is exist
 					if(array_key_exists($permission,$res)){
-						if($res[$permission] == '1'){
-							return true;
-						}
+					if($res[$permission] == '1'){
+						return true;
 					}
-					
 				}
-				//user not found return false
-				return false;
+			}
+			//user not found return false
+			return false;
 			}
 	   }
 	   
@@ -197,7 +198,7 @@ class users_module extends users_view{
 	    */
 	    protected function module_btn_reset_password_onclick($e){
 			
-			$e['RV']['MODAL'] = cls_page::show_block(1,1,'MODAL','type-warning');
+			$e['RV']['MODAL'] = browser\page::show_block(1,1,'MODAL','type-warning');
 			return $e;
 		}
 		
@@ -209,8 +210,8 @@ class users_module extends users_view{
 				//you want user information that now in loged in
 				if($this->is_logedin()){
 					$id = $this->validator->get_id('USERS_LOGIN');
-					if(cls_orm::count('users','login_key = ?',array($id)) != 0){
-						return cls_orm::findOne('users','login_key = ?', array($id));
+					if(db\orm::count('users','login_key = ?',array($id)) != 0){
+						return db\orm::findOne('users','login_key = ?', array($id));
 					}
 				}
 				else{
@@ -220,8 +221,8 @@ class users_module extends users_view{
 			}
 			else{
 				//check for username and return back information if exists
-				if(cls_orm::count('users','username = ?',array($username)) != 0){
-						return cls_orm::findOne('users','login_key = ?', array($username));
+				if(db\orm::count('users','username = ?',array($username)) != 0){
+						return db\orm::findOne('users','login_key = ?', array($username));
 				}
 				else{
 					//username not found

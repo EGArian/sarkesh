@@ -1,7 +1,7 @@
 <?php
-	//this class is filled with html object and control that
-	
-	class cls_uiobjects{
+	namespace core\cls\core;
+	//this class is filled with html object and control that comes from browser
+	class uiobjects{
 		private $elements;
 		
 		function __construct($elements_string){

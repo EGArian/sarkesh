@@ -1,5 +1,6 @@
 <?php
-class ctr_radioitem_module extends ctr_radioitem_view{
+namespace core\control\radioitem;
+class module extends view{
 	
 	function __construct(){
 		parent::__construct();

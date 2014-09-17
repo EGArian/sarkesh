@@ -1,5 +1,7 @@
 <?php
-class ctr_tabbar extends ctr_tabbar_module{
+namespace core\control;
+use \core\control as control;
+class tabbar extends control\tabbar\module{
 	private $tabs;
 	private $config;
 	public $active_tab;

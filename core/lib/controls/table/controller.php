@@ -1,5 +1,7 @@
 <?php
-class ctr_table extends ctr_table_module{
+namespace core\control;
+use \core\control as control;
+class table extends control\table\module{
 	
 	private $config;
 	

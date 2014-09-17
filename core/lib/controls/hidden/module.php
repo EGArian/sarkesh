@@ -1,5 +1,6 @@
 <?php
-class ctr_hidden_module extends ctr_hidden_view{
+namespace core\control\hidden;
+class module extends view{
 	function __construct(){
 		parent::__construct();
 	}

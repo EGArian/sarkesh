@@ -1,5 +1,6 @@
 <?php
-class msg_module extends msg_view{
+namespace core\plugin\msg;
+class module extends view{
 
 	function __construct(){
 		parent::__construct();

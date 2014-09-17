@@ -1,4 +1,7 @@
 <?php
+namespace core\control\radioitem;
+use \core\cls\template as template;
+use \core\cls\browser as browser;
 class ctr_radioitem_view{
 	
 	private $raintpl;
@@ -9,7 +12,7 @@ class ctr_radioitem_view{
 	}
 	public function view_draw($config){
 		
-		if($config['CSS_FILE'] != ''){ cls_page::add_header('<link rel="stylesheet" type="text/css" href="' . $config['CSS_FILE']) . '" />';}
+		if($config['CSS_FILE'] != ''){ browser\page::add_header('<link rel="stylesheet" type="text/css" href="' . $config['CSS_FILE']) . '" />';}
 		
 		$this->raintpl->assign("name",$config['NAME']);
 		$this->raintpl->assign("label",$config['LABEL']);

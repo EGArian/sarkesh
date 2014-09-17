@@ -1,9 +1,12 @@
 <?php
-class ctr_label_view{
+namespace core\control\label;
+use \core\cls\template as template;
+use \core\cls\browser as browser;
+class view{
 	private $raintpl;
 	
 	function __construct(){
-		$this->raintpl = new cls_raintpl;
+		$this->raintpl = new template\raintpl;
 		$this->raintpl->configure("tpl_dir",'./core/lib/controls/label/');
 	}
 	public function view_draw($e){

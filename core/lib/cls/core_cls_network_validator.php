@@ -1,7 +1,13 @@
 <?php
+namespace core\cls\network;
+use \core\cls\core as core;
+use \core\cls\db as db;
+use \core\cls\network as network;
+
+
 #REQ = DATABASE , COOKIE , SESSION , GENERAL
 #this class is for auth user and ect
-class cls_validator{
+class validator{
 private $db;
 private $obj_cookie;
 private $obj_session;
@@ -11,12 +17,12 @@ private $settings;
 private $obj_registry;
 
 	function __construct(){
-		$this->obj_io = new cls_io;
-		$this->obj_general = new cls_general;
-		$this->obj_session = new cls_session;
-		$this->obj_cookie = new cls_cookie;
-		$this->db = new cls_database;
-		$this->obj_registry = new cls_registry;
+		$this->obj_io = new network\io;
+		$this->obj_general = new core\general;
+		$this->obj_session = new network\session;
+		$this->obj_cookie = new network\cookie;
+		$this->db = new db\mysql;
+		$this->obj_registry = new core\registry;
 		$this->settings = $this->obj_registry->get_plugin('core');
 		$last_check_refresh = $this->settings['validator_max_time'] + $this->settings['validator_last_check'];
 		//we use this for save in database;

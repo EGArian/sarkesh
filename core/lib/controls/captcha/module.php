@@ -1,5 +1,6 @@
 <?php
-class ctr_image_module extends ctr_image_view{
+namespace core\control\captcha;
+class module extends view{
 	
 	function __construct(){
 		parent::__construct();

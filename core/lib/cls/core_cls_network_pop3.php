@@ -1,4 +1,5 @@
 <?php
+	namespace core\cls\network;
 /**
  * PHPMailer POP-Before-SMTP Authentication Class.
  * PHP Version 5.0.0
@@ -29,7 +30,7 @@
  * @author Andy Prevost (codeworxtech) <codeworxtech@users.sourceforge.net>
  */
 
-class cls_POP3
+class POP3
 {
     /**
      * The POP3 PHPMailer Version number.

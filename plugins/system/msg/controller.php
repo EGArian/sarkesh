@@ -1,7 +1,9 @@
 <?php
+namespace core\plugin;
+use \core\plugin\msg as msg;
 //this plugins show system messages on page .
 //messages like 404 not found and access denied msg
-class msg extends msg_module{
+class msg extends msg\module{
 	//create view and module for working with MVC metode
 	private $view;
 	private $module;

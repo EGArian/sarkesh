@@ -1,9 +1,10 @@
 <?php
+namespace core\control\button;
 /*
 	this class is a module for working with button
 	
 */
-class ctr_button_module extends ctr_button_view{
+class module extends view{
 	
 	function __construct(){
 		 parent::__construct();

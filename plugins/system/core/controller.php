@@ -1,5 +1,7 @@
 <?php
-class core extends core_module{
+namespace core\plugin;
+use \core\plugin\core as core;
+class core extends core\module{
 
 	private $msg;
 	private $users;

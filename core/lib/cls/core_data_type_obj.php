@@ -1,5 +1,5 @@
 <?php
-
+namespace core\data\type;
 /**
  * @author babak alizadeh
  * @copyright 2014 gnu gpl v3
@@ -7,7 +7,7 @@
  * 
  */
 
-class cls_object{
+class obj{
     
     
     

@@ -1,6 +1,8 @@
 <?php
 	//this class is for FTP file transfer
-	class cls_ftp{
+	namespace core\cls\network;
+	
+	class ftp{
 	
 		function __construct(){
 	

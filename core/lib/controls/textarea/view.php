@@ -1,18 +1,21 @@
 <?php
-class ctr_textarea_view{
+namespace core\control\textarea;
+use \core\cls\template as template;
+use \core\cls\browser as browser;
+class view{
 	
 	private $raintpl;
 	
 	function __construct(){
-		$this->raintpl = new cls_raintpl;
+		$this->raintpl = new template\raintpl;
 		$this->raintpl->configure("tpl_dir","./core/lib/controls/textarea/");
 	}
 	protected function view_draw($config){
 		
 		if($config['EDITOR']){
-				cls_page::add_header('<script src="./core/lib/controls/textarea/editors/nicedit/nicEdit.js" type="text/javascript"></script>');
+				browser\page::add_header('<script src="./core/lib/controls/textarea/editors/nicedit/nicEdit.js" type="text/javascript"></script>');
 }
-		if($config['CSS_FILE'] != ''){ cls_page::add_header('<link rel="stylesheet" type="text/css" href="' . $config['CSS_FILE']) . '" />';}
+		if($config['CSS_FILE'] != ''){ browser\page::add_header('<link rel="stylesheet" type="text/css" href="' . $config['CSS_FILE']) . '" />';}
 
 		
 		$this->raintpl->assign("name",$config['NAME']);

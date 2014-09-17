@@ -1,16 +1,20 @@
 <?php
-class languages_view{
+namespace core\plugin\languages;
+use \core\cls\template as template;
+use \core\cls\browser as browser;
+use \core\control as control;
+class view{
 
 	private $raintpl;
 	function __construct(){
 		//config raintpl
-		$this->raintpl = new cls_raintpl;
+		$this->raintpl = new template\raintpl;
 		$this->raintpl->configure("tpl_dir", "plugins/languages/tpl/" );
 	}
 	
 	public function view_select_lang($languages){
-		//$form = new ctr_form('languages');
-		$lang = new ctr_combobox;
+		//$form = new control\form('languages');
+		$lang = new control\combobox;
 		$lang->configure('NAME','lang');
 		$lang->configure('LABEL','');
 		$lang->configure('TABLE',$languages);

@@ -1,9 +1,11 @@
 <?php
-    //for use this class we should start sessions			
+namespace core\cls\network;
+//for use this class we should start sessions			
 
-class cls_session {
+class session {
 	
 	public function __construct(){
+	
 	}
 	
 	public function set($key,$value){

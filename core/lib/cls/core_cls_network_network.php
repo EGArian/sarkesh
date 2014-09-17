@@ -1,6 +1,7 @@
 <?php
+	namespace core\cls\network;
 	//this class is for working with network objects
-	class cls_network{
+	class network{
 		
 		//this function get file from url and save that in temp directory with random file name 
 		//and return file address on serverto access that
@@ -12,7 +13,7 @@
 			}
 			else{
 				//file exist going to download
-				$file_name = AppPath . "upload/buffer/" . cls_general::random_string(5) . ".zip";
+				$file_name = AppPath . "upload/buffer/" . \core\general::random_string(5) . ".zip";
 				echo $file_name;
 				file_put_contents($file_name, file_get_contents($url));
 				return $file_name;

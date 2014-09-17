@@ -1,5 +1,8 @@
 <?php
-class users extends users_module{
+namespace core\plugin;
+use \core\plugin\users as users;
+use \core\cls\browser as browser;
+class users extends users\module{
 	function __construct(){
 		parent::__construct();
 	}
@@ -33,7 +36,7 @@ class users extends users_module{
 		if(!$this->is_logedin()){
 			return $this->module_reset_password();
 		}
-		cls_router::jump_page(array('plugin','users','action','profile'));
+		core\router::jump_page(array('plugin','users','action','profile'));
 	}
 	/* INPUT:string: position name in theme file
 	 * this function return register form
@@ -51,11 +54,11 @@ class users extends users_module{
 	public function btn_login_onclick($e){
 		//if this action requested by content mode i should reject that
 		if($e == 'content'){
-			cls_router::jump_page(SiteDomain);
+			core\router::jump_page(SiteDomain);
 		}
 		//first check for that username and password is filled
 		if(trim($e['txt_username']['VALUE']) == '' || trim($e['txt_password']['VALUE'])==''){
-			$e['RV']['MODAL'] = cls_page::show_block(_('Message'),_('Please fill in all of the required fields"'),'MODAL','type-warning');
+			$e['RV']['MODAL'] = browser\page::show_block(_('Message'),_('Please fill in all of the required fields"'),'MODAL','type-warning');
 			return $e;
 		}
 		else{
@@ -101,7 +104,7 @@ class users extends users_module{
 	    public function btn_reset_password_onclick($e){
 			//if this action requested by content mode i should reject that
 			if($e == 'content'){
-				cls_router::jump_page(SiteDomain);
+				core\router::jump_page(SiteDomain);
 			}
 			return $this->module_btn_reset_password_onclick($e);
 		}
@@ -114,13 +117,13 @@ class users extends users_module{
 	    public function btn_signup_onclick($e){
 			//if this action requested by content mode i should reject that
 			if($e == 'content'){
-				cls_router::jump_page(SiteDomain);
+				core\router::jump_page(SiteDomain);
 			}
 			
 			//check input
 			if( $e['txt_username']['VALUE'] == '' || $e['txt_email']['VALUE'] == '' || $e['txt_password']['VALUE'] == '' || $e['txt_repassword']['VALUE'] == '' ){
 				//invalid field
-				$e['RV']['MODAL'] = cls_page::show_block(_('Message'),_('Please fill out all the field that are marked with an asterisk (*).'),'MODAL','type-warning');
+				$e['RV']['MODAL'] = browser\page::show_block(_('Message'),_('Please fill out all the field that are marked with an asterisk (*).'),'MODAL','type-warning');
 				return $e;
 			}
 			else{

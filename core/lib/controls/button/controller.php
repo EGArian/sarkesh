@@ -1,9 +1,11 @@
 <?php
+namespace core\control;
+use \core\control as control;
 /*
 	this class is a control for working with buttons toggle buttons
 	
 */
-class ctr_button extends ctr_button_module{
+class button extends control\button\module{
 	
 	#$name use to access this class on the page#
 	
