@@ -31,7 +31,8 @@ class view{
 				//add tag for show messages
 				//with assign you send value for varible in html file
 				//for more information about template\raintpl->assign see template\raintpl documents
-				$this->raintpl->assign( "msg_404", _('Page Not Found!') );
+				$this->raintpl->assign( "msg_404", _('Sorry. Page Not Found!') );
+				$this->raintpl->assign( "text404", _('404 !') );
 				//after set all varibles we going to show that on page with browser\page
 				$page_content = $this->raintpl->draw( '404', true );
 			}

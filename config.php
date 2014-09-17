@@ -21,5 +21,6 @@ define('AppPath',dirname(__file__) . '/');
 define('PluginsCenter','http://plugins.sarkesh.org/');
 
 #error reporting state. for more info about this variable see php documents
-define('ERROR_REPORTING',E_ALL);
+define('ERROR_REPORTING',E_ALL | E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+
 ?>

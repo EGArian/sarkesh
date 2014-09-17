@@ -4,7 +4,7 @@
 */
 ob_start("sys_render");
 $registry = new \core\cls\core\registry;
-include_once('./themes/' . $registry->get('core', 'active_theme') . '/index.php');
+include_once('./themes/' . $registry->get('administrator', 'active_theme') . '/index.php');
 ob_end_flush();
 ?>
 

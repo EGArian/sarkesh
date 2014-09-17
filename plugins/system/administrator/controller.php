@@ -1,7 +1,8 @@
 <?php
 namespace core\plugin;
-use \core\plugin\core as core;
-class core extends core\module{
+use \core\plugin\administrator as administrator;
+use \core\cls\core as core;
+class administrator extends administrator\module{
 
 	private $msg;
 	private $users;
@@ -27,7 +28,7 @@ class core extends core\module{
 			//check for that user come from login process
 			if($_GET['p'] == 'users' && $_GET['a'] == 'login'){
 				//user come from login process and now should jump to default administrator page
-				cls_router::jump_page(cls_general::create_url(array('service','1','plugin','core','action','main','p','core','a','dashboard')	)	);
+				core\router::jump_page(core\general::create_url(array('service','1','plugin','core','action','main','p','core','a','dashboard')	)	);
 			}
 			else{
 				//going to show content
@@ -42,7 +43,7 @@ class core extends core\module{
 			}
 			else{
 				//jump to login page
-				cls_router::jump_page(cls_general::create_url(array('service','1','plugin','core','action','main','p','users','a','login')	)	);
+				cls_router::jump_page(\core\cls\core\general::create_url(array('service','1','plugin','core','action','main','p','users','a','login')	)	);
 			}
 			
 		}
@@ -56,7 +57,7 @@ class core extends core\module{
 	
 	//this function return url of core menus to admin area
 	public static function core_menu(){
-		$menus = [[cls_general::create_url(array('service','1','plugin','core','action','main','p','core','a','dashboard')	),_('Dashboard')],[cls_general::create_url(array('service','1','plugin','core','action','main','p','core','a','settings')	),_('General Settings')],[cls_general::create_url(array('service','1','plugin','core','action','main','p','core','a','themes')	), _('Appearance')],[cls_general::create_url(array('service','1','plugin','core','action','main','p','core','a','plugins')	),_('Plugins')],[cls_general::create_url(array('service','1','plugin','core','action','main','p','core','a','settings')	),_('Localize')]];
+		$menus = [[\core\cls\core/general::create_url(array('service','1','plugin','core','action','main','p','core','a','dashboard')	),_('Dashboard')],[\core\cls\core\general::create_url(array('service','1','plugin','core','action','main','p','core','a','settings')	),_('General Settings')],[\core\cls\core\general::create_url(array('service','1','plugin','core','action','main','p','core','a','themes')	), _('Appearance')],[\core\cls\core\general::create_url(array('service','1','plugin','core','action','main','p','core','a','plugins')	),_('Plugins')],[\core\cls\core\general::create_url(array('service','1','plugin','core','action','main','p','core','a','settings')	),_('Localize')]];
 		
 		return $menus;
 	}

@@ -23,7 +23,7 @@ private $obj_registry;
 		$this->obj_cookie = new network\cookie;
 		$this->db = new db\mysql;
 		$this->obj_registry = new core\registry;
-		$this->settings = $this->obj_registry->get_plugin('core');
+		$this->settings = $this->obj_registry->get_plugin('administrator');
 		$last_check_refresh = $this->settings['validator_max_time'] + $this->settings['validator_last_check'];
 		//we use this for save in database;
 		

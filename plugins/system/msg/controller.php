@@ -30,6 +30,14 @@ class msg extends msg\module{
 	 public function msg($header, $body, $type = 'success'){
 		 return $this->module_msg($header,$body,$type);
 	 }
+	 
+	 /*
+	  * This function use for show 404 message in service mode
+	  */
+	  public function msg404(){
+		  $msg = $this->msg_404();
+		  return $msg[1];
+	  }
 
 	
 

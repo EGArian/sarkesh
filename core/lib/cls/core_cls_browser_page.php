@@ -34,7 +34,7 @@ class page{
 		
 		if(is_null(self::$settings)){
 			$registry =new core\registry;
-			self::$settings = $registry->get_plugin('core');
+			self::$settings = $registry->get_plugin('administrator');
 			$obj_localize = new core\localize;
 			self::$localize_settings = $obj_localize->get_localize();
 			self::$page_tittle = self::$localize_settings['name'];
@@ -244,7 +244,7 @@ class page{
 		
 			if($block['b.position'] == $position){
 				//going to process block
-				if($block['p.name'] == 'core'){
+				if($block['p.name'] == 'administrator'){
 					//going to show content;
 					$obj_router = new core\router;
 					$obj_router->show_content();

@@ -28,6 +28,7 @@
 			 foreach($db_result as $row){
 				$result[$row['a_key']] = $row['value'];
 			 }
+
 			 return $result;
 		}
 		public function set($plugin, $key, $value){

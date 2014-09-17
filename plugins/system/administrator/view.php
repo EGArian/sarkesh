@@ -1,7 +1,8 @@
 <?php
-namespace core\plugin\core;
+namespace core\plugin\administrator;
 use \core\cls\template as template;
 use \core\cls\browser as browser;
+use \core\cls\core as core;
 class view{
 	private $raintpl;
 	
@@ -36,18 +37,18 @@ class view{
 		$this->raintpl->assign( "content", $content);
 		
 		$this->raintpl->assign( "user_logout", _('Log Out')	);
-		$this->raintpl->assign( "user_logout_url", cls_general::create_url(array('plugin','users','action','btn_logout_onclick')	)	);
+		$this->raintpl->assign( "user_logout_url", core\general::create_url(array('plugin','users','action','btn_logout_onclick')	)	);
 		
 		$this->raintpl->assign( "user_name", $user['username']	);
 		
 		$this->raintpl->assign( "user_profile", _('Profile')	);
-		$this->raintpl->assign( "user_profile_url", cls_general::create_url(array('plugin','users','action','profile')	)	);
+		$this->raintpl->assign( "user_profile_url", core\general::create_url(array('plugin','users','action','profile')	)	);
 		
 		$this->raintpl->assign( "user_settings", _('Settings')	);
-		$this->raintpl->assign( "user_settings_url", cls_general::create_url(array('service','1','plugin','core','action','main','p','core','a','settings')	)	);
+		$this->raintpl->assign( "user_settings_url", core\general::create_url(array('service','1','plugin','core','action','main','p','core','a','settings')	)	);
 
 		$this->raintpl->assign( "sarkesh_admin", _('Sarkesh Administrator')	);
-		$this->raintpl->assign( "sarkesh_admin_url", cls_general::create_url(array('service','1','plugin','core','action','main','p','core','a','dashboard')	));
+		$this->raintpl->assign( "sarkesh_admin_url", core\general::create_url(array('service','1','plugin','core','action','main','p','core','a','dashboard')	));
 		
 		//draw and return back menus
 		return $this->raintpl->draw('core_content', true );
@@ -132,7 +133,7 @@ class view{
 		$this->raintpl->assign( "Blocks", _('Blocks'));
 		$this->raintpl->assign( "Usersandpermissions", _('Users and permissions'));
 		$this->raintpl->assign( "url_regional", _('Author'));
-		$this->raintpl->assign( "url_appearance", cls_general::create_url(array('service','1','plugin','core','action','main','p','core','a','themes')	));
+		$this->raintpl->assign( "url_appearance", core\general::create_url(array('service','1','plugin','core','action','main','p','core','a','themes')	));
 		$this->raintpl->assign( "url_plugins", _('Author'));
 		$this->raintpl->assign( "url_blocks", _('Author'));
 		$this->raintpl->assign( "url_uap", _('Author'));
