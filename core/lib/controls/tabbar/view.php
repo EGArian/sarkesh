@@ -2,7 +2,7 @@
 namespace core\control\tabbar;
 use \core\cls\template as template;
 use \core\cls\browser as browser;
-class ctr_tabbar_view{	
+class view{	
 	private $raintpl;
 	function __construct(){
 		$this->raintpl = new template\raintpl;

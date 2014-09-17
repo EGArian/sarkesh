@@ -3,6 +3,7 @@ namespace core\plugin\administrator;
 use \core\cls\template as template;
 use \core\cls\browser as browser;
 use \core\cls\core as core;
+use \core\control as control;
 class view{
 	private $raintpl;
 	
@@ -45,10 +46,10 @@ class view{
 		$this->raintpl->assign( "user_profile_url", core\general::create_url(array('plugin','users','action','profile')	)	);
 		
 		$this->raintpl->assign( "user_settings", _('Settings')	);
-		$this->raintpl->assign( "user_settings_url", core\general::create_url(array('service','1','plugin','administrator','action','main','p','core','a','settings')	)	);
+		$this->raintpl->assign( "user_settings_url", core\general::create_url(array('service','1','plugin','administrator','action','main','p','administrator','a','settings')	)	);
 
 		$this->raintpl->assign( "sarkesh_admin", _('Sarkesh Administrator')	);
-		$this->raintpl->assign( "sarkesh_admin_url", core\general::create_url(array('service','1','plugin','administrator','action','main','p','core','a','dashboard')	));
+		$this->raintpl->assign( "sarkesh_admin_url", core\general::create_url(array('service','1','plugin','administrator','action','main','p','administrator','a','dashboard')	));
 		
 		//draw and return back menus
 		return $this->raintpl->draw('core_content', true );
@@ -64,30 +65,30 @@ class view{
 	#This function show themes panel
 	protected function view_themes($themes,$themes_info,$active_theme){
 		
-		$form = new ctr_form("core_manage_themes");
-		$tab = new ctr_tabbar;
-		$table = new ctr_table;
+		$form = new control\form("core_manage_themes");
+		$tab = new control\tabbar;
+		$table = new control\table;
 		
 		foreach($themes as $key=>$theme){
-			$row = new ctr_row;
+			$row = new control\row;
 			
 			//add id to table for count rows
-			$lbl_id = new ctr_label($key+1);
+			$lbl_id = new control\label($key+1);
 			$row->add($lbl_id,1,1);
 			
 			//add theme name
-			$lbl_theme_name = new ctr_label($themes_info[$key]['name']);
+			$lbl_theme_name = new control\label($themes_info[$key]['name']);
 			$row->add($lbl_theme_name,2);
 			
 			//add author of theme
-			$lbl_author = new ctr_label($themes_info[$key]['author']);
+			$lbl_author = new control\label($themes_info[$key]['author']);
 			$row->add($lbl_author,2);
 			
 			
 			
 			//add active theme button
 			if($theme != $active_theme){
-				$btn_active = new ctr_button;
+				$btn_active = new control\button;
 				$btn_active->configure('LABEL',_('Active this'));
 				$btn_active->configure('TYPE','success');
 				$btn_active->configure('P_ONCLICK_PLUGIN','core');
@@ -133,7 +134,7 @@ class view{
 		$this->raintpl->assign( "Blocks", _('Blocks'));
 		$this->raintpl->assign( "Usersandpermissions", _('Users and permissions'));
 		$this->raintpl->assign( "url_regional", _('Author'));
-		$this->raintpl->assign( "url_appearance", core\general::create_url(array('service','1','plugin','core','action','main','p','core','a','themes')	));
+		$this->raintpl->assign( "url_appearance", core\general::create_url(array('service','1','plugin','administrator','action','main','p','administrator','a','themes')	));
 		$this->raintpl->assign( "url_plugins", _('Author'));
 		$this->raintpl->assign( "url_blocks", _('Author'));
 		$this->raintpl->assign( "url_uap", _('Author'));

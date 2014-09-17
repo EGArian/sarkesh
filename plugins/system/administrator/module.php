@@ -91,7 +91,7 @@ class module extends view{
 			}
 		}
 		//get current active theme
-		$registry = new cls_registry;
+		$registry = new core\registry;
 		$active_theme = $registry->get('core','active_theme');
 		
 		//get themes info
