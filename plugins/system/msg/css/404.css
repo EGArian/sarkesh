@@ -1,4 +1,44 @@
+<<<<<<< HEAD
 body { background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABZ0RVh0Q3JlYXRpb24gVGltZQAxMC8yOS8xMiKqq3kAAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzVxteM2AAABHklEQVRIib2Vyw6EIAxFW5idr///Qx9sfG3pLEyJ3tAwi5EmBqRo7vHawiEEERHS6x7MTMxMVv6+z3tPMUYSkfTM/R0fEaG2bbMv+Gc4nZzn+dN4HAcREa3r+hi3bcuu68jLskhVIlW073tWaYlQ9+F9IpqmSfq+fwskhdO/AwmUTJXrOuaRQNeRkOd5lq7rXmS5InmERKoER/QMvUAPlZDHcZRhGN4CSeGY+aHMqgcks5RrHv/eeh455x5KrMq2yHQdibDO6ncG/KZWL7M8xDyS1/MIO0NJqdULLS81X6/X6aR0nqBSJcPeZnlZrzN477NKURn2Nus8sjzmEII0TfMiyxUuxphVWjpJkbx0btUnshRihVv70Bv8ItXq6Asoi/ZiCbU6YgAAAABJRU5ErkJggg==);}
 .error-template {padding: 40px 15px;text-align: center;}
 .error-actions {margin-top:15px;margin-bottom:15px;}
 .error-actions .btn { margin-right:10px; }
+=======
+body {
+	height: 100%;
+	width: 100%;
+	margin: 0px auto;
+	background: #7ABECC;
+
+	/* The html and body elements cannot have any padding or margin. */
+}
+
+#wrap {
+	height: 100%;
+	width: 50%;
+	margin: 0 auto;
+	padding: 50px 0;
+	height: 300px;
+	font-family: 'Rokkitt', serif;
+	color: #374365;
+	text-align: center;
+	font-size: 60px;
+	text-shadow: 1px 1px 0px #fff;
+}
+
+#middle {
+	width: 100%;
+	background: url("404.png") no-repeat left;
+	margin: 0 0 30px 0 auto;
+	height: 300px;
+	font-family: 'Pacifico', cursive;
+	font-size: 200px;
+	color: #182344;
+	text-shadow: 1px 1px 0px #fff;
+	text-align: right;
+}
+
+#middle2 {
+	margin-top: 30px;
+}
+>>>>>>> 60b875d2aeb7f15af85393bc755cf909bd17e10e

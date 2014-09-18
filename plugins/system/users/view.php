@@ -107,7 +107,7 @@ class view{
 			$btn_admin = new control\button;
 			$btn_admin->configure('NAME','JUMP_ADMIN');
 			$btn_admin->configure('LABEL',_('Admin panel'));
-			$btn_admin->configure('HREF',core\general::create_url(array('service','1','plugin','core','action','main','p','core','a','dashboard')));
+			$btn_admin->configure('HREF',core\general::create_url(array('service','1','plugin','administrator','action','main','p','administrator','a','dashboard')));
 			$row1->add($btn_admin,6);
 		 }
 		 
