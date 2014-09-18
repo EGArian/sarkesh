@@ -137,8 +137,8 @@ class users extends users\module{
          */
          public function get_id($username = ''){
             
-            //WARRNING: UNDER DEVELOPMENT
-            
+            $user = $this->module_get_info($username);
+            return $user->id;
          }
 		
 		/* INPUT:string(username).if username not set this function return back information of user that now is logined in
