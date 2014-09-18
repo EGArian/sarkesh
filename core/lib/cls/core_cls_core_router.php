@@ -77,7 +77,9 @@ class router{
 					 }
 						//show 404 page not found page
 						$plugin = new plugin\msg;
-						$content = call_user_func(array($plugin,'msg_404'));	
+						$content = call_user_func(array($plugin,'msg_404'));
+						//jump user to 404 page
+						$this->jump_page(array('service','1','plugin','msg','action','msg404'));	
 				 }
 				
 	      }
@@ -86,6 +88,8 @@ class router{
 		  	//show 404 page not found page
 		  	$plugin = new plugin\msg;
 			$content = call_user_func(array($plugin,'msg_404'));
+			//jump user to 404 page
+			$this->jump_page(array('service','1','plugin','msg','action','msg404'));
 		  }
 	      browser\page::set_page_tittle($content[0]);
           //show header in up of content or else
